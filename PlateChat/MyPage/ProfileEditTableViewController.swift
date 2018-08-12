@@ -18,18 +18,21 @@ class ProfileEditTableViewController: UITableViewController {
     private let store   = Firestore.firestore()
     private let storage = Storage.storage()
     @IBOutlet weak var profileImageButton: CircleButton!
+    @IBOutlet weak var nicknameTextField: UITextField!
+
+    @IBOutlet weak var manButton: CircleButton!
+    @IBOutlet weak var womanButton: CircleButton!
+    @IBOutlet weak var onButton: CircleButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //self.tableView.allowsSelection  = false
+        self.tableView.separatorInset   = .zero
+        self.tableView.tableFooterView  = UIView()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        manButton.borderColor = .gray
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-
-        self.tableView.separatorInset = .zero
-        self.tableView.tableFooterView = UIView()
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let profileDocumentRef = self.store.document("login_user/\(uid)")

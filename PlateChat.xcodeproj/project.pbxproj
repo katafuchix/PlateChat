@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		310A6B98211FD0850026A412 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6B97211FD0850026A412 /* CircleButton.swift */; };
+		310A6B9A212063420026A412 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6B99212063420026A412 /* CALayer+RuntimeAttribute.swift */; };
+		310A6B9C212064470026A412 /* UIView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6B9B212064470026A412 /* UIView+Extended.swift */; };
+		310A6B9E212064AE0026A412 /* UIButton+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6B9D212064AE0026A412 /* UIButton+Extended.swift */; };
+		310A6BA021206C460026A412 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6B9F21206C460026A412 /* AccountData.swift */; };
 		312804FD2116EA9A00357E5C /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FC2116EA9A00357E5C /* Search.storyboard */; };
 		312805002116EBB400357E5C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FF2116EBB400357E5C /* Chat.storyboard */; };
 		312805032116ECF700357E5C /* Notice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312805022116ECF700357E5C /* Notice.storyboard */; };
@@ -58,6 +62,10 @@
 
 /* Begin PBXFileReference section */
 		310A6B97211FD0850026A412 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		310A6B99212063420026A412 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
+		310A6B9B212064470026A412 /* UIView+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extended.swift"; sourceTree = "<group>"; };
+		310A6B9D212064AE0026A412 /* UIButton+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extended.swift"; sourceTree = "<group>"; };
+		310A6B9F21206C460026A412 /* AccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
 		312804FC2116EA9A00357E5C /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		312804FF2116EBB400357E5C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		312805022116ECF700357E5C /* Notice.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notice.storyboard; sourceTree = "<group>"; };
@@ -248,6 +256,7 @@
 				3168A0712119BA98002B0440 /* ChatMessage.swift */,
 				3168A0732119BAC8002B0440 /* ChatMedia.swift */,
 				3168A07A2119C41C002B0440 /* LoginUser.swift */,
+				310A6B9F21206C460026A412 /* AccountData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -314,6 +323,9 @@
 			children = (
 				31BE63D22115D2E300E43982 /* UIColor+Extended.swift */,
 				31BE63D02115D26000E43982 /* NVActivityIndicatorView+Extended.swift */,
+				310A6B99212063420026A412 /* CALayer+RuntimeAttribute.swift */,
+				310A6B9B212064470026A412 /* UIView+Extended.swift */,
+				310A6B9D212064AE0026A412 /* UIButton+Extended.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -534,6 +546,7 @@
 			files = (
 				318108AA211584FD00C10946 /* MenuView.swift in Sources */,
 				3168A0792119C2E8002B0440 /* UserService.swift in Sources */,
+				310A6B9C212064470026A412 /* UIView+Extended.swift in Sources */,
 				312805082116F54900357E5C /* Constants.swift in Sources */,
 				3168A0742119BAC8002B0440 /* ChatMedia.swift in Sources */,
 				312805062116F00D00357E5C /* UtilManager.swift in Sources */,
@@ -545,14 +558,17 @@
 				319CE1422115990200347092 /* MainTabViewController.swift in Sources */,
 				31BE63D12115D26000E43982 /* NVActivityIndicatorView+Extended.swift in Sources */,
 				3168A0672118898A002B0440 /* ProfileEditTableViewController.swift in Sources */,
+				310A6BA021206C460026A412 /* AccountData.swift in Sources */,
 				31BE63DD2115ED8D00E43982 /* R.generated.swift in Sources */,
 				318108AE211584FD00C10946 /* PagingMenuControllerCustomizable.swift in Sources */,
 				31BE63D32115D2E300E43982 /* UIColor+Extended.swift in Sources */,
 				3150B9FF2113373900DB3512 /* AppDelegate.swift in Sources */,
 				318108A9211584FD00C10946 /* PagingMenuController.swift in Sources */,
 				318108AD211584FD00C10946 /* MenuViewCustomizable.swift in Sources */,
+				310A6B9E212064AE0026A412 /* UIButton+Extended.swift in Sources */,
 				31BE63DF2115F10D00E43982 /* SettingTableViewController.swift in Sources */,
 				3168A0702119BA54002B0440 /* Message.swift in Sources */,
+				310A6B9A212063420026A412 /* CALayer+RuntimeAttribute.swift in Sources */,
 				310A6B98211FD0850026A412 /* CircleButton.swift in Sources */,
 				318108AC211584FD00C10946 /* Pagable.swift in Sources */,
 				3168A07B2119C41C002B0440 /* LoginUser.swift in Sources */,

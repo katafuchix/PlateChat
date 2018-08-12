@@ -19,7 +19,7 @@
         <scene sceneID="i6W-Ee-f7h">
             <objects>
                 <navigationController id="nKS-tX-Gq8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="man" id="NZ8-Qy-4Ma">
+                    <tabBarItem key="tabBarItem" title="" image="person" id="NZ8-Qy-4Ma">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-9"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -346,7 +346,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="man" width="24" height="24"/>
+        <image name="person" width="24" height="24"/>
         <image name="setting" width="24" height="24"/>
         <image name="x" width="24" height="24"/>
     </resources>

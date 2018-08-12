@@ -13,7 +13,7 @@ class CircleButton: UIButton {
     override func draw(_ rect: CGRect) {
         // アスペクト比を合わせる
         self.contentMode = .scaleAspectFill
-        self.imageView?.contentMode = .scaleAspectFill
+        self.imageView?.contentMode = .scaleAspectFit
         // 円形にマスク
         self.layer.cornerRadius = self.frame.size.width / 2.0
         self.layer.masksToBounds = true
