@@ -20,7 +20,7 @@
             <objects>
                 <navigationController id="nKS-tX-Gq8" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="man" id="NZ8-Qy-4Ma">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-9"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rhu-eE-EKh">
