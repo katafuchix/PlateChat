@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		310A6B98211FD0850026A412 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6B97211FD0850026A412 /* CircleButton.swift */; };
 		312804FD2116EA9A00357E5C /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FC2116EA9A00357E5C /* Search.storyboard */; };
 		312805002116EBB400357E5C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FF2116EBB400357E5C /* Chat.storyboard */; };
 		312805032116ECF700357E5C /* Notice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312805022116ECF700357E5C /* Notice.storyboard */; };
@@ -56,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		310A6B97211FD0850026A412 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		312804FC2116EA9A00357E5C /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		312804FF2116EBB400357E5C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		312805022116ECF700357E5C /* Notice.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notice.storyboard; sourceTree = "<group>"; };
@@ -120,6 +122,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		310A6B95211FD0100026A412 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				310A6B96211FD0380026A412 /* CustomViews */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		310A6B96211FD0380026A412 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				310A6B97211FD0850026A412 /* CircleButton.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		312804FB2116E81200357E5C /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				3168A06C2119B9CE002B0440 /* Model */,
+				310A6B95211FD0100026A412 /* View */,
 				3168A0772119C241002B0440 /* Service */,
 				312805042116EFD500357E5C /* Util */,
 				31BE63CF2115D25400E43982 /* Extensions */,
@@ -534,6 +553,7 @@
 				318108AD211584FD00C10946 /* MenuViewCustomizable.swift in Sources */,
 				31BE63DF2115F10D00E43982 /* SettingTableViewController.swift in Sources */,
 				3168A0702119BA54002B0440 /* Message.swift in Sources */,
+				310A6B98211FD0850026A412 /* CircleButton.swift in Sources */,
 				318108AC211584FD00C10946 /* Pagable.swift in Sources */,
 				3168A07B2119C41C002B0440 /* LoginUser.swift in Sources */,
 				3168A06E2119BA29002B0440 /* Person.swift in Sources */,

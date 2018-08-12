@@ -33,6 +33,12 @@ class SettingTableViewController: UITableViewController {
         closeButton.rx.tap.subscribe(onNext: { [unowned self] in
             self.dismiss(animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
+        
+        notificationSwitch.rx.value.asDriver()
+            .skip(1)
+            .drive(onNext: {
+                UserService.setNotificationON($0)
+            }).disposed(by: rx.disposeBag)
     }
 
     override func didReceiveMemoryWarning() {

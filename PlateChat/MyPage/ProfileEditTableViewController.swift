@@ -9,11 +9,15 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
 class ProfileEditTableViewController: UITableViewController {
 
     private let store   = Firestore.firestore()
     private let storage = Storage.storage()
+    @IBOutlet weak var profileImageButton: CircleButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +28,9 @@ class ProfileEditTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
 
+        self.tableView.separatorInset = .zero
+        self.tableView.tableFooterView = UIView()
+        
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let profileDocumentRef = self.store.document("login_user/\(uid)")
         profileDocumentRef.getDocument { (document, error) in
@@ -45,78 +52,124 @@ class ProfileEditTableViewController: UITableViewController {
                 //completionHandler(nil, .noExistsError)
             }
         }
+
+        profileImageButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            self?.showUploadActionSheet()
+        }).disposed(by: rx.disposeBag)
+    }
+
+    func showUploadActionSheet() {
+        // styleをActionSheetに設定
+        let actionSheet = UIAlertController(title: "アバター設定", message: "選択してください。", preferredStyle: UIAlertControllerStyle.actionSheet)
+
+        // 選択肢を生成
+        let cameraAction = UIAlertAction(
+            title: "写真を撮る",
+            style: .default,
+            handler: { [weak self] _ in
+                // カメラが利用可能か
+                if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                    // 写真を選ぶビュー
+                    let pickerView = UIImagePickerController()
+                    // 写真の選択元をカメラにする
+                    pickerView.sourceType = .camera
+                    // トリミング機能ON
+                    pickerView.allowsEditing = true
+                    // デリゲート
+                    pickerView.delegate = self
+                    // ビューに表示
+                    self?.present(pickerView, animated: true)
+                }
+        })
+
+        let selectedAlbumAtion = UIAlertAction(
+            title: "写真を選択",
+            style: .default,
+            handler: { [weak self] _ in
+                // カメラロールが利用可能か
+                if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                    // 写真を選ぶビュー
+                    let pickerView = UIImagePickerController()
+                    // 写真の選択元をカメラロールにする
+                    pickerView.sourceType = .photoLibrary
+                    // トリミング機能ON
+                    pickerView.allowsEditing = true
+                    // デリゲート
+                    pickerView.delegate = self
+                    // ビューに表示
+                    self?.present(pickerView, animated: true)
+                }
+        })
+
+        let deleteAction = UIAlertAction(
+            title: "写真を削除",
+            style: .default,
+            handler: { [weak self] _ in
+                // デフォルト画像に差し替え
+                //self?.avatarImageView.image = nil
+                //self?.setHiddenAvatarImageView(true)
+                //self?.avatarSettings = .removed
+
+                //self?.updateButtons()
+        })
+
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
+
+        // アクションを追加
+        if UIImagePickerController.isSourceTypeAvailable(.camera) { actionSheet.addAction(cameraAction) }
+        actionSheet.addAction(selectedAlbumAtion)
+        //if addButtonImageView.isHidden { actionSheet.addAction(deleteAction) }
+        actionSheet.addAction(cancelAction)
+        actionSheet.popoverPresentationController?.sourceView = view
+        present(actionSheet, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
-    // MARK: - Table view data source
+extension ProfileEditTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    // 写真が選択された時に呼ばれる
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
+        // 画像を置き換える
+        //avatarImageView.image = info[UIImagePickerControllerEditedImage] as? UIImage
+        //setHiddenAvatarImageView(false)
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        //avatarSettings = .changed
+        //updateButtons()
+        /*
+         guard let avatar = info[UIImagePickerControllerEditedImage] as? UIImage else {
+         return
+         }
+         */
+        let avatar = info[UIImagePickerControllerEditedImage] as? UIImage
+        if let image = avatar, let jpeg = UIImageJPEGRepresentation(image, 0.9), let uid = Auth.auth().currentUser?.uid {
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+
+            let avatarStoragePath = Storage.storage().reference().child("ProfilePhoto/\(uid)/avatar.jpg")
+
+            avatarStoragePath.putData(jpeg, metadata: metadata) { _, error in
+                if nil != error {
+                    //completionHandler(nil, error)
+                    return
+                }
+                avatarStoragePath.downloadURL(completion: { url, error in
+                    print("storage image url")
+                    print(url)
+                    guard let avatarURL = url else {
+                        //completionHandler(nil, error)
+
+                        return
+                    }
+                    //completionHandler(avatarURL, nil)
+                })
+            }
+        }
+
+        // 前の画面に戻る
+        dismiss(animated: true, completion: nil)
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

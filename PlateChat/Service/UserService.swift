@@ -78,4 +78,16 @@ struct UserService {
             }
         })
     }
+
+    // 通知設定
+    static func setNotificationON(_ bool: Bool) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let data = ["notification_on": bool] as [String : Bool]
+        self.store.collection("login_user").document(uid).setData(data, merge: true, completion: { error in
+            if let err = error {
+                print("Error adding document: \(err)")
+                return
+            }
+        })
+    }
 }
