@@ -28,6 +28,7 @@ class MainTabViewController: UITabBarController {
         if Auth.auth().currentUser?.uid == nil {
             UserService.createUser(completionHandler: { (uid, _) in print(" create \(String(describing: uid))") })
         }
+        UserService.setLastLogin()
     }
 
     override func didReceiveMemoryWarning() {
