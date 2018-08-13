@@ -12,6 +12,7 @@
 		310A6B9C212064470026A412 /* UIView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6B9B212064470026A412 /* UIView+Extended.swift */; };
 		310A6B9E212064AE0026A412 /* UIButton+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6B9D212064AE0026A412 /* UIButton+Extended.swift */; };
 		310A6BA021206C460026A412 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6B9F21206C460026A412 /* AccountData.swift */; };
+		311017A22120932500E6B343 /* CircleSexButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311017A12120932500E6B343 /* CircleSexButton.swift */; };
 		312804FD2116EA9A00357E5C /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FC2116EA9A00357E5C /* Search.storyboard */; };
 		312805002116EBB400357E5C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FF2116EBB400357E5C /* Chat.storyboard */; };
 		312805032116ECF700357E5C /* Notice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312805022116ECF700357E5C /* Notice.storyboard */; };
@@ -31,6 +32,9 @@
 		3150BA062113373A00DB3512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3150BA052113373A00DB3512 /* Assets.xcassets */; };
 		3150BA092113373A00DB3512 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3150BA072113373A00DB3512 /* LaunchScreen.storyboard */; };
 		3150BA1521133E2200DB3512 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3150BA1421133E2200DB3512 /* NoticeViewController.swift */; };
+		315E0D57212192C40068924A /* UserDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E0D56212192C40068924A /* UserDeviceInfo.swift */; };
+		315E0D5A2121ACBB0068924A /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E0D592121ACBB0068924A /* ProfileEditViewModel.swift */; };
+		315E0D5C2121C60D0068924A /* ViewController+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E0D5B2121C60D0068924A /* ViewController+Extended.swift */; };
 		3168A065211886F1002B0440 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3168A064211886F1002B0440 /* Profile.storyboard */; };
 		3168A0672118898A002B0440 /* ProfileEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168A0662118898A002B0440 /* ProfileEditTableViewController.swift */; };
 		3168A06E2119BA29002B0440 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168A06D2119BA29002B0440 /* Person.swift */; };
@@ -66,6 +70,7 @@
 		310A6B9B212064470026A412 /* UIView+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extended.swift"; sourceTree = "<group>"; };
 		310A6B9D212064AE0026A412 /* UIButton+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extended.swift"; sourceTree = "<group>"; };
 		310A6B9F21206C460026A412 /* AccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
+		311017A12120932500E6B343 /* CircleSexButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleSexButton.swift; sourceTree = "<group>"; };
 		312804FC2116EA9A00357E5C /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		312804FF2116EBB400357E5C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		312805022116ECF700357E5C /* Notice.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notice.storyboard; sourceTree = "<group>"; };
@@ -87,6 +92,9 @@
 		3150BA082113373A00DB3512 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3150BA0A2113373A00DB3512 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3150BA1421133E2200DB3512 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
+		315E0D56212192C40068924A /* UserDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeviceInfo.swift; sourceTree = "<group>"; };
+		315E0D592121ACBB0068924A /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
+		315E0D5B2121C60D0068924A /* ViewController+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extended.swift"; sourceTree = "<group>"; };
 		3168A064211886F1002B0440 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		3168A0662118898A002B0440 /* ProfileEditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditTableViewController.swift; sourceTree = "<group>"; };
 		3168A06D2119BA29002B0440 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -142,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				310A6B97211FD0850026A412 /* CircleButton.swift */,
+				311017A12120932500E6B343 /* CircleSexButton.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -248,6 +257,14 @@
 			path = PlateChat;
 			sourceTree = "<group>";
 		};
+		315E0D582121ACA70068924A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				315E0D592121ACBB0068924A /* ProfileEditViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		3168A06C2119B9CE002B0440 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +274,7 @@
 				3168A0732119BAC8002B0440 /* ChatMedia.swift */,
 				3168A07A2119C41C002B0440 /* LoginUser.swift */,
 				310A6B9F21206C460026A412 /* AccountData.swift */,
+				315E0D56212192C40068924A /* UserDeviceInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,6 +344,7 @@
 				310A6B99212063420026A412 /* CALayer+RuntimeAttribute.swift */,
 				310A6B9B212064470026A412 /* UIView+Extended.swift */,
 				310A6B9D212064AE0026A412 /* UIButton+Extended.swift */,
+				315E0D5B2121C60D0068924A /* ViewController+Extended.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -333,6 +352,7 @@
 		31BE63D42115D88100E43982 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				315E0D582121ACA70068924A /* ViewModel */,
 				31BE63D52115D89300E43982 /* MyPage.storyboard */,
 				31BE63D92115ECA800E43982 /* MyProfileViewController.swift */,
 				31BE63DE2115F10C00E43982 /* SettingTableViewController.swift */,
@@ -556,13 +576,17 @@
 				318108A6211584FD00C10946 /* PagingViewController.swift in Sources */,
 				3168A0722119BA98002B0440 /* ChatMessage.swift in Sources */,
 				319CE1422115990200347092 /* MainTabViewController.swift in Sources */,
+				315E0D5C2121C60D0068924A /* ViewController+Extended.swift in Sources */,
 				31BE63D12115D26000E43982 /* NVActivityIndicatorView+Extended.swift in Sources */,
+				315E0D57212192C40068924A /* UserDeviceInfo.swift in Sources */,
 				3168A0672118898A002B0440 /* ProfileEditTableViewController.swift in Sources */,
+				311017A22120932500E6B343 /* CircleSexButton.swift in Sources */,
 				310A6BA021206C460026A412 /* AccountData.swift in Sources */,
 				31BE63DD2115ED8D00E43982 /* R.generated.swift in Sources */,
 				318108AE211584FD00C10946 /* PagingMenuControllerCustomizable.swift in Sources */,
 				31BE63D32115D2E300E43982 /* UIColor+Extended.swift in Sources */,
 				3150B9FF2113373900DB3512 /* AppDelegate.swift in Sources */,
+				315E0D5A2121ACBB0068924A /* ProfileEditViewModel.swift in Sources */,
 				318108A9211584FD00C10946 /* PagingMenuController.swift in Sources */,
 				318108AD211584FD00C10946 /* MenuViewCustomizable.swift in Sources */,
 				310A6B9E212064AE0026A412 /* UIButton+Extended.swift in Sources */,

@@ -7,33 +7,53 @@
 //
 
 import UIKit
+import Firebase
 
 struct AccountData {
 
     private enum DataType: String {
-        case login = "login"
-        case userId = "user_id"
-        case deviceToken = "device_token"
-        case authToken = "auth_token"
-        case email = "email"
-        case password = "password"
-        case isShowedThanksAlert = "isShowedThanksAlert"
-        case sex = "sex"
-        case confirmed = "confirmed"
-        case mainImageRole = "main_image_role" // 0:常に公開 / 1:いいねした相手にのみ / 2:マッチングした相手のみ / 3: 常に非公開
-        case lastForegroundDate = "lastForegroundDate"
-        case unsendReceipts = "unsendReceipts"
-        case unconfirmedMobilePhone = "unconfirmedMobilePhone"
-        case no_charging_member = "no_charging_member"              // 無料会員:true
-        case normal_charging_member = "normal_charging_member"      // 有料会員:true
-        case premium_charging_member = "premium_charging_member"    // プレミアム会員:true
-        case age_confirmed_at = "profile.age_confirmed_at"  // 年齢認証
-        case age_certification_status = "age_certification_status"  // 年齢認証の進捗  accepted / pending / default
-        case facebookProfilePicture = "facebook_profile_picture"    // Facebookのユーザー画像。FB経由での登録時に使用
+        case uid            = "uid"         // Auth.auth().currentUser?.uid
+        case nickname       = "nickname"
+        case email          = "email"
+        case password       = "password"
+        case login_email    = "login_email"
+        case login_password = "login_password"
+        case sex            = "sex"
+
+        case my_profile_image = "my_profile_image" // メイン画像
     }
 
     private init() {}
 
     private static let ud = UserDefaults.standard
-    
+
+    static var uid: String? {
+        get { return Auth.auth().currentUser?.uid }
+    }
+
+    static var nickname: String? {
+        get { return self.ud.string(forKey: AccountData.DataType.nickname.rawValue) }
+        set { self.ud.set(newValue, forKey: AccountData.DataType.nickname.rawValue); self.ud.synchronize() }
+    }
+
+    static var login_email: String? {
+        get { return self.ud.string(forKey: AccountData.DataType.login_email.rawValue) }
+        set { self.ud.set(newValue, forKey: AccountData.DataType.login_email.rawValue); self.ud.synchronize() }
+    }
+
+    static var login_password: String? {
+        get { return self.ud.string(forKey: AccountData.DataType.login_password.rawValue) }
+        set { self.ud.set(newValue, forKey: AccountData.DataType.login_password.rawValue); self.ud.synchronize() }
+    }
+
+    static var sex: Int {
+        get { return self.ud.integer(forKey: AccountData.DataType.sex.rawValue) }
+        set { self.ud.set(newValue, forKey: AccountData.DataType.sex.rawValue); self.ud.synchronize() }
+    }
+
+    // メイン画像
+    static var my_profile_image: String? {
+        get { return self.ud.string(forKey: AccountData.DataType.my_profile_image.rawValue) }
+        set { self.ud.set(newValue, forKey: AccountData.DataType.my_profile_image.rawValue); self.ud.synchronize() }
+    }
 }

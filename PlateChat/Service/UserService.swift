@@ -17,6 +17,7 @@ enum UserServiceFetchError: Error {
 
 enum UserServiceUpdateError: Error {
     case updateError(Error?)
+    case fetchError(Error?)
 }
 
 struct UserService {
@@ -51,10 +52,11 @@ struct UserService {
                 print("uid")
                 print(uid)
                 let data = [
-                            "email" : email,
-                            "password" : password,
-                            "status": 1,
-                            "last_login_date": FieldValue.serverTimestamp()
+                            "email"             : email,
+                            "password"          : password,
+                            "devise"            : UserDeviceInfo.getDeviceInfo(),
+                            "status"            : 1,
+                            "last_login_date"   : FieldValue.serverTimestamp()
                 ] as [String : Any]
                 self.store.collection("login_user").document(uid).setData(data, completion: { error in
                     if let err = error {
@@ -67,10 +69,41 @@ struct UserService {
         })
     }
 
+    // プロフィール設定
+    static func updateLoginUser(_ dic: [String: Any], completionHandler: @escaping (_ user: LoginUser?, _ error: UserServiceUpdateError?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let data = dic
+        self.store.collection("login_user").document(uid).setData(data, merge: true, completion: { error in
+            if error != nil {
+                completionHandler(nil, .updateError(error))
+                return
+            }
+            // 最新情報を取得
+            let profileDocumentRef = self.store.collection("login_user").document(uid)
+            profileDocumentRef.getDocument { (document, error) in
+                if error != nil {
+                    completionHandler(nil, .fetchError(error))
+                } else if let document = document, document.exists {
+                    do {
+                        let user = try LoginUser(from: document)
+                        completionHandler(user, nil)
+                    } catch {
+                        completionHandler(nil, .fetchError(error))
+                    }
+                } else {
+                    completionHandler(nil, .fetchError(error))
+                }
+            }
+        })
+    }
+
     // 最終ログイン
     static func setLastLogin() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let data = ["last_login_date": FieldValue.serverTimestamp()] as [String : Any]
+        let data = [
+                    "last_login_date"   : FieldValue.serverTimestamp(),
+                    "devise"            : UserDeviceInfo.getDeviceInfo()
+            ] as [String : Any]
         self.store.collection("login_user").document(uid).setData(data, merge: true, completion: { error in
             if let err = error {
                 print("Error adding document: \(err)")

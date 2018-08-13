@@ -26,8 +26,8 @@ extension NVActivityIndicatorView {
     
     public static func show(message: String? = nil) {
         setup()
-        //let data = ActivityData(message: message)
-        //NVActivityIndicatorPresenter.sharedInstance.startAnimating(data)
+        let data = ActivityData(message: message)
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(data, nil)
         SVProgressHUD.show()
     }
     

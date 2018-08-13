@@ -20,6 +20,8 @@ struct LoginUser {
     let password: String
     let login_email: String
     let login_password: String
+    let nickname: String
+    let sex: Int
     let status: Int
 
 
@@ -37,5 +39,7 @@ struct LoginUser {
         self.status         = status
         self.login_email    = (document.get("login_email") as? String) ?? ""
         self.login_password = (document.get("login_password") as? String) ?? ""
+        self.nickname       = (document.get("nickname") as? String) ?? ""
+        self.sex            = (document.get("sex") as? Int) ?? 0
     }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import NVActivityIndicatorView
+import SVProgressHUD
 import Firebase
 
 class MainTabViewController: UITabBarController {
@@ -19,11 +20,11 @@ class MainTabViewController: UITabBarController {
 
         self.tabBar.tintColor = .orange
         //NVActivityIndicatorView.show(message: "loading...")
-
-        print(UtilManager.generateString())
-        print(UtilManager.getNowDateString())
-        print("Constants.DEBUG")
-        print(Constants.DEBUG)
+        SVProgressHUD.setDefaultStyle(.dark)
+        
+        print("Auth.auth().currentUser?.uid")
+        print(Auth.auth().currentUser?.uid)
+        print(UserDeviceInfo.getDeviceInfo())
 
         if Auth.auth().currentUser?.uid == nil {
             UserService.createUser(completionHandler: { (uid, _) in print(" create \(String(describing: uid))") })

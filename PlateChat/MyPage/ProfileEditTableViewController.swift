@@ -12,17 +12,22 @@ import FirebaseFirestore
 import RxSwift
 import RxCocoa
 import NSObject_Rx
+import SVProgressHUD
 
 class ProfileEditTableViewController: UITableViewController {
 
     private let store   = Firestore.firestore()
     private let storage = Storage.storage()
+
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var profileImageButton: CircleButton!
     @IBOutlet weak var nicknameTextField: UITextField!
 
-    @IBOutlet weak var manButton: CircleButton!
-    @IBOutlet weak var womanButton: CircleButton!
-    @IBOutlet weak var onButton: CircleButton!
+    @IBOutlet weak var manButton: CircleSexButton!
+    @IBOutlet weak var womanButton: CircleSexButton!
+    @IBOutlet weak var noneButton: CircleSexButton!
+
+    let viewModel = ProfileEditViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,36 +36,107 @@ class ProfileEditTableViewController: UITableViewController {
         self.tableView.separatorInset   = .zero
         self.tableView.tableFooterView  = UIView()
 
-        manButton.borderColor = .gray
+        // 性別
+        //self.noneButton.isSelected = true
+        setUserData()
+        bind()
+    }
 
-        
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let profileDocumentRef = self.store.document("login_user/\(uid)")
-        profileDocumentRef.getDocument { (document, error) in
-            if error != nil {
-                //completionHandler(nil, .fetchError(error))
-            } else if let document = document, document.exists {
-                do {
-                    let user = try LoginUser(from: document)
-                    print(user)
-                    print(user.email)
-                    print(user.status)
-                    //completionHandler(user, nil)
-
-                } catch {
-                    // TODO: Errorバリエーション定義
-                    //completionHandler(nil, .fetchError(error))
-                }
-            } else {
-                //completionHandler(nil, .noExistsError)
-            }
+    func setUserData() {
+        self.nicknameTextField.text = AccountData.nickname
+        switch AccountData.sex {
+        case 0:
+            self.buttonSelect(self.noneButton)
+        case 1:
+            self.buttonSelect(self.manButton)
+        case 2:
+            self.buttonSelect(self.womanButton)
+        default:
+            break
         }
+    }
 
+    func bind() {
+        // ニックネーム
+        self.nicknameTextField.rx.text.orEmpty.bind(to: self.viewModel.nickName).disposed(by: rx.disposeBag)
+
+        // 性別
+        self.manButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            self?.buttonSelect((self?.manButton)!)
+        }).disposed(by: rx.disposeBag)
+
+        self.womanButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            self?.buttonSelect((self?.womanButton)!)
+        }).disposed(by: rx.disposeBag)
+
+        self.noneButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            self?.buttonSelect((self?.noneButton)!)
+        }).disposed(by: rx.disposeBag)
+
+        // 保存
+        saveButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            let dic = [
+                "nickname" : self?.viewModel.nickName.value ?? "",
+                "sex" : self?.viewModel.sex.value ?? 0
+                ] as [String : Any]
+            print(dic)
+            SVProgressHUD.show(withStatus: "Loading...")
+            UserService.updateLoginUser(dic,completionHandler: { ( user, error) in
+                                            SVProgressHUD.dismiss()
+                                            guard let user = user else { return }
+                                            if error != nil {
+                                                self?.showAlert("Error!")
+                                                return
+                                            } else {
+                                                AccountData.nickname = user.nickname
+                                                AccountData.sex      = user.sex
+                                                self?.showAlert("更新しました")
+                                            }
+            })
+        }).disposed(by: rx.disposeBag)
+
+        // 画像
         profileImageButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             self?.showUploadActionSheet()
         }).disposed(by: rx.disposeBag)
     }
 
+    // 性別
+    func buttonSelect(_ button: CircleSexButton) {
+        if button.isSelected { return }
+        self.manButton.isSelected   = false
+        self.womanButton.isSelected = false
+        self.noneButton.isSelected  = false
+        button.isSelected = true
+        self.viewModel.sex.value = button.tag
+    }
+
+    func uploadImage(_ pimage: UIImage) {
+        let image = pimage
+        if let jpeg = UIImageJPEGRepresentation(image, 0.9), let uid = Auth.auth().currentUser?.uid {
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+
+            let avatarStoragePath = Storage.storage().reference().child("ProfilePhoto/\(uid)/avatar.jpg")
+
+            avatarStoragePath.putData(jpeg, metadata: metadata) { _, error in
+                if nil != error {
+                    //completionHandler(nil, error)
+                    return
+                }
+                avatarStoragePath.downloadURL(completion: { url, error in
+                    print("storage image url")
+                    print(url)
+                    guard let avatarURL = url else {
+                        //completionHandler(nil, error)
+
+                        return
+                    }
+                    //completionHandler(avatarURL, nil)
+                })
+            }
+        }
+    }
     func showUploadActionSheet() {
         // styleをActionSheetに設定
         let actionSheet = UIAlertController(title: "アバター設定", message: "選択してください。", preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -147,7 +223,10 @@ extension ProfileEditTableViewController: UIImagePickerControllerDelegate, UINav
          return
          }
          */
+        print("avatar ")
         let avatar = info[UIImagePickerControllerEditedImage] as? UIImage
+        self.profileImageButton.setImage(avatar, for: .normal)
+        /*
         if let image = avatar, let jpeg = UIImageJPEGRepresentation(image, 0.9), let uid = Auth.auth().currentUser?.uid {
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
@@ -171,7 +250,7 @@ extension ProfileEditTableViewController: UIImagePickerControllerDelegate, UINav
                 })
             }
         }
-
+        */
         // 前の画面に戻る
         dismiss(animated: true, completion: nil)
     }
