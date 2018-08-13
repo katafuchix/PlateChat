@@ -13,6 +13,7 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import SVProgressHUD
+import SDWebImage
 
 class ProfileEditTableViewController: UITableViewController {
 
@@ -54,6 +55,12 @@ class ProfileEditTableViewController: UITableViewController {
         default:
             break
         }
+        if let url = AccountData.my_profile_image {
+            self.profileImageButton.sd_setBackgroundImage(with: URL(string:url), for: .normal) { [weak self] (image, error, cacheType, url) in
+            }
+        } else {
+            self.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
+        }
     }
 
     func bind() {
@@ -80,7 +87,7 @@ class ProfileEditTableViewController: UITableViewController {
                 "sex" : self?.viewModel.sex.value ?? 0
                 ] as [String : Any]
             print(dic)
-            SVProgressHUD.show(withStatus: "Loading...")
+            SVProgressHUD.show(withStatus: "Updating...")
             UserService.updateLoginUser(dic,completionHandler: { ( user, error) in
                                             SVProgressHUD.dismiss()
                                             guard let user = user else { return }
@@ -111,32 +118,22 @@ class ProfileEditTableViewController: UITableViewController {
         self.viewModel.sex.value = button.tag
     }
 
-    func uploadImage(_ pimage: UIImage) {
-        let image = pimage
-        if let jpeg = UIImageJPEGRepresentation(image, 0.9), let uid = Auth.auth().currentUser?.uid {
-            let metadata = StorageMetadata()
-            metadata.contentType = "image/jpeg"
-
-            let avatarStoragePath = Storage.storage().reference().child("ProfilePhoto/\(uid)/avatar.jpg")
-
-            avatarStoragePath.putData(jpeg, metadata: metadata) { _, error in
-                if nil != error {
-                    //completionHandler(nil, error)
-                    return
-                }
-                avatarStoragePath.downloadURL(completion: { url, error in
-                    print("storage image url")
-                    print(url)
-                    guard let avatarURL = url else {
-                        //completionHandler(nil, error)
-
-                        return
-                    }
-                    //completionHandler(avatarURL, nil)
-                })
+    func uploadImage(_ image: UIImage) {
+        SVProgressHUD.show(withStatus: "Uploading...")
+        UserService.uploadProfileImage(image, completionHandler: { [weak self] (urlStr, error) in
+            SVProgressHUD.dismiss()
+            guard let urlStr = urlStr else { return }
+            if error != nil {
+                self?.showAlert("Error!")
+                return
+            } else {
+                AccountData.my_profile_image = urlStr
+                self?.profileImageButton.sd_setBackgroundImage(with: URL(string:urlStr), for: .normal)
+                self?.showAlert("プロフィール画像を登録しました")
             }
-        }
+        })
     }
+
     func showUploadActionSheet() {
         // styleをActionSheetに設定
         let actionSheet = UIAlertController(title: "アバター設定", message: "選択してください。", preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -212,45 +209,12 @@ class ProfileEditTableViewController: UITableViewController {
 extension ProfileEditTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     // 写真が選択された時に呼ばれる
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
-        // 画像を置き換える
-        //avatarImageView.image = info[UIImagePickerControllerEditedImage] as? UIImage
-        //setHiddenAvatarImageView(false)
-
-        //avatarSettings = .changed
-        //updateButtons()
-        /*
-         guard let avatar = info[UIImagePickerControllerEditedImage] as? UIImage else {
-         return
-         }
-         */
         print("avatar ")
         let avatar = info[UIImagePickerControllerEditedImage] as? UIImage
-        self.profileImageButton.setImage(avatar, for: .normal)
-        /*
-        if let image = avatar, let jpeg = UIImageJPEGRepresentation(image, 0.9), let uid = Auth.auth().currentUser?.uid {
-            let metadata = StorageMetadata()
-            metadata.contentType = "image/jpeg"
-
-            let avatarStoragePath = Storage.storage().reference().child("ProfilePhoto/\(uid)/avatar.jpg")
-
-            avatarStoragePath.putData(jpeg, metadata: metadata) { _, error in
-                if nil != error {
-                    //completionHandler(nil, error)
-                    return
-                }
-                avatarStoragePath.downloadURL(completion: { url, error in
-                    print("storage image url")
-                    print(url)
-                    guard let avatarURL = url else {
-                        //completionHandler(nil, error)
-
-                        return
-                    }
-                    //completionHandler(avatarURL, nil)
-                })
-            }
+        //self.profileImageButton.setImage(avatar, for: .normal)
+        if let image = avatar {
+            self.uploadImage(image)
         }
-        */
         // 前の画面に戻る
         dismiss(animated: true, completion: nil)
     }

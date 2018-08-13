@@ -24,6 +24,7 @@ class MainTabViewController: UITabBarController {
         
         print("Auth.auth().currentUser?.uid")
         print(Auth.auth().currentUser?.uid)
+        print(Auth.auth().currentUser?.email)
         print(UserDeviceInfo.getDeviceInfo())
 
         if Auth.auth().currentUser?.uid == nil {

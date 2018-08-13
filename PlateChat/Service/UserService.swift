@@ -97,6 +97,41 @@ struct UserService {
         })
     }
 
+    // プロフィール画像
+    static func uploadProfileImage(_ image: UIImage, completionHandler: @escaping (_ urlStr: String?, _ error: UserServiceUpdateError?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        if let jpeg = UIImageJPEGRepresentation(image, 0.9) {
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            let avatarStoragePath = Storage.storage().reference().child("ProfilePhoto/\(uid)/avatar.jpg")
+
+            avatarStoragePath.putData(jpeg, metadata: metadata) { _, error in
+                if nil != error {
+                    completionHandler(nil, .updateError(error))
+                    return
+                }
+                avatarStoragePath.downloadURL(completion: { url, error in
+                    //print("storage image url")
+                    //print(url)
+                    guard let avatarURL = url else {
+                        completionHandler(nil, .updateError(error))
+                        return
+                    }
+                    // urlを保存
+                    let data = [
+                            "profile_image_url"             : avatarURL.absoluteString
+                        ] as [String : String]
+                    self.store.collection("login_user").document(uid).setData(data, merge: true,  completion: { error in
+                        if let err = error {
+                            completionHandler(nil, .updateError(err))
+                            return
+                        }
+                        completionHandler(avatarURL.absoluteString, nil)
+                    })
+                })
+            }
+        }
+    }
     // 最終ログイン
     static func setLastLogin() {
         guard let uid = Auth.auth().currentUser?.uid else { return }

@@ -48,45 +48,56 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="160" id="o4m-vk-XId">
-                                        <rect key="frame" x="0.0" y="30" width="375" height="160"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="o4m-vk-XId">
+                                        <rect key="frame" x="0.0" y="30" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o4m-vk-XId" id="KLy-7v-XOb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAp-hJ-8rA" customClass="CircleButton" customModule="PlateChat" customModuleProvider="target">
-                                                    <rect key="frame" x="147.5" y="40" width="80" height="80"/>
+                                                    <rect key="frame" x="279" y="10" width="80" height="80"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="80" id="BIw-nx-LEr"/>
                                                         <constraint firstAttribute="width" constant="80" id="YRK-Wf-Sz1"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button" image="person-icon"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                                    <state key="normal" title="+" backgroundImage="person-icon"/>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="プロフィール画像" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43F-Ip-TrO">
+                                                    <rect key="frame" x="16" y="40" width="124" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="124" id="wzY-wZ-BZh"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="HAp-hJ-8rA" firstAttribute="centerY" secondItem="KLy-7v-XOb" secondAttribute="centerY" id="8ZU-U1-tHy"/>
-                                                <constraint firstItem="HAp-hJ-8rA" firstAttribute="centerX" secondItem="KLy-7v-XOb" secondAttribute="centerX" id="p3r-SK-p69"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="HAp-hJ-8rA" secondAttribute="trailing" id="fvM-1t-LtO"/>
+                                                <constraint firstItem="43F-Ip-TrO" firstAttribute="leading" secondItem="KLy-7v-XOb" secondAttribute="leadingMargin" id="nql-Oh-rAZ"/>
+                                                <constraint firstItem="43F-Ip-TrO" firstAttribute="centerY" secondItem="KLy-7v-XOb" secondAttribute="centerY" id="uP6-mK-ySg"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" id="QFY-Lm-ikN">
-                                        <rect key="frame" x="0.0" y="190" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="54" id="QFY-Lm-ikN">
+                                        <rect key="frame" x="0.0" y="130" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QFY-Lm-ikN" id="nrc-Kf-uPc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="umi-Uc-gkQ">
-                                                    <rect key="frame" x="122" y="7" width="237" height="30"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="umi-Uc-gkQ">
+                                                    <rect key="frame" x="122" y="16.5" width="237" height="21"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ニックネーム" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOv-HS-ZoY">
-                                                    <rect key="frame" x="16" y="12" width="86" height="21"/>
+                                                    <rect key="frame" x="16" y="16" width="86" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="86" id="GjO-sy-qye"/>
                                                     </constraints>
@@ -105,7 +116,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="80" id="G0U-sC-exO">
-                                        <rect key="frame" x="0.0" y="234" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="184" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G0U-sC-exO" id="9vn-Ng-RfV">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
