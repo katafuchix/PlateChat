@@ -55,6 +55,7 @@ struct UserService {
                             "email"             : email,
                             "password"          : password,
                             "devise"            : UserDeviceInfo.getDeviceInfo(),
+                            "prefecture_id"     : 0,
                             "status"            : 1,
                             "last_login_date"   : FieldValue.serverTimestamp()
                 ] as [String : Any]
@@ -86,6 +87,11 @@ struct UserService {
                 } else if let document = document, document.exists {
                     do {
                         let user = try LoginUser(from: document)
+
+                        AccountData.nickname        = user.nickname
+                        AccountData.sex             = user.sex
+                        AccountData.prefecture_id   = user.prefecture_id
+                        
                         completionHandler(user, nil)
                     } catch {
                         completionHandler(nil, .fetchError(error))
@@ -143,6 +149,18 @@ struct UserService {
             if let err = error {
                 print("Error adding document: \(err)")
                 return
+            }
+            // 最新情報を取得
+            let profileDocumentRef = self.store.collection("login_user").document(uid)
+            profileDocumentRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    do {
+                        let user = try LoginUser(from: document)
+                        AccountData.nickname        = user.nickname
+                        AccountData.sex             = user.sex
+                        AccountData.prefecture_id   = user.prefecture_id
+                    } catch {}
+                }
             }
         })
     }

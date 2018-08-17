@@ -12,6 +12,7 @@
 		310A6B9C212064470026A412 /* UIView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6B9B212064470026A412 /* UIView+Extended.swift */; };
 		310A6B9E212064AE0026A412 /* UIButton+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6B9D212064AE0026A412 /* UIButton+Extended.swift */; };
 		310A6BA021206C460026A412 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6B9F21206C460026A412 /* AccountData.swift */; };
+		310FB05521269E0100C917E7 /* UITextField+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB05421269E0000C917E7 /* UITextField+Extended.swift */; };
 		311017A22120932500E6B343 /* CircleSexButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311017A12120932500E6B343 /* CircleSexButton.swift */; };
 		312804FD2116EA9A00357E5C /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FC2116EA9A00357E5C /* Search.storyboard */; };
 		312805002116EBB400357E5C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FF2116EBB400357E5C /* Chat.storyboard */; };
@@ -75,6 +76,7 @@
 		310A6B9B212064470026A412 /* UIView+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extended.swift"; sourceTree = "<group>"; };
 		310A6B9D212064AE0026A412 /* UIButton+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extended.swift"; sourceTree = "<group>"; };
 		310A6B9F21206C460026A412 /* AccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
+		310FB05421269E0000C917E7 /* UITextField+Extended.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extended.swift"; sourceTree = "<group>"; };
 		311017A12120932500E6B343 /* CircleSexButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleSexButton.swift; sourceTree = "<group>"; };
 		312804FC2116EA9A00357E5C /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		312804FF2116EBB400357E5C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				310A6B9B212064470026A412 /* UIView+Extended.swift */,
 				310A6B9D212064AE0026A412 /* UIButton+Extended.swift */,
 				315E0D5B2121C60D0068924A /* ViewController+Extended.swift */,
+				310FB05421269E0000C917E7 /* UITextField+Extended.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				3168A0672118898A002B0440 /* ProfileEditTableViewController.swift in Sources */,
 				311017A22120932500E6B343 /* CircleSexButton.swift in Sources */,
 				310A6BA021206C460026A412 /* AccountData.swift in Sources */,
+				310FB05521269E0100C917E7 /* UITextField+Extended.swift in Sources */,
 				319A26B0212675A000769A6E /* Alert.swift in Sources */,
 				31BE63DD2115ED8D00E43982 /* R.generated.swift in Sources */,
 				318108AE211584FD00C10946 /* PagingMenuControllerCustomizable.swift in Sources */,

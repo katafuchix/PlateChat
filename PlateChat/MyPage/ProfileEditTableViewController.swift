@@ -27,8 +27,12 @@ class ProfileEditTableViewController: UITableViewController {
     @IBOutlet weak var manButton: CircleSexButton!
     @IBOutlet weak var womanButton: CircleSexButton!
     @IBOutlet weak var noneButton: CircleSexButton!
+    @IBOutlet weak var prefTextField: UITextField!
 
     let viewModel = ProfileEditViewModel()
+    var pickerView: UIPickerView = UIPickerView()
+    let prefs: Variable<[Int: String]> = Variable([:])
+    let prefNameArray: Variable<[String]> = Variable([])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +60,7 @@ class ProfileEditTableViewController: UITableViewController {
             break
         }
         if let url = AccountData.my_profile_image {
-            self.profileImageButton.sd_setBackgroundImage(with: URL(string:url), for: .normal) { [weak self] (image, error, cacheType, url) in
+            self.profileImageButton.sd_setBackgroundImage(with: URL(string:url), for: .normal) { (image, error, cacheType, url) in
             }
         } else {
             self.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
@@ -84,7 +88,8 @@ class ProfileEditTableViewController: UITableViewController {
         saveButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             let dic = [
                 "nickname" : self?.viewModel.nickName.value ?? "",
-                "sex" : self?.viewModel.sex.value ?? 0
+                "sex" : self?.viewModel.sex.value ?? 0,
+                "prefecture_id" : self?.pickerView.selectedRow(inComponent: 0) ?? 0
                 ] as [String : Any]
             print(dic)
             SVProgressHUD.show(withStatus: "Updating...")
@@ -95,8 +100,6 @@ class ProfileEditTableViewController: UITableViewController {
                                                 self?.showAlert("Error!")
                                                 return
                                             } else {
-                                                AccountData.nickname = user.nickname
-                                                AccountData.sex      = user.sex
                                                 self?.showAlert("更新しました")
                                             }
             })
@@ -106,6 +109,27 @@ class ProfileEditTableViewController: UITableViewController {
         profileImageButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             self?.showUploadActionSheet()
         }).disposed(by: rx.disposeBag)
+
+        // 住所
+        self.prefTextField.setInputAccessoryView()
+        self.prefTextField.inputView = pickerView
+        pickerView.showsSelectionIndicator = true
+        self.prefNameArray.value = Constants.prefs.sorted(by: {$0.0 < $1.0}).map { $0.1 }
+        pickerView.selectRow(AccountData.prefecture_id, inComponent: 0, animated: false)
+        self.prefTextField.text = self.prefNameArray.value[AccountData.prefecture_id]
+
+        self.prefNameArray.asObservable().bind(to: pickerView.rx.itemTitles) {_, item in
+            return "\(item)"
+        }.disposed(by: rx.disposeBag)
+
+        pickerView.rx.itemSelected.subscribe { [weak self] (event) in
+                switch event {
+                case .next(let selected):
+                    self?.prefTextField.text = self?.prefNameArray.value[selected.row]
+                default:
+                    break
+                }
+            }.disposed(by: rx.disposeBag)
     }
 
     // 性別
@@ -200,6 +224,16 @@ class ProfileEditTableViewController: UITableViewController {
         present(actionSheet, animated: true, completion: nil)
     }
 
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 4:
+            self.prefTextField.becomeFirstResponder()
+        default:
+            break
+        }
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -219,3 +253,5 @@ extension ProfileEditTableViewController: UIImagePickerControllerDelegate, UINav
         dismiss(animated: true, completion: nil)
     }
 }
+
+

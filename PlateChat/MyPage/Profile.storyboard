@@ -205,6 +205,41 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="54" id="XDj-or-HyP">
+                                        <rect key="frame" x="0.0" y="264" width="375" height="54"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XDj-or-HyP" id="nTZ-Yu-2dM">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="居住地" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ut4-7B-0CZ">
+                                                    <rect key="frame" x="16" y="16.5" width="86" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="86" id="cY5-PW-R0R"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SVx-IX-oGR">
+                                                    <rect key="frame" x="224" y="16.5" width="135" height="21"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="135" id="sen-xN-M89"/>
+                                                    </constraints>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ut4-7B-0CZ" firstAttribute="centerY" secondItem="nTZ-Yu-2dM" secondAttribute="centerY" id="1gV-FR-bAF"/>
+                                                <constraint firstItem="SVx-IX-oGR" firstAttribute="trailing" secondItem="nTZ-Yu-2dM" secondAttribute="trailingMargin" id="IPt-2y-eQT"/>
+                                                <constraint firstItem="SVx-IX-oGR" firstAttribute="centerY" secondItem="nTZ-Yu-2dM" secondAttribute="centerY" id="ZvY-lx-nas"/>
+                                                <constraint firstItem="ut4-7B-0CZ" firstAttribute="leading" secondItem="nTZ-Yu-2dM" secondAttribute="leadingMargin" id="eMz-G6-wMF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -221,6 +256,7 @@
                         <outlet property="manButton" destination="8QN-Ra-SZg" id="885-dd-2Qu"/>
                         <outlet property="nicknameTextField" destination="umi-Uc-gkQ" id="EQ6-hr-iPl"/>
                         <outlet property="noneButton" destination="SGz-3R-135" id="fwe-VF-MaI"/>
+                        <outlet property="prefTextField" destination="SVx-IX-oGR" id="fCe-xw-kFr"/>
                         <outlet property="profileImageButton" destination="HAp-hJ-8rA" id="28U-1v-auH"/>
                         <outlet property="saveButton" destination="FWA-2o-sfF" id="yKY-69-pkd"/>
                         <outlet property="womanButton" destination="uh7-Il-G05" id="jRS-Aq-eiH"/>
