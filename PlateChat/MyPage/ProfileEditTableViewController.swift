@@ -28,6 +28,8 @@ class ProfileEditTableViewController: UITableViewController {
     @IBOutlet weak var womanButton: CircleSexButton!
     @IBOutlet weak var noneButton: CircleSexButton!
     @IBOutlet weak var prefTextField: UITextField!
+    @IBOutlet weak var profileTextView: UITextView!
+    @IBOutlet weak var countLabel: UILabel!
 
     let viewModel = ProfileEditViewModel()
     var pickerView: UIPickerView = UIPickerView()
@@ -65,6 +67,7 @@ class ProfileEditTableViewController: UITableViewController {
         } else {
             self.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
         }
+        self.profileTextView.text = AccountData.profile_text
     }
 
     func bind() {
@@ -86,10 +89,21 @@ class ProfileEditTableViewController: UITableViewController {
 
         // 保存
         saveButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+
+            if (self?.nicknameTextField.text?.isEmpty)! {
+                Alert.init("ニックネームを入力してください").show(self)
+                return
+            }
+            if (self?.profileTextView.text.description.count)! > 100 {
+                Alert.init("自己紹介は100文字以内で入力してください").show(self)
+                return
+            }
+
             let dic = [
                 "nickname" : self?.viewModel.nickName.value ?? "",
                 "sex" : self?.viewModel.sex.value ?? 0,
-                "prefecture_id" : self?.pickerView.selectedRow(inComponent: 0) ?? 0
+                "prefecture_id" : self?.pickerView.selectedRow(inComponent: 0) ?? 0,
+                "profile_text" : self?.viewModel.profileText.value ?? "",
                 ] as [String : Any]
             print(dic)
             SVProgressHUD.show(withStatus: "Updating...")
@@ -130,6 +144,12 @@ class ProfileEditTableViewController: UITableViewController {
                     break
                 }
             }.disposed(by: rx.disposeBag)
+
+        // 自己紹介文
+        self.profileTextView.rx.text.orEmpty.bind(to: self.viewModel.profileText).disposed(by: rx.disposeBag)
+        self.viewModel.profileText.asDriver().drive(onNext:{ [weak self] str in
+            self?.countLabel.text = "\(str.description.count)/100"
+        }).disposed(by: rx.disposeBag)
     }
 
     // 性別
@@ -160,7 +180,7 @@ class ProfileEditTableViewController: UITableViewController {
 
     func showUploadActionSheet() {
         // styleをActionSheetに設定
-        let actionSheet = UIAlertController(title: "アバター設定", message: "選択してください。", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let actionSheet = UIAlertController(title: "プロフィール画像", message: "選択してください。", preferredStyle: UIAlertControllerStyle.actionSheet)
 
         // 選択肢を生成
         let cameraAction = UIAlertAction(
@@ -243,7 +263,6 @@ class ProfileEditTableViewController: UITableViewController {
 extension ProfileEditTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     // 写真が選択された時に呼ばれる
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
-        print("avatar ")
         let avatar = info[UIImagePickerControllerEditedImage] as? UIImage
         //self.profileImageButton.setImage(avatar, for: .normal)
         if let image = avatar {

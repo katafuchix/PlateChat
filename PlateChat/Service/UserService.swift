@@ -91,7 +91,7 @@ struct UserService {
                         AccountData.nickname        = user.nickname
                         AccountData.sex             = user.sex
                         AccountData.prefecture_id   = user.prefecture_id
-                        
+                        AccountData.profile_text    = user.profile_text
                         completionHandler(user, nil)
                     } catch {
                         completionHandler(nil, .fetchError(error))
@@ -159,6 +159,7 @@ struct UserService {
                         AccountData.nickname        = user.nickname
                         AccountData.sex             = user.sex
                         AccountData.prefecture_id   = user.prefecture_id
+                        AccountData.profile_text    = user.profile_text
                     } catch {}
                 }
             }

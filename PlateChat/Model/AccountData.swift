@@ -20,6 +20,7 @@ struct AccountData {
         case login_password = "login_password"
         case sex            = "sex"
         case prefecture_id  = "prefecture_id"
+        case profile_text   = "profile_text"
         case my_profile_image = "my_profile_image" // メイン画像
     }
 
@@ -54,6 +55,11 @@ struct AccountData {
     static var prefecture_id: Int {
         get { return self.ud.integer(forKey: AccountData.DataType.prefecture_id.rawValue) }
         set { self.ud.set(newValue, forKey: AccountData.DataType.prefecture_id.rawValue); self.ud.synchronize() }
+    }
+
+    static var profile_text: String? {
+        get { return self.ud.string(forKey: AccountData.DataType.profile_text.rawValue) }
+        set { self.ud.set(newValue, forKey: AccountData.DataType.profile_text.rawValue); self.ud.synchronize() }
     }
 
     // メイン画像

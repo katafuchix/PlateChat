@@ -15,11 +15,11 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Title-->
+        <!--プロフィール設定-->
         <scene sceneID="zjE-jk-xhW">
             <objects>
                 <tableViewController storyboardIdentifier="ProfileEditTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RcV-pM-uGM" customClass="ProfileEditTableViewController" customModule="PlateChat" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oam-9f-vaS">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oam-9f-vaS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -240,6 +240,72 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="30" id="brm-pY-KJh">
+                                        <rect key="frame" x="0.0" y="318" width="375" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="brm-pY-KJh" id="kFT-xC-DTY">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自己紹介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s35-QB-gLw">
+                                                    <rect key="frame" x="16" y="12" width="343" height="18"/>
+                                                    <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="s35-QB-gLw" secondAttribute="trailing" constant="16" id="aMw-De-Xss"/>
+                                                <constraint firstItem="s35-QB-gLw" firstAttribute="leading" secondItem="kFT-xC-DTY" secondAttribute="leading" constant="16" id="eB8-xH-cjg"/>
+                                                <constraint firstAttribute="bottom" secondItem="s35-QB-gLw" secondAttribute="bottom" id="t4P-ar-h34"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="150" id="yb6-tC-q2p">
+                                        <rect key="frame" x="0.0" y="348" width="375" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yb6-tC-q2p" id="ywj-Zz-lRX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="K32-Md-i4r">
+                                                    <rect key="frame" x="16" y="11" width="343" height="119"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6t2-S6-ZS8">
+                                                    <rect key="frame" x="273" y="135" width="86" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="86" id="Wz5-7H-aqv"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="6t2-S6-ZS8" secondAttribute="bottom" id="1DC-O2-X3U"/>
+                                                <constraint firstAttribute="trailing" secondItem="6t2-S6-ZS8" secondAttribute="trailing" constant="16" id="Aa4-cF-AFt"/>
+                                                <constraint firstItem="K32-Md-i4r" firstAttribute="leading" secondItem="ywj-Zz-lRX" secondAttribute="leading" constant="16" id="XOU-1M-1pM"/>
+                                                <constraint firstItem="K32-Md-i4r" firstAttribute="top" secondItem="ywj-Zz-lRX" secondAttribute="top" constant="11" id="xDo-f9-lxM"/>
+                                                <constraint firstAttribute="bottom" secondItem="K32-Md-i4r" secondAttribute="bottom" constant="20" id="ypD-Vy-WGP"/>
+                                                <constraint firstAttribute="trailing" secondItem="K32-Md-i4r" secondAttribute="trailing" constant="16" id="zGf-6L-PLf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -248,16 +314,18 @@
                             <outlet property="delegate" destination="RcV-pM-uGM" id="DFN-kh-5jo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="aXn-by-nPN">
+                    <navigationItem key="navigationItem" title="プロフィール設定" id="aXn-by-nPN">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="FWA-2o-sfF"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="countLabel" destination="6t2-S6-ZS8" id="dUU-i1-UwT"/>
                         <outlet property="manButton" destination="8QN-Ra-SZg" id="885-dd-2Qu"/>
                         <outlet property="nicknameTextField" destination="umi-Uc-gkQ" id="EQ6-hr-iPl"/>
                         <outlet property="noneButton" destination="SGz-3R-135" id="fwe-VF-MaI"/>
                         <outlet property="prefTextField" destination="SVx-IX-oGR" id="fCe-xw-kFr"/>
                         <outlet property="profileImageButton" destination="HAp-hJ-8rA" id="28U-1v-auH"/>
+                        <outlet property="profileTextView" destination="K32-Md-i4r" id="Uln-4z-vGG"/>
                         <outlet property="saveButton" destination="FWA-2o-sfF" id="yKY-69-pkd"/>
                         <outlet property="womanButton" destination="uh7-Il-G05" id="jRS-Aq-eiH"/>
                     </connections>

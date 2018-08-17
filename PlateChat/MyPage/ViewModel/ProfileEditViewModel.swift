@@ -25,4 +25,7 @@ struct ProfileEditViewModel {
 
     /// 性別
     var sex: Variable<Int> = Variable(0)
+
+    /// 自己紹介文
+    var profileText: Variable<String> = Variable<String>("")
 }
