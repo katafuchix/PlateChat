@@ -318,7 +318,7 @@
                         <barButtonItem key="leftBarButtonItem" image="back" id="ece-At-vwf">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="save" id="FWA-2o-sfF">
+                        <barButtonItem key="rightBarButtonItem" image="disk" id="FWA-2o-sfF">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
@@ -343,10 +343,10 @@
     </scenes>
     <resources>
         <image name="back" width="24" height="24"/>
+        <image name="disk" width="24" height="24"/>
         <image name="man" width="250" height="350"/>
         <image name="obake" width="56" height="60"/>
         <image name="person-icon" width="128" height="128"/>
-        <image name="save" width="24" height="24"/>
         <image name="woman" width="400" height="400"/>
     </resources>
 </document>
