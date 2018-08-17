@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import NSObject_Rx
+import SVProgressHUD
 
 protocol writeVCprotocol {
     func close()
@@ -22,6 +23,7 @@ class WriteViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var placeholderLabel: UILabel!
 
     var delegate: writeVCprotocol?
 
@@ -31,23 +33,31 @@ class WriteViewController: UIViewController {
         // Do any additional setup after loading the view.
 
         self.textView.becomeFirstResponder()
+        self.textView.rx.didChange.subscribe(onNext: { [weak self] _ in
+            self?.placeholderLabel.isHidden = true
+        }).disposed(by: rx.disposeBag)
+        //self.textView.becomeFirstResponder()
 
         self.closeButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             self?.delegate?.close()
         }).disposed(by: rx.disposeBag)
 
         self.postButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-
-            if (self?.textView.text.description.count)! > 100 {
+            guard let text = self?.textView.text else { return }
+            if text.description.count > 100 {
                 Alert.init("自己紹介は100文字以内で入力してください").show(self)
                 return
             }
 
-            self?.delegate?.close()
+            self?.postButton.isEnabled = false
+            SVProgressHUD.show(withStatus: "Posting...")
+            ArticleService.createArticle(text, completionHandler: { _ in
+                SVProgressHUD.dismiss()
+                self?.delegate?.close()
+            })
         }).disposed(by: rx.disposeBag)
 
         self.textView.rx.text.orEmpty.asDriver().drive(onNext:{ [weak self] str in
-            print(str)
             self?.countLabel.text = "\(String(describing: str.description.count))/200"
             self?.postButton.isEnabled = str.description.count >= 10 && str.description.count <= 200
         }).disposed(by: rx.disposeBag)

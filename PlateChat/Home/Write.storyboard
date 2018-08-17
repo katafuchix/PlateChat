@@ -57,7 +57,7 @@
                                             <constraint firstAttribute="height" constant="40" id="xUM-Py-GCe"/>
                                         </constraints>
                                     </view>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="K7w-Fh-IlK">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7w-Fh-IlK">
                                         <rect key="frame" x="8" y="48" width="322" height="184"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
@@ -73,14 +73,24 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="気軽につぶやいてみよう" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpF-90-X59">
+                                        <rect key="frame" x="14" y="56" width="316" height="21"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
+                                        <color key="textColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="70F-In-EWd" firstAttribute="leading" secondItem="2pe-Bk-FLh" secondAttribute="leading" id="9n9-Zp-56h"/>
+                                    <constraint firstAttribute="trailing" secondItem="fpF-90-X59" secondAttribute="trailing" constant="7.5" id="Dfn-Wa-ofq"/>
                                     <constraint firstAttribute="trailing" secondItem="70F-In-EWd" secondAttribute="trailing" id="DqP-CV-Udd"/>
+                                    <constraint firstItem="fpF-90-X59" firstAttribute="top" secondItem="70F-In-EWd" secondAttribute="bottom" constant="16" id="H28-Pw-0oI"/>
                                     <constraint firstItem="K7w-Fh-IlK" firstAttribute="top" secondItem="70F-In-EWd" secondAttribute="bottom" constant="8" id="S2w-vm-T0a"/>
                                     <constraint firstAttribute="bottom" secondItem="K7w-Fh-IlK" secondAttribute="bottom" constant="35" id="SOW-xF-pkZ"/>
                                     <constraint firstAttribute="trailing" secondItem="K7w-Fh-IlK" secondAttribute="trailing" constant="8" id="aj8-wH-lPr"/>
+                                    <constraint firstItem="fpF-90-X59" firstAttribute="leading" secondItem="2pe-Bk-FLh" secondAttribute="leading" constant="14" id="bEK-Ak-cQh"/>
                                     <constraint firstItem="K7w-Fh-IlK" firstAttribute="leading" secondItem="2pe-Bk-FLh" secondAttribute="leading" constant="8" id="bZ2-C6-Qkc"/>
                                     <constraint firstItem="70F-In-EWd" firstAttribute="top" secondItem="2pe-Bk-FLh" secondAttribute="top" id="fIt-3H-edv"/>
                                     <constraint firstAttribute="bottom" secondItem="v4U-AD-Kh0" secondAttribute="bottom" constant="8" id="ort-5y-iOo"/>
@@ -106,6 +116,7 @@
                         <outlet property="baseView" destination="2pe-Bk-FLh" id="M7P-KM-Fxb"/>
                         <outlet property="closeButton" destination="zBf-6r-oyX" id="8Vb-ER-4D5"/>
                         <outlet property="countLabel" destination="v4U-AD-Kh0" id="qAp-26-fNh"/>
+                        <outlet property="placeholderLabel" destination="fpF-90-X59" id="joG-Eb-X13"/>
                         <outlet property="postButton" destination="J9F-8Z-wME" id="nvh-mM-WBI"/>
                         <outlet property="textView" destination="K7w-Fh-IlK" id="PoL-Qe-nuo"/>
                     </connections>
