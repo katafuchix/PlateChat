@@ -18,6 +18,10 @@
 		310FB05B2126F6DD00C917E7 /* Write.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 310FB05A2126F6DD00C917E7 /* Write.storyboard */; };
 		310FB05D2126F6EC00C917E7 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB05C2126F6EC00C917E7 /* WriteViewController.swift */; };
 		310FB05F212702CF00C917E7 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB05E212702CF00C917E7 /* ArticleService.swift */; };
+		310FB0612127264900C917E7 /* Rule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 310FB0602127264900C917E7 /* Rule.storyboard */; };
+		310FB063212728AE00C917E7 /* RuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB062212728AE00C917E7 /* RuleViewController.swift */; };
+		310FB06521272CD500C917E7 /* Privacy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 310FB06421272CD500C917E7 /* Privacy.storyboard */; };
+		310FB06721272CE700C917E7 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB06621272CE700C917E7 /* PrivacyViewController.swift */; };
 		311017A22120932500E6B343 /* CircleSexButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311017A12120932500E6B343 /* CircleSexButton.swift */; };
 		312804FD2116EA9A00357E5C /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FC2116EA9A00357E5C /* Search.storyboard */; };
 		312805002116EBB400357E5C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FF2116EBB400357E5C /* Chat.storyboard */; };
@@ -87,6 +91,10 @@
 		310FB05A2126F6DD00C917E7 /* Write.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Write.storyboard; sourceTree = "<group>"; };
 		310FB05C2126F6EC00C917E7 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		310FB05E212702CF00C917E7 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
+		310FB0602127264900C917E7 /* Rule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rule.storyboard; sourceTree = "<group>"; };
+		310FB062212728AE00C917E7 /* RuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleViewController.swift; sourceTree = "<group>"; };
+		310FB06421272CD500C917E7 /* Privacy.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Privacy.storyboard; sourceTree = "<group>"; };
+		310FB06621272CE700C917E7 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		311017A12120932500E6B343 /* CircleSexButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleSexButton.swift; sourceTree = "<group>"; };
 		312804FC2116EA9A00357E5C /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		312804FF2116EBB400357E5C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
@@ -388,6 +396,10 @@
 				31BE63DE2115F10C00E43982 /* SettingTableViewController.swift */,
 				3168A064211886F1002B0440 /* Profile.storyboard */,
 				3168A0662118898A002B0440 /* ProfileEditTableViewController.swift */,
+				310FB0602127264900C917E7 /* Rule.storyboard */,
+				310FB062212728AE00C917E7 /* RuleViewController.swift */,
+				310FB06421272CD500C917E7 /* Privacy.storyboard */,
+				310FB06621272CE700C917E7 /* PrivacyViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -482,6 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3128051A2117047400357E5C /* NotoSansCJKjpSub-DemiLight.otf in Resources */,
+				310FB06521272CD500C917E7 /* Privacy.storyboard in Resources */,
 				3168A065211886F1002B0440 /* Profile.storyboard in Resources */,
 				312805002116EBB400357E5C /* Chat.storyboard in Resources */,
 				312805182117047400357E5C /* NotoSansCJKjpSub-Medium.otf in Resources */,
@@ -495,6 +508,7 @@
 				312805142117047400357E5C /* NotoSansCJKjpSub-Black.otf in Resources */,
 				31BE63D62115D89300E43982 /* MyPage.storyboard in Resources */,
 				3150BA062113373A00DB3512 /* Assets.xcassets in Resources */,
+				310FB0612127264900C917E7 /* Rule.storyboard in Resources */,
 				318108A8211584FD00C10946 /* .gitkeep in Resources */,
 				3150BA042113373900DB3512 /* Main.storyboard in Resources */,
 				312804FD2116EA9A00357E5C /* Search.storyboard in Resources */,
@@ -610,6 +624,7 @@
 				312805062116F00D00357E5C /* UtilManager.swift in Sources */,
 				3150BA012113373900DB3512 /* ViewController.swift in Sources */,
 				318108AB211584FD00C10946 /* MenuItemViewCustomizable.swift in Sources */,
+				310FB063212728AE00C917E7 /* RuleViewController.swift in Sources */,
 				3150BA1521133E2200DB3512 /* NoticeViewController.swift in Sources */,
 				318108A6211584FD00C10946 /* PagingViewController.swift in Sources */,
 				3168A0722119BA98002B0440 /* ChatMessage.swift in Sources */,
@@ -634,6 +649,7 @@
 				318108AD211584FD00C10946 /* MenuViewCustomizable.swift in Sources */,
 				310FB0572126F30100C917E7 /* UIWindow+Extended.swift in Sources */,
 				310A6B9E212064AE0026A412 /* UIButton+Extended.swift in Sources */,
+				310FB06721272CE700C917E7 /* PrivacyViewController.swift in Sources */,
 				31BE63DF2115F10D00E43982 /* SettingTableViewController.swift in Sources */,
 				310FB05D2126F6EC00C917E7 /* WriteViewController.swift in Sources */,
 				3168A0702119BA54002B0440 /* Message.swift in Sources */,

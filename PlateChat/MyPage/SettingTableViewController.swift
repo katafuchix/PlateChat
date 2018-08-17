@@ -48,6 +48,12 @@ class SettingTableViewController: UITableViewController {
         case 1:
             let vc = R.storyboard.profile.profileEditTableViewController()!
             self.navigationController?.pushViewController(vc, animated: true)
+        case 7:
+            let vc = R.storyboard.rule.ruleViewController()!
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 8:
+            let vc = R.storyboard.privacy.privacyViewController()!
+            self.navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }
