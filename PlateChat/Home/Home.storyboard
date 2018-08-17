@@ -29,7 +29,7 @@
         <!--ホーム-->
         <scene sceneID="ygV-P6-Lxr">
             <objects>
-                <viewController id="U5E-SR-bYx" sceneMemberID="viewController">
+                <viewController id="U5E-SR-bYx" customClass="HomeViewController" customModule="PlateChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ksk-j8-qgk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,6 +43,9 @@
                         <barButtonItem key="rightBarButtonItem" image="pen" id="vJl-jL-QsP"/>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="writeButton" destination="vJl-jL-QsP" id="bFW-aQ-Shi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Feb-IJ-Pqc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
