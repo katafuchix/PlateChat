@@ -315,10 +315,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="プロフィール設定" id="aXn-by-nPN">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="FWA-2o-sfF"/>
+                        <barButtonItem key="leftBarButtonItem" image="back" id="ece-At-vwf">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="save" id="FWA-2o-sfF">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="backButton" destination="ece-At-vwf" id="BUw-kU-2T3"/>
                         <outlet property="countLabel" destination="6t2-S6-ZS8" id="dUU-i1-UwT"/>
                         <outlet property="manButton" destination="8QN-Ra-SZg" id="885-dd-2Qu"/>
                         <outlet property="nicknameTextField" destination="umi-Uc-gkQ" id="EQ6-hr-iPl"/>
@@ -336,9 +342,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back" width="24" height="24"/>
         <image name="man" width="250" height="350"/>
         <image name="obake" width="56" height="60"/>
         <image name="person-icon" width="128" height="128"/>
+        <image name="save" width="24" height="24"/>
         <image name="woman" width="400" height="400"/>
     </resources>
 </document>

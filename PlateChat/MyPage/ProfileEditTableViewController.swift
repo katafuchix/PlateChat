@@ -20,6 +20,7 @@ class ProfileEditTableViewController: UITableViewController {
     private let store   = Firestore.firestore()
     private let storage = Storage.storage()
 
+    @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var profileImageButton: CircleButton!
     @IBOutlet weak var nicknameTextField: UITextField!
@@ -71,6 +72,11 @@ class ProfileEditTableViewController: UITableViewController {
     }
 
     func bind() {
+        // 戻るボタン
+        self.backButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }).disposed(by: rx.disposeBag)
+
         // ニックネーム
         self.nicknameTextField.rx.text.orEmpty.bind(to: self.viewModel.nickName).disposed(by: rx.disposeBag)
 
