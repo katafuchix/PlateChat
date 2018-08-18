@@ -35,7 +35,7 @@ struct UserService {
     private init() { }
     private static let store   = Firestore.firestore()
     private static let storage = Storage.storage()
-
+    private static let articleLimit = 200
     // ユーザー登録
     // 先にAuthの方でユーザーを作って　そのuidをキーとしてlogin_userでデータを生成
     static func createUser(completionHandler: @escaping (_ uid: String?, _ error: UserServiceFetchError?) -> Void) {
@@ -89,6 +89,39 @@ struct UserService {
                     do {
                         let user = try LoginUser(from: document)
                         self.setUserInfo(user)
+
+                        // 投稿更新
+                        let query = self.store.collection("article")
+                            .whereField("uid", isEqualTo: uid)
+                            .whereField("status", isEqualTo: 1)
+                            .order(by: "created_at", descending: true)
+                            .limit(to: self.articleLimit)
+                        query.addSnapshotListener(includeMetadataChanges: true) { (querySnapshot, error) in
+                            do {
+                                if let snapshot = querySnapshot {
+                                    let articles = try snapshot.documents.compactMap { try Article(from: $0) }
+                                    for article in articles {
+                                        var data: [String: Any] = [:]
+                                        if article.user_nickname != AccountData.nickname {
+                                            data["user_nickname"] = AccountData.nickname
+                                        }
+                                        if article.user_prefecture_id != AccountData.prefecture_id {
+                                            data["user_prefecture_id"] = AccountData.prefecture_id
+                                        }
+                                        if article.user_sex != AccountData.sex {
+                                            data["user_sex"] = AccountData.sex
+                                        }
+                                        if article.user_pforile_image_url != AccountData.my_profile_image {
+                                            data["user_pforile_image_url"] = AccountData.my_profile_image
+                                        }
+                                        if data.count == 0 { continue }
+
+                                        self.store.collection("article").document(article.key).setData(data, merge: true,  completion: { _ in })
+                                    }
+                                }
+                            } catch {}
+                        }
+
                         completionHandler(user, nil)
                     } catch {
                         completionHandler(nil, .fetchError(error))
@@ -101,21 +134,23 @@ struct UserService {
     }
 
     static func setUserInfo(_ user: LoginUser) {
-        AccountData.nickname        = user.nickname
-        AccountData.sex             = user.sex
-        AccountData.prefecture_id   = user.prefecture_id
-        AccountData.profile_text    = user.profile_text
-        AccountData.login_email     = user.login_email
-        AccountData.login_password  = user.login_password
+        AccountData.nickname            = user.nickname
+        AccountData.sex                 = user.sex
+        AccountData.prefecture_id       = user.prefecture_id
+        AccountData.profile_text        = user.profile_text
+        AccountData.login_email         = user.login_email
+        AccountData.login_password      = user.login_password
+        AccountData.my_profile_image    = user.profile_image_url
     }
 
     static func clearUserInfo() {
-        AccountData.nickname        = ""
-        AccountData.sex             = 0
-        AccountData.prefecture_id   = 0
-        AccountData.profile_text    = ""
-        AccountData.login_email     = ""
-        AccountData.login_password  = ""
+        AccountData.nickname            = ""
+        AccountData.sex                 = 0
+        AccountData.prefecture_id       = 0
+        AccountData.profile_text        = ""
+        AccountData.login_email         = ""
+        AccountData.login_password      = ""
+        AccountData.my_profile_image    = ""
     }
 
     // プロフィール画像
@@ -147,6 +182,30 @@ struct UserService {
                             completionHandler(nil, .updateError(err))
                             return
                         }
+
+                        AccountData.my_profile_image = avatarURL.absoluteString
+                        // 投稿更新
+                        let query = self.store.collection("article")
+                            .whereField("uid", isEqualTo: uid)
+                            .whereField("status", isEqualTo: 1)
+                            .order(by: "created_at", descending: true)
+                            .limit(to: self.articleLimit)
+                        query.addSnapshotListener(includeMetadataChanges: true) { (querySnapshot, error) in
+                            do {
+                                if let snapshot = querySnapshot {
+                                    let articles = try snapshot.documents.compactMap { try Article(from: $0) }
+                                    for article in articles {
+                                        var data: [String: Any] = [:]
+                                        if article.user_pforile_image_url != AccountData.my_profile_image {
+                                            data["user_pforile_image_url"] = AccountData.my_profile_image
+                                        }
+                                        if data.count == 0 { continue }
+                                        self.store.collection("article").document(article.key).setData(data, merge: true,  completion: { _ in })
+                                    }
+                                }
+                            } catch {}
+                        }
+
                         completionHandler(avatarURL.absoluteString, nil)
                     })
                 })
@@ -218,7 +277,7 @@ struct UserService {
                 //try Auth.auth().signOut()
                 Auth.auth().signIn(withEmail: login_user.email, password: login_user.password, completion: { (user, error) in
                     if error != nil {
-                        print(error)
+                        Log.error(error!)
                         completionHandler(nil, .noExistsError)
                         return
                     }

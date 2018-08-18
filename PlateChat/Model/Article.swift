@@ -21,6 +21,12 @@ class Article: NSObject {
     let created_date: Date
     let status: Int
 
+    let user_nickname: String
+    let user_pforile_image_url: String
+    let user_prefecture_id: Int
+    let user_sex: Int
+
+
     init(from document: DocumentSnapshot) throws {
         key = document.documentID
 
@@ -33,5 +39,10 @@ class Article: NSObject {
         self.text           = text
         self.status         = status
         self.created_date   = (document.get("created_at") as? Timestamp)?.dateValue() ?? Date()
+
+        self.user_nickname  = (document.get("user_nickname") as? String) ?? ""
+        self.user_pforile_image_url = (document.get("user_pforile_image_url") as? String) ?? ""
+        self.user_prefecture_id = (document.get("user_prefecture_id") as? Int) ?? 0
+        self.user_sex = (document.get("user_sex") as? Int) ?? 0
     }
 }

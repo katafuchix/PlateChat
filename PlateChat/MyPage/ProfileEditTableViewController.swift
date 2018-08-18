@@ -177,7 +177,6 @@ class ProfileEditTableViewController: UITableViewController {
                 self?.showAlert("Error!")
                 return
             } else {
-                AccountData.my_profile_image = urlStr
                 self?.profileImageButton.sd_setBackgroundImage(with: URL(string:urlStr), for: .normal)
                 self?.showAlert("プロフィール画像を登録しました")
             }

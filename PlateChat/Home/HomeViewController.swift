@@ -43,14 +43,11 @@ class HomeViewController: UIViewController {
 
         SVProgressHUD.show(withStatus: "Loading...")
         self.articleService?.bindTalk(callbackHandler: { [weak self] (models, error) in
-            guard let weakSelf = self else { return }
-            print("models")
-            print(models)
             switch error {
             case .none:
                 if let models = models {
-                    let preMessageCount = weakSelf.articles.count
-                    weakSelf.articles = models
+                    let preMessageCount = self?.articles.count
+                    self?.articles = models
 
                     /*
                     weakSelf.messages = Array([models, weakSelf.messages].joined()) // キャッシュのせいかたまに重複することがあるのでユニークにしておく
@@ -61,7 +58,7 @@ class HomeViewController: UIViewController {
                         return
                     }*/
                     DispatchQueue.main.async {
-                        weakSelf.tableView.reloadData()
+                        self?.tableView.reloadData()
                         //callbackHandler()
                     }
                 }

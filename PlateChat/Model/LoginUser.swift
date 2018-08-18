@@ -24,6 +24,7 @@ struct LoginUser {
     let sex: Int
     let prefecture_id: Int
     let profile_text: String
+    let profile_image_url: String
     let status: Int
 
 
@@ -45,5 +46,6 @@ struct LoginUser {
         self.sex            = (document.get("sex") as? Int) ?? 0
         self.prefecture_id  = (document.get("prefecture_id") as? Int) ?? 0
         self.profile_text   = (document.get("profile_text") as? String) ?? ""
+        self.profile_image_url = (document.get("profile_image_url") as? String) ?? ""
     }
 }
