@@ -1,8 +1,8 @@
 //
-//  SettingTableViewController.swift
+//  AccountTableViewController.swift
 //  PlateChat
 //
-//  Created by cano on 2018/08/04.
+//  Created by cano on 2018/08/18.
 //  Copyright © 2018年 deskplate. All rights reserved.
 //
 
@@ -10,29 +10,83 @@ import UIKit
 import RxSwift
 import RxCocoa
 import NSObject_Rx
-import Rswift
+import SVProgressHUD
 
-class SettingTableViewController: UITableViewController {
+class AccountTableViewController: UITableViewController {
 
-    @IBOutlet weak var closeButton: UIBarButtonItem!
-    @IBOutlet weak var notificationSwitch: UISwitch!
-    @IBOutlet weak var passcodeSwitch: UISwitch!
+    @IBOutlet weak var mailTextField: UnderlineTextField!
+    @IBOutlet weak var passwordTextField: UnderlineTextField!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var otherLoginButton: UIButton!
+
+    let login_email: Variable<String>       = Variable("")
+    let login_password: Variable<String>    = Variable("")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        self.tableView.separatorColor = .clear
         self.tableView.separatorInset   = .zero
         self.tableView.tableFooterView  = UIView()
-        
-        closeButton.rx.tap.subscribe(onNext: { [unowned self] in
-            self.dismiss(animated: true, completion: nil)
+
+        // 入力された文字を非表示モードにする.
+        self.passwordTextField.isSecureTextEntry = true
+
+        self.mailTextField.text     = AccountData.login_email
+        self.passwordTextField.text = AccountData.login_password
+
+        self.bind()
+    }
+
+    func bind() {
+        // login_email
+        self.mailTextField.rx.text.orEmpty.bind(to: self.login_email).disposed(by: rx.disposeBag)
+        // login_password
+        self.passwordTextField.rx.text.orEmpty.bind(to: self.login_password).disposed(by: rx.disposeBag)
+
+        // 保存
+        saveButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+
+            if (self?.login_email.value.isEmpty)! {
+                Alert.init("メールアドレスを入力してください").show(self)
+                return
+            }
+            if (self?.login_password.value.isEmpty)! {
+                Alert.init("パスワードを入力してください").show(self)
+                return
+            }
+
+            if (self?.isValidEmail((self?.login_email.value)!)) == false  {
+                Alert.init("メールアドレスを正しく入力してください").show(self)
+                return
+            }
+
+            let dic = [
+                "login_email" : self?.login_email.value ?? "",
+                "login_password" : self?.login_password.value ?? "",
+                ] as [String : String]
+            print(dic)
+            SVProgressHUD.show(withStatus: "Updating...")
+            UserService.updateLoginUser(dic,completionHandler: { ( _, error) in
+                SVProgressHUD.dismiss()
+                if error != nil {
+                    self?.showAlert("Error!")
+                    return
+                } else {
+                    self?.showAlert("更新しました")
+                    self?.mailTextField.resignFirstResponder()
+                    self?.passwordTextField.resignFirstResponder()
+                }
+            })
         }).disposed(by: rx.disposeBag)
-        
-        notificationSwitch.rx.value.asDriver()
-            .skip(1)
-            .drive(onNext: {
-                UserService.setNotificationON($0)
-            }).disposed(by: rx.disposeBag)
+
+    }
+
+    func isValidEmail(_ string: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let result = emailTest.evaluate(with: string)
+        return result
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,31 +94,8 @@ class SettingTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func tableView(_ tableView: UITableView,
-                            didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
-
-        switch indexPath.row {
-        case 1:
-            let vc = R.storyboard.profile.profileEditTableViewController()!
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 3:
-            let vc = R.storyboard.account.accountTableViewController()!
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 7:
-            let vc = R.storyboard.rule.ruleViewController()!
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 8:
-            let vc = R.storyboard.privacy.privacyViewController()!
-            self.navigationController?.pushViewController(vc, animated: true)
-        default:
-            break
-        }
-    }
-
-    /*
     // MARK: - Table view data source
-
+    /*
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0

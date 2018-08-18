@@ -22,6 +22,11 @@
 		310FB063212728AE00C917E7 /* RuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB062212728AE00C917E7 /* RuleViewController.swift */; };
 		310FB06521272CD500C917E7 /* Privacy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 310FB06421272CD500C917E7 /* Privacy.storyboard */; };
 		310FB06721272CE700C917E7 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB06621272CE700C917E7 /* PrivacyViewController.swift */; };
+		310FB0692127B64D00C917E7 /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 310FB0682127B64D00C917E7 /* Account.storyboard */; };
+		310FB06B2127B6DE00C917E7 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB06A2127B6DE00C917E7 /* AccountTableViewController.swift */; };
+		310FB06D2127B88000C917E7 /* UIPlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB06C2127B88000C917E7 /* UIPlaceHolderTextView.swift */; };
+		310FB06F2127B8F600C917E7 /* PaddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB06E2127B8F600C917E7 /* PaddingTextField.swift */; };
+		310FB0712127BA4E00C917E7 /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB0702127BA4E00C917E7 /* UnderlineTextField.swift */; };
 		311017A22120932500E6B343 /* CircleSexButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311017A12120932500E6B343 /* CircleSexButton.swift */; };
 		312804FD2116EA9A00357E5C /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FC2116EA9A00357E5C /* Search.storyboard */; };
 		312805002116EBB400357E5C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FF2116EBB400357E5C /* Chat.storyboard */; };
@@ -95,6 +100,11 @@
 		310FB062212728AE00C917E7 /* RuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleViewController.swift; sourceTree = "<group>"; };
 		310FB06421272CD500C917E7 /* Privacy.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Privacy.storyboard; sourceTree = "<group>"; };
 		310FB06621272CE700C917E7 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
+		310FB0682127B64D00C917E7 /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
+		310FB06A2127B6DE00C917E7 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
+		310FB06C2127B88000C917E7 /* UIPlaceHolderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPlaceHolderTextView.swift; sourceTree = "<group>"; };
+		310FB06E2127B8F600C917E7 /* PaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField.swift; sourceTree = "<group>"; };
+		310FB0702127BA4E00C917E7 /* UnderlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
 		311017A12120932500E6B343 /* CircleSexButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleSexButton.swift; sourceTree = "<group>"; };
 		312804FC2116EA9A00357E5C /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		312804FF2116EBB400357E5C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
@@ -181,6 +191,9 @@
 			children = (
 				310A6B97211FD0850026A412 /* CircleButton.swift */,
 				311017A12120932500E6B343 /* CircleSexButton.swift */,
+				310FB06C2127B88000C917E7 /* UIPlaceHolderTextView.swift */,
+				310FB06E2127B8F600C917E7 /* PaddingTextField.swift */,
+				310FB0702127BA4E00C917E7 /* UnderlineTextField.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -396,6 +409,8 @@
 				31BE63DE2115F10C00E43982 /* SettingTableViewController.swift */,
 				3168A064211886F1002B0440 /* Profile.storyboard */,
 				3168A0662118898A002B0440 /* ProfileEditTableViewController.swift */,
+				310FB0682127B64D00C917E7 /* Account.storyboard */,
+				310FB06A2127B6DE00C917E7 /* AccountTableViewController.swift */,
 				310FB0602127264900C917E7 /* Rule.storyboard */,
 				310FB062212728AE00C917E7 /* RuleViewController.swift */,
 				310FB06421272CD500C917E7 /* Privacy.storyboard */,
@@ -514,6 +529,7 @@
 				312804FD2116EA9A00357E5C /* Search.storyboard in Resources */,
 				312805192117047400357E5C /* NotoSansCJKjpSub-Light.otf in Resources */,
 				3128050A2116FA9700357E5C /* GoogleService-Info-dev.plist in Resources */,
+				310FB0692127B64D00C917E7 /* Account.storyboard in Resources */,
 				318108A5211584FD00C10946 /* .gitkeep in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,6 +634,7 @@
 				318108AA211584FD00C10946 /* MenuView.swift in Sources */,
 				3168A0792119C2E8002B0440 /* UserService.swift in Sources */,
 				310A6B9C212064470026A412 /* UIView+Extended.swift in Sources */,
+				310FB06D2127B88000C917E7 /* UIPlaceHolderTextView.swift in Sources */,
 				312805082116F54900357E5C /* Constants.swift in Sources */,
 				310FB05F212702CF00C917E7 /* ArticleService.swift in Sources */,
 				3168A0742119BAC8002B0440 /* ChatMedia.swift in Sources */,
@@ -628,9 +645,11 @@
 				3150BA1521133E2200DB3512 /* NoticeViewController.swift in Sources */,
 				318108A6211584FD00C10946 /* PagingViewController.swift in Sources */,
 				3168A0722119BA98002B0440 /* ChatMessage.swift in Sources */,
+				310FB06B2127B6DE00C917E7 /* AccountTableViewController.swift in Sources */,
 				319CE1422115990200347092 /* MainTabViewController.swift in Sources */,
 				319A26B3212675A000769A6E /* ActionSheet.swift in Sources */,
 				315E0D5C2121C60D0068924A /* ViewController+Extended.swift in Sources */,
+				310FB06F2127B8F600C917E7 /* PaddingTextField.swift in Sources */,
 				31BE63D12115D26000E43982 /* NVActivityIndicatorView+Extended.swift in Sources */,
 				315E0D57212192C40068924A /* UserDeviceInfo.swift in Sources */,
 				3168A0672118898A002B0440 /* ProfileEditTableViewController.swift in Sources */,
@@ -649,6 +668,7 @@
 				318108AD211584FD00C10946 /* MenuViewCustomizable.swift in Sources */,
 				310FB0572126F30100C917E7 /* UIWindow+Extended.swift in Sources */,
 				310A6B9E212064AE0026A412 /* UIButton+Extended.swift in Sources */,
+				310FB0712127BA4E00C917E7 /* UnderlineTextField.swift in Sources */,
 				310FB06721272CE700C917E7 /* PrivacyViewController.swift in Sources */,
 				31BE63DF2115F10D00E43982 /* SettingTableViewController.swift in Sources */,
 				310FB05D2126F6EC00C917E7 /* WriteViewController.swift in Sources */,

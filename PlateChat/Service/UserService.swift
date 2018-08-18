@@ -88,11 +88,7 @@ struct UserService {
                 } else if let document = document, document.exists {
                     do {
                         let user = try LoginUser(from: document)
-
-                        AccountData.nickname        = user.nickname
-                        AccountData.sex             = user.sex
-                        AccountData.prefecture_id   = user.prefecture_id
-                        AccountData.profile_text    = user.profile_text
+                        self.setUserInfo(user)
                         completionHandler(user, nil)
                     } catch {
                         completionHandler(nil, .fetchError(error))
@@ -102,6 +98,15 @@ struct UserService {
                 }
             }
         })
+    }
+
+    static func setUserInfo(_ user: LoginUser) {
+        AccountData.nickname        = user.nickname
+        AccountData.sex             = user.sex
+        AccountData.prefecture_id   = user.prefecture_id
+        AccountData.profile_text    = user.profile_text
+        AccountData.login_email     = user.login_email
+        AccountData.login_password  = user.login_password
     }
 
     // プロフィール画像
@@ -157,10 +162,7 @@ struct UserService {
                 if let document = document, document.exists {
                     do {
                         let user = try LoginUser(from: document)
-                        AccountData.nickname        = user.nickname
-                        AccountData.sex             = user.sex
-                        AccountData.prefecture_id   = user.prefecture_id
-                        AccountData.profile_text    = user.profile_text
+                        self.setUserInfo(user)
                     } catch {}
                 }
             }
