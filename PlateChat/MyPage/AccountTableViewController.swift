@@ -80,6 +80,27 @@ class AccountTableViewController: UITableViewController {
             })
         }).disposed(by: rx.disposeBag)
 
+        // ログイン
+        otherLoginButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            Alert("", "別アカウントでログイン")
+            .addAction("ログイン" , completion: { [weak self] (AlertResult) in
+                print(AlertResult)
+                switch AlertResult {
+                case .other(let inputText):
+                    //SVProgressHUD.show(withStatus: "Loading...")
+                    print(inputText[0])
+                    print(inputText[1])
+                    //SVProgressHUD.dismiss()
+                    self?.navigationController?.popViewController(animated: true)
+                default:
+                break
+                }
+            })
+            .setCancelAction("キャンセル")
+            .addTextField("", "メールアドレス")
+            .addTextField("", "パスワード")
+            .show(self)
+        }).disposed(by: rx.disposeBag)
     }
 
     func isValidEmail(_ string: String) -> Bool {
