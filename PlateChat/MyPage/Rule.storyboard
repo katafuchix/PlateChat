@@ -296,10 +296,14 @@
                         <viewLayoutGuide key="safeArea" id="u6o-V8-Axb"/>
                     </view>
                     <navigationItem key="navigationItem" title="利用規約" id="EwV-CQ-KEb">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="EDn-Q7-BrL">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="x" id="JGM-nE-zlB"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="backButton" destination="EDn-Q7-BrL" id="N6v-fu-FGg"/>
                         <outlet property="closeButton" destination="JGM-nE-zlB" id="dwu-ta-I9z"/>
                         <outlet property="textView" destination="nfR-bk-FBX" id="olI-Gl-ijW"/>
                     </connections>
@@ -310,6 +314,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back" width="24" height="24"/>
         <image name="x" width="24" height="24"/>
     </resources>
 </document>

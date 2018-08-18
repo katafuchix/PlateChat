@@ -57,6 +57,9 @@ class SettingTableViewController: UITableViewController {
         case 8:
             let vc = R.storyboard.privacy.privacyViewController()!
             self.navigationController?.pushViewController(vc, animated: true)
+        case 9:
+            let vc = R.storyboard.faq.faqViewController()!
+            self.navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }

@@ -29,6 +29,9 @@
 		310FB0712127BA4E00C917E7 /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB0702127BA4E00C917E7 /* UnderlineTextField.swift */; };
 		310FB074212800EA00C917E7 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB073212800EA00C917E7 /* ArticleTableViewCell.swift */; };
 		310FB076212802DF00C917E7 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB075212802DF00C917E7 /* Article.swift */; };
+		310FB07821283EBF00C917E7 /* Faq.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 310FB07721283EBF00C917E7 /* Faq.storyboard */; };
+		310FB07B2128442400C917E7 /* FaqTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB07A2128442400C917E7 /* FaqTableViewCell.swift */; };
+		310FB07D212844AF00C917E7 /* FaqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB07C212844AF00C917E7 /* FaqViewController.swift */; };
 		311017A22120932500E6B343 /* CircleSexButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311017A12120932500E6B343 /* CircleSexButton.swift */; };
 		312804FD2116EA9A00357E5C /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FC2116EA9A00357E5C /* Search.storyboard */; };
 		312805002116EBB400357E5C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FF2116EBB400357E5C /* Chat.storyboard */; };
@@ -109,6 +112,9 @@
 		310FB0702127BA4E00C917E7 /* UnderlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
 		310FB073212800EA00C917E7 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		310FB075212802DF00C917E7 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		310FB07721283EBF00C917E7 /* Faq.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Faq.storyboard; sourceTree = "<group>"; };
+		310FB07A2128442400C917E7 /* FaqTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaqTableViewCell.swift; sourceTree = "<group>"; };
+		310FB07C212844AF00C917E7 /* FaqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqViewController.swift; sourceTree = "<group>"; };
 		311017A12120932500E6B343 /* CircleSexButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleSexButton.swift; sourceTree = "<group>"; };
 		312804FC2116EA9A00357E5C /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		312804FF2116EBB400357E5C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
@@ -206,6 +212,14 @@
 			isa = PBXGroup;
 			children = (
 				310FB073212800EA00C917E7 /* ArticleTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		310FB0792128441500C917E7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				310FB07A2128442400C917E7 /* FaqTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -416,6 +430,7 @@
 		31BE63D42115D88100E43982 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				310FB0792128441500C917E7 /* View */,
 				315E0D582121ACA70068924A /* ViewModel */,
 				31BE63D52115D89300E43982 /* MyPage.storyboard */,
 				31BE63D92115ECA800E43982 /* MyProfileViewController.swift */,
@@ -428,6 +443,8 @@
 				310FB062212728AE00C917E7 /* RuleViewController.swift */,
 				310FB06421272CD500C917E7 /* Privacy.storyboard */,
 				310FB06621272CE700C917E7 /* PrivacyViewController.swift */,
+				310FB07721283EBF00C917E7 /* Faq.storyboard */,
+				310FB07C212844AF00C917E7 /* FaqViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -527,6 +544,7 @@
 				3168A065211886F1002B0440 /* Profile.storyboard in Resources */,
 				312805002116EBB400357E5C /* Chat.storyboard in Resources */,
 				312805182117047400357E5C /* NotoSansCJKjpSub-Medium.otf in Resources */,
+				310FB07821283EBF00C917E7 /* Faq.storyboard in Resources */,
 				312805162117047400357E5C /* NotoSansCJKjpSub-Bold.otf in Resources */,
 				312805172117047400357E5C /* NotoSansCJKjpSub-Thin.otf in Resources */,
 				310FB05B2126F6DD00C917E7 /* Write.storyboard in Resources */,
@@ -657,6 +675,7 @@
 				318108AB211584FD00C10946 /* MenuItemViewCustomizable.swift in Sources */,
 				310FB063212728AE00C917E7 /* RuleViewController.swift in Sources */,
 				3150BA1521133E2200DB3512 /* NoticeViewController.swift in Sources */,
+				310FB07D212844AF00C917E7 /* FaqViewController.swift in Sources */,
 				318108A6211584FD00C10946 /* PagingViewController.swift in Sources */,
 				3168A0722119BA98002B0440 /* ChatMessage.swift in Sources */,
 				310FB076212802DF00C917E7 /* Article.swift in Sources */,
@@ -664,6 +683,7 @@
 				319CE1422115990200347092 /* MainTabViewController.swift in Sources */,
 				319A26B3212675A000769A6E /* ActionSheet.swift in Sources */,
 				315E0D5C2121C60D0068924A /* ViewController+Extended.swift in Sources */,
+				310FB07B2128442400C917E7 /* FaqTableViewCell.swift in Sources */,
 				310FB06F2127B8F600C917E7 /* PaddingTextField.swift in Sources */,
 				31BE63D12115D26000E43982 /* NVActivityIndicatorView+Extended.swift in Sources */,
 				315E0D57212192C40068924A /* UserDeviceInfo.swift in Sources */,

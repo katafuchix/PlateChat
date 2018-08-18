@@ -18,7 +18,8 @@ class AccountTableViewController: UITableViewController {
     @IBOutlet weak var passwordTextField: UnderlineTextField!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var otherLoginButton: UIButton!
-
+    @IBOutlet weak var backButton: UIBarButtonItem!
+    
     let login_email: Variable<String>       = Variable("")
     let login_password: Variable<String>    = Variable("")
 
@@ -39,6 +40,11 @@ class AccountTableViewController: UITableViewController {
     }
 
     func bind() {
+        // 戻るボタン
+        self.backButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }).disposed(by: rx.disposeBag)
+        
         // login_email
         self.mailTextField.rx.text.orEmpty.bind(to: self.login_email).disposed(by: rx.disposeBag)
         // login_password

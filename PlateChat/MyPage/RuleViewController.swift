@@ -14,6 +14,7 @@ import NSObject_Rx
 class RuleViewController: UIViewController {
 
     @IBOutlet weak var closeButton: UIBarButtonItem!
+    @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var textView: UITextView!
 
     override func viewDidLoad() {
@@ -25,6 +26,11 @@ class RuleViewController: UIViewController {
             self?.dismiss(animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
 
+        // 戻るボタン
+        self.backButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }).disposed(by: rx.disposeBag)
+        
         self.textView.setContentOffset(.zero, animated: true)
     }
 

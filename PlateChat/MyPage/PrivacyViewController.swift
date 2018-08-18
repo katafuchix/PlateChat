@@ -7,15 +7,24 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
 class PrivacyViewController: UIViewController {
 
+    @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var textView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+
+        // 戻るボタン
+        self.backButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }).disposed(by: rx.disposeBag)
     }
 
     override func viewDidLayoutSubviews() {
