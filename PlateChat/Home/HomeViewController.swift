@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Rswift
 import NSObject_Rx
+import SVProgressHUD
 
 class HomeViewController: UIViewController {
 
@@ -40,7 +41,7 @@ class HomeViewController: UIViewController {
 
         self.articleService = ArticleService()
 
-
+        SVProgressHUD.show(withStatus: "Loading...")
         self.articleService?.bindTalk(callbackHandler: { [weak self] (models, error) in
             guard let weakSelf = self else { return }
             print("models")
@@ -70,6 +71,7 @@ class HomeViewController: UIViewController {
                 Log.error("データ見つかりません")
             }
             //weakSelf.refreshControl.endRefreshing()
+            SVProgressHUD.dismiss()
         })
 
     }

@@ -10,7 +10,14 @@ import UIKit
 
 class ArticleTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var userProfileImageButton: CircleButton!
+    @IBOutlet weak var userNicknameLabel: UILabel!
+    @IBOutlet weak var userAttrLabel: UILabel!
+
     @IBOutlet weak var articleLabel: UILabel!
+
+    @IBOutlet weak var toButton: UIButton!
+    @IBOutlet weak var toButtonHeightConstraint: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,7 +25,10 @@ class ArticleTableViewCell: UITableViewCell {
     }
 
     func configure(_ article: Article) {
-        self.articleLabel.text = article.text
+        let text = article.text.trimmingCharacters(in: .whitespaces).uppercased().trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        self.articleLabel.text = text
+
+        toButtonHeightConstraint.constant = 0.0
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

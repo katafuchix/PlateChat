@@ -55,7 +55,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AdL-LN-tip" customClass="CircleButton" customModule="PlateChat" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="11" width="46" height="46"/>
+                                                    <rect key="frame" x="15" y="19" width="46" height="46"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="46" id="tvH-sH-qVH"/>
                                                         <constraint firstAttribute="height" constant="46" id="w2D-tT-YT6"/>
@@ -63,19 +63,19 @@
                                                     <state key="normal" backgroundImage="person-icon"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CAc-Am-cqK">
-                                                    <rect key="frame" x="69" y="11" width="291" height="18"/>
+                                                    <rect key="frame" x="69" y="19" width="291" height="18"/>
                                                     <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNr-m2-BDq">
-                                                    <rect key="frame" x="69" y="37" width="291" height="18"/>
+                                                    <rect key="frame" x="69" y="45" width="291" height="18"/>
                                                     <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loB-eb-9N1">
-                                                    <rect key="frame" x="15" y="65" width="46" height="30"/>
+                                                    <rect key="frame" x="15" y="73" width="46" height="30"/>
                                                     <color key="backgroundColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="46" id="00Q-TM-f9M"/>
@@ -85,7 +85,7 @@
                                                     <state key="normal" title="Button"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2w1-sr-9ZF">
-                                                    <rect key="frame" x="15" y="103" width="345" height="21"/>
+                                                    <rect key="frame" x="15" y="111" width="345" height="13"/>
                                                     <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Medium" family="NotoSansCJKjpSub-Medium" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -112,8 +112,8 @@
                                                 <constraint firstItem="loB-eb-9N1" firstAttribute="top" secondItem="AdL-LN-tip" secondAttribute="bottom" constant="8" id="Qfl-bW-lnt"/>
                                                 <constraint firstItem="Jt0-IJ-iej" firstAttribute="bottom" secondItem="EvG-7J-XbR" secondAttribute="bottomMargin" id="SdZ-35-yph"/>
                                                 <constraint firstItem="Jt0-IJ-iej" firstAttribute="leading" secondItem="EvG-7J-XbR" secondAttribute="leadingMargin" id="UK2-jg-beh"/>
-                                                <constraint firstItem="CAc-Am-cqK" firstAttribute="top" secondItem="EvG-7J-XbR" secondAttribute="topMargin" id="cNL-XY-kdO"/>
-                                                <constraint firstItem="AdL-LN-tip" firstAttribute="top" secondItem="EvG-7J-XbR" secondAttribute="topMargin" id="h3l-w2-OuW"/>
+                                                <constraint firstItem="CAc-Am-cqK" firstAttribute="top" secondItem="EvG-7J-XbR" secondAttribute="topMargin" constant="8" id="cNL-XY-kdO"/>
+                                                <constraint firstItem="AdL-LN-tip" firstAttribute="top" secondItem="EvG-7J-XbR" secondAttribute="topMargin" constant="8" id="h3l-w2-OuW"/>
                                                 <constraint firstItem="2w1-sr-9ZF" firstAttribute="top" secondItem="loB-eb-9N1" secondAttribute="bottom" constant="8" id="moU-zt-KcR"/>
                                                 <constraint firstItem="CAc-Am-cqK" firstAttribute="leading" secondItem="AdL-LN-tip" secondAttribute="trailing" constant="8" id="yJj-c3-KTH"/>
                                                 <constraint firstItem="2w1-sr-9ZF" firstAttribute="leading" secondItem="EvG-7J-XbR" secondAttribute="leadingMargin" id="z9s-Ht-aCC"/>
@@ -121,6 +121,11 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="articleLabel" destination="2w1-sr-9ZF" id="onZ-N8-pwW"/>
+                                            <outlet property="toButton" destination="loB-eb-9N1" id="i7A-2p-Nqh"/>
+                                            <outlet property="toButtonHeightConstraint" destination="ZKT-VD-CFJ" id="Tk2-7m-y64"/>
+                                            <outlet property="userAttrLabel" destination="vNr-m2-BDq" id="L9J-hV-NxO"/>
+                                            <outlet property="userNicknameLabel" destination="CAc-Am-cqK" id="39Z-g3-hEP"/>
+                                            <outlet property="userProfileImageButton" destination="AdL-LN-tip" id="O9g-py-7uG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
