@@ -87,11 +87,27 @@ class AccountTableViewController: UITableViewController {
                 print(AlertResult)
                 switch AlertResult {
                 case .other(let inputText):
-                    //SVProgressHUD.show(withStatus: "Loading...")
-                    print(inputText[0])
-                    print(inputText[1])
+                    SVProgressHUD.show(withStatus: "Loading...")
                     //SVProgressHUD.dismiss()
-                    self?.navigationController?.popViewController(animated: true)
+                    guard let login_email: String = inputText[0], let login_pass: String = inputText[1] else {
+                        SVProgressHUD.dismiss()
+                        self?.showAlert("メールアドレスとパスワードを正しく入力してください")
+                        return
+                    }
+                    UserService.changeLoginUser(login_email, login_pass, completionHandler: {
+                        (user, error) in
+                        if let err = error {
+                            Log.error(err)
+                            SVProgressHUD.dismiss()
+                            self?.showAlert("ログインできませんでした", "メールアドレスとパスワードをご確認ください", "OK", completion: { _ in })
+                            return
+                        }
+                        SVProgressHUD.dismiss()
+                        self?.showAlert("別アカウントでログインしました", "", "OK", completion: { _ in
+                            self?.navigationController?.popViewController(animated: true)
+                        })
+                    })
+                    //self?.navigationController?.popViewController(animated: true)
                 default:
                 break
                 }

@@ -109,6 +109,15 @@ struct UserService {
         AccountData.login_password  = user.login_password
     }
 
+    static func clearUserInfo() {
+        AccountData.nickname        = ""
+        AccountData.sex             = 0
+        AccountData.prefecture_id   = 0
+        AccountData.profile_text    = ""
+        AccountData.login_email     = ""
+        AccountData.login_password  = ""
+    }
+
     // プロフィール画像
     static func uploadProfileImage(_ image: UIImage, completionHandler: @escaping (_ urlStr: String?, _ error: UserServiceUpdateError?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -180,4 +189,55 @@ struct UserService {
             }
         })
     }
+
+    // 別ユーザーでログイン
+    static func changeLoginUser(_ login_email: String, _ login_password: String, completionHandler: @escaping (_ user: LoginUser?, _ error: UserServiceFetchError?) -> Void) {
+
+        let query = self.store.collection("login_user")
+        .whereField("login_email", isEqualTo: login_email)
+        .whereField("login_password", isEqualTo: login_password)
+        .whereField("status", isEqualTo: 1)
+        
+        query.addSnapshotListener({(querySnapshot, error) in
+            if let _ = error {
+                completionHandler(nil, .noExistsError)
+                return
+            }
+
+            guard let snapshot = querySnapshot else {
+                completionHandler(nil, .noExistsError)
+                return
+            }
+
+            if snapshot.documents.count == 0 {
+                completionHandler(nil, .noExistsError)
+                return
+            }
+            do {
+                let login_user = try LoginUser(from: snapshot.documents[0])
+                //try Auth.auth().signOut()
+                Auth.auth().signIn(withEmail: login_user.email, password: login_user.password, completion: { (user, error) in
+                    if error != nil {
+                        print(error)
+                        completionHandler(nil, .noExistsError)
+                        return
+                    }
+                    self.clearUserInfo()
+                    self.setUserInfo(login_user)
+                    completionHandler(login_user, nil)
+                })
+            } catch {
+                completionHandler(nil, .noExistsError)
+            }
+        })
+    }
+
+    static func logout() throws {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+
+        }
+    }
+
 }
