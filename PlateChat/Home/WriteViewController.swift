@@ -26,6 +26,7 @@ class WriteViewController: UIViewController {
     @IBOutlet weak var placeholderLabel: UILabel!
 
     var delegate: writeVCprotocol?
+    let articleService = ArticleService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +52,7 @@ class WriteViewController: UIViewController {
 
             self?.postButton.isEnabled = false
             SVProgressHUD.show(withStatus: "Posting...")
-            ArticleService.createArticle(text, completionHandler: { _ in
+            self?.articleService.createArticle(text, completionHandler: { _ in
                 SVProgressHUD.dismiss()
                 self?.delegate?.close()
             })

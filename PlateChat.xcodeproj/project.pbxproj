@@ -27,6 +27,8 @@
 		310FB06D2127B88000C917E7 /* UIPlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB06C2127B88000C917E7 /* UIPlaceHolderTextView.swift */; };
 		310FB06F2127B8F600C917E7 /* PaddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB06E2127B8F600C917E7 /* PaddingTextField.swift */; };
 		310FB0712127BA4E00C917E7 /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB0702127BA4E00C917E7 /* UnderlineTextField.swift */; };
+		310FB074212800EA00C917E7 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB073212800EA00C917E7 /* ArticleTableViewCell.swift */; };
+		310FB076212802DF00C917E7 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB075212802DF00C917E7 /* Article.swift */; };
 		311017A22120932500E6B343 /* CircleSexButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311017A12120932500E6B343 /* CircleSexButton.swift */; };
 		312804FD2116EA9A00357E5C /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FC2116EA9A00357E5C /* Search.storyboard */; };
 		312805002116EBB400357E5C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FF2116EBB400357E5C /* Chat.storyboard */; };
@@ -105,6 +107,8 @@
 		310FB06C2127B88000C917E7 /* UIPlaceHolderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPlaceHolderTextView.swift; sourceTree = "<group>"; };
 		310FB06E2127B8F600C917E7 /* PaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField.swift; sourceTree = "<group>"; };
 		310FB0702127BA4E00C917E7 /* UnderlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
+		310FB073212800EA00C917E7 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		310FB075212802DF00C917E7 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		311017A12120932500E6B343 /* CircleSexButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleSexButton.swift; sourceTree = "<group>"; };
 		312804FC2116EA9A00357E5C /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		312804FF2116EBB400357E5C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
@@ -196,6 +200,14 @@
 				310FB0702127BA4E00C917E7 /* UnderlineTextField.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		310FB072212800D100C917E7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				310FB073212800EA00C917E7 /* ArticleTableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		312804FB2116E81200357E5C /* Search */ = {
@@ -321,6 +333,7 @@
 				3168A0712119BA98002B0440 /* ChatMessage.swift */,
 				3168A0732119BAC8002B0440 /* ChatMedia.swift */,
 				3168A07A2119C41C002B0440 /* LoginUser.swift */,
+				310FB075212802DF00C917E7 /* Article.swift */,
 				310A6B9F21206C460026A412 /* AccountData.swift */,
 				315E0D56212192C40068924A /* UserDeviceInfo.swift */,
 			);
@@ -422,6 +435,7 @@
 		31BE63E02115F1E600E43982 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				310FB072212800D100C917E7 /* View */,
 				31BE63E12115F3DD00E43982 /* Home.storyboard */,
 				310FB0582126F49C00C917E7 /* HomeViewController.swift */,
 				310FB05A2126F6DD00C917E7 /* Write.storyboard */,
@@ -645,6 +659,7 @@
 				3150BA1521133E2200DB3512 /* NoticeViewController.swift in Sources */,
 				318108A6211584FD00C10946 /* PagingViewController.swift in Sources */,
 				3168A0722119BA98002B0440 /* ChatMessage.swift in Sources */,
+				310FB076212802DF00C917E7 /* Article.swift in Sources */,
 				310FB06B2127B6DE00C917E7 /* AccountTableViewController.swift in Sources */,
 				319CE1422115990200347092 /* MainTabViewController.swift in Sources */,
 				319A26B3212675A000769A6E /* ActionSheet.swift in Sources */,
@@ -670,6 +685,7 @@
 				310A6B9E212064AE0026A412 /* UIButton+Extended.swift in Sources */,
 				310FB0712127BA4E00C917E7 /* UnderlineTextField.swift in Sources */,
 				310FB06721272CE700C917E7 /* PrivacyViewController.swift in Sources */,
+				310FB074212800EA00C917E7 /* ArticleTableViewCell.swift in Sources */,
 				31BE63DF2115F10D00E43982 /* SettingTableViewController.swift in Sources */,
 				310FB05D2126F6EC00C917E7 /* WriteViewController.swift in Sources */,
 				3168A0702119BA54002B0440 /* Message.swift in Sources */,
