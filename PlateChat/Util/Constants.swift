@@ -58,6 +58,7 @@ struct Constants {
             return Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")!
         }
     }
+    static let genders = ["未設定", "男性", "女性"]
 
     static let prefs: [Int: String] = [
         0: "未設定",

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ArticleTableViewCell: UITableViewCell {
 
@@ -25,12 +26,26 @@ class ArticleTableViewCell: UITableViewCell {
     }
 
     func configure(_ article: Article) {
+        self.clear()
+
+        self.userProfileImageButton.sd_setBackgroundImage(with: URL(string:article.user_pforile_image_url), for: .normal) { (image, error, cacheType, url) in
+            }
+        self.userNicknameLabel.text = article.user_nickname
         let text = article.text.trimmingCharacters(in: .whitespaces).uppercased().trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         self.articleLabel.text = text
 
+        print(Constants.prefs.filter {$0.0 == article.user_prefecture_id }.map { $0.1 }[0])
+        print(Constants.genders[article.user_sex])
+    }
+
+    func clear() {
+        self.userProfileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
+        self.userNicknameLabel.text = ""
+        self.userAttrLabel.text = ""
+        self.articleLabel.text = ""
         toButtonHeightConstraint.constant = 0.0
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
