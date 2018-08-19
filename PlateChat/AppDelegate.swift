@@ -23,6 +23,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             FirebaseConfiguration.shared.setLoggerLevel(.min)
             FirebaseApp.configure(options: options)
         }
+
+        //UITabBar.appearance().barTintColor = UIColor.hexStr(hexStr: "#40e0d0", alpha: 1.0)
+        //ナビゲーションアイテムの色を変更
+        UINavigationBar.appearance().tintColor = UIColor.white
+        //ナビゲーションバーの背景を変更
+        UINavigationBar.appearance().barTintColor = UIColor.hexStr(hexStr: "#40e0d0", alpha: 1.0)
+        //ナビゲーションのタイトル文字列の色を変更
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSAttributedStringKey.font: R.font.notoSansCJKjpSubBold(size: 15.0)!,
+            .foregroundColor: UIColor.white]
+        // remove bottom shadow
+        UINavigationBar.appearance().shadowImage = UIImage()
+        //UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         
         return true
     }

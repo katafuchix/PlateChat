@@ -18,7 +18,9 @@ class MainTabViewController: UITabBarController {
 
         // Do any additional setup after loading the view.
 
-        self.tabBar.tintColor = .orange
+        self.tabBar.tintColor = UIColor.hexStr(hexStr: "#40e0d0", alpha: 1.0)
+        self.tabBar.layer.borderColor = UIColor.clear.cgColor
+        self.tabBar.clipsToBounds = true
         //NVActivityIndicatorView.show(message: "loading...")
         SVProgressHUD.setDefaultStyle(.dark)
         
