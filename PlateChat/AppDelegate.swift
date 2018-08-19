@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().shadowImage = UIImage()
         //UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         
+        UIButton.appearance(whenContainedInInstancesOf: [UINavigationController.self]).tintColor = .white
+
         return true
     }
 
