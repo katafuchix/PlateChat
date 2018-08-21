@@ -36,6 +36,8 @@ struct UserService {
     private static let store   = Firestore.firestore()
     private static let storage = Storage.storage()
     private static let articleLimit = 200
+    public static let fcmTokenName = "fcmToken"
+    
     // ユーザー登録
     // 先にAuthの方でユーザーを作って　そのuidをキーとしてlogin_userでデータを生成
     static func createUser(completionHandler: @escaping (_ uid: String?, _ error: UserServiceFetchError?) -> Void) {
@@ -215,10 +217,13 @@ struct UserService {
     // 最終ログイン
     static func setLastLogin() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let data = [
+        var data = [
                     "last_login_date"   : FieldValue.serverTimestamp(),
                     "devise"            : UserDeviceInfo.getDeviceInfo()
             ] as [String : Any]
+        if AccountData.fcmToken != nil {
+            data["fcmToken"] = AccountData.fcmToken 
+        }
         self.store.collection("login_user").document(uid).setData(data, merge: true, completion: { error in
             if let err = error {
                 print("Error adding document: \(err)")
