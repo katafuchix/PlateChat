@@ -34,8 +34,8 @@ class ArticleTableViewCell: UITableViewCell {
         let text = article.text.trimmingCharacters(in: .whitespaces).uppercased().trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         self.articleLabel.text = text
 
-        print(Constants.prefs.filter {$0.0 == article.user_prefecture_id }.map { $0.1 }[0])
-        print(Constants.genders[article.user_sex])
+        //print(Constants.prefs.filter {$0.0 == article.user_prefecture_id }.map { $0.1 }[0])
+        //print(Constants.genders[article.user_sex])
     }
 
     func clear() {

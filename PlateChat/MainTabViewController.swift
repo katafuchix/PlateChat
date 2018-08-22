@@ -13,6 +13,8 @@ import Firebase
 
 class MainTabViewController: UITabBarController {
 
+    fileprivate var dotBadges: [DotBadgeView] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,20 +37,27 @@ class MainTabViewController: UITabBarController {
         UserService.setLastLogin()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // 各タブにバッヂを配置 この時点ではhidden 通知が来たら表示する
+        if dotBadges.count == 0 {
+            addDotBadge(tabBar.subviews)
+        }
+    }
+
+    // 各タブに点灯するだけの小さいバッジアイコンをadd
+    fileprivate func addDotBadge(_ subviews: [UIView]) {
+        tabBar.items?.forEach {
+            guard let view = $0.value(forKey: "view") as? UIView else { return }
+            let dot = DotBadgeView(frame: CGRect(x: 0, y: 0, width: 6, height: 6))
+            view.addSubview(dot)
+            dotBadges.append(dot)
+        }
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

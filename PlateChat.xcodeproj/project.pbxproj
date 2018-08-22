@@ -86,6 +86,7 @@
 		31BE63DD2115ED8D00E43982 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63DC2115ED8D00E43982 /* R.generated.swift */; };
 		31BE63DF2115F10D00E43982 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63DE2115F10C00E43982 /* SettingTableViewController.swift */; };
 		31BE63E22115F3DD00E43982 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31BE63E12115F3DD00E43982 /* Home.storyboard */; };
+		31ED9E0E212D8DCA00D1E96E /* DotBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ED9E0D212D8DCA00D1E96E /* DotBadgeView.swift */; };
 		6105ACEAF942718AD7D24580 /* Pods_PlateChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1AB3658E29F073094B7957A /* Pods_PlateChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -129,7 +130,7 @@
 		312805112117047400357E5C /* NotoSansCJKjpSub-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKjpSub-Medium.otf"; sourceTree = "<group>"; };
 		312805122117047400357E5C /* NotoSansCJKjpSub-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKjpSub-Light.otf"; sourceTree = "<group>"; };
 		312805132117047400357E5C /* NotoSansCJKjpSub-DemiLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKjpSub-DemiLight.otf"; sourceTree = "<group>"; };
-		3150B9FB2113373900DB3512 /* PlateChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlateChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3150B9FB2113373900DB3512 /* P-Chat!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "P-Chat!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3150B9FE2113373900DB3512 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3150BA002113373900DB3512 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3150BA032113373900DB3512 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -172,6 +173,7 @@
 		31BE63DC2115ED8D00E43982 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		31BE63DE2115F10C00E43982 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		31BE63E12115F3DD00E43982 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		31ED9E0D212D8DCA00D1E96E /* DotBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotBadgeView.swift; sourceTree = "<group>"; };
 		A5433E5221739569E6C884E5 /* Pods-PlateChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlateChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlateChat/Pods-PlateChat.release.xcconfig"; sourceTree = "<group>"; };
 		D1AB3658E29F073094B7957A /* Pods_PlateChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlateChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E15E1663A1809759D65A8D97 /* Pods-PlateChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlateChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlateChat/Pods-PlateChat.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				310FB06C2127B88000C917E7 /* UIPlaceHolderTextView.swift */,
 				310FB06E2127B8F600C917E7 /* PaddingTextField.swift */,
 				310FB0702127BA4E00C917E7 /* UnderlineTextField.swift */,
+				31ED9E0D212D8DCA00D1E96E /* DotBadgeView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -298,7 +301,7 @@
 		3150B9FC2113373900DB3512 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3150B9FB2113373900DB3512 /* PlateChat.app */,
+				3150B9FB2113373900DB3512 /* P-Chat!.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -500,7 +503,7 @@
 			);
 			name = PlateChat;
 			productName = PlateChat;
-			productReference = 3150B9FB2113373900DB3512 /* PlateChat.app */;
+			productReference = 3150B9FB2113373900DB3512 /* P-Chat!.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -516,6 +519,9 @@
 					3150B9FA2113373900DB3512 = {
 						CreatedOnToolsVersion = 9.4.1;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -687,6 +693,7 @@
 				3168A0722119BA98002B0440 /* ChatMessage.swift in Sources */,
 				310FB076212802DF00C917E7 /* Article.swift in Sources */,
 				310FB06B2127B6DE00C917E7 /* AccountTableViewController.swift in Sources */,
+				31ED9E0E212D8DCA00D1E96E /* DotBadgeView.swift in Sources */,
 				319CE1422115990200347092 /* MainTabViewController.swift in Sources */,
 				319A26B3212675A000769A6E /* ActionSheet.swift in Sources */,
 				315E0D5C2121C60D0068924A /* ViewController+Extended.swift in Sources */,
@@ -803,6 +810,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "P-Chat!";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -856,6 +864,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "P-Chat!";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -877,7 +886,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "net.deskplate.PlateChat-dev";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "P-Chat!";
 				PROVISIONING_PROFILE = "1fbbb07f-c6b7-40bb-9ba3-acf99fb09b19";
 				PROVISIONING_PROFILE_SPECIFIER = "net.deskplate.PlateChat-dev";
 				SWIFT_VERSION = 4.0;
@@ -899,7 +908,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "net.deskplate.PlateChat-dev";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "P-Chat!";
 				PROVISIONING_PROFILE = "1fbbb07f-c6b7-40bb-9ba3-acf99fb09b19";
 				PROVISIONING_PROFILE_SPECIFIER = "net.deskplate.PlateChat-dev";
 				SWIFT_VERSION = 4.0;

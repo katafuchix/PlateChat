@@ -62,12 +62,13 @@ class WriteViewController: UIViewController {
             self?.countLabel.text = "\(String(describing: str.description.count))/200"
             self?.postButton.isEnabled = str.description.count >= 10 && str.description.count <= 200
         }).disposed(by: rx.disposeBag)
-
+        /*
         let tapGesture = UITapGestureRecognizer()
         self.view.addGestureRecognizer(tapGesture)
         tapGesture.rx.event.bind(onNext: { [weak self] recognizer in
             self?.delegate?.close()
         }).disposed(by: rx.disposeBag)
+        */
     }
 
     override func didReceiveMemoryWarning() {

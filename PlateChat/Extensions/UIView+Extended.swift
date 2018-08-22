@@ -38,4 +38,15 @@ extension UIView {
         }
     }
 
+    // 円形にするメソッド
+    func circle() {
+        self.forcingLayout()
+        self.clipsToBounds = true
+        self.layer.cornerRadius = self.bounds.size.width * 0.5
+    }
+
+    func forcingLayout() {
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
+    }
 }

@@ -111,6 +111,7 @@ extension AppDelegate: MessagingDelegate {
         Log.debug("Firebase registration token: \(fcmToken)")
         //UserDefaults.standard.set(fcmToken, forKey: UserService.fcmTokenName)
         AccountData.fcmToken = fcmToken
+        UserService.setLastLogin()
     }
 }
 
