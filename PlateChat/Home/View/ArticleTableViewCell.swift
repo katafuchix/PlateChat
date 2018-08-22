@@ -8,6 +8,9 @@
 
 import UIKit
 import SDWebImage
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
 class ArticleTableViewCell: UITableViewCell {
 
@@ -19,6 +22,11 @@ class ArticleTableViewCell: UITableViewCell {
 
     @IBOutlet weak var toButton: UIButton!
     @IBOutlet weak var toButtonHeightConstraint: NSLayoutConstraint!
+
+    @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var talkButton: UIButton!
+
+    var disposeBag = DisposeBag()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,6 +56,11 @@ class ArticleTableViewCell: UITableViewCell {
         //toButtonHeightConstraint.constant = 0.0
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.disposeBag = DisposeBag()
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

@@ -90,14 +90,29 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jt0-IJ-iej">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jt0-IJ-iej">
                                                     <rect key="frame" x="15" y="129" width="46" height="30"/>
                                                     <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="46" id="EFg-XX-jjQ"/>
                                                         <constraint firstAttribute="height" constant="30" id="yQt-OC-xkR"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button"/>
+                                                    <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="No7-yb-0Ry">
+                                                    <rect key="frame" x="81" y="129" width="46" height="30"/>
+                                                    <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="46" id="D74-C3-oDy"/>
+                                                        <constraint firstAttribute="height" constant="30" id="rMq-aD-ixC"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
+                                                    <state key="normal" title="トーク">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -105,6 +120,7 @@
                                                 <constraint firstItem="vNr-m2-BDq" firstAttribute="leading" secondItem="AdL-LN-tip" secondAttribute="trailing" constant="8" id="70V-FI-ya3"/>
                                                 <constraint firstItem="CAc-Am-cqK" firstAttribute="trailing" secondItem="EvG-7J-XbR" secondAttribute="trailingMargin" id="DUl-20-LLo"/>
                                                 <constraint firstItem="Jt0-IJ-iej" firstAttribute="top" secondItem="2w1-sr-9ZF" secondAttribute="bottom" constant="5" id="Dum-dV-jg5"/>
+                                                <constraint firstItem="No7-yb-0Ry" firstAttribute="leading" secondItem="Jt0-IJ-iej" secondAttribute="trailing" constant="20" id="Fbs-l7-1KK"/>
                                                 <constraint firstItem="vNr-m2-BDq" firstAttribute="trailing" secondItem="EvG-7J-XbR" secondAttribute="trailingMargin" id="L1A-yS-AAT"/>
                                                 <constraint firstItem="loB-eb-9N1" firstAttribute="leading" secondItem="EvG-7J-XbR" secondAttribute="leadingMargin" id="LQ6-iy-aMa"/>
                                                 <constraint firstItem="vNr-m2-BDq" firstAttribute="top" secondItem="CAc-Am-cqK" secondAttribute="bottom" constant="8" id="M0y-yv-iYd"/>
@@ -115,6 +131,7 @@
                                                 <constraint firstItem="Jt0-IJ-iej" firstAttribute="leading" secondItem="EvG-7J-XbR" secondAttribute="leadingMargin" id="UK2-jg-beh"/>
                                                 <constraint firstItem="CAc-Am-cqK" firstAttribute="top" secondItem="EvG-7J-XbR" secondAttribute="topMargin" constant="8" id="cNL-XY-kdO"/>
                                                 <constraint firstItem="AdL-LN-tip" firstAttribute="top" secondItem="EvG-7J-XbR" secondAttribute="topMargin" constant="8" id="h3l-w2-OuW"/>
+                                                <constraint firstItem="No7-yb-0Ry" firstAttribute="bottom" secondItem="EvG-7J-XbR" secondAttribute="bottomMargin" id="hRx-ys-XfT"/>
                                                 <constraint firstItem="2w1-sr-9ZF" firstAttribute="top" secondItem="loB-eb-9N1" secondAttribute="bottom" constant="8" id="moU-zt-KcR"/>
                                                 <constraint firstItem="CAc-Am-cqK" firstAttribute="leading" secondItem="AdL-LN-tip" secondAttribute="trailing" constant="8" id="yJj-c3-KTH"/>
                                                 <constraint firstItem="2w1-sr-9ZF" firstAttribute="leading" secondItem="EvG-7J-XbR" secondAttribute="leadingMargin" id="z9s-Ht-aCC"/>
@@ -122,6 +139,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="articleLabel" destination="2w1-sr-9ZF" id="onZ-N8-pwW"/>
+                                            <outlet property="replyButton" destination="Jt0-IJ-iej" id="bIy-uo-dTF"/>
+                                            <outlet property="talkButton" destination="No7-yb-0Ry" id="mxi-I0-qyS"/>
                                             <outlet property="toButton" destination="loB-eb-9N1" id="i7A-2p-Nqh"/>
                                             <outlet property="toButtonHeightConstraint" destination="ZKT-VD-CFJ" id="Tk2-7m-y64"/>
                                             <outlet property="userAttrLabel" destination="vNr-m2-BDq" id="L9J-hV-NxO"/>
