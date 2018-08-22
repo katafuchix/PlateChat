@@ -28,8 +28,10 @@ class ArticleTableViewCell: UITableViewCell {
     func configure(_ article: Article) {
         self.clear()
 
-        self.userProfileImageButton.sd_setBackgroundImage(with: URL(string:article.user_pforile_image_url), for: .normal) { (image, error, cacheType, url) in
+        if article.user_pforile_image_url.description.count > 0 {
+            self.userProfileImageButton.sd_setBackgroundImage(with: URL(string:article.user_pforile_image_url), for: .normal) { (image, error, cacheType, url) in
             }
+        }
         self.userNicknameLabel.text = article.user_nickname
         let text = article.text.trimmingCharacters(in: .whitespaces).uppercased().trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         self.articleLabel.text = text
@@ -43,7 +45,7 @@ class ArticleTableViewCell: UITableViewCell {
         self.userNicknameLabel.text = ""
         self.userAttrLabel.text = ""
         self.articleLabel.text = ""
-        toButtonHeightConstraint.constant = 0.0
+        //toButtonHeightConstraint.constant = 0.0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -31,7 +31,7 @@ class ArticleService {
     private let store   = Firestore.firestore()
     private let storage = Storage.storage()
     private var bindArticleHandler: ListenerRegistration?
-    private let limit = 10          // １ページあたりの表示数 仮の値
+    private let limit = 100          // １ページあたりの表示数 仮の値
     private var lastArticleDocument: QueryDocumentSnapshot? // クエリカーソルの開始点
     private var status: ArticleBindStatus
 
