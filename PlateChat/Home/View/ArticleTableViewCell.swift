@@ -41,7 +41,7 @@ class ArticleTableViewCell: UITableViewCell {
             }
         }
         self.userNicknameLabel.text = article.user_nickname
-        let text = article.text.trimmingCharacters(in: .whitespaces).uppercased().trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        let text = article.text.trimmingCharacters(in: .whitespaces).trimmingCharacters(in: .whitespacesAndNewlines)
         self.articleLabel.text = text
 
         //print(Constants.prefs.filter {$0.0 == article.user_prefecture_id }.map { $0.1 }[0])
