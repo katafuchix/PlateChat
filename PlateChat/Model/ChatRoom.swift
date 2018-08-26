@@ -9,18 +9,26 @@
 import Foundation
 import Firebase
 
-class ChatRoom: WithFirestoreData {
+class ChatRoom {
 
-    var key: String!
+    var key: String
     let owner: String
     let members: [String: Bool]
     let status: Int
+    let created_date: Date
 
-    init(from: ChatRoom) {
-        self.key        = from.key
-        self.owner      = from.owner
-        self.members    = from.members
-        self.status     = from.status
+    init(from document: DocumentSnapshot) throws {
+        key = document.documentID
+
+        guard
+            let owner   = document.get("owner") as? String,
+        let members    = document.get("members") as? [String: Bool],
+            let status  = document.get("status") as? Int
+            else { throw ModelError.parseError }
+        self.owner          = owner
+        self.members        = members
+        self.status         = status
+        self.created_date   = (document.get("created_at") as? Timestamp)?.dateValue() ?? Date()
     }
 }
 

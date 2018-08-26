@@ -106,9 +106,28 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
             vc.hidesBottomBarWhenPushed = true
             self?.navigationController?.pushViewController(vc, animated: true)*/
 
+            let chatRoomService = ChatRoomService()
+
             let vc = ChatMessageViewController()
+            if let article = cell.article {
+                //vc.other_uid = article.uid
+                print(article.uid)
+                chatRoomService.cerateChatRoom(article.uid, { [weak self] (chatroom, error) in
+                    if let err = error {
+                        self?.showAlert(err.localizedDescription)
+                        return
+                    }
+                    guard let chatRoom = chatroom else { return }
+                    vc.chatRoom     = chatRoom
+                    vc.other_uid    = article.uid
+                    vc.hidesBottomBarWhenPushed = true
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                })
+            }
+            /*
             vc.hidesBottomBarWhenPushed = true
             self?.navigationController?.pushViewController(vc, animated: true)
+            */
         }).disposed(by: cell.disposeBag)
 
         return cell

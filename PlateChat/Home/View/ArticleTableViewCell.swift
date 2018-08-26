@@ -26,6 +26,7 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var talkButton: UIButton!
 
+    var article: Article?
     var disposeBag = DisposeBag()
 
     override func awakeFromNib() {
@@ -35,6 +36,8 @@ class ArticleTableViewCell: UITableViewCell {
 
     func configure(_ article: Article) {
         self.clear()
+
+        self.article = article
 
         if article.user_pforile_image_url.description.count > 0 {
             self.userProfileImageButton.sd_setBackgroundImage(with: URL(string:article.user_pforile_image_url), for: .normal) { (image, error, cacheType, url) in
@@ -49,6 +52,7 @@ class ArticleTableViewCell: UITableViewCell {
     }
 
     func clear() {
+        self.article = nil
         self.userProfileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
         self.userNicknameLabel.text = ""
         self.userAttrLabel.text = ""

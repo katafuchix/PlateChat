@@ -33,3 +33,7 @@ extension WithFirestoreData {
         self.init(key: document.documentID, fields: decoded)
     }
 }
+
+enum ModelError: Error {
+    case parseError
+}

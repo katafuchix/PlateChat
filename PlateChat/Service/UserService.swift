@@ -60,7 +60,7 @@ struct UserService {
                             "prefecture_id"     : 0,
                             "status"            : 1,
                             "last_login_date"   : FieldValue.serverTimestamp(),
-                            "created_date"      : FieldValue.serverTimestamp()
+                            "created_at"        : FieldValue.serverTimestamp()
                 ] as [String : Any]
                 self.store.collection("login_user").document(uid).setData(data, completion: { error in
                     if let err = error {

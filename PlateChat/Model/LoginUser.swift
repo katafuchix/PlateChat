@@ -10,10 +10,6 @@ import Foundation
 import Firebase
 
 struct LoginUser {
-
-    enum ModelError: Error {
-        case parseError
-    }
     
     let key: String
     let email: String

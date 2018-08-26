@@ -9,11 +9,7 @@
 import Foundation
 import Firebase
 
-class Article: NSObject {
-
-    enum ModelError: Error {
-        case parseError
-    }
+class Article {
 
     let key: String
     let uid: String

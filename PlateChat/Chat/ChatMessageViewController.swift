@@ -18,7 +18,10 @@ class ChatMessageViewController: MessagesViewController {
 
     let cellId = "CellID"
     var messages = [ChatMessage]()
-
+    let chatRoomService = ChatRoomService()
+    var chatRoom: ChatRoom?
+    var other_uid: String?
+    
     /*
     var user : Person? {
         didSet {
