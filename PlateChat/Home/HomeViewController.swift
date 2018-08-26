@@ -102,7 +102,11 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
         }).disposed(by: rx.disposeBag)*/
 
         cell.talkButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            let vc = R.storyboard.message.messageViewController()!
+            /*let vc = R.storyboard.message.messageViewController()!
+            vc.hidesBottomBarWhenPushed = true
+            self?.navigationController?.pushViewController(vc, animated: true)*/
+
+            let vc = ChatMessageViewController()
             vc.hidesBottomBarWhenPushed = true
             self?.navigationController?.pushViewController(vc, animated: true)
         }).disposed(by: cell.disposeBag)

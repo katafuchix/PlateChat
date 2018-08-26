@@ -13,7 +13,7 @@
         <!--Title-->
         <scene sceneID="qlj-Pe-CmN">
             <objects>
-                <viewController storyboardIdentifier="MessageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rfx-5V-hb8" customClass="MessageViewController" customModule="P_Chat_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatMessageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rfx-5V-hb8" customClass="ChatMessageViewController" customModule="P_Chat_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NNa-z5-hpu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

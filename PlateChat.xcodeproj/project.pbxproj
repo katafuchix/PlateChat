@@ -46,6 +46,12 @@
 		312805182117047400357E5C /* NotoSansCJKjpSub-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 312805112117047400357E5C /* NotoSansCJKjpSub-Medium.otf */; };
 		312805192117047400357E5C /* NotoSansCJKjpSub-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 312805122117047400357E5C /* NotoSansCJKjpSub-Light.otf */; };
 		3128051A2117047400357E5C /* NotoSansCJKjpSub-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 312805132117047400357E5C /* NotoSansCJKjpSub-DemiLight.otf */; };
+		31386D6B21324718008E82D0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31386D6A21324718008E82D0 /* R.generated.swift */; };
+		31386D702132491D008E82D0 /* ChatPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31386D6D2132491D008E82D0 /* ChatPhotoCell.swift */; };
+		31386D712132491D008E82D0 /* ChatMessageKitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31386D6E2132491D008E82D0 /* ChatMessageKitCell.swift */; };
+		31386D722132491D008E82D0 /* UIImageView+WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31386D6F2132491D008E82D0 /* UIImageView+WebImage.swift */; };
+		31386D7421324C5E008E82D0 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31386D7321324C5E008E82D0 /* ChatRoom.swift */; };
+		31386D7621324DE6008E82D0 /* FirebaseCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31386D7521324DE6008E82D0 /* FirebaseCommon.swift */; };
 		3150B9FF2113373900DB3512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3150B9FE2113373900DB3512 /* AppDelegate.swift */; };
 		3150BA012113373900DB3512 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3150BA002113373900DB3512 /* ViewController.swift */; };
 		3150BA042113373900DB3512 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3150BA022113373900DB3512 /* Main.storyboard */; };
@@ -83,12 +89,11 @@
 		31BE63D32115D2E300E43982 /* UIColor+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63D22115D2E300E43982 /* UIColor+Extended.swift */; };
 		31BE63D62115D89300E43982 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31BE63D52115D89300E43982 /* MyPage.storyboard */; };
 		31BE63DA2115ECA800E43982 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63D92115ECA800E43982 /* MyProfileViewController.swift */; };
-		31BE63DD2115ED8D00E43982 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63DC2115ED8D00E43982 /* R.generated.swift */; };
 		31BE63DF2115F10D00E43982 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63DE2115F10C00E43982 /* SettingTableViewController.swift */; };
 		31BE63E22115F3DD00E43982 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31BE63E12115F3DD00E43982 /* Home.storyboard */; };
 		31ED9E0E212D8DCA00D1E96E /* DotBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ED9E0D212D8DCA00D1E96E /* DotBadgeView.swift */; };
 		31ED9E10212DB7D100D1E96E /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31ED9E0F212DB7D100D1E96E /* Message.storyboard */; };
-		31ED9E12212DB9FA00D1E96E /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ED9E11212DB9FA00D1E96E /* MessageViewController.swift */; };
+		31ED9E12212DB9FA00D1E96E /* ChatMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ED9E11212DB9FA00D1E96E /* ChatMessageViewController.swift */; };
 		6105ACEAF942718AD7D24580 /* Pods_PlateChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1AB3658E29F073094B7957A /* Pods_PlateChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +137,12 @@
 		312805112117047400357E5C /* NotoSansCJKjpSub-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKjpSub-Medium.otf"; sourceTree = "<group>"; };
 		312805122117047400357E5C /* NotoSansCJKjpSub-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKjpSub-Light.otf"; sourceTree = "<group>"; };
 		312805132117047400357E5C /* NotoSansCJKjpSub-DemiLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKjpSub-DemiLight.otf"; sourceTree = "<group>"; };
+		31386D6A21324718008E82D0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		31386D6D2132491D008E82D0 /* ChatPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatPhotoCell.swift; path = "../../../../ChatApp-Swift-And-Firebase-master/ChatApp-Swift-And-Firebase/MessageView/ChatPhotoCell.swift"; sourceTree = "<group>"; };
+		31386D6E2132491D008E82D0 /* ChatMessageKitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatMessageKitCell.swift; path = "../../../../ChatApp-Swift-And-Firebase-master/ChatApp-Swift-And-Firebase/MessageView/ChatMessageKitCell.swift"; sourceTree = "<group>"; };
+		31386D6F2132491D008E82D0 /* UIImageView+WebImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+WebImage.swift"; path = "../../../../ChatApp-Swift-And-Firebase-master/ChatApp-Swift-And-Firebase/MessageView/UIImageView+WebImage.swift"; sourceTree = "<group>"; };
+		31386D7321324C5E008E82D0 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		31386D7521324DE6008E82D0 /* FirebaseCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCommon.swift; sourceTree = "<group>"; };
 		3150B9FB2113373900DB3512 /* P-Chat!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "P-Chat!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3150B9FE2113373900DB3512 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3150BA002113373900DB3512 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -172,12 +183,11 @@
 		31BE63D22115D2E300E43982 /* UIColor+Extended.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extended.swift"; sourceTree = "<group>"; };
 		31BE63D52115D89300E43982 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		31BE63D92115ECA800E43982 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
-		31BE63DC2115ED8D00E43982 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		31BE63DE2115F10C00E43982 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		31BE63E12115F3DD00E43982 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		31ED9E0D212D8DCA00D1E96E /* DotBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotBadgeView.swift; sourceTree = "<group>"; };
 		31ED9E0F212DB7D100D1E96E /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
-		31ED9E11212DB9FA00D1E96E /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		31ED9E11212DB9FA00D1E96E /* ChatMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageViewController.swift; sourceTree = "<group>"; };
 		A5433E5221739569E6C884E5 /* Pods-PlateChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlateChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlateChat/Pods-PlateChat.release.xcconfig"; sourceTree = "<group>"; };
 		D1AB3658E29F073094B7957A /* Pods_PlateChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlateChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E15E1663A1809759D65A8D97 /* Pods-PlateChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlateChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlateChat/Pods-PlateChat.debug.xcconfig"; sourceTree = "<group>"; };
@@ -243,9 +253,10 @@
 		312804FE2116EBA100357E5C /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				31386D6C21324902008E82D0 /* View */,
 				312804FF2116EBB400357E5C /* Chat.storyboard */,
 				31ED9E0F212DB7D100D1E96E /* Message.storyboard */,
-				31ED9E11212DB9FA00D1E96E /* MessageViewController.swift */,
+				31ED9E11212DB9FA00D1E96E /* ChatMessageViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -268,6 +279,7 @@
 				319A26AC212675A000769A6E /* Log.swift */,
 				319A26AF212675A000769A6E /* PhotoRequester.swift */,
 				312805072116F54900357E5C /* Constants.swift */,
+				31386D6A21324718008E82D0 /* R.generated.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -292,6 +304,16 @@
 				312805132117047400357E5C /* NotoSansCJKjpSub-DemiLight.otf */,
 			);
 			path = NotoSans;
+			sourceTree = "<group>";
+		};
+		31386D6C21324902008E82D0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31386D6E2132491D008E82D0 /* ChatMessageKitCell.swift */,
+				31386D6D2132491D008E82D0 /* ChatPhotoCell.swift */,
+				31386D6F2132491D008E82D0 /* UIImageView+WebImage.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		3150B9F22113373900DB3512 = {
@@ -326,7 +348,6 @@
 				319CE1412115990200347092 /* MainTabViewController.swift */,
 				3150BA002113373900DB3512 /* ViewController.swift */,
 				3150BA1421133E2200DB3512 /* NoticeViewController.swift */,
-				31BE63DC2115ED8D00E43982 /* R.generated.swift */,
 				3150BA022113373900DB3512 /* Main.storyboard */,
 				31BE63E02115F1E600E43982 /* Home */,
 				312804FB2116E81200357E5C /* Search */,
@@ -356,11 +377,13 @@
 				3168A06D2119BA29002B0440 /* Person.swift */,
 				3168A06F2119BA54002B0440 /* Message.swift */,
 				3168A0712119BA98002B0440 /* ChatMessage.swift */,
+				31386D7321324C5E008E82D0 /* ChatRoom.swift */,
 				3168A0732119BAC8002B0440 /* ChatMedia.swift */,
 				3168A07A2119C41C002B0440 /* LoginUser.swift */,
 				310FB075212802DF00C917E7 /* Article.swift */,
 				310A6B9F21206C460026A412 /* AccountData.swift */,
 				315E0D56212192C40068924A /* UserDeviceInfo.swift */,
+				31386D7521324DE6008E82D0 /* FirebaseCommon.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -497,11 +520,11 @@
 			buildConfigurationList = 3150BA0D2113373A00DB3512 /* Build configuration list for PBXNativeTarget "PlateChat" */;
 			buildPhases = (
 				EC94887955BA9FE4C760B1AD /* [CP] Check Pods Manifest.lock */,
+				31BE63DB2115ED4D00E43982 /* Run Script */,
 				3150B9F72113373900DB3512 /* Sources */,
 				3150B9F82113373900DB3512 /* Frameworks */,
 				3150B9F92113373900DB3512 /* Resources */,
 				E9BB01F05B0212824FB29CBB /* [CP] Embed Pods Frameworks */,
-				31BE63DB2115ED4D00E43982 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -591,7 +614,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		31BE63DB2115ED4D00E43982 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -683,11 +706,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				319A26B1212675A000769A6E /* Log.swift in Sources */,
+				31386D722132491D008E82D0 /* UIImageView+WebImage.swift in Sources */,
 				318108AA211584FD00C10946 /* MenuView.swift in Sources */,
 				3168A0792119C2E8002B0440 /* UserService.swift in Sources */,
 				310A6B9C212064470026A412 /* UIView+Extended.swift in Sources */,
 				310FB06D2127B88000C917E7 /* UIPlaceHolderTextView.swift in Sources */,
 				312805082116F54900357E5C /* Constants.swift in Sources */,
+				31386D7621324DE6008E82D0 /* FirebaseCommon.swift in Sources */,
 				310FB05F212702CF00C917E7 /* ArticleService.swift in Sources */,
 				3168A0742119BAC8002B0440 /* ChatMedia.swift in Sources */,
 				312805062116F00D00357E5C /* UtilManager.swift in Sources */,
@@ -705,16 +730,18 @@
 				319A26B3212675A000769A6E /* ActionSheet.swift in Sources */,
 				315E0D5C2121C60D0068924A /* ViewController+Extended.swift in Sources */,
 				310FB07B2128442400C917E7 /* FaqTableViewCell.swift in Sources */,
+				31386D712132491D008E82D0 /* ChatMessageKitCell.swift in Sources */,
 				310FB06F2127B8F600C917E7 /* PaddingTextField.swift in Sources */,
 				31BE63D12115D26000E43982 /* NVActivityIndicatorView+Extended.swift in Sources */,
 				315E0D57212192C40068924A /* UserDeviceInfo.swift in Sources */,
+				31386D702132491D008E82D0 /* ChatPhotoCell.swift in Sources */,
 				3168A0672118898A002B0440 /* ProfileEditTableViewController.swift in Sources */,
 				311017A22120932500E6B343 /* CircleSexButton.swift in Sources */,
 				310FB0592126F49C00C917E7 /* HomeViewController.swift in Sources */,
 				310A6BA021206C460026A412 /* AccountData.swift in Sources */,
 				310FB05521269E0100C917E7 /* UITextField+Extended.swift in Sources */,
+				31386D7421324C5E008E82D0 /* ChatRoom.swift in Sources */,
 				319A26B0212675A000769A6E /* Alert.swift in Sources */,
-				31BE63DD2115ED8D00E43982 /* R.generated.swift in Sources */,
 				318108AE211584FD00C10946 /* PagingMenuControllerCustomizable.swift in Sources */,
 				31BE63D32115D2E300E43982 /* UIColor+Extended.swift in Sources */,
 				3150B9FF2113373900DB3512 /* AppDelegate.swift in Sources */,
@@ -727,6 +754,7 @@
 				310FB0712127BA4E00C917E7 /* UnderlineTextField.swift in Sources */,
 				310FB06721272CE700C917E7 /* PrivacyViewController.swift in Sources */,
 				310FB074212800EA00C917E7 /* ArticleTableViewCell.swift in Sources */,
+				31386D6B21324718008E82D0 /* R.generated.swift in Sources */,
 				31BE63DF2115F10D00E43982 /* SettingTableViewController.swift in Sources */,
 				310FB05D2126F6EC00C917E7 /* WriteViewController.swift in Sources */,
 				3168A0702119BA54002B0440 /* Message.swift in Sources */,
@@ -734,7 +762,7 @@
 				319A26B4212675A000769A6E /* PhotoRequester.swift in Sources */,
 				310A6B98211FD0850026A412 /* CircleButton.swift in Sources */,
 				318108AC211584FD00C10946 /* Pagable.swift in Sources */,
-				31ED9E12212DB9FA00D1E96E /* MessageViewController.swift in Sources */,
+				31ED9E12212DB9FA00D1E96E /* ChatMessageViewController.swift in Sources */,
 				3168A07B2119C41C002B0440 /* LoginUser.swift in Sources */,
 				3168A06E2119BA29002B0440 /* Person.swift in Sources */,
 				31BE63DA2115ECA800E43982 /* MyProfileViewController.swift in Sources */,
