@@ -24,6 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             FirebaseConfiguration.shared.setLoggerLevel(.min)
             FirebaseApp.configure(options: options)
             Messaging.messaging().delegate = self
+
+            // as? Timestamp 
+            let database = Firestore.firestore()
+            let settings = database.settings
+            settings.areTimestampsInSnapshotsEnabled = true
+            database.settings = settings
         }
 
         //UITabBar.appearance().barTintColor = UIColor.hexStr(hexStr: "#40e0d0", alpha: 1.0)

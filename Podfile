@@ -25,4 +25,5 @@ target 'PlateChat' do
   pod 'SVProgressHUD', '2.0'
   pod 'NVActivityIndicatorView'
   pod 'SDWebImage', '4.3.3'
+  pod 'DZNEmptyDataSet'
 end

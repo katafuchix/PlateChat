@@ -18,18 +18,27 @@ class ChatMessageViewController: MessagesViewController {
 
     let cellId = "CellID"
     var messages = [ChatMessage]()
-    let chatRoomService = ChatRoomService()
-    var chatRoom: ChatRoom?
-    var other_uid: String?
-    
-    /*
-    var user : Person? {
+    var chatRoomService = ChatRoomService()
+    private var chatMessageService: ChatMessageService!
+    var chatRoom: ChatRoom! {
         didSet {
-            navigationItem.title = user?.name
-            observeMessage()
+            self.chatMessageService = ChatMessageService(chatRoom)
         }
     }
-*/
+    var other_uid: String? {
+        didSet {
+            UserService.getUserInfo(other_uid!, completionHandler: { [weak self] (user, error) in
+                if let err = error {
+                    self?.showAlert(err.localizedDescription)
+                    return
+                }
+                guard let user = user else{ return }
+                self?.title = user.nickname
+            })
+        }
+    }
+    private let refreshControl = UIRefreshControl()
+
     lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
         //let formatter = DateFormatter(withFormat: "M/d", locale: Locale.current.languageCode ?? "en_US_POSIX")
@@ -74,78 +83,79 @@ class ChatMessageViewController: MessagesViewController {
         // メッセージ入力時に一番下までスクロール
         scrollsToBottomOnKeybordBeginsEditing = true // default false
         maintainPositionOnKeyboardFrameChanged = true // default false
-
         messagesCollectionView.register(ChatMessageKitCell.self)
         messagesCollectionView.register(ChatPhotoCell.self)
+
+        // メッセージ表示
+        self.observeMessages(callbackHandler: { self.messagesCollectionView.scrollToBottom() })
+        self.messagesCollectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(ChatMessageViewController.refresh(sender:)), for: .valueChanged)
     }
 
-    /*
-    func observeMessage() {
-        print("observeMessage()")
-        print(Auth.auth().currentUser?.uid)
-        guard let uid = Auth.auth().currentUser?.uid, let toId = user?.id else {
-            return
+    func setupMessageInputBarButtons() {
+        let height: CGFloat = 28  // 送信ボタンと同じ高さ
+        let button = InputBarButtonItem().configure {
+            $0.setSize(CGSize(width: height, height: height), animated: false)
+            $0.isEnabled = true
+            $0.setImage(UIImage(named: "text-icon-unselected"), for: .normal)
+            }.onTouchUpInside { [weak self] _ in
+                //self?.messageInputBar.inputTextView.becomeFirstResponder()
+                //button.setImage(UIImage(named: "text-icon-selected"), for: .normal)
+                ActionSheet(title: "写真を送る", message: nil)
+                    .addAction("写真を撮る") { self?.selectCamera() }
+                    .addAction("フォトアルバムから選ぶ") { self?.selectPhotoLibrary() }
+                    .setCancelAction("キャンセル")
+                    .show(self!)
         }
-        let userMessageRef = Database.database().reference().child("user-messages").child(uid).child(toId)
-        userMessageRef.observe(.childAdded, with: { (snapshot) in
-            let messageId = snapshot.key
-            print("messageId")
-            print(messageId)
-            let messagesRef = Database.database().reference().child("messages").child(messageId)
-            messagesRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                guard let dict = snapshot.value as? [String: AnyObject] else {
-                    return
-                }
-                print(dict)
-                /*
-                 if let image = component as? UIImage {
-                 /*
-                 let imageMessage = MockMessage(image: image, sender: currentSender(), messageId: UUID().uuidString, date: Date())
-                 messageList.append(imageMessage)
-                 messagesCollectionView.insertSections([messageList.count - 1])
-                 */
-                 } else if let text = component as? String {
-                 */
+        messageInputBar.leftStackView.addArrangedSubview(button)
+        let spacerView = UIView()
+        spacerView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        messageInputBar.leftStackView.addArrangedSubview(spacerView)
+        var leftStackViewWidth: CGFloat {
+            return self.view.frame.width - ( messageInputBar.padding.left + button.frame.width + messageInputBar.rightStackViewWidthConstant + messageInputBar.padding.right + 200)
+        }
+        messageInputBar.setLeftStackViewWidthConstant(to: height + leftStackViewWidth, animated: false)
+        messageInputBar.setRightStackViewWidthConstant(to: 60, animated: false)
+        messageInputBar.inputTextView.placeholder = "Type a message"
+        //messageInputBar.inputTextView.delegate = self
+        messageInputBar.inputTextView.font = UIFont.systemFont(ofSize: 14.0)
+    }
 
-                var sender = Sender(id: "", displayName: "")
-                if let fromID = dict["fromId"] {
-                    if fromID as! String == (Auth.auth().currentUser?.uid)! {
-                        sender = Sender(id: fromID.description, displayName: "me")
-                    } else {
-                        sender = Sender(id: fromID.description, displayName: (self.user?.name)!)
+    func observeMessages(callbackHandler: @escaping () -> Void) {
+        chatMessageService.bindChatMessage(callbackHandler: { [weak self] (chatMessageModels, error) in
+            switch error {
+            case .none:
+                if let models = chatMessageModels {
+                    let preMessageCount = self?.messages.count
+                    self?.messages = models + (self?.messages)! // キャッシュのせいかたまに重複することがあるのでユニークにしておく
+                    self?.messages = (self?.messages.unique { $0.messageId == $1.messageId }.sorted(by: { $0.sentDate < $1.sentDate}))!
+
+                    if preMessageCount == self?.messages.count {  // 更新数チェック
+                        self?.refreshControl.endRefreshing()
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self?.messagesCollectionView.reloadData()
+                        callbackHandler()
                     }
                 }
-                if let text = dict["text"], let fromID = dict["fromId"], let timestamp = dict["timeStamp"] {
-                    //let sender = Sender(id: fromID.description, displayName: "")
-                    let message = ChatMessage(kind: .text(text as! String), sender: sender, messageId: "\(messageId)", date: Date(timeIntervalSince1970: TimeInterval(truncating: timestamp as! NSNumber)))
-                    message.setValuesForKeys(dict)
-                    self.messages.append(message)
-                }
-                if let imageUrl = dict["imageUrl"], let fromID = dict["fromId"], let timestamp = dict["timeStamp"] {
-                    print("imageUrl")
-                    print(imageUrl)
-                    //let sender = Sender(id: fromID.description, displayName: "")
-                    let message = ChatMessage(kind: .photo(ChatMedia(url: URL(string: imageUrl as! String)!)), sender: sender, messageId: "\(messageId)", date: Date(timeIntervalSince1970: TimeInterval(truncating: timestamp as! NSNumber)))
-                    message.setValuesForKeys(dict)
-                    self.messages.append(message)
-                }
-
-                //let message = Message()
-                //message.setValuesForKeys(dict)
-                //self.messages.append(message)
-                print(self.messages.count)
-                DispatchQueue.main.async {
-                    //self.collectionView?.reloadData()
-                    let indexpath = NSIndexPath.init(item: self.messages.count-1, section: 0)
-                    //self.collectionView?.scrollToItem(at: indexpath as IndexPath, at: .bottom, animated: true)
-                    self.messagesCollectionView.reloadData()
-                    self.messagesCollectionView.scrollToBottom()
-                }
-            }, withCancel: nil)
-        }, withCancel: nil)
+            case .some(.error(let error)):
+                Log.error(error!)
+            case .some(.noExistsError):
+                Log.error("データ見つかりません")
+            }
+            self?.refreshControl.endRefreshing()
+        })
     }
-*/
-    
+
+    @objc func refresh(sender: UIRefreshControl) {
+        if  messages.count == 0 {
+            self.refreshControl.endRefreshing()
+            return
+        }
+        self.observeMessages(callbackHandler: { self.refreshControl.endRefreshing() })
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -187,6 +197,67 @@ class ChatMessageViewController: MessagesViewController {
         }
     }
 
+}
+
+extension ChatMessageViewController {
+    // カメラ選択
+    fileprivate func selectCamera() {
+        /*
+        PhotoRequester.requestPhotoFromCamera(self) { [weak self] result in
+            switch result {
+            case .success(let image):
+                self?.showLoading()
+                self?.talkService.postImage(image, callbackHandler: {[weak self] error in
+                    if let error = error {
+                        Log.error(error)
+                        self?.hideLoading()
+                        return
+                    }
+                    self?.aftterImagePost()
+                })
+            case .faild:
+                self?.showAlert("カメラへアクセスできません", "設定アプリにてカメラへのアクセス許可してください")
+            case .cancel:
+                break
+            }
+        }
+        */
+    }
+
+    // 画像選択
+    fileprivate func selectPhotoLibrary() {
+        /*
+        PhotoRequester.requestPhotoLibrary(self) { [weak self] result in
+            switch result {
+            case .success(let image):
+                self?.showLoading()
+                self?.talkService.postImage(image, callbackHandler: {[weak self] error in
+                    if let error = error {
+                        Log.error(error)
+                        self?.hideLoading()
+                        return
+                    }
+                    self?.aftterImagePost()
+                })
+            case .faild:
+                self?.showAlert("フォトアルバムへアクセスできません", "設定アプリにてフォトアルバムへのアクセスを許可してください")
+            case .cancel:
+                break
+            }
+        }
+ */
+    }
+
+    // 画像投稿後にメッセージ画面に戻った場合、下のスクロールが少しずれるので調整
+    fileprivate func aftterImagePost() {
+        DispatchQueue.main.async {
+            self.messagesCollectionView.reloadData()
+            self.messagesCollectionView.scrollToBottom()
+            self.messageInputBar.inputTextView.becomeFirstResponder()
+            self.messageInputBar.inputTextView.resignFirstResponder()
+            self.hideLoading()
+        }
+    }
 }
 
 extension ChatMessageViewController: MessagesDataSource {
@@ -233,16 +304,16 @@ extension ChatMessageViewController: MessagesDataSource {
             let string1 = NSMutableAttributedString(string: "----------", attributes: stringAttributes1)
             string1.addAttribute(NSAttributedStringKey.strikethroughStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: NSRange(location: 0, length: 10))
             string1.addAttribute(NSAttributedStringKey.strikethroughColor, value: UIColor.lightGray, range: NSRange(location: 0, length: 10))
-
-            let string2 = ""/*NSAttributedString(
-                string: " \(formatter.string(from: message.sentDate))(\(UtilManager.weekday_str_jp(date: message.sentDate))) ", //MessageKitDateFormatter.shared.string(from: message.sentDate),
+            let calendar = Calendar(identifier: .gregorian)
+            let weekdayIndex = calendar.component(Calendar.Component.weekday, from: message.sentDate)-1
+            let string2 = NSAttributedString(
+                string: " \(formatter.string(from: message.sentDate))(\(formatter.shortWeekdaySymbols[weekdayIndex])) ",
                 attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 10),
                              NSAttributedStringKey.foregroundColor: UIColor.lightGray]
-            )*/
-
+            )
             let mutableAttributedString = NSMutableAttributedString()
             mutableAttributedString.append(string1)
-            //mutableAttributedString.append(string2)
+            mutableAttributedString.append(string2)
             mutableAttributedString.append(string1)
             return mutableAttributedString
         }
@@ -401,13 +472,18 @@ extension ChatMessageViewController: MessageInputBarDelegate {
                  */
             } else if let text = component as? String {
 
-                let attributedText = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 15),
-                                                                                   .foregroundColor: UIColor.white])
-                /*
-                 let message = MockMessage(attributedText: attributedText, sender: currentSender(), messageId: UUID().uuidString, date: Date())
-                 messageList.append(message)
-                 messagesCollectionView.insertSections([messageList.count - 1])
-                 */
+                self.chatMessageService.postChatMessage(text: text, callbackHandler: { [weak self] error in
+                    if let error = error {
+                        Log.error(error)
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self?.messageInputBar.inputTextView.text = ""
+                        self?.messageInputBar.inputTextView.resignFirstResponder()
+                        self?.messagesCollectionView.reloadData()
+                        self?.messagesCollectionView.scrollToBottom()
+                    }
+                })
             }
         }
         inputBar.inputTextView.text = String()

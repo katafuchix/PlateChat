@@ -304,4 +304,28 @@ struct UserService {
         }
     }
 
+    // ユーザー情報取得
+    static func getUserInfo(_ uid: String, completionHandler: @escaping (_ user: LoginUser?, _ error: UserServiceFetchError?) -> Void) {
+        guard (Auth.auth().currentUser?.uid) != nil else { return }
+
+        let profileDocumentRef = self.store.document("login_user/\(uid)")
+
+        profileDocumentRef.getDocument { (document, error) in
+            if error != nil {
+                completionHandler(nil, .fetchError(error))
+            } else if let document = document, document.exists {
+                do {
+                    let user = try LoginUser(from: document)
+                    completionHandler(user, nil)
+
+                } catch {
+                    // TODO: Errorバリエーション定義
+                    completionHandler(nil, .fetchError(error))
+                }
+            } else {
+                completionHandler(nil, .noExistsError)
+            }
+        }
+    }
+
 }
