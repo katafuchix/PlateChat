@@ -90,6 +90,8 @@ class ChatMessageViewController: MessagesViewController {
         self.observeMessages(callbackHandler: { self.messagesCollectionView.scrollToBottom() })
         self.messagesCollectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(ChatMessageViewController.refresh(sender:)), for: .valueChanged)
+
+        setupMessageInputBarButtons()
     }
 
     func setupMessageInputBarButtons() {
@@ -202,12 +204,11 @@ class ChatMessageViewController: MessagesViewController {
 extension ChatMessageViewController {
     // カメラ選択
     fileprivate func selectCamera() {
-        /*
         PhotoRequester.requestPhotoFromCamera(self) { [weak self] result in
             switch result {
             case .success(let image):
                 self?.showLoading()
-                self?.talkService.postImage(image, callbackHandler: {[weak self] error in
+                self?.chatMessageService.postImage(image, callbackHandler: {[weak self] error in
                     if let error = error {
                         Log.error(error)
                         self?.hideLoading()
@@ -221,17 +222,15 @@ extension ChatMessageViewController {
                 break
             }
         }
-        */
     }
 
     // 画像選択
     fileprivate func selectPhotoLibrary() {
-        /*
         PhotoRequester.requestPhotoLibrary(self) { [weak self] result in
             switch result {
             case .success(let image):
                 self?.showLoading()
-                self?.talkService.postImage(image, callbackHandler: {[weak self] error in
+                self?.chatMessageService.postImage(image, callbackHandler: {[weak self] error in
                     if let error = error {
                         Log.error(error)
                         self?.hideLoading()
@@ -245,7 +244,6 @@ extension ChatMessageViewController {
                 break
             }
         }
- */
     }
 
     // 画像投稿後にメッセージ画面に戻った場合、下のスクロールが少しずれるので調整

@@ -26,4 +26,5 @@ target 'PlateChat' do
   pod 'NVActivityIndicatorView'
   pod 'SDWebImage', '4.3.3'
   pod 'DZNEmptyDataSet'
+  pod 'Nuke', '~> 6.0'
 end

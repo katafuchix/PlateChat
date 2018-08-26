@@ -104,4 +104,48 @@ class ChatMessageService {
             callbackHandler(nil)
         }
     }
+
+    func postImage(_ image: UIImage?, callbackHandler: @escaping (Error?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid, let chatRoomKey: String = self.chatRoom.key,
+            let image = image, let jpeg = UIImageJPEGRepresentation(image, self.compressibility) else { return }
+
+        // 画像アップロード
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        let imageName = self.getRandomString(12)
+        let path = "chat_room/\(chatRoomKey)/\(imageName).jpg"
+        let imageStoragePath = Storage.storage().reference().child(path)
+        imageStoragePath.putData(jpeg, metadata: metadata) { [weak self] _, error in
+            if nil != error {
+                callbackHandler(error)
+                return
+            }
+            // 画像アップロード後にチャットの発言としてレコード作成
+            let data: [String: Any] = [
+                "sender"    : uid,
+                "imageURL"  : "\(Storage.storage().reference())\(path)",
+                "created_at": FieldValue.serverTimestamp(),
+                "status"    : 1
+            ]
+            self?.store.collection("/chat_room/\(chatRoomKey)/messages/").addDocument(data: data) { error in
+                if let error = error {
+                    callbackHandler(error)
+                    return
+                }
+                callbackHandler(nil)
+            }
+        }
+    }
+
+    private func getRandomString(_ length: Int) -> String {
+        let letters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        var randomString = ""
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        return randomString
+    }
 }
