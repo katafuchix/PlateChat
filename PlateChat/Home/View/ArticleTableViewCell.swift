@@ -11,6 +11,7 @@ import SDWebImage
 import RxSwift
 import RxCocoa
 import NSObject_Rx
+import Firebase
 
 class ArticleTableViewCell: UITableViewCell {
 
@@ -20,11 +21,10 @@ class ArticleTableViewCell: UITableViewCell {
 
     @IBOutlet weak var articleLabel: UILabel!
 
-    @IBOutlet weak var toButton: UIButton!
-    @IBOutlet weak var toButtonHeightConstraint: NSLayoutConstraint!
-
     @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var talkButton: UIButton!
+    @IBOutlet weak var buttonBaseView: UIView!
+    @IBOutlet weak var buttonBaseViewHeight: NSLayoutConstraint!
 
     var article: Article?
     var disposeBag = DisposeBag()
@@ -49,6 +49,14 @@ class ArticleTableViewCell: UITableViewCell {
 
         //print(Constants.prefs.filter {$0.0 == article.user_prefecture_id }.map { $0.1 }[0])
         //print(Constants.genders[article.user_sex])
+        if Auth.auth().currentUser?.uid == article.uid {
+            self.buttonBaseViewHeight.constant = 0.0
+            self.buttonBaseView.isHidden = true
+        } else {
+            self.buttonBaseViewHeight.constant = 30.0
+            self.buttonBaseView.isHidden = false
+        }
+        self.talkButton.isEnabled = true
     }
 
     func clear() {
@@ -57,7 +65,9 @@ class ArticleTableViewCell: UITableViewCell {
         self.userNicknameLabel.text = ""
         self.userAttrLabel.text = ""
         self.articleLabel.text = ""
-        //toButtonHeightConstraint.constant = 0.0
+        self.buttonBaseViewHeight.constant = 30.0
+        self.buttonBaseView.isHidden = false
+        self.talkButton.isEnabled = false
     }
 
     override func prepareForReuse() {

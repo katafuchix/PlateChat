@@ -94,40 +94,36 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
         //cell.set(content: datasource[indexPath.row])
         cell.configure(self.articles[indexPath.row])
 
-        cell.toButton.addTarget(self, action: #selector(self.buttonTapped(sender:)), for: UIControlEvents.touchUpInside)
-
-
         /*rx.tap.subscribe(onNext: { _ in
             print("ボタンを押しました！")
         }).disposed(by: rx.disposeBag)*/
 
         cell.talkButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            /*let vc = R.storyboard.message.messageViewController()!
-            vc.hidesBottomBarWhenPushed = true
-            self?.navigationController?.pushViewController(vc, animated: true)*/
+            SVProgressHUD.show(withStatus: "Loading...")
 
             let chatRoomService = ChatRoomService()
 
             let vc = ChatMessageViewController()
             if let article = cell.article {
-                //vc.other_uid = article.uid
-                print(article.uid)
+                // ChatRoom 取得 なければ作成
                 chatRoomService.cerateChatRoom(article.uid, { [weak self] (chatroom, error) in
+                    SVProgressHUD.dismiss()
                     if let err = error {
                         self?.showAlert(err.localizedDescription)
                         return
                     }
                     guard let chatRoom = chatroom else { return }
-                    vc.chatRoom     = chatRoom
-                    vc.other_uid    = article.uid
-                    vc.hidesBottomBarWhenPushed = true
-                    self?.navigationController?.pushViewController(vc, animated: true)
+                    
+                    // snapshotでコールバックが複数回実行されるのを回避
+                    let bool = self?.navigationController?.topViewController is ChatMessageViewController
+                    if !bool {
+                        vc.chatRoom     = chatRoom
+                        vc.other_uid    = article.uid
+                        vc.hidesBottomBarWhenPushed = true
+                        self?.navigationController?.pushViewController(vc, animated: true)
+                    }
                 })
             }
-            /*
-            vc.hidesBottomBarWhenPushed = true
-            self?.navigationController?.pushViewController(vc, animated: true)
-            */
         }).disposed(by: cell.disposeBag)
 
         return cell

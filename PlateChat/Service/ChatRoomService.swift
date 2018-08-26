@@ -41,6 +41,7 @@ class ChatRoomService {
     // 作成
     func cerateChatRoom (_ other_uid: String, _ completionHandler: @escaping (_ chatRoom: ChatRoom?, _ error: ChatRoomServiceUpdateError?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        if uid == other_uid { return }
 
         let query = self.store.collection("chat_room")
             .whereField("members.\(uid)", isEqualTo: true)
@@ -48,8 +49,8 @@ class ChatRoomService {
             .whereField("status", isEqualTo: 1)
             //.order(by: "created_at", descending: true)
 
-        //query.addSnapshotListener(includeMetadataChanges: true) { (querySnapshot, error) in
-        query.getDocuments() { (querySnapshot, error) in
+        query.addSnapshotListener(includeMetadataChanges: false) { (querySnapshot, error) in
+        //query.getDocuments() { (querySnapshot, error) in // 何故か作成後に動かない
             do {
                 if let snapshot = querySnapshot {
                     if snapshot.count == 0 {
