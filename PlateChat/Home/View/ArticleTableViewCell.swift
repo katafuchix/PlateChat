@@ -19,6 +19,11 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var userNicknameLabel: UILabel!
     @IBOutlet weak var userAttrLabel: UILabel!
 
+
+    @IBOutlet weak var toButtonBaseView: UIView!
+    @IBOutlet weak var toButtonBaseViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var toButton: UIButton!
+
     @IBOutlet weak var articleLabel: UILabel!
 
     @IBOutlet weak var replyButton: UIButton!
@@ -53,10 +58,13 @@ class ArticleTableViewCell: UITableViewCell {
             self.buttonBaseViewHeight.constant = 0.0
             self.buttonBaseView.isHidden = true
         } else {
-            self.buttonBaseViewHeight.constant = 30.0
+            self.buttonBaseViewHeight.constant = 34.0
             self.buttonBaseView.isHidden = false
         }
         self.talkButton.isEnabled = true
+
+        self.toButtonBaseViewHeightConstraint.constant = 0.0
+        self.toButtonBaseView.isHidden = true
     }
 
     func clear() {

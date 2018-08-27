@@ -47,11 +47,11 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ArticleTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ArticleTableViewCell" rowHeight="129" id="1Zh-Fr-FsQ" customClass="ArticleTableViewCell" customModule="P_Chat_" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="129"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ArticleTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ArticleTableViewCell" rowHeight="170" id="1Zh-Fr-FsQ" customClass="ArticleTableViewCell" customModule="P_Chat_" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="170"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Zh-Fr-FsQ" id="EvG-7J-XbR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="128.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="169.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AdL-LN-tip" customClass="CircleButton" customModule="P_Chat_" customModuleProvider="target">
@@ -74,14 +74,33 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yts-2V-Dnu">
+                                                    <rect key="frame" x="0.0" y="71" width="375" height="34"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRb-6X-fO8">
+                                                            <rect key="frame" x="17" y="0.5" width="46" height="33"/>
+                                                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
+                                                            <state key="normal" title="Button">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="HRb-6X-fO8" firstAttribute="centerY" secondItem="Yts-2V-Dnu" secondAttribute="centerY" id="P2f-bO-pxm"/>
+                                                        <constraint firstAttribute="height" constant="34" id="VVU-b0-Ju9"/>
+                                                        <constraint firstItem="HRb-6X-fO8" firstAttribute="leading" secondItem="Yts-2V-Dnu" secondAttribute="leading" constant="17" id="hjk-dj-8j1"/>
+                                                    </constraints>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2w1-sr-9ZF">
-                                                    <rect key="frame" x="15" y="73" width="345" height="18"/>
+                                                    <rect key="frame" x="15" y="107" width="345" height="21"/>
                                                     <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Medium" family="NotoSansCJKjpSub-Medium" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XwF-vY-YFd">
-                                                    <rect key="frame" x="0.0" y="96" width="375" height="30"/>
+                                                    <rect key="frame" x="0.0" y="133" width="375" height="34"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jt0-IJ-iej">
                                                             <rect key="frame" x="16" y="0.0" width="46" height="30"/>
@@ -115,7 +134,7 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="Jt0-IJ-iej" firstAttribute="leading" secondItem="XwF-vY-YFd" secondAttribute="leading" constant="16" id="0Eo-4I-0dE"/>
-                                                        <constraint firstAttribute="height" constant="30" id="CBR-ap-8cD"/>
+                                                        <constraint firstAttribute="height" constant="34" id="CBR-ap-8cD"/>
                                                         <constraint firstItem="No7-yb-0Ry" firstAttribute="top" secondItem="XwF-vY-YFd" secondAttribute="top" id="Icu-o0-e4W"/>
                                                         <constraint firstItem="No7-yb-0Ry" firstAttribute="leading" secondItem="Jt0-IJ-iej" secondAttribute="trailing" constant="8" id="SCT-KD-ohE"/>
                                                         <constraint firstItem="Jt0-IJ-iej" firstAttribute="top" secondItem="XwF-vY-YFd" secondAttribute="top" id="eMs-Di-9ms"/>
@@ -124,8 +143,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="XwF-vY-YFd" secondAttribute="bottom" constant="2.5" id="49B-I0-G4W"/>
-                                                <constraint firstItem="2w1-sr-9ZF" firstAttribute="top" secondItem="AdL-LN-tip" secondAttribute="bottom" constant="8" id="4RB-Hy-gt8"/>
+                                                <constraint firstItem="Yts-2V-Dnu" firstAttribute="leading" secondItem="EvG-7J-XbR" secondAttribute="leading" id="5tn-vk-ar6"/>
                                                 <constraint firstItem="vNr-m2-BDq" firstAttribute="leading" secondItem="AdL-LN-tip" secondAttribute="trailing" constant="8" id="70V-FI-ya3"/>
+                                                <constraint firstAttribute="trailing" secondItem="Yts-2V-Dnu" secondAttribute="trailing" id="DOC-DD-R4v"/>
                                                 <constraint firstItem="CAc-Am-cqK" firstAttribute="trailing" secondItem="EvG-7J-XbR" secondAttribute="trailingMargin" id="DUl-20-LLo"/>
                                                 <constraint firstItem="XwF-vY-YFd" firstAttribute="top" secondItem="2w1-sr-9ZF" secondAttribute="bottom" constant="5" id="KBF-Z0-nrb"/>
                                                 <constraint firstItem="vNr-m2-BDq" firstAttribute="trailing" secondItem="EvG-7J-XbR" secondAttribute="trailingMargin" id="L1A-yS-AAT"/>
@@ -135,6 +155,8 @@
                                                 <constraint firstItem="AdL-LN-tip" firstAttribute="leading" secondItem="EvG-7J-XbR" secondAttribute="leadingMargin" id="OJD-DQ-X3W"/>
                                                 <constraint firstItem="CAc-Am-cqK" firstAttribute="top" secondItem="EvG-7J-XbR" secondAttribute="topMargin" constant="8" id="cNL-XY-kdO"/>
                                                 <constraint firstItem="AdL-LN-tip" firstAttribute="top" secondItem="EvG-7J-XbR" secondAttribute="topMargin" constant="8" id="h3l-w2-OuW"/>
+                                                <constraint firstItem="2w1-sr-9ZF" firstAttribute="top" secondItem="Yts-2V-Dnu" secondAttribute="bottom" constant="2" id="moZ-Gm-qA5"/>
+                                                <constraint firstItem="Yts-2V-Dnu" firstAttribute="top" secondItem="AdL-LN-tip" secondAttribute="bottom" constant="6" id="rcJ-q6-bbx"/>
                                                 <constraint firstAttribute="trailing" secondItem="XwF-vY-YFd" secondAttribute="trailing" id="xAK-XN-aA7"/>
                                                 <constraint firstItem="CAc-Am-cqK" firstAttribute="leading" secondItem="AdL-LN-tip" secondAttribute="trailing" constant="8" id="yJj-c3-KTH"/>
                                                 <constraint firstItem="2w1-sr-9ZF" firstAttribute="leading" secondItem="EvG-7J-XbR" secondAttribute="leadingMargin" id="z9s-Ht-aCC"/>
@@ -146,6 +168,9 @@
                                             <outlet property="buttonBaseViewHeight" destination="CBR-ap-8cD" id="BFA-ax-SXT"/>
                                             <outlet property="replyButton" destination="Jt0-IJ-iej" id="bIy-uo-dTF"/>
                                             <outlet property="talkButton" destination="No7-yb-0Ry" id="mxi-I0-qyS"/>
+                                            <outlet property="toButton" destination="HRb-6X-fO8" id="ETW-hf-DYB"/>
+                                            <outlet property="toButtonBaseView" destination="Yts-2V-Dnu" id="D15-1w-tq7"/>
+                                            <outlet property="toButtonBaseViewHeightConstraint" destination="VVU-b0-Ju9" id="Vjt-yV-Mht"/>
                                             <outlet property="userAttrLabel" destination="vNr-m2-BDq" id="L9J-hV-NxO"/>
                                             <outlet property="userNicknameLabel" destination="CAc-Am-cqK" id="39Z-g3-hEP"/>
                                             <outlet property="userProfileImageButton" destination="AdL-LN-tip" id="O9g-py-7uG"/>
