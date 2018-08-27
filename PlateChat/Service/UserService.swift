@@ -58,6 +58,7 @@ struct UserService {
                             "password"          : password,
                             "devise"            : UserDeviceInfo.getDeviceInfo(),
                             "prefecture_id"     : 0,
+                            "notification_on"   : true,
                             "status"            : 1,
                             "last_login_date"   : FieldValue.serverTimestamp(),
                             "created_at"        : FieldValue.serverTimestamp()
@@ -143,6 +144,7 @@ struct UserService {
         AccountData.login_email         = user.login_email
         AccountData.login_password      = user.login_password
         AccountData.my_profile_image    = user.profile_image_url
+        AccountData.notification_on     = user.notification_on
     }
 
     static func clearUserInfo() {
@@ -153,6 +155,7 @@ struct UserService {
         AccountData.login_email         = ""
         AccountData.login_password      = ""
         AccountData.my_profile_image    = ""
+        AccountData.notification_on     = true
     }
 
     // プロフィール画像
@@ -251,6 +254,7 @@ struct UserService {
                 print("Error adding document: \(err)")
                 return
             }
+            AccountData.notification_on = bool
         })
     }
 

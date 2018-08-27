@@ -23,6 +23,7 @@ struct AccountData {
         case profile_text   = "profile_text"
         case my_profile_image = "my_profile_image" // メイン画像
         case fcmToken       = "fcmToken" // firebase remote notification token
+        case notification_on = "notification_on" // 通知設定
     }
 
     private init() {}
@@ -72,5 +73,10 @@ struct AccountData {
     static var fcmToken: String? {
         get { return self.ud.string(forKey: AccountData.DataType.fcmToken.rawValue) }
         set { self.ud.set(newValue, forKey: AccountData.DataType.fcmToken.rawValue); self.ud.synchronize() }
+    }
+
+    static var notification_on: Bool? {
+        get { return self.ud.bool(forKey: AccountData.DataType.notification_on.rawValue) }
+        set { self.ud.set(newValue, forKey: AccountData.DataType.notification_on.rawValue); self.ud.synchronize() }
     }
 }

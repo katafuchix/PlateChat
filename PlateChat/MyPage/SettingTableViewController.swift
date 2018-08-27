@@ -24,10 +24,17 @@ class SettingTableViewController: UITableViewController {
         self.tableView.separatorInset   = .zero
         self.tableView.tableFooterView  = UIView()
         
+        self.bind()
+    }
+
+    func bind(){
         closeButton.rx.tap.subscribe(onNext: { [unowned self] in
             self.dismiss(animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
-        
+
+        if let bool = AccountData.notification_on {
+            notificationSwitch.isOn = bool
+        }
         notificationSwitch.rx.value.asDriver()
             .skip(1)
             .drive(onNext: {

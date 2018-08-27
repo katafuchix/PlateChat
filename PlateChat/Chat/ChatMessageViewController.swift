@@ -180,15 +180,11 @@ class ChatMessageViewController: MessagesViewController {
         case .text, .attributedText, .emoji:
             let cell = messagesCollectionView.dequeueReusableCell(TextMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
-            //print("message")
-            //print(message)
             return cell
         case .photo, .video:
             //let cell = messagesCollectionView.dequeueReusableCell(MediaMessageCell.self, for: indexPath)
             let cell = messagesCollectionView.dequeueReusableCell(ChatPhotoCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
-            print("message")
-            print(message.kind)
             return cell
         case .location:
             let cell = messagesCollectionView.dequeueReusableCell(LocationMessageCell.self, for: indexPath)

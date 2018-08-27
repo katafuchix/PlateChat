@@ -22,6 +22,7 @@ struct LoginUser {
     let profile_text: String
     let profile_image_url: String
     let status: Int
+    let notification_on: Bool
 
 
     init(from document: DocumentSnapshot) throws {
@@ -43,5 +44,6 @@ struct LoginUser {
         self.prefecture_id  = (document.get("prefecture_id") as? Int) ?? 0
         self.profile_text   = (document.get("profile_text") as? String) ?? ""
         self.profile_image_url = (document.get("profile_image_url") as? String) ?? ""
+        self.notification_on = (document.get("notification_on") as? Bool) ?? true
     }
 }
