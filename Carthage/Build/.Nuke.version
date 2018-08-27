@@ -1,9 +1,27 @@
 {
+  "Mac" : [
+    {
+      "name" : "Nuke",
+      "hash" : "1eab8a262a6dba395a50f1be62f12c4d2612d3cee6e1954dd5a839909d922cf9"
+    }
+  ],
+  "watchOS" : [
+    {
+      "name" : "Nuke",
+      "hash" : "4ac6599859ac9ce3fb029adca6026d0b173f8bd7c0e3837585f236e1480ab8ce"
+    }
+  ],
+  "tvOS" : [
+    {
+      "name" : "Nuke",
+      "hash" : "6415b09b90c3debab5b0a6f30adf0b148b94316b475d0a6ae65a265b3ffa7a00"
+    }
+  ],
   "commitish" : "6.1.1",
   "iOS" : [
     {
       "name" : "Nuke",
-      "hash" : "bc8a387a69687e6ebe5154a50ab746c7127a07738a8a69f82b3562e4bd1cd457"
+      "hash" : "cb3a747459ef895a9c4f17102967eae60bc23f8f8abf43c1f95372061be13cf0"
     }
   ]
 }

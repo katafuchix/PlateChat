@@ -13,6 +13,7 @@ import MobileCoreServices
 import AVFoundation
 import SwiftDate
 import SafariServices
+import Nuke
 
 class ChatMessageViewController: MessagesViewController {
 
@@ -271,7 +272,7 @@ extension ChatMessageViewController: MessagesDataSource {
     }
 
     func otherSender() -> Sender {
-        return Sender(id: "456", displayName: "知らない人")
+        return Sender(id: "", displayName: "")
     }
 
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
@@ -355,10 +356,27 @@ extension ChatMessageViewController: MessagesDisplayDelegate {
 
     // アイコンをセット
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        // message.sender.displayNameとかで送信者の名前を取得できるので
-        // そこからイニシャルを生成するとよい
-        let avatar = Avatar(initials: "人")
+        avatarView.backgroundColor = .clear
+        let avatar = Avatar(image: UIImage(), initials: "")
         avatarView.set(avatar: avatar)
+        UserService.getUserInfo(message.sender.id, completionHandler: { (user, error) in
+            guard let url = user?.profile_image_url else {
+                Log.error(error!)
+                return
+            }
+            DispatchQueue.main.async {
+                Manager.shared.loadImage(with: URL(string: url)!,
+                                         completion: { (result) in
+                                            switch result {
+                                            case .failure(let error):
+                                                Log.error(error)
+                                            case .success(let image):
+                                                let avatar = Avatar(image: image, initials: "")
+                                                avatarView.set(avatar: avatar)
+                                            }
+                })
+            }
+        })
     }
 
     // リンクメッセージの場合青色、下線の設定
