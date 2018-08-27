@@ -73,7 +73,7 @@ class ArticleService {
 
             self?.lastArticleDocument = snapshot.documents.last
             do {
-                let articles = try snapshot.documents.compactMap { try Article(from: $0) }.sorted(by: { $0.created_date < $1.created_date})
+                let articles = try snapshot.documents.compactMap { try Article(from: $0) }.sorted(by: { $0.created_date > $1.created_date})
                 self?.status = .done
                 callbackHandler(articles, nil)
             } catch {

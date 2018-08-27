@@ -18,7 +18,7 @@
         <!--プロフィール設定-->
         <scene sceneID="zjE-jk-xhW">
             <objects>
-                <tableViewController storyboardIdentifier="ProfileEditTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RcV-pM-uGM" customClass="ProfileEditTableViewController" customModule="PlateChat" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProfileEditTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RcV-pM-uGM" customClass="ProfileEditTableViewController" customModule="P_Chat_" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oam-9f-vaS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,7 +34,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="プロフィール" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4r-mt-H5h">
-                                                    <rect key="frame" x="16" y="12" width="343" height="18"/>
+                                                    <rect key="frame" x="16" y="10" width="343" height="18"/>
                                                     <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -43,7 +43,7 @@
                                             <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="A4r-mt-H5h" firstAttribute="leading" secondItem="EQz-0V-yGc" secondAttribute="leading" constant="16" id="7pZ-Nj-DI3"/>
-                                                <constraint firstAttribute="bottom" secondItem="A4r-mt-H5h" secondAttribute="bottom" id="9zj-gt-Jb7"/>
+                                                <constraint firstAttribute="bottom" secondItem="A4r-mt-H5h" secondAttribute="bottom" constant="2" id="9zj-gt-Jb7"/>
                                                 <constraint firstAttribute="trailing" secondItem="A4r-mt-H5h" secondAttribute="trailing" constant="16" id="Dwg-VB-3Bt"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -55,7 +55,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAp-hJ-8rA" customClass="CircleButton" customModule="PlateChat" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAp-hJ-8rA" customClass="CircleButton" customModule="P_Chat_" customModuleProvider="target">
                                                     <rect key="frame" x="279" y="10" width="80" height="80"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -131,7 +131,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGz-3R-135" customClass="CircleSexButton" customModule="PlateChat" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGz-3R-135" customClass="CircleSexButton" customModule="P_Chat_" customModuleProvider="target">
                                                     <rect key="frame" x="299" y="10" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="giU-F5-pHE"/>
@@ -151,7 +151,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
-                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uh7-Il-G05" customClass="CircleSexButton" customModule="PlateChat" customModuleProvider="target">
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uh7-Il-G05" customClass="CircleSexButton" customModule="P_Chat_" customModuleProvider="target">
                                                     <rect key="frame" x="223" y="10" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="DgX-uR-iRh"/>
@@ -173,7 +173,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
-                                                <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8QN-Ra-SZg" customClass="CircleSexButton" customModule="PlateChat" customModuleProvider="target">
+                                                <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8QN-Ra-SZg" customClass="CircleSexButton" customModule="P_Chat_" customModuleProvider="target">
                                                     <rect key="frame" x="147" y="10" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="IUG-gE-qFm"/>
@@ -248,7 +248,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自己紹介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s35-QB-gLw">
-                                                    <rect key="frame" x="16" y="12" width="343" height="18"/>
+                                                    <rect key="frame" x="16" y="10" width="343" height="18"/>
                                                     <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -258,7 +258,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="s35-QB-gLw" secondAttribute="trailing" constant="16" id="aMw-De-Xss"/>
                                                 <constraint firstItem="s35-QB-gLw" firstAttribute="leading" secondItem="kFT-xC-DTY" secondAttribute="leading" constant="16" id="eB8-xH-cjg"/>
-                                                <constraint firstAttribute="bottom" secondItem="s35-QB-gLw" secondAttribute="bottom" id="t4P-ar-h34"/>
+                                                <constraint firstAttribute="bottom" secondItem="s35-QB-gLw" secondAttribute="bottom" constant="2" id="t4P-ar-h34"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

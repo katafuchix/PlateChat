@@ -97,11 +97,19 @@ class ProfileEditTableViewController: UITableViewController {
         saveButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
 
             if (self?.nicknameTextField.text?.isEmpty)! {
-                Alert.init("ニックネームを入力してください").show(self)
+                Alert.init("ニックネームを入力してください")
+                    .addAction("OK", completion: { [weak self] _ in
+                         self?.nicknameTextField.becomeFirstResponder()
+                    })
+                    .show(self)
                 return
             }
             if (self?.profileTextView.text.description.count)! > 100 {
-                Alert.init("自己紹介は100文字以内で入力してください").show(self)
+                Alert.init("自己紹介は100文字以内で入力してください")
+                    .addAction("OK", completion: { [weak self] _ in
+                        self?.profileTextView.becomeFirstResponder()
+                    })
+                    .show(self)
                 return
             }
 
@@ -252,10 +260,15 @@ class ProfileEditTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
+        case 1:
+            self.showUploadActionSheet()
+        case 2:
+            self.nicknameTextField.becomeFirstResponder()
         case 4:
             self.prefTextField.becomeFirstResponder()
         default:
-            break
+            self.nicknameTextField.resignFirstResponder()
+            self.profileTextView.resignFirstResponder()
         }
     }
 
