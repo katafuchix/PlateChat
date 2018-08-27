@@ -1,0 +1,9 @@
+{
+  "commitish" : "1.0.0",
+  "iOS" : [
+    {
+      "name" : "MessageKit",
+      "hash" : "d78697a31ba56fa2870d4a5328e0f21c560dc4a83d8a17906838f8d10d796505"
+    }
+  ]
+}

@@ -89,12 +89,21 @@
 		319A26B3212675A000769A6E /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319A26AE212675A000769A6E /* ActionSheet.swift */; };
 		319A26B4212675A000769A6E /* PhotoRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319A26AF212675A000769A6E /* PhotoRequester.swift */; };
 		319CE1422115990200347092 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319CE1412115990200347092 /* MainTabViewController.swift */; };
+		31BA1425213410CA00DB4958 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31BA1424213410CA00DB4958 /* SVProgressHUD.framework */; };
 		31BE63D12115D26000E43982 /* NVActivityIndicatorView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63D02115D26000E43982 /* NVActivityIndicatorView+Extended.swift */; };
 		31BE63D32115D2E300E43982 /* UIColor+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63D22115D2E300E43982 /* UIColor+Extended.swift */; };
 		31BE63D62115D89300E43982 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31BE63D52115D89300E43982 /* MyPage.storyboard */; };
 		31BE63DA2115ECA800E43982 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63D92115ECA800E43982 /* MyProfileViewController.swift */; };
 		31BE63DF2115F10D00E43982 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63DE2115F10C00E43982 /* SettingTableViewController.swift */; };
 		31BE63E22115F3DD00E43982 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31BE63E12115F3DD00E43982 /* Home.storyboard */; };
+		31C92B4321341478004C7130 /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B4221341478004C7130 /* DZNEmptyDataSet.framework */; };
+		31C92B45213414B4004C7130 /* MessageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B44213414B4004C7130 /* MessageKit.framework */; };
+		31C92B4721341508004C7130 /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B4621341508004C7130 /* Nuke.framework */; };
+		31C92B4921341518004C7130 /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B4821341518004C7130 /* NVActivityIndicatorView.framework */; };
+		31C92B4B21341564004C7130 /* NVActivityIndicatorViewAppExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B4A21341564004C7130 /* NVActivityIndicatorViewAppExtension.framework */; };
+		31C92B4D21341585004C7130 /* NSObject_Rx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B4C21341585004C7130 /* NSObject_Rx.framework */; };
+		31C92B4F213415CC004C7130 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B4E213415CC004C7130 /* SDWebImage.framework */; };
+		31C92B512134167E004C7130 /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B502134167E004C7130 /* SwiftDate.framework */; };
 		31ED9E0E212D8DCA00D1E96E /* DotBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ED9E0D212D8DCA00D1E96E /* DotBadgeView.swift */; };
 		31ED9E10212DB7D100D1E96E /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31ED9E0F212DB7D100D1E96E /* Message.storyboard */; };
 		31ED9E12212DB9FA00D1E96E /* ChatMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ED9E11212DB9FA00D1E96E /* ChatMessageViewController.swift */; };
@@ -187,12 +196,21 @@
 		319A26AF212675A000769A6E /* PhotoRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoRequester.swift; sourceTree = "<group>"; };
 		319CE1412115990200347092 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		31B286BF212C21680069FA72 /* PlateChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PlateChat.entitlements; sourceTree = "<group>"; };
+		31BA1424213410CA00DB4958 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		31BE63D02115D26000E43982 /* NVActivityIndicatorView+Extended.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NVActivityIndicatorView+Extended.swift"; sourceTree = "<group>"; };
 		31BE63D22115D2E300E43982 /* UIColor+Extended.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extended.swift"; sourceTree = "<group>"; };
 		31BE63D52115D89300E43982 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		31BE63D92115ECA800E43982 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		31BE63DE2115F10C00E43982 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		31BE63E12115F3DD00E43982 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		31C92B4221341478004C7130 /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = Carthage/Build/iOS/DZNEmptyDataSet.framework; sourceTree = "<group>"; };
+		31C92B44213414B4004C7130 /* MessageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageKit.framework; path = Carthage/Build/iOS/MessageKit.framework; sourceTree = "<group>"; };
+		31C92B4621341508004C7130 /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
+		31C92B4821341518004C7130 /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
+		31C92B4A21341564004C7130 /* NVActivityIndicatorViewAppExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorViewAppExtension.framework; path = Carthage/Build/iOS/NVActivityIndicatorViewAppExtension.framework; sourceTree = "<group>"; };
+		31C92B4C21341585004C7130 /* NSObject_Rx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSObject_Rx.framework; path = Carthage/Build/iOS/NSObject_Rx.framework; sourceTree = "<group>"; };
+		31C92B4E213415CC004C7130 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
+		31C92B502134167E004C7130 /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
 		31ED9E0D212D8DCA00D1E96E /* DotBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotBadgeView.swift; sourceTree = "<group>"; };
 		31ED9E0F212DB7D100D1E96E /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
 		31ED9E11212DB9FA00D1E96E /* ChatMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageViewController.swift; sourceTree = "<group>"; };
@@ -206,6 +224,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31C92B512134167E004C7130 /* SwiftDate.framework in Frameworks */,
+				31C92B4F213415CC004C7130 /* SDWebImage.framework in Frameworks */,
+				31C92B4D21341585004C7130 /* NSObject_Rx.framework in Frameworks */,
+				31C92B4B21341564004C7130 /* NVActivityIndicatorViewAppExtension.framework in Frameworks */,
+				31C92B4921341518004C7130 /* NVActivityIndicatorView.framework in Frameworks */,
+				31C92B4721341508004C7130 /* Nuke.framework in Frameworks */,
+				31C92B45213414B4004C7130 /* MessageKit.framework in Frameworks */,
+				31C92B4321341478004C7130 /* DZNEmptyDataSet.framework in Frameworks */,
+				31BA1425213410CA00DB4958 /* SVProgressHUD.framework in Frameworks */,
 				6105ACEAF942718AD7D24580 /* Pods_PlateChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,6 +537,15 @@
 		524288E8AD9E26AD49C8347E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				31C92B502134167E004C7130 /* SwiftDate.framework */,
+				31C92B4E213415CC004C7130 /* SDWebImage.framework */,
+				31C92B4C21341585004C7130 /* NSObject_Rx.framework */,
+				31C92B4A21341564004C7130 /* NVActivityIndicatorViewAppExtension.framework */,
+				31C92B4821341518004C7130 /* NVActivityIndicatorView.framework */,
+				31C92B4621341508004C7130 /* Nuke.framework */,
+				31C92B44213414B4004C7130 /* MessageKit.framework */,
+				31C92B4221341478004C7130 /* DZNEmptyDataSet.framework */,
+				31BA1424213410CA00DB4958 /* SVProgressHUD.framework */,
 				D1AB3658E29F073094B7957A /* Pods_PlateChat.framework */,
 			);
 			name = Frameworks;
@@ -532,11 +568,12 @@
 			buildConfigurationList = 3150BA0D2113373A00DB3512 /* Build configuration list for PBXNativeTarget "PlateChat" */;
 			buildPhases = (
 				EC94887955BA9FE4C760B1AD /* [CP] Check Pods Manifest.lock */,
-				31BE63DB2115ED4D00E43982 /* Run Script */,
+				31BE63DB2115ED4D00E43982 /* Run Script  R.swift */,
 				3150B9F72113373900DB3512 /* Sources */,
 				3150B9F82113373900DB3512 /* Frameworks */,
 				3150B9F92113373900DB3512 /* Resources */,
 				E9BB01F05B0212824FB29CBB /* [CP] Embed Pods Frameworks */,
+				31C92B4121341126004C7130 /* Run Script Carthage */,
 			);
 			buildRules = (
 			);
@@ -625,19 +662,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		31BE63DB2115ED4D00E43982 /* Run Script */ = {
+		31BE63DB2115ED4D00E43982 /* Run Script  R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
+			name = "Run Script  R.swift";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+		};
+		31C92B4121341126004C7130 /* Run Script Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/DZNEmptyDataSet.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MessageKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Nuke.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/NVActivityIndicatorView.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/NVActivityIndicatorViewAppExtension.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/NSObject_Rx.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SDWebImage.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftDate.framework",
+			);
+			name = "Run Script Carthage";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 		E9BB01F05B0212824FB29CBB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -647,20 +707,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PlateChat/Pods-PlateChat-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
-				"${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework",
-				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
-				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
@@ -671,20 +723,12 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSObject_Rx.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
@@ -934,8 +978,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PlateChat/PlateChat.entitlements;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U5LW6HVD99;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = PlateChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -943,8 +992,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "net.deskplate.PlateChat-dev";
 				PRODUCT_NAME = "P-Chat!";
-				PROVISIONING_PROFILE = "1fbbb07f-c6b7-40bb-9ba3-acf99fb09b19";
-				PROVISIONING_PROFILE_SPECIFIER = "net.deskplate.PlateChat-dev";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -956,8 +1005,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PlateChat/PlateChat.entitlements;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U5LW6HVD99;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = PlateChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -965,8 +1019,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "net.deskplate.PlateChat-dev";
 				PRODUCT_NAME = "P-Chat!";
-				PROVISIONING_PROFILE = "1fbbb07f-c6b7-40bb-9ba3-acf99fb09b19";
-				PROVISIONING_PROFILE_SPECIFIER = "net.deskplate.PlateChat-dev";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
