@@ -97,6 +97,7 @@
 		31BE63DF2115F10D00E43982 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63DE2115F10C00E43982 /* SettingTableViewController.swift */; };
 		31BE63E22115F3DD00E43982 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31BE63E12115F3DD00E43982 /* Home.storyboard */; };
 		31C7348721357381009E8241 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C7348621357381009E8241 /* PushNotification.swift */; };
+		31C7354F2135C6E6009E8241 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C7354E2135C6E6009E8241 /* SwiftMessages.framework */; };
 		31C92B4321341478004C7130 /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B4221341478004C7130 /* DZNEmptyDataSet.framework */; };
 		31C92B45213414B4004C7130 /* MessageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B44213414B4004C7130 /* MessageKit.framework */; };
 		31C92B4721341508004C7130 /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B4621341508004C7130 /* Nuke.framework */; };
@@ -205,6 +206,7 @@
 		31BE63DE2115F10C00E43982 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		31BE63E12115F3DD00E43982 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		31C7348621357381009E8241 /* PushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
+		31C7354E2135C6E6009E8241 /* SwiftMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftMessages.framework; path = Carthage/Build/iOS/SwiftMessages.framework; sourceTree = "<group>"; };
 		31C92B4221341478004C7130 /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = Carthage/Build/iOS/DZNEmptyDataSet.framework; sourceTree = "<group>"; };
 		31C92B44213414B4004C7130 /* MessageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageKit.framework; path = Carthage/Build/iOS/MessageKit.framework; sourceTree = "<group>"; };
 		31C92B4621341508004C7130 /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31C7354F2135C6E6009E8241 /* SwiftMessages.framework in Frameworks */,
 				31C92B512134167E004C7130 /* SwiftDate.framework in Frameworks */,
 				31C92B4F213415CC004C7130 /* SDWebImage.framework in Frameworks */,
 				31C92B4D21341585004C7130 /* NSObject_Rx.framework in Frameworks */,
@@ -441,6 +444,7 @@
 		31810896211584E600C10946 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				31C735502135C730009E8241 /* SwiftMessages */,
 				31810897211584F100C10946 /* PagingMenuController */,
 			);
 			path = Library;
@@ -537,9 +541,17 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		31C735502135C730009E8241 /* SwiftMessages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SwiftMessages;
+			sourceTree = "<group>";
+		};
 		524288E8AD9E26AD49C8347E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				31C7354E2135C6E6009E8241 /* SwiftMessages.framework */,
 				31C92B502134167E004C7130 /* SwiftDate.framework */,
 				31C92B4E213415CC004C7130 /* SDWebImage.framework */,
 				31C92B4C21341585004C7130 /* NSObject_Rx.framework */,
@@ -694,6 +706,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/NSObject_Rx.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SDWebImage.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftDate.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftMessages.framework",
 			);
 			name = "Run Script Carthage";
 			outputPaths = (

@@ -43,6 +43,7 @@ class HomeViewController: UIViewController {
 
         SVProgressHUD.show(withStatus: "Loading...")
         self.articleService?.bindTalk(callbackHandler: { [weak self] (models, error) in
+            SVProgressHUD.dismiss()
             switch error {
             case .none:
                 if let models = models {
@@ -65,7 +66,7 @@ class HomeViewController: UIViewController {
                 Log.error("データ見つかりません")
             }
             //weakSelf.refreshControl.endRefreshing()
-            SVProgressHUD.dismiss()
+            //SVProgressHUD.dismiss()
         })
 
     }

@@ -1,0 +1,9 @@
+{
+  "commitish" : "4.1.4",
+  "iOS" : [
+    {
+      "name" : "SwiftMessages",
+      "hash" : "363ea27a657dd06ca7a31b96119227c0dc0aedd4a5e75a18cd3bbdafab858e9a"
+    }
+  ]
+}

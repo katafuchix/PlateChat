@@ -12,8 +12,9 @@
 import Foundation
 import UserNotifications
 import Firebase
+import SwiftMessages
 
-class PushNotification: NSObject {
+class PushNotification: NSObject {  // Type 'PushNotification' does not conform to protocol 'NSObjectProtocol'
 
     override init() {
         super.init()
@@ -96,13 +97,23 @@ extension PushNotification: UNUserNotificationCenterDelegate {
     // フォアグラウンドで通知受信
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Swift.Void) {
 
-        let userInfo = notification.request.content.userInfo
+        //let userInfo = notification.request.content.userInfo
 
         // Print full message.
         Log.debug("\(notification.request.content.userInfo)")
 
-        completionHandler([.alert, .sound])
-        self.handlePushNotification(userInfo)
+        //completionHandler([.alert, .sound])
+        //self.handlePushNotification(userInfo)
+
+        // ステータスバーの上だけに通知タイトルを表示
+        let title: String = notification.request.content.title
+        let status = MessageView.viewFromNib(layout: .statusLine)
+        status.backgroundView.backgroundColor = UIColor.black
+        status.bodyLabel?.textColor = UIColor.white
+        status.configureContent(body: title)
+        var statusConfig = SwiftMessages.defaultConfig
+        statusConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+        SwiftMessages.show(config: statusConfig, view: status)
     }
 
     // リモート通知の開封時に発火

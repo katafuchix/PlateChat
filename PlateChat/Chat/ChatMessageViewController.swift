@@ -15,6 +15,12 @@ import SwiftDate
 import SafariServices
 import Nuke
 
+fileprivate extension UIEdgeInsets {
+    init(top: CGFloat = 0, bottom: CGFloat = 0, left: CGFloat = 0, right: CGFloat = 0) {
+        self.init(top: top, left: left, bottom: bottom, right: right)
+    }
+}
+
 class ChatMessageViewController: MessagesViewController {
 
     let cellId = "CellID"
@@ -64,6 +70,16 @@ class ChatMessageViewController: MessagesViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // 自分のアイコンの表示を消し、その分ラベルを移動させる
+        if let layout = self.messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
+            //layout.setMessageIncomingAvatarSize(.zero)
+            layout.setMessageOutgoingAvatarSize(.zero)
+
+            //layout.setMessageIncomingMessageTopLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(left: 10)))
+            //layout.setMessageIncomingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(left: 10)))
+            layout.setMessageOutgoingMessageTopLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(right: 10)))
+            layout.setMessageOutgoingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(right: 10)))
+        }
 
         DispatchQueue.main.async {
             // messageListにメッセージの配列をいれて
@@ -165,15 +181,6 @@ class ChatMessageViewController: MessagesViewController {
     }
 
     override open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        /*
-         guard let messagesCollectionView = collectionView as? MessagesCollectionView else {
-         fatalError(MessageKitError.notMessagesCollectionView)
-         }
-
-         guard let messagesDataSource = messagesCollectionView.messagesDataSource else {
-         fatalError(MessageKitError.nilMessagesDataSource)
-         }
-         */
         //let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
         let message = self.messageForItem(at: indexPath, in: messagesCollectionView)
         switch message.kind {
@@ -352,28 +359,16 @@ extension ChatMessageViewController: MessagesDisplayDelegate {
 
     // アイコンをセット
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        avatarView.backgroundColor = .clear
+        // 自分のアイコンは表示しない
+        if isFromCurrentSender(message: message) { return }
 
+        avatarView.backgroundColor = .clear
         UserService.getUserInfo(message.sender.id, completionHandler: { (user, error) in
             guard let url = user?.profile_image_url else {
                 Log.error(error!)
                 return
             }
             avatarView.sd_setImage(with: URL(string: url)!, completed: nil)
-            /*
-            DispatchQueue.main.async {
-                Manager.shared.loadImage(with: URL(string: url)!,
-                                         completion: { (result) in
-                                            switch result {
-                                            case .failure(let error):
-                                                Log.error(error)
-                                            case .success(let image):
-                                                let avatar = Avatar(image: image, initials: "")
-                                                avatarView.set(avatar: avatar)
-                                            }
-                })
-            }
-            */
         })
     }
 
@@ -397,7 +392,6 @@ extension ChatMessageViewController: MessagesDisplayDelegate {
         return [.url]
     }
 }
-
 
 // 各ラベルの高さを設定（デフォルト0なので必須）
 extension ChatMessageViewController: MessagesLayoutDelegate {
