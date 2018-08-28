@@ -353,13 +353,14 @@ extension ChatMessageViewController: MessagesDisplayDelegate {
     // アイコンをセット
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         avatarView.backgroundColor = .clear
-        let avatar = Avatar(image: UIImage(), initials: "")
-        avatarView.set(avatar: avatar)
+
         UserService.getUserInfo(message.sender.id, completionHandler: { (user, error) in
             guard let url = user?.profile_image_url else {
                 Log.error(error!)
                 return
             }
+            avatarView.sd_setImage(with: URL(string: url)!, completed: nil)
+            /*
             DispatchQueue.main.async {
                 Manager.shared.loadImage(with: URL(string: url)!,
                                          completion: { (result) in
@@ -372,6 +373,7 @@ extension ChatMessageViewController: MessagesDisplayDelegate {
                                             }
                 })
             }
+            */
         })
     }
 

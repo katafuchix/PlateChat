@@ -96,6 +96,7 @@
 		31BE63DA2115ECA800E43982 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63D92115ECA800E43982 /* MyProfileViewController.swift */; };
 		31BE63DF2115F10D00E43982 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63DE2115F10C00E43982 /* SettingTableViewController.swift */; };
 		31BE63E22115F3DD00E43982 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31BE63E12115F3DD00E43982 /* Home.storyboard */; };
+		31C7348721357381009E8241 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C7348621357381009E8241 /* PushNotification.swift */; };
 		31C92B4321341478004C7130 /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B4221341478004C7130 /* DZNEmptyDataSet.framework */; };
 		31C92B45213414B4004C7130 /* MessageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B44213414B4004C7130 /* MessageKit.framework */; };
 		31C92B4721341508004C7130 /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B4621341508004C7130 /* Nuke.framework */; };
@@ -203,6 +204,7 @@
 		31BE63D92115ECA800E43982 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		31BE63DE2115F10C00E43982 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		31BE63E12115F3DD00E43982 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		31C7348621357381009E8241 /* PushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		31C92B4221341478004C7130 /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = Carthage/Build/iOS/DZNEmptyDataSet.framework; sourceTree = "<group>"; };
 		31C92B44213414B4004C7130 /* MessageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageKit.framework; path = Carthage/Build/iOS/MessageKit.framework; sourceTree = "<group>"; };
 		31C92B4621341508004C7130 /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				319A26AC212675A000769A6E /* Log.swift */,
 				319A26AF212675A000769A6E /* PhotoRequester.swift */,
 				312805072116F54900357E5C /* Constants.swift */,
+				31C7348621357381009E8241 /* PushNotification.swift */,
 				31386D6A21324718008E82D0 /* R.generated.swift */,
 			);
 			path = Util;
@@ -766,6 +769,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31C7348721357381009E8241 /* PushNotification.swift in Sources */,
 				319A26B1212675A000769A6E /* Log.swift in Sources */,
 				31386D722132491D008E82D0 /* UIImageView+WebImage.swift in Sources */,
 				318108AA211584FD00C10946 /* MenuView.swift in Sources */,

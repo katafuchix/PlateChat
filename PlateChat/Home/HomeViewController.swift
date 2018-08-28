@@ -47,16 +47,13 @@ class HomeViewController: UIViewController {
             case .none:
                 if let models = models {
                     let preMessageCount = self?.articles.count
-                    self?.articles = models
-
-                    /*
-                    weakSelf.messages = Array([models, weakSelf.messages].joined()) // キャッシュのせいかたまに重複することがあるのでユニークにしておく
-                    weakSelf.messages = weakSelf.messages.unique { $0.messageId == $1.messageId }.sorted(by: { $0.sentDate < $1.sentDate})
-
-                    if preMessageCount == weakSelf.messages.count {  // 更新数チェック
-                        weakSelf.refreshControl.endRefreshing()
+                    //self?.articles = models
+                    self?.articles = models + (self?.articles)! //Array([models, self?.articles].joined()) // キャッシュのせいかたまに重複することがあるのでユニークにしておく
+                    self?.articles = (self?.articles.unique { $0.key == $1.key }.sorted(by: { $0.created_date > $1.created_date}))!
+                    if preMessageCount == self?.articles.count {  // 更新数チェック
+                        //self?.refreshControl.endRefreshing()
                         return
-                    }*/
+                    }
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
                         //callbackHandler()
