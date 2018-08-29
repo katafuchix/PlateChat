@@ -1,0 +1,4 @@
+framework module Compass {
+    header "Compass-Swift.h"
+    requires objc
+}

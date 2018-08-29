@@ -1,0 +1,9 @@
+{
+  "commitish" : "6.0.0",
+  "iOS" : [
+    {
+      "name" : "Compass",
+      "hash" : "1a4811c8b62d5dbdc454dfc5921295510959023fbbc6cd8adc94ee1b39a57816"
+    }
+  ]
+}

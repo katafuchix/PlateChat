@@ -13,6 +13,7 @@ import Foundation
 import UserNotifications
 import Firebase
 import SwiftMessages
+import Compass
 
 class PushNotification: NSObject {  // Type 'PushNotification' does not conform to protocol 'NSObjectProtocol'
 
@@ -26,6 +27,28 @@ class PushNotification: NSObject {  // Type 'PushNotification' does not conform 
 
         // Firebase Cloud Message
         Messaging.messaging().delegate = self
+
+        // Compass
+        Navigator.scheme = "p-chat"
+        Navigator.routes = ["chatroomlist"]
+        Navigator.handle = { location in
+            //let arguments = location.arguments
+
+            // タブ画面をセットし直す
+            let tabViewController = R.storyboard.main.mainTabViewController()!
+            if let firstWindow = UIApplication.shared.windows.first {
+                firstWindow.rootViewController = tabViewController
+            } else {
+                AppDelegate.appDelegate?.window?.rootViewController = tabViewController
+            }
+            // 通知内のpush-linkのパスで処理を分岐
+            switch location.path {
+            case "chatroomlist":    // chatroom一覧画面を表示
+                tabViewController.selectedIndex = 2
+            default:
+                break
+            }
+        }
     }
 
     func requestAuthorization(_ completion: ((Bool) -> Void)? = nil) {
@@ -63,6 +86,9 @@ class PushNotification: NSObject {  // Type 'PushNotification' does not conform 
         print("handlePushNotification")
         guard let linkHostURL = self.linkHost(userInfo) else { return }
         Log.debug("linkHostURL : \(linkHostURL)")
+        do {
+            try Navigator.navigate(url: linkHostURL)
+        } catch { }
     }
 
     // 通知のリンクを解析

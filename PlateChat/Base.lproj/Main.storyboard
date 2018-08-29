@@ -62,7 +62,7 @@
         <!--Main Tab View Controller-->
         <scene sceneID="1wE-wi-mKQ">
             <objects>
-                <tabBarController id="oGu-G2-7lD" customClass="MainTabViewController" customModule="PlateChat" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oGu-G2-7lD" customClass="MainTabViewController" customModule="P_Chat_" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OLP-Nr-bPi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

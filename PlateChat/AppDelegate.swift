@@ -13,6 +13,9 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    static var appDelegate: AppDelegate? {
+        return UIApplication.shared.delegate as? AppDelegate
+    }
     var window: UIWindow?
     private let notification: PushNotification = PushNotification()
 
