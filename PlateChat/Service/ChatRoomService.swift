@@ -34,9 +34,64 @@ class ChatRoomService {
 
     private let store   = Firestore.firestore()
     private let storage = Storage.storage()
-    private var bindArticleHandler: ListenerRegistration?
+    private var bindChatRoomHandler: ListenerRegistration?
     private let limit = 100          // １ページあたりの表示数 仮の値
+    private var lastChatRoomDocument: QueryDocumentSnapshot? // クエリカーソルの開始点
+    private var status: ChatRoomBindStatus
 
+    init() {
+        self.lastChatRoomDocument = nil
+        self.status = .none
+    }
+
+    func bindChatRoom(callbackHandler: @escaping ([ChatRoom]?, ChatRoomBindError?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+
+        if self.status == .loading { return }
+        self.status = .loading
+
+        let query: Query
+        if let lastDocument = self.lastChatRoomDocument {
+            query = self.store
+                .collection("/chat_room/")
+                .whereField("members.\(uid)", isEqualTo: true)
+                .whereField("status", isEqualTo: 1)
+                .order(by: "created_at", descending: true)
+                .start(afterDocument: lastDocument)
+                .limit(to: limit)
+        } else {
+            query = self.store
+                .collection("/chat_room/")
+                .whereField("members.\(uid)", isEqualTo: true)
+                .whereField("status", isEqualTo: 1)
+                .order(by: "created_at", descending: true)
+                .limit(to: limit)
+        }
+
+        bindChatRoomHandler = query.addSnapshotListener(includeMetadataChanges: true) { [weak self] (querySnapshot, error) in
+            if let error = error {
+                self?.status = .failed
+                callbackHandler(nil, .error(error))
+                return
+            }
+
+            guard let snapshot = querySnapshot else {
+                self?.status = .failed
+                callbackHandler(nil, .noExistsError)
+                return
+            }
+
+            self?.lastChatRoomDocument = snapshot.documents.last
+            do {
+                let chatrooms = try snapshot.documents.compactMap { try ChatRoom(from: $0) }.sorted(by: { $0.created_date < $1.created_date})
+                self?.status = .done
+                callbackHandler(chatrooms, nil)
+            } catch {
+                self?.status = .failed
+                callbackHandler(nil, .error(error))
+            }
+        }
+    }
 
     // 作成
     func cerateChatRoom (_ other_uid: String, _ completionHandler: @escaping (_ chatRoom: ChatRoom?, _ error: ChatRoomServiceUpdateError?) -> Void) {

@@ -100,6 +100,7 @@
 		31C7354F2135C6E6009E8241 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C7354E2135C6E6009E8241 /* SwiftMessages.framework */; };
 		31C735562136CEF2009E8241 /* Compass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C735552136CEF2009E8241 /* Compass.framework */; };
 		31C735582137034C009E8241 /* Date+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C735572137034C009E8241 /* Date+Extended.swift */; };
+		31C7355A213722B3009E8241 /* ChatRoomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C73559213722B3009E8241 /* ChatRoomListViewController.swift */; };
 		31C92B4321341478004C7130 /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B4221341478004C7130 /* DZNEmptyDataSet.framework */; };
 		31C92B45213414B4004C7130 /* MessageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B44213414B4004C7130 /* MessageKit.framework */; };
 		31C92B4721341508004C7130 /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B4621341508004C7130 /* Nuke.framework */; };
@@ -211,6 +212,7 @@
 		31C7354E2135C6E6009E8241 /* SwiftMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftMessages.framework; path = Carthage/Build/iOS/SwiftMessages.framework; sourceTree = "<group>"; };
 		31C735552136CEF2009E8241 /* Compass.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Compass.framework; path = Carthage/Build/iOS/Compass.framework; sourceTree = "<group>"; };
 		31C735572137034C009E8241 /* Date+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extended.swift"; sourceTree = "<group>"; };
+		31C73559213722B3009E8241 /* ChatRoomListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListViewController.swift; sourceTree = "<group>"; };
 		31C92B4221341478004C7130 /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = Carthage/Build/iOS/DZNEmptyDataSet.framework; sourceTree = "<group>"; };
 		31C92B44213414B4004C7130 /* MessageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageKit.framework; path = Carthage/Build/iOS/MessageKit.framework; sourceTree = "<group>"; };
 		31C92B4621341508004C7130 /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			children = (
 				31386D6C21324902008E82D0 /* View */,
 				312804FF2116EBB400357E5C /* Chat.storyboard */,
+				31C73559213722B3009E8241 /* ChatRoomListViewController.swift */,
 				31ED9E0F212DB7D100D1E96E /* Message.storyboard */,
 				31ED9E11212DB9FA00D1E96E /* ChatMessageViewController.swift */,
 			);
@@ -824,6 +827,7 @@
 				31BE63D12115D26000E43982 /* NVActivityIndicatorView+Extended.swift in Sources */,
 				315E0D57212192C40068924A /* UserDeviceInfo.swift in Sources */,
 				31386D702132491D008E82D0 /* ChatPhotoCell.swift in Sources */,
+				31C7355A213722B3009E8241 /* ChatRoomListViewController.swift in Sources */,
 				3168A0672118898A002B0440 /* ProfileEditTableViewController.swift in Sources */,
 				311017A22120932500E6B343 /* CircleSexButton.swift in Sources */,
 				310FB0592126F49C00C917E7 /* HomeViewController.swift in Sources */,
