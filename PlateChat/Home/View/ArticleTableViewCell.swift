@@ -31,6 +31,8 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var buttonBaseView: UIView!
     @IBOutlet weak var buttonBaseViewHeight: NSLayoutConstraint!
 
+    @IBOutlet weak var dateLabel: UILabel!
+
     var article: Article?
     var disposeBag = DisposeBag()
 
@@ -65,6 +67,8 @@ class ArticleTableViewCell: UITableViewCell {
 
         self.toButtonBaseViewHeightConstraint.constant = 0.0
         self.toButtonBaseView.isHidden = true
+
+        self.dateLabel.text = Date.timeAgoString(article.created_date)
     }
 
     func clear() {
@@ -76,6 +80,7 @@ class ArticleTableViewCell: UITableViewCell {
         self.buttonBaseViewHeight.constant = 30.0
         self.buttonBaseView.isHidden = false
         self.talkButton.isEnabled = false
+        self.dateLabel.text = ""
     }
 
     override func prepareForReuse() {
