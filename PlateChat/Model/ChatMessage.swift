@@ -25,13 +25,15 @@ class ChatMessage: MessageType {
     var kind: MessageKind
     // MessageKit MessageType variables
 
+    let unreads: [String: Bool]
     var status: Int
 
-    init(kind: MessageKind, sender: Sender, messageId: String, date: Date, status: Int) {
+    init(kind: MessageKind, sender: Sender, messageId: String, date: Date, unreads: [String: Bool], status: Int) {
         self.kind = kind
         self.sender = sender
         self.messageId = messageId
         self.sentDate = date
+        self.unreads = unreads
         self.status = status
     }
 
@@ -46,6 +48,7 @@ class ChatMessage: MessageType {
         self.sender    = Sender(id: senderId, displayName: "")
         self.sentDate  = (document.get("created_at") as? Timestamp)?.dateValue() ?? Date()
         self.kind      = MessageKind.text("")
+        self.unreads  = (document.get("unleads") as? [String: Bool]) ?? ["": false]
         self.status    = status
 
         // メッセーッジがテキストか画像か分ける

@@ -14,8 +14,10 @@ class ChatRoom {
     var key: String
     let owner: String
     let members: [String: Bool]
+    var unreadCounts: [String: Int]?
     let status: Int
     let created_date: Date
+    var updated_date: Date?
 
     init(from document: DocumentSnapshot) throws {
         key = document.documentID
@@ -27,8 +29,10 @@ class ChatRoom {
             else { throw ModelError.parseError }
         self.owner          = owner
         self.members        = members
+        self.unreadCounts   = (document.get("unreadCounts") as? [String: Int]) ?? ["": 0]
         self.status         = status
         self.created_date   = (document.get("created_at") as? Timestamp)?.dateValue() ?? Date()
+        self.updated_date   = (document.get("updated_at") as? Timestamp)?.dateValue() ?? Date()
     }
 }
 
