@@ -48,7 +48,7 @@ class ChatMessage: MessageType {
         self.sender    = Sender(id: senderId, displayName: "")
         self.sentDate  = (document.get("created_at") as? Timestamp)?.dateValue() ?? Date()
         self.kind      = MessageKind.text("")
-        self.unreads  = (document.get("unleads") as? [String: Bool]) ?? ["": false]
+        self.unreads  = (document.get("unreads") as? [String: Bool]) ?? ["": false]
         self.status    = status
 
         // メッセーッジがテキストか画像か分ける

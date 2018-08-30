@@ -151,4 +151,32 @@ class ChatRoomService {
             }
         }
     }
+
+    // 各メンバーの未読数＆最終更新日時更新
+    func updateLastChatTime(_ chatRoom: ChatRoom) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        var unreadCounts = [String: Int]()
+        for uid in chatRoom.members.keys {
+            self.store
+                .collection("/chat_room/\(chatRoom.key)/messages/")
+                .whereField("unreads.\(uid)", isEqualTo: true)
+                .addSnapshotListener(includeMetadataChanges: true) { [weak self] (querySnapshot, error) in
+                    if let error = error {
+                        Log.error(error)
+                        return
+                    }
+                    guard let snapshot = querySnapshot else { return }
+                    unreadCounts[uid] = snapshot.documents.count
+                    if unreadCounts.count == chatRoom.members.count {
+                        let data = ["updated_date": FieldValue.serverTimestamp(), "unreadCounts": unreadCounts] as [String: Any]
+                        self?.store.collection("/chat_room/").document(chatRoom.key).setData(data, merge: true, completion: { error in
+                            if let error = error {
+                                Log.error(error)
+                                return
+                            }
+                        })
+                    }
+            }
+        }
+    }
 }

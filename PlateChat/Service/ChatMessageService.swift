@@ -90,11 +90,14 @@ class ChatMessageService {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let chatRoomKey: String = self.chatRoom.key else { return }
 
+        var unreads = self.chatRoom.members
+        unreads[uid] = false
         let data: [String: Any] = [
             "sender"    : uid,
             "text"      : text,
             "created_at": FieldValue.serverTimestamp(),
-            "status"    : 1
+            "status"    : 1,
+            "unreads"   : unreads
         ]
         self.store.collection("/chat_room/\(chatRoomKey)/messages/").addDocument(data: data) { error in
             if let error = error {
@@ -103,6 +106,25 @@ class ChatMessageService {
             }
             callbackHandler(nil)
         }
+    }
+
+    func updateChatMessageUnread(chatMessage: ChatMessage, callbackHandler: @escaping (PostChatMessageError?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let chatRoomKey: String = self.chatRoom.key else { return }
+
+        var unreads = chatMessage.unreads
+        let trues = unreads.filter { $0.1 == true }
+        if trues.count == 0 || unreads[uid] == false { return }  // 全て既読か自分が既読
+        
+        unreads[uid] = false
+        let data = ["unreads"   : unreads] as [String : Any]
+        self.store.collection("/chat_room/\(chatRoomKey)/messages/").document(chatMessage.messageId).setData(data, merge: true, completion: { error in
+            if let error = error {
+                callbackHandler(.error(error))
+                return
+            }
+            callbackHandler(nil)
+        })
     }
 
     func postImage(_ image: UIImage?, callbackHandler: @escaping (Error?) -> Void) {

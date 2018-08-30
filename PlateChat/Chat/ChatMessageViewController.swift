@@ -187,6 +187,15 @@ class ChatMessageViewController: MessagesViewController {
         case .text, .attributedText, .emoji:
             let cell = messagesCollectionView.dequeueReusableCell(TextMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+
+            self.chatMessageService.updateChatMessageUnread(chatMessage: message as! ChatMessage, callbackHandler: { [weak self] error in
+                if let error = error {
+                    Log.error(error)
+                    return
+                }
+                self?.chatRoomService.updateLastChatTime((self?.chatRoom)!)
+            })
+
             return cell
         case .photo, .video:
             //let cell = messagesCollectionView.dequeueReusableCell(MediaMessageCell.self, for: indexPath)
@@ -485,6 +494,7 @@ extension ChatMessageViewController: MessageInputBarDelegate {
                         Log.error(error)
                         return
                     }
+                    self?.chatRoomService.updateLastChatTime((self?.chatRoom)!)
                     DispatchQueue.main.async {
                         self?.messageInputBar.inputTextView.text = ""
                         self?.messageInputBar.inputTextView.resignFirstResponder()

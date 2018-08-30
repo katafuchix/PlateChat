@@ -150,6 +150,25 @@ extension PushNotification: UNUserNotificationCenterDelegate {
         // 通知内のURLによって処理を分ける
         // self.linkHost(userInfo), self.linkTitle(userInfo)
     }
+
+    // バックグラウンドプッシュ通知受信
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+
+        // アプリのバッジ数を+1
+        let number = UIApplication.shared.applicationIconBadgeNumber
+        UIApplication.shared.applicationIconBadgeNumber = number > 0 ? number + 1 : 1
+    }
+
+    // リモート通知 これは使わずにFirebaseのTokenを利用する
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        //let deviceTokenString: String = deviceToken.map { String(format: "%.2hhx", $0) }.joined()
+        //Log.debug("deviceTokenString \(deviceTokenString)")
+    }
+
+    // リモート通知を拒否したときの動作
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        Log.debug("リモート通知の設定は拒否されました")
+    }
 }
 
 extension PushNotification: MessagingDelegate {
