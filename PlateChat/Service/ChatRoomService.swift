@@ -110,10 +110,13 @@ class ChatRoomService {
                 if let snapshot = querySnapshot {
                     if snapshot.count == 0 {
                         var data = [String: Any]()
-                        data["owner"]       = uid
-                        data["members"]     = [uid: true, other_uid: true]
-                        data["created_at"]  = FieldValue.serverTimestamp()
-                        data["status"]      = 1
+                        data["owner"]               = uid
+                        data["members"]             = [uid: true, other_uid: true]
+                        data["unreadCounts"]        = [uid: 0, other_uid: 0]
+                        data["created_at"]          = FieldValue.serverTimestamp()
+                        data["updated_at"]          = FieldValue.serverTimestamp()
+                        data["status"]              = 1
+                        data["last_update_message"] = ""
 
                         self.store.collection("chat_room").addDocument(data:data, completion: {
                             error in
@@ -153,8 +156,9 @@ class ChatRoomService {
     }
 
     // 各メンバーの未読数＆最終更新日時更新
-    func updateLastChatTime(_ chatRoom: ChatRoom) {
+    func updateLastChatTime(_ chatRoom: ChatRoom, _ text: String? = nil) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
+
         var unreadCounts = [String: Int]()
         for uid in chatRoom.members.keys {
             self.store
@@ -168,7 +172,10 @@ class ChatRoomService {
                     guard let snapshot = querySnapshot else { return }
                     unreadCounts[uid] = snapshot.documents.count
                     if unreadCounts.count == chatRoom.members.count {
-                        let data = ["updated_date": FieldValue.serverTimestamp(), "unreadCounts": unreadCounts] as [String: Any]
+                        var data = ["updated_date": FieldValue.serverTimestamp(), "unreadCounts": unreadCounts] as [String: Any]
+                        if let text = text {
+                            data["last_update_message"] = text
+                        }
                         self?.store.collection("/chat_room/").document(chatRoom.key).setData(data, merge: true, completion: { error in
                             if let error = error {
                                 Log.error(error)

@@ -11,16 +11,17 @@ import Firebase
 
 class ChatRoom {
 
-    var key: String
+    let key: String
     let owner: String
     let members: [String: Bool]
     var unreadCounts: [String: Int]?
     let status: Int
     let created_date: Date
-    var updated_date: Date?
+    var updated_date: Date
+    var last_update_message: String?
 
     init(from document: DocumentSnapshot) throws {
-        key = document.documentID
+        self.key = document.documentID
 
         guard
             let owner   = document.get("owner") as? String,
@@ -33,6 +34,7 @@ class ChatRoom {
         self.status         = status
         self.created_date   = (document.get("created_at") as? Timestamp)?.dateValue() ?? Date()
         self.updated_date   = (document.get("updated_at") as? Timestamp)?.dateValue() ?? Date()
+        self.last_update_message       = (document.get("last_update_message") as? String) ?? nil
     }
 }
 

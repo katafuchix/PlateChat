@@ -494,7 +494,7 @@ extension ChatMessageViewController: MessageInputBarDelegate {
                         Log.error(error)
                         return
                     }
-                    self?.chatRoomService.updateLastChatTime((self?.chatRoom)!)
+                    self?.chatRoomService.updateLastChatTime((self?.chatRoom)!, text)
                     DispatchQueue.main.async {
                         self?.messageInputBar.inputTextView.text = ""
                         self?.messageInputBar.inputTextView.resignFirstResponder()

@@ -73,6 +73,10 @@
 		3168A0742119BAC8002B0440 /* ChatMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168A0732119BAC8002B0440 /* ChatMedia.swift */; };
 		3168A0792119C2E8002B0440 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168A0782119C2E8002B0440 /* UserService.swift */; };
 		3168A07B2119C41C002B0440 /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168A07A2119C41C002B0440 /* LoginUser.swift */; };
+		317EDDDB21396C9F00A7B651 /* ChatRoomListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EDDDA21396C9F00A7B651 /* ChatRoomListCell.swift */; };
+		317EDDDD21396ED100A7B651 /* UITableView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EDDDC21396ED100A7B651 /* UITableView+Extended.swift */; };
+		317EDDDF21396F4C00A7B651 /* NSObject+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EDDDE21396F4C00A7B651 /* NSObject+Extended.swift */; };
+		317EDDE121398EC800A7B651 /* UsersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EDDE021398EC800A7B651 /* UsersData.swift */; };
 		318108A5211584FD00C10946 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 31810899211584FC00C10946 /* .gitkeep */; };
 		318108A6211584FD00C10946 /* PagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3181089B211584FC00C10946 /* PagingViewController.swift */; };
 		318108A7211584FD00C10946 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3181089C211584FC00C10946 /* MenuItemView.swift */; };
@@ -184,6 +188,10 @@
 		3168A0732119BAC8002B0440 /* ChatMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMedia.swift; sourceTree = "<group>"; };
 		3168A0782119C2E8002B0440 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		3168A07A2119C41C002B0440 /* LoginUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUser.swift; sourceTree = "<group>"; };
+		317EDDDA21396C9F00A7B651 /* ChatRoomListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListCell.swift; sourceTree = "<group>"; };
+		317EDDDC21396ED100A7B651 /* UITableView+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extended.swift"; sourceTree = "<group>"; };
+		317EDDDE21396F4C00A7B651 /* NSObject+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extended.swift"; sourceTree = "<group>"; };
+		317EDDE021398EC800A7B651 /* UsersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersData.swift; sourceTree = "<group>"; };
 		31810899211584FC00C10946 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		3181089B211584FC00C10946 /* PagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingViewController.swift; sourceTree = "<group>"; };
 		3181089C211584FC00C10946 /* MenuItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
@@ -362,6 +370,7 @@
 				31386D6E2132491D008E82D0 /* ChatMessageKitCell.swift */,
 				31386D6D2132491D008E82D0 /* ChatPhotoCell.swift */,
 				31386D6F2132491D008E82D0 /* UIImageView+WebImage.swift */,
+				317EDDDA21396C9F00A7B651 /* ChatRoomListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -432,6 +441,7 @@
 				3168A07A2119C41C002B0440 /* LoginUser.swift */,
 				310FB075212802DF00C917E7 /* Article.swift */,
 				310A6B9F21206C460026A412 /* AccountData.swift */,
+				317EDDE021398EC800A7B651 /* UsersData.swift */,
 				315E0D56212192C40068924A /* UserDeviceInfo.swift */,
 				31386D7521324DE6008E82D0 /* FirebaseCommon.swift */,
 			);
@@ -512,6 +522,8 @@
 				310FB0562126F30100C917E7 /* UIWindow+Extended.swift */,
 				31386D7D2132E156008E82D0 /* Array+Extended.swift */,
 				31C735572137034C009E8241 /* Date+Extended.swift */,
+				317EDDDC21396ED100A7B651 /* UITableView+Extended.swift */,
+				317EDDDE21396F4C00A7B651 /* NSObject+Extended.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -803,6 +815,7 @@
 				312805082116F54900357E5C /* Constants.swift in Sources */,
 				31386D7621324DE6008E82D0 /* FirebaseCommon.swift in Sources */,
 				31386D782132733D008E82D0 /* ChatRoomService.swift in Sources */,
+				317EDDDF21396F4C00A7B651 /* NSObject+Extended.swift in Sources */,
 				31386D7C2132DBE0008E82D0 /* ChatMessageService.swift in Sources */,
 				310FB05F212702CF00C917E7 /* ArticleService.swift in Sources */,
 				3168A0742119BAC8002B0440 /* ChatMedia.swift in Sources */,
@@ -814,6 +827,7 @@
 				3150BA1521133E2200DB3512 /* NoticeViewController.swift in Sources */,
 				310FB07D212844AF00C917E7 /* FaqViewController.swift in Sources */,
 				318108A6211584FD00C10946 /* PagingViewController.swift in Sources */,
+				317EDDE121398EC800A7B651 /* UsersData.swift in Sources */,
 				3168A0722119BA98002B0440 /* ChatMessage.swift in Sources */,
 				310FB076212802DF00C917E7 /* Article.swift in Sources */,
 				310FB06B2127B6DE00C917E7 /* AccountTableViewController.swift in Sources */,
@@ -829,6 +843,7 @@
 				31386D702132491D008E82D0 /* ChatPhotoCell.swift in Sources */,
 				31C7355A213722B3009E8241 /* ChatRoomListViewController.swift in Sources */,
 				3168A0672118898A002B0440 /* ProfileEditTableViewController.swift in Sources */,
+				317EDDDB21396C9F00A7B651 /* ChatRoomListCell.swift in Sources */,
 				311017A22120932500E6B343 /* CircleSexButton.swift in Sources */,
 				310FB0592126F49C00C917E7 /* HomeViewController.swift in Sources */,
 				310A6BA021206C460026A412 /* AccountData.swift in Sources */,
@@ -850,6 +865,7 @@
 				310FB074212800EA00C917E7 /* ArticleTableViewCell.swift in Sources */,
 				31386D6B21324718008E82D0 /* R.generated.swift in Sources */,
 				31BE63DF2115F10D00E43982 /* SettingTableViewController.swift in Sources */,
+				317EDDDD21396ED100A7B651 /* UITableView+Extended.swift in Sources */,
 				310FB05D2126F6EC00C917E7 /* WriteViewController.swift in Sources */,
 				3168A0702119BA54002B0440 /* Message.swift in Sources */,
 				310A6B9A212063420026A412 /* CALayer+RuntimeAttribute.swift in Sources */,

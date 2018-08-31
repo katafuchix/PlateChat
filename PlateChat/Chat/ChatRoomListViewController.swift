@@ -10,6 +10,7 @@ import UIKit
 
 class ChatRoomListViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
     var chatRoomService: ChatRoomService?
     var chatRooms = [ChatRoom]()
 
@@ -18,9 +19,41 @@ class ChatRoomListViewController: UIViewController {
 
         // Do any additional setup after loading the view.
 
+        self.tableView.separatorInset   = .zero
+        self.tableView.tableFooterView  = UIView()
+        self.tableView.tableHeaderView  = UIView()
+        self.tableView.rowHeight = 80
+        tableView.estimatedRowHeight = 80 // これはStoryBoardの設定で無視されるかも？
+        //tableView.rowHeight = UITableViewAutomaticDimension
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         self.chatRoomService = ChatRoomService()
         self.chatRoomService?.bindChatRoom(callbackHandler: { [weak self] (models, error) in
             print(models)
+            switch error {
+            case .none:
+                if let models = models {
+                    let preMessageCount = self?.chatRooms.count
+                    //self?.articles = models
+                    self?.chatRooms = models + (self?.chatRooms)! //Array([models, self?.articles].joined()) // キャッシュのせいかたまに重複することがあるのでユニークにしておく
+                    self?.chatRooms = (self?.chatRooms.unique { $0.key == $1.key }.sorted(by: { $0.updated_date > $1.updated_date}))!
+                    if preMessageCount == self?.chatRooms.count {  // 更新数チェック
+                        //self?.refreshControl.endRefreshing()
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                        //callbackHandler()
+                    }
+                }
+            case .some(.error(let error)):
+                Log.error(error!)
+            case .some(.noExistsError):
+                Log.error("データ見つかりません")
+            }
         })
     }
 
@@ -28,16 +61,120 @@ class ChatRoomListViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+}
+
+
+// MARK: - UITableViewDataSource
+
+extension ChatRoomListViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("self.chatRooms.count")
+        print(self.chatRooms.count)
+        return self.chatRooms.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueCell(ChatRoomListCell.self, indexPath: indexPath)
+        if self.chatRooms.count > 0 {
+            let data = self.chatRooms[indexPath.row]
+            cell.configure(data)
+        }
+        return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension ChatRoomListViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        //self.showChatVC(self.messageList[indexPath.row])
+    }
 
     /*
-    // MARK: - Navigation
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let block = UITableViewRowAction(style: .normal, title: "ブロック\nする") { (action, indexPath) in
+            self.showAlertOKCancel("確認", "このユーザーをブロックしますか？", "はい", "いいえ") { _ in
+                self.blockUser(indexPath)
+            }
+        }
+        block.backgroundColor = UIColor.hexStr(hexStr: "#666666", alpha: 1.0)
+
+        let hide = UITableViewRowAction(style: .normal, title: "表示\nしない") { (action, indexPath) in
+            self.hideRoom(indexPath)
+        }
+        hide.backgroundColor = UIColor.hexStr(hexStr: "#999999", alpha: 1.0)
+
+        return [block, hide]
     }
     */
 
+    // MARK: セル編集関数
+    /*
+    private func blockUser(_ indexPath: IndexPath) {
+        guard let userId = self.messageList[indexPath.row].userId else { return }
+
+        let unreadCnt: Int = self.messageList[indexPath.row].unreadCount ?? 0
+
+        AnyRequest.createOutcommingBlock(userId) { [weak self] (result) in
+            switch(result) {
+            case .success:
+                // ブロックリストAPI
+                AccountData.updateBlockingUserList(refreshUnreadCount: true) { () in
+                    self?.tableView.beginUpdates()
+                    self?.messageList.remove(at: indexPath.row)
+                    self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+                    self?.updateHeaderView()
+                    self?.tableView.endUpdates()
+
+                    self?.updateTabBadgeValue(minusUnreadCount: unreadCnt)
+                }
+
+            case .failure(let error):
+                self?.showAlert("エラー", error.description)
+            }
+        }
+
+    }
+
+    private func hideRoom(_ indexPath: IndexPath) {
+        guard let roomId = self.messageList[indexPath.row].roomId else { return }
+
+        let unreadCnt: Int = self.messageList[indexPath.row].unreadCount ?? 0
+        let table = SqliteManager<HideRoomIdTable>.newTableInstance()
+        var rec = HideRoomIdTableData()
+        rec._roomId = roomId
+        let _ = table.upsert(rec)
+        tableView.beginUpdates()
+        self.messageList.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        self.updateHeaderView()
+        tableView.endUpdates()
+
+        self.updateTabBadgeValue(minusUnreadCount: unreadCnt)
+    }
+
+    func updateTabBadgeValue(unreadCount: Int) {
+        guard let tabVC = AppDelegate.appDelegate?.window?.rootViewController as? TabBarController else { return }
+        UIApplication.shared.applicationIconBadgeNumber = unreadCount
+        tabVC.thirdVC?.isDotBadgeHidden = (unreadCount <= 0)
+    }
+
+    private func updateTabBadgeValue(minusUnreadCount: Int) {
+        // バッジ数の更新
+        guard minusUnreadCount > 0 else { return }
+        guard let tabVC = AppDelegate.appDelegate?.window?.rootViewController as? TabBarController else { return }
+        UIApplication.shared.applicationIconBadgeNumber -= minusUnreadCount
+        if let tabBadge = Int(tabVC.thirdVC?.tabBarItem.badgeValue ?? "") {
+            let val = tabBadge - minusUnreadCount
+            tabVC.thirdVC?.isDotBadgeHidden = (val <= 0)
+        }
+    }
+    */
 }

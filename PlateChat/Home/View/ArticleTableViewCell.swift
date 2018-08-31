@@ -49,6 +49,13 @@ class ArticleTableViewCell: UITableViewCell {
         if article.user_pforile_image_url.description.count > 0 {
             self.userProfileImageButton.sd_setBackgroundImage(with: URL(string:article.user_pforile_image_url), for: .normal) { (image, error, cacheType, url) in
             }
+            var dict = UsersData.profileImages
+            dict[article.uid] = article.user_pforile_image_url
+            UsersData.profileImages = dict
+
+            dict = UsersData.nickNames
+            dict[article.uid] = article.user_nickname
+            UsersData.nickNames = dict
         }
         self.userNicknameLabel.text = article.user_nickname
         let text = article.text.trimmingCharacters(in: .whitespaces).trimmingCharacters(in: .whitespacesAndNewlines)
