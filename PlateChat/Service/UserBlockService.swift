@@ -32,6 +32,7 @@ struct UserBlockService {
             } else if let document = document, document.exists {
                 do {
                     let userBlock = try UserBlock(from: document)
+                    UsersData.userBlock = userBlock.members         // ud
                     completionHandler(userBlock, nil)
                 } catch {
                 completionHandler(nil, .fetchError(error))
@@ -58,6 +59,7 @@ struct UserBlockService {
                     completionHandler(nil, .fetchError(error))
                     return
                 }
+                UsersData.userBlock = data["members"]!         // ud
                 completionHandler(userBlock, nil)
             })
         })

@@ -145,6 +145,12 @@ struct UserService {
         AccountData.login_password      = user.login_password
         AccountData.my_profile_image    = user.profile_image_url
         AccountData.notification_on     = user.notification_on
+        // Block
+        UserBlockService.getBlockUser(completionHandler: { (_,_) in
+            if let uid = Auth.auth().currentUser?.uid {
+                UserBlockedService.getBlockedUser(uid, completionHandler: { (_,_) in })
+            }
+        })
     }
 
     static func clearUserInfo() {
@@ -156,6 +162,8 @@ struct UserService {
         AccountData.login_password      = ""
         AccountData.my_profile_image    = ""
         AccountData.notification_on     = true
+        UsersData.userBlock             = [String: Bool]()
+        UsersData.userBlocked           = [String: Bool]()
     }
 
     // プロフィール画像
@@ -217,6 +225,7 @@ struct UserService {
             }
         }
     }
+
     // 最終ログイン
     static func setLastLogin() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -239,6 +248,11 @@ struct UserService {
                     do {
                         let user = try LoginUser(from: document)
                         self.setUserInfo(user)
+
+                        // Block
+                        UserBlockService.getBlockUser(completionHandler: { (_,_) in
+                            UserBlockedService.getBlockedUser(uid, completionHandler: { (_,_) in })
+                        })
                     } catch {}
                 }
             }
@@ -321,7 +335,6 @@ struct UserService {
                 do {
                     let user = try LoginUser(from: document)
                     completionHandler(user, nil)
-
                 } catch {
                     // TODO: Errorバリエーション定義
                     completionHandler(nil, .fetchError(error))

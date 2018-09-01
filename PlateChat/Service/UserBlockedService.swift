@@ -32,6 +32,9 @@ struct UserBlockedService {
             } else if let document = document, document.exists {
                 do {
                     let userBlocked = try UserBlocked(from: document)
+                    if other_uid == AccountData.uid {
+                        UsersData.userBlocked = userBlocked.members         // ud
+                    }
                     completionHandler(userBlocked, nil)
                 } catch {
                     completionHandler(nil, .fetchError(error))
@@ -57,6 +60,9 @@ struct UserBlockedService {
                 if let error = error {
                     completionHandler(nil, .fetchError(error))
                     return
+                }
+                if other_uid == AccountData.uid {
+                    UsersData.userBlocked = data["members"]!         // ud
                 }
                 completionHandler(userBlocked, nil)
             })

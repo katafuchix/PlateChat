@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class ChatRoomListViewController: UIViewController {
 
@@ -41,6 +42,8 @@ class ChatRoomListViewController: UIViewController {
                     self?.chatRooms = models + (self?.chatRooms)! //Array([models, self?.articles].joined()) // キャッシュのせいかたまに重複することがあるのでユニークにしておく
                     self?.chatRooms = (self?.chatRooms.unique { $0.key == $1.key }.filter {$0.last_update_message != "" }.sorted(by: { $0.updated_date > $1.updated_date}))!
 
+                    self?.filterBlock()
+
                     //self?.chatRooms = (self?.chatRooms.filter{ [""].contains($0.key)})!
                     if preMessageCount == self?.chatRooms.count {  // 更新数チェック
                         //self?.refreshControl.endRefreshing()
@@ -57,6 +60,14 @@ class ChatRoomListViewController: UIViewController {
                 Log.error("データ見つかりません")
             }
         })
+    }
+
+    func filterBlock() {
+        let blockUsers = Array(UsersData.userBlock.filter {$0.1 == true}.keys)
+        let blockedUsers = Array(UsersData.userBlocked.filter {$0.1 == true}.keys)
+        self.chatRooms = self.chatRooms
+            .filter { !blockUsers.contains(Array($0.members.filter { $0.0 != AccountData.uid }.keys)[0]) }
+            .filter { !blockedUsers.contains(Array($0.members.filter { $0.0 != AccountData.uid }.keys)[0]) }
     }
 
     override func didReceiveMemoryWarning() {
@@ -129,18 +140,24 @@ extension ChatRoomListViewController: UITableViewDelegate {
 
     // MARK: セル編集関数
     private func blockUser(_ indexPath: IndexPath) {
+        SVProgressHUD.show(withStatus: "Loading...")
+
         let other_uid = Array(self.chatRooms[indexPath.row].members.filter {$0.0 != AccountData.uid}.keys)[0]
 
-        UserBlockService.addBlockUser(other_uid, completionHandler: { (_, error) in
+        UserBlockService.addBlockUser(other_uid, completionHandler: { [weak self] (_, error) in
             if let error = error {
                 Log.error(error)
+                SVProgressHUD.dismiss()
                 return
             }
-            UserBlockedService.addBlockUser(other_uid, completionHandler: { (_, error) in
+            UserBlockedService.addBlockUser(other_uid, completionHandler: { [weak self] (_, error) in
+                SVProgressHUD.dismiss()
                 if let error = error {
                     Log.error(error)
                     return
                 }
+                self?.filterBlock()
+                self?.tableView.reloadData()
             })
         })
     }

@@ -204,10 +204,12 @@
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-9"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="ホーム" id="bcM-Xz-OQy">
+                        <barButtonItem key="leftBarButtonItem" image="refresh" id="X5U-RJ-lLv"/>
                         <barButtonItem key="rightBarButtonItem" image="pen" id="vJl-jL-QsP"/>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="reloadButton" destination="X5U-RJ-lLv" id="wgU-yV-sij"/>
                         <outlet property="tableView" destination="0da-j2-HH0" id="g6f-c8-zcD"/>
                         <outlet property="writeButton" destination="vJl-jL-QsP" id="bFW-aQ-Shi"/>
                     </connections>
@@ -221,5 +223,6 @@
         <image name="home" width="24" height="24"/>
         <image name="pen" width="24" height="24"/>
         <image name="person-icon" width="128" height="128"/>
+        <image name="refresh" width="24" height="24"/>
     </resources>
 </document>

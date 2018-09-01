@@ -43,7 +43,7 @@ class ChatRoomListCell: UITableViewCell {
         if let text = chatRoom.last_update_message {
             self.chatTextLabel.text = text
         }
-        self.dateLabel.text = Date.timeAgoString(chatRoom.created_date)
+        self.dateLabel.text = Date.timeAgoString(chatRoom.updated_date)
         if let url = UsersData.profileImages[other_uid] {
             self.userProfileImageButton.sd_setBackgroundImage(with: URL(string:url), for: .normal) { [weak self] (image, error, cacheType, url) in
                 if let error = error {

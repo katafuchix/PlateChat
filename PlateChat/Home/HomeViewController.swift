@@ -16,6 +16,7 @@ import SVProgressHUD
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var writeButton: UIBarButtonItem!
+    @IBOutlet weak var reloadButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
 
     var articleService: ArticleService?
@@ -32,6 +33,11 @@ class HomeViewController: UIViewController {
             UIWindow.createNewWindow(vc).open()
         }).disposed(by: rx.disposeBag)
 
+        self.reloadButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            //self?.articles.removeAll()
+            self?.observeArticle()
+        }).disposed(by: rx.disposeBag)
+
         self.tableView.separatorInset   = .zero
         self.tableView.tableFooterView  = UIView()
         tableView.dataSource = self
@@ -40,7 +46,10 @@ class HomeViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
 
         self.articleService = ArticleService()
+        self.observeArticle()
+    }
 
+    func observeArticle() {
         SVProgressHUD.show(withStatus: "Loading...")
         self.articleService?.bindTalk(callbackHandler: { [weak self] (models, error) in
             SVProgressHUD.dismiss()
@@ -55,6 +64,9 @@ class HomeViewController: UIViewController {
                         //self?.refreshControl.endRefreshing()
                         return
                     }
+
+                    self?.filterBlock()
+
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
                         //callbackHandler()
@@ -68,7 +80,21 @@ class HomeViewController: UIViewController {
             //weakSelf.refreshControl.endRefreshing()
             //SVProgressHUD.dismiss()
         })
+    }
 
+    func filterBlock() {
+        let blockUsers = Array(UsersData.userBlock.filter {$0.1 == true}.keys)
+        let blockedUsers = Array(UsersData.userBlocked.filter {$0.1 == true}.keys)
+        self.articles = self.articles
+            .filter { !blockUsers.contains( $0.uid ) }
+            .filter { !blockedUsers.contains(  $0.uid ) }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.filterBlock()
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,6 +110,8 @@ class HomeViewController: UIViewController {
 extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("articles.count")
+        print(articles.count)
         return articles.count
     }
 
