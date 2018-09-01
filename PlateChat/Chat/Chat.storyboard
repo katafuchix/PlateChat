@@ -77,20 +77,29 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWq-bo-Xob">
+                                                    <rect key="frame" x="329" y="19" width="31" height="18"/>
+                                                    <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="oWq-bo-Xob" firstAttribute="trailing" secondItem="h1W-Lh-fKj" secondAttribute="trailingMargin" id="9GF-b9-Glf"/>
                                                 <constraint firstItem="9WQ-90-iyL" firstAttribute="centerY" secondItem="h1W-Lh-fKj" secondAttribute="centerY" id="ADR-OS-fQl"/>
                                                 <constraint firstItem="zmc-Q3-gQu" firstAttribute="leading" secondItem="9WQ-90-iyL" secondAttribute="trailing" constant="8" id="JKe-oo-VSB"/>
                                                 <constraint firstItem="6xo-Qm-dzR" firstAttribute="leading" secondItem="9WQ-90-iyL" secondAttribute="trailing" constant="8" id="N1D-JW-mtD"/>
                                                 <constraint firstItem="9WQ-90-iyL" firstAttribute="leading" secondItem="h1W-Lh-fKj" secondAttribute="leading" constant="15" id="PbA-lY-LeN"/>
                                                 <constraint firstItem="zmc-Q3-gQu" firstAttribute="centerY" secondItem="h1W-Lh-fKj" secondAttribute="centerY" constant="12" id="fD4-Ih-mYo"/>
                                                 <constraint firstItem="6xo-Qm-dzR" firstAttribute="centerY" secondItem="h1W-Lh-fKj" secondAttribute="centerY" constant="-12" id="gm1-pH-ORY"/>
+                                                <constraint firstItem="oWq-bo-Xob" firstAttribute="centerY" secondItem="h1W-Lh-fKj" secondAttribute="centerY" constant="-12" id="mSe-KB-OyL"/>
                                                 <constraint firstItem="6xo-Qm-dzR" firstAttribute="trailing" secondItem="h1W-Lh-fKj" secondAttribute="trailingMargin" id="wBf-uq-fTE"/>
                                                 <constraint firstItem="zmc-Q3-gQu" firstAttribute="trailing" secondItem="h1W-Lh-fKj" secondAttribute="trailingMargin" id="wUG-4D-K79"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="chatTextLabel" destination="zmc-Q3-gQu" id="bnq-sf-u6U"/>
+                                            <outlet property="dateLabel" destination="oWq-bo-Xob" id="lyN-XG-BaI"/>
                                             <outlet property="nickNameLabel" destination="6xo-Qm-dzR" id="lj0-Cf-JoZ"/>
                                             <outlet property="userProfileImageButton" destination="9WQ-90-iyL" id="d8o-yh-Lpb"/>
                                         </connections>

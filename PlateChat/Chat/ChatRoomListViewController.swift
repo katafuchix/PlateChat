@@ -39,7 +39,9 @@ class ChatRoomListViewController: UIViewController {
                     let preMessageCount = self?.chatRooms.count
                     //self?.articles = models
                     self?.chatRooms = models + (self?.chatRooms)! //Array([models, self?.articles].joined()) // キャッシュのせいかたまに重複することがあるのでユニークにしておく
-                    self?.chatRooms = (self?.chatRooms.unique { $0.key == $1.key }.sorted(by: { $0.updated_date > $1.updated_date}))!
+                    self?.chatRooms = (self?.chatRooms.unique { $0.key == $1.key }.filter {$0.last_update_message != "" }.sorted(by: { $0.updated_date > $1.updated_date}))!
+
+                    //self?.chatRooms = (self?.chatRooms.filter{ [""].contains($0.key)})!
                     if preMessageCount == self?.chatRooms.count {  // 更新数チェック
                         //self?.refreshControl.endRefreshing()
                         return
@@ -69,8 +71,8 @@ class ChatRoomListViewController: UIViewController {
 extension ChatRoomListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("self.chatRooms.count")
-        print(self.chatRooms.count)
+        //print("self.chatRooms.count")
+        //print(self.chatRooms.count)
         return self.chatRooms.count
     }
 
@@ -89,11 +91,22 @@ extension ChatRoomListViewController: UITableViewDataSource {
 extension ChatRoomListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        print(indexPath)
+        print(self.chatRooms.count)
+
+        //tableView.deselectRow(at: indexPath, animated: true)
         //self.showChatVC(self.messageList[indexPath.row])
+        if self.chatRooms.count == 0 { return }
+        let chatRoom = self.chatRooms[indexPath.row]
+        let vc = ChatMessageViewController()
+        vc.chatRoom     = chatRoom
+        let other_uid   = Array(chatRoom.members.filter { $0.0 != AccountData.uid }.keys)[0]
+        vc.other_uid    = other_uid
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
-    /*
+
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -104,16 +117,33 @@ extension ChatRoomListViewController: UITableViewDelegate {
                 self.blockUser(indexPath)
             }
         }
-        block.backgroundColor = UIColor.hexStr(hexStr: "#666666", alpha: 1.0)
-
+        block.backgroundColor = UIColor.hexStr(hexStr: "#f44242", alpha: 1.0)
+        /*
         let hide = UITableViewRowAction(style: .normal, title: "表示\nしない") { (action, indexPath) in
-            self.hideRoom(indexPath)
+            //self.hideRoom(indexPath)
         }
         hide.backgroundColor = UIColor.hexStr(hexStr: "#999999", alpha: 1.0)
-
-        return [block, hide]
+        */
+        return [block]
     }
-    */
+
+    // MARK: セル編集関数
+    private func blockUser(_ indexPath: IndexPath) {
+        let other_uid = Array(self.chatRooms[indexPath.row].members.filter {$0.0 != AccountData.uid}.keys)[0]
+
+        UserBlockService.addBlockUser(other_uid, completionHandler: { (_, error) in
+            if let error = error {
+                Log.error(error)
+                return
+            }
+            UserBlockedService.addBlockUser(other_uid, completionHandler: { (_, error) in
+                if let error = error {
+                    Log.error(error)
+                    return
+                }
+            })
+        })
+    }
 
     // MARK: セル編集関数
     /*

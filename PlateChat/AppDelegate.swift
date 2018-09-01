@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let database = Firestore.firestore()
             let settings = database.settings
             settings.areTimestampsInSnapshotsEnabled = true
+            // オフラインキャッシュ
+            //settings.isPersistenceEnabled = false
             database.settings = settings
         }
 

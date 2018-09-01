@@ -56,7 +56,7 @@ class ChatRoomService {
                 .collection("/chat_room/")
                 .whereField("members.\(uid)", isEqualTo: true)
                 .whereField("status", isEqualTo: 1)
-                .order(by: "created_at", descending: true)
+                .order(by: "updated_at", descending: true)
                 .start(afterDocument: lastDocument)
                 .limit(to: limit)
         } else {
@@ -64,7 +64,7 @@ class ChatRoomService {
                 .collection("/chat_room/")
                 .whereField("members.\(uid)", isEqualTo: true)
                 .whereField("status", isEqualTo: 1)
-                .order(by: "created_at", descending: true)
+                .order(by: "updated_at", descending: true)
                 .limit(to: limit)
         }
 

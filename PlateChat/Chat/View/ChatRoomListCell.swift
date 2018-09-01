@@ -18,6 +18,7 @@ class ChatRoomListCell: UITableViewCell {
     @IBOutlet weak var userProfileImageButton: CircleButton!
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var chatTextLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
 
     var chatRoom: ChatRoom?
     var disposeBag = DisposeBag()
@@ -42,6 +43,7 @@ class ChatRoomListCell: UITableViewCell {
         if let text = chatRoom.last_update_message {
             self.chatTextLabel.text = text
         }
+        self.dateLabel.text = Date.timeAgoString(chatRoom.created_date)
         if let url = UsersData.profileImages[other_uid] {
             self.userProfileImageButton.sd_setBackgroundImage(with: URL(string:url), for: .normal) { [weak self] (image, error, cacheType, url) in
                 if let error = error {
