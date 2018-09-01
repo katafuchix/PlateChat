@@ -66,13 +66,13 @@
                                                     <state key="normal" backgroundImage="person-icon"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xo-Qm-dzR">
-                                                    <rect key="frame" x="69" y="19.5" width="291" height="18"/>
+                                                    <rect key="frame" x="73" y="19.5" width="287" height="18"/>
                                                     <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmc-Q3-gQu">
-                                                    <rect key="frame" x="69" y="43.5" width="291" height="18"/>
+                                                    <rect key="frame" x="73" y="43.5" width="287" height="18"/>
                                                     <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -87,8 +87,8 @@
                                             <constraints>
                                                 <constraint firstItem="oWq-bo-Xob" firstAttribute="trailing" secondItem="h1W-Lh-fKj" secondAttribute="trailingMargin" id="9GF-b9-Glf"/>
                                                 <constraint firstItem="9WQ-90-iyL" firstAttribute="centerY" secondItem="h1W-Lh-fKj" secondAttribute="centerY" id="ADR-OS-fQl"/>
-                                                <constraint firstItem="zmc-Q3-gQu" firstAttribute="leading" secondItem="9WQ-90-iyL" secondAttribute="trailing" constant="8" id="JKe-oo-VSB"/>
-                                                <constraint firstItem="6xo-Qm-dzR" firstAttribute="leading" secondItem="9WQ-90-iyL" secondAttribute="trailing" constant="8" id="N1D-JW-mtD"/>
+                                                <constraint firstItem="zmc-Q3-gQu" firstAttribute="leading" secondItem="9WQ-90-iyL" secondAttribute="trailing" constant="12" id="JKe-oo-VSB"/>
+                                                <constraint firstItem="6xo-Qm-dzR" firstAttribute="leading" secondItem="9WQ-90-iyL" secondAttribute="trailing" constant="12" id="N1D-JW-mtD"/>
                                                 <constraint firstItem="9WQ-90-iyL" firstAttribute="leading" secondItem="h1W-Lh-fKj" secondAttribute="leading" constant="15" id="PbA-lY-LeN"/>
                                                 <constraint firstItem="zmc-Q3-gQu" firstAttribute="centerY" secondItem="h1W-Lh-fKj" secondAttribute="centerY" constant="12" id="fD4-Ih-mYo"/>
                                                 <constraint firstItem="6xo-Qm-dzR" firstAttribute="centerY" secondItem="h1W-Lh-fKj" secondAttribute="centerY" constant="-12" id="gm1-pH-ORY"/>

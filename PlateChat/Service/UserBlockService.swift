@@ -64,5 +64,26 @@ struct UserBlockService {
             })
         })
     }
-    
+
+    static func releaseBlockUser(_ other_uid: String, completionHandler: @escaping (_ userBlock: UserBlock?, _ error: UserBlockServiceUpdateError?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+
+        self.getBlockUser(completionHandler:{ (userBlock, error) in
+            var members: [String: Bool] = ["": true]
+            if let userBlock = userBlock {
+                members = userBlock.members
+            }
+            members[other_uid] = false
+            let data = ["members"    :   members.filter {$0.0 != ""} ]
+            Firestore.firestore().collection("user_block").document(uid).setData(data, merge: true,  completion: { error in
+
+                if let error = error {
+                    completionHandler(nil, .fetchError(error))
+                    return
+                }
+                UsersData.userBlock = data["members"]!         // ud
+                completionHandler(userBlock, nil)
+            })
+        })
+    }
 }

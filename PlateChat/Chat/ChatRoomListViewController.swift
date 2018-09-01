@@ -150,7 +150,7 @@ extension ChatRoomListViewController: UITableViewDelegate {
                 SVProgressHUD.dismiss()
                 return
             }
-            UserBlockedService.addBlockUser(other_uid, completionHandler: { [weak self] (_, error) in
+            UserBlockedService.addBlockedUser(other_uid, completionHandler: { [weak self] (_, error) in
                 SVProgressHUD.dismiss()
                 if let error = error {
                     Log.error(error)

@@ -45,7 +45,7 @@ struct UserBlockedService {
         }
     }
 
-    static func addBlockUser(_ other_uid: String, completionHandler: @escaping (_ userBlocked: UserBlocked?, _ error: UserBlockServiceUpdateError?) -> Void) {
+    static func addBlockedUser(_ other_uid: String, completionHandler: @escaping (_ userBlocked: UserBlocked?, _ error: UserBlockServiceUpdateError?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
         self.getBlockedUser(other_uid, completionHandler:{ (userBlocked, error) in
@@ -68,5 +68,28 @@ struct UserBlockedService {
             })
         })
     }
-    
+
+    static func releaseBlockedUser(_ other_uid: String, completionHandler: @escaping (_ userBlocked: UserBlocked?, _ error: UserBlockServiceUpdateError?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+
+        self.getBlockedUser(other_uid, completionHandler:{ (userBlocked, error) in
+            var members: [String: Bool] = ["": true]
+            if let userBlocked = userBlocked {
+                members = userBlocked.members
+            }
+            members[uid] = false
+            let data = ["members"    :   members.filter { $0.0 != "" }]
+            Firestore.firestore().collection("user_blocked").document(other_uid).setData(data, merge: true,  completion: { error in
+
+                if let error = error {
+                    completionHandler(nil, .fetchError(error))
+                    return
+                }
+                if other_uid == AccountData.uid {
+                    UsersData.userBlocked = data["members"]!         // ud
+                }
+                completionHandler(userBlocked, nil)
+            })
+        })
+    }
 }

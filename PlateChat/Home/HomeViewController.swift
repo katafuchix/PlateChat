@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
 
     var articleService: ArticleService?
     var articles = [Article]()
+    var articles_org = [Article]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,18 +57,21 @@ class HomeViewController: UIViewController {
             switch error {
             case .none:
                 if let models = models {
-                    let preMessageCount = self?.articles.count
+                    //let preMessageCount = self?.articles.count
                     //self?.articles = models
-                    self?.articles = models + (self?.articles)! //Array([models, self?.articles].joined()) // キャッシュのせいかたまに重複することがあるのでユニークにしておく
-                    self?.articles = (self?.articles.unique { $0.key == $1.key }.sorted(by: { $0.created_date > $1.created_date}))!
-                    if preMessageCount == self?.articles.count {  // 更新数チェック
+                    //self?.articles = models + (self?.articles)! //Array([models, self?.articles].joined()) // キャッシュのせいかたまに重複することがあるのでユニークにしておく
+                    //self?.articles = (self?.articles.unique { $0.key == $1.key }.sorted(by: { $0.created_date > $1.created_date}))!
+
+                    self?.articles_org = models + (self?.articles_org)!
+                    self?.articles_org = (self?.articles_org.unique { $0.key == $1.key }.sorted(by: { $0.created_date > $1.created_date}))!
+
+                    /*if preMessageCount == self?.articles.count {  // 更新数チェック
                         //self?.refreshControl.endRefreshing()
                         return
-                    }
-
-                    self?.filterBlock()
+                    }*/
 
                     DispatchQueue.main.async {
+                        self?.filterBlock()
                         self?.tableView.reloadData()
                         //callbackHandler()
                     }
@@ -85,7 +89,7 @@ class HomeViewController: UIViewController {
     func filterBlock() {
         let blockUsers = Array(UsersData.userBlock.filter {$0.1 == true}.keys)
         let blockedUsers = Array(UsersData.userBlocked.filter {$0.1 == true}.keys)
-        self.articles = self.articles
+        self.articles = self.articles_org
             .filter { !blockUsers.contains( $0.uid ) }
             .filter { !blockedUsers.contains(  $0.uid ) }
     }

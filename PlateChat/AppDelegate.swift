@@ -75,6 +75,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         //バッチを消す
         UIApplication.shared.applicationIconBadgeNumber = 0
+        // Block
+        if let uid = Auth.auth().currentUser?.uid {
+            UserBlockService.getBlockUser(completionHandler: { (_,_) in
+                UserBlockedService.getBlockedUser(uid, completionHandler: { (_,_) in })
+            })
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

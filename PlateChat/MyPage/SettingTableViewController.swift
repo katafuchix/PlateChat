@@ -55,6 +55,9 @@ class SettingTableViewController: UITableViewController {
         case 1:
             let vc = R.storyboard.profile.profileEditTableViewController()!
             self.navigationController?.pushViewController(vc, animated: true)
+        case 2:
+            let vc = R.storyboard.blockList.blockListViewController()!
+            self.navigationController?.pushViewController(vc, animated: true)
         case 3:
             let vc = R.storyboard.account.accountTableViewController()!
             self.navigationController?.pushViewController(vc, animated: true)
