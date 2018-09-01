@@ -70,6 +70,17 @@ class ChatMessageViewController: MessagesViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"deny"), style: .plain, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem?.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            print(self)
+        }).disposed(by: rx.disposeBag)
+
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"back"), style: .plain, target: self, action: nil)
+        self.navigationItem.leftBarButtonItem?.rx.tap.asDriver().drive(onNext: { [unowned self] in
+            self.navigationController?.popViewController(animated: true)
+        }).disposed(by: rx.disposeBag)
+
         // 自分のアイコンの表示を消し、その分ラベルを移動させる
         if let layout = self.messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
             //layout.setMessageIncomingAvatarSize(.zero)
