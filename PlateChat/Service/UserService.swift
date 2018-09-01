@@ -250,9 +250,8 @@ struct UserService {
                         self.setUserInfo(user)
 
                         // Block
-                        UserBlockService.getBlockUser(completionHandler: { (_,_) in
-                            UserBlockedService.getBlockedUser(uid, completionHandler: { (_,_) in })
-                        })
+                        UserBlockService.syncBlockUser(completionHandler: { (_,_) in  })
+                        UserBlockedService.syncBlockedUser(uid, completionHandler: { (_,_) in })
                     } catch {}
                 }
             }

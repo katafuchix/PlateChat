@@ -77,9 +77,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.applicationIconBadgeNumber = 0
         // Block
         if let uid = Auth.auth().currentUser?.uid {
-            UserBlockService.getBlockUser(completionHandler: { (_,_) in
-                UserBlockedService.getBlockedUser(uid, completionHandler: { (_,_) in })
-            })
+            UserBlockService.syncBlockUser(completionHandler: { (_,_) in })
+            UserBlockedService.syncBlockedUser(uid, completionHandler: { (_,_) in })
         }
     }
 

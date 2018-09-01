@@ -22,11 +22,37 @@ enum UserBlockedServiceUpdateError: Error {
 
 struct UserBlockedService {
 
+    // なぜか無限ループになるのでaddSnapshotListenerを使う場合はメソッドを分ける
+    static func syncBlockedUser(_ other_uid: String, completionHandler: @escaping (_ userBlocked: UserBlocked?, _ error: UserBlockServiceFetchError?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+
+        let documentRef = Firestore.firestore().collection("user_blocked").document(other_uid)
+        documentRef//.getDocument { (document, error) in
+            .addSnapshotListener { document, error in
+                if error != nil {
+                    completionHandler(nil, .fetchError(error))
+                } else if let document = document, document.exists {
+                    do {
+                        let userBlocked = try UserBlocked(from: document)
+                        if other_uid == AccountData.uid {
+                            UsersData.userBlocked = userBlocked.members         // ud
+                        }
+                        completionHandler(userBlocked, nil)
+                    } catch {
+                        completionHandler(nil, .fetchError(error))
+                    }
+                } else {
+                    completionHandler(nil, .fetchError(error))
+                }
+        }
+    }
+
     static func getBlockedUser(_ other_uid: String, completionHandler: @escaping (_ userBlocked: UserBlocked?, _ error: UserBlockServiceFetchError?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
         let documentRef = Firestore.firestore().collection("user_blocked").document(other_uid)
         documentRef.getDocument { (document, error) in
+            //.addSnapshotListener { document, error in
             if error != nil {
                 completionHandler(nil, .fetchError(error))
             } else if let document = document, document.exists {

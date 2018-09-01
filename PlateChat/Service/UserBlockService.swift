@@ -22,11 +22,35 @@ enum UserBlockServiceUpdateError: Error {
 
 struct UserBlockService {
 
+    // なぜか無限ループになるのでaddSnapshotListenerを使う場合はメソッドを分ける
+    static func syncBlockUser(completionHandler: @escaping (_ userBlock: UserBlock?, _ error: UserBlockServiceFetchError?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+
+        let documentRef = Firestore.firestore().collection("user_block").document(uid)
+        documentRef//.getDocument { (document, error) in
+            .addSnapshotListener { document, error in
+                if error != nil {
+                    completionHandler(nil, .fetchError(error))
+                } else if let document = document, document.exists {
+                    do {
+                        let userBlock = try UserBlock(from: document)
+                        UsersData.userBlock = userBlock.members         // ud
+                        completionHandler(userBlock, nil)
+                    } catch {
+                        completionHandler(nil, .fetchError(error))
+                    }
+                } else {
+                    completionHandler(nil, .fetchError(error))
+                }
+        }
+    }
+
     static func getBlockUser(completionHandler: @escaping (_ userBlock: UserBlock?, _ error: UserBlockServiceFetchError?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
         let documentRef = Firestore.firestore().collection("user_block").document(uid)
         documentRef.getDocument { (document, error) in
+            //.addSnapshotListener { document, error in
             if error != nil {
                 completionHandler(nil, .fetchError(error))
             } else if let document = document, document.exists {

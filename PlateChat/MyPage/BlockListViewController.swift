@@ -151,7 +151,10 @@ extension BlockListViewController: UITableViewDelegate {
                     Log.error(error)
                     return
                 }
-                self?.observeBlockList()
+                //self?.observeBlockList()
+                self?.uids = Array(UsersData.userBlock.filter( { $0.1 == true }).keys)
+                self?.tableView.reloadData()
+                return
             })
         })
     }
