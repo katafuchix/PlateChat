@@ -11,6 +11,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="NotoSansCJKjpSub-Bold.otf">
+            <string>NotoSansCJKjpSub-Bold</string>
+        </array>
         <array key="NotoSansCJKjpSub-Regular.otf">
             <string>NotoSansCJKjpSub-Regular</string>
         </array>
@@ -83,15 +86,32 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hA-7e-KY9">
+                                                    <rect key="frame" x="330" y="43.5" width="30" height="18"/>
+                                                    <color key="backgroundColor" red="1" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="tXP-7a-qDJ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Bold" family="NotoSansCJKjpSub-Bold" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="7"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="oWq-bo-Xob" firstAttribute="trailing" secondItem="h1W-Lh-fKj" secondAttribute="trailingMargin" id="9GF-b9-Glf"/>
                                                 <constraint firstItem="9WQ-90-iyL" firstAttribute="centerY" secondItem="h1W-Lh-fKj" secondAttribute="centerY" id="ADR-OS-fQl"/>
+                                                <constraint firstItem="0hA-7e-KY9" firstAttribute="centerY" secondItem="h1W-Lh-fKj" secondAttribute="centerY" constant="12" id="B1W-8b-UKe"/>
                                                 <constraint firstItem="zmc-Q3-gQu" firstAttribute="leading" secondItem="9WQ-90-iyL" secondAttribute="trailing" constant="12" id="JKe-oo-VSB"/>
                                                 <constraint firstItem="6xo-Qm-dzR" firstAttribute="leading" secondItem="9WQ-90-iyL" secondAttribute="trailing" constant="12" id="N1D-JW-mtD"/>
                                                 <constraint firstItem="9WQ-90-iyL" firstAttribute="leading" secondItem="h1W-Lh-fKj" secondAttribute="leading" constant="15" id="PbA-lY-LeN"/>
                                                 <constraint firstItem="zmc-Q3-gQu" firstAttribute="centerY" secondItem="h1W-Lh-fKj" secondAttribute="centerY" constant="12" id="fD4-Ih-mYo"/>
                                                 <constraint firstItem="6xo-Qm-dzR" firstAttribute="centerY" secondItem="h1W-Lh-fKj" secondAttribute="centerY" constant="-12" id="gm1-pH-ORY"/>
+                                                <constraint firstItem="0hA-7e-KY9" firstAttribute="trailing" secondItem="h1W-Lh-fKj" secondAttribute="trailingMargin" id="jWU-nx-sgD"/>
                                                 <constraint firstItem="oWq-bo-Xob" firstAttribute="centerY" secondItem="h1W-Lh-fKj" secondAttribute="centerY" constant="-12" id="mSe-KB-OyL"/>
                                                 <constraint firstItem="6xo-Qm-dzR" firstAttribute="trailing" secondItem="h1W-Lh-fKj" secondAttribute="trailingMargin" id="wBf-uq-fTE"/>
                                                 <constraint firstItem="zmc-Q3-gQu" firstAttribute="trailing" secondItem="h1W-Lh-fKj" secondAttribute="trailingMargin" id="wUG-4D-K79"/>
@@ -101,6 +121,7 @@
                                             <outlet property="chatTextLabel" destination="zmc-Q3-gQu" id="bnq-sf-u6U"/>
                                             <outlet property="dateLabel" destination="oWq-bo-Xob" id="lyN-XG-BaI"/>
                                             <outlet property="nickNameLabel" destination="6xo-Qm-dzR" id="lj0-Cf-JoZ"/>
+                                            <outlet property="unreadCountLabel" destination="0hA-7e-KY9" id="S0b-ka-vyE"/>
                                             <outlet property="userProfileImageButton" destination="9WQ-90-iyL" id="d8o-yh-Lpb"/>
                                         </connections>
                                     </tableViewCell>
@@ -120,9 +141,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Vry-Gz-hHO"/>
                     </view>
-                    <navigationItem key="navigationItem" title="トーク一覧" id="1Ke-jq-TED"/>
+                    <navigationItem key="navigationItem" title="トーク一覧" id="1Ke-jq-TED">
+                        <barButtonItem key="rightBarButtonItem" image="refresh" id="mAB-B2-FND"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="refreshButton" destination="mAB-B2-FND" id="YLI-U1-e4d"/>
                         <outlet property="tableView" destination="SmV-J7-pd3" id="juo-6M-3Ej"/>
                     </connections>
                 </viewController>
@@ -134,5 +158,6 @@
     <resources>
         <image name="chat" width="24" height="24"/>
         <image name="person-icon" width="128" height="128"/>
+        <image name="refresh" width="24" height="24"/>
     </resources>
 </document>

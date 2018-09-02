@@ -19,6 +19,7 @@ class ChatRoomListCell: UITableViewCell {
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var chatTextLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var unreadCountLabel: UILabel!
 
     var chatRoom: ChatRoom?
     var disposeBag = DisposeBag()
@@ -35,11 +36,14 @@ class ChatRoomListCell: UITableViewCell {
 
         let other_uid = Array(chatRoom.members.filter { $0.0 != uid }.keys)[0]
 
+        if let count = self.chatRoom?.unreadCounts![uid] {
+            self.unreadCountLabel.isHidden = count < 1
+            self.unreadCountLabel.text = "\(count)"
+        }
+
         if let nickName = UsersData.nickNames[other_uid] {
             self.nickNameLabel.text = nickName
         }
-        print("chatRoom.last_update_message")
-        print(chatRoom.last_update_message)
         if let text = chatRoom.last_update_message {
             self.chatTextLabel.text = text
         }
@@ -83,6 +87,8 @@ class ChatRoomListCell: UITableViewCell {
         self.talkButton.isEnabled = false
         self.dateLabel.text = ""
  */
+        self.unreadCountLabel.text = ""
+        self.unreadCountLabel.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -61,7 +61,6 @@
 		3150BA042113373900DB3512 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3150BA022113373900DB3512 /* Main.storyboard */; };
 		3150BA062113373A00DB3512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3150BA052113373A00DB3512 /* Assets.xcassets */; };
 		3150BA092113373A00DB3512 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3150BA072113373A00DB3512 /* LaunchScreen.storyboard */; };
-		3150BA1521133E2200DB3512 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3150BA1421133E2200DB3512 /* NoticeViewController.swift */; };
 		315E0D57212192C40068924A /* UserDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E0D56212192C40068924A /* UserDeviceInfo.swift */; };
 		315E0D5A2121ACBB0068924A /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E0D592121ACBB0068924A /* ProfileEditViewModel.swift */; };
 		315E0D5C2121C60D0068924A /* ViewController+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E0D5B2121C60D0068924A /* ViewController+Extended.swift */; };
@@ -100,6 +99,9 @@
 		31B707CB213A800B00A2D95E /* BlockList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31B707CA213A800B00A2D95E /* BlockList.storyboard */; };
 		31B707CD213A802000A2D95E /* BlockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B707CC213A802000A2D95E /* BlockListViewController.swift */; };
 		31B707CF213A931500A2D95E /* BlockListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B707CE213A931500A2D95E /* BlockListCell.swift */; };
+		31B707D1213AE91E00A2D95E /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B707D0213AE91E00A2D95E /* NoticeViewController.swift */; };
+		31B707D3213AE96700A2D95E /* FootPrint.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31B707D2213AE96700A2D95E /* FootPrint.storyboard */; };
+		31B707D5213AF7ED00A2D95E /* FootPrintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B707D4213AF7ED00A2D95E /* FootPrintViewController.swift */; };
 		31BA1425213410CA00DB4958 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31BA1424213410CA00DB4958 /* SVProgressHUD.framework */; };
 		31BE63D12115D26000E43982 /* NVActivityIndicatorView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63D02115D26000E43982 /* NVActivityIndicatorView+Extended.swift */; };
 		31BE63D32115D2E300E43982 /* UIColor+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63D22115D2E300E43982 /* UIColor+Extended.swift */; };
@@ -183,7 +185,6 @@
 		3150BA052113373A00DB3512 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3150BA082113373A00DB3512 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3150BA0A2113373A00DB3512 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3150BA1421133E2200DB3512 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
 		315E0D56212192C40068924A /* UserDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeviceInfo.swift; sourceTree = "<group>"; };
 		315E0D592121ACBB0068924A /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
 		315E0D5B2121C60D0068924A /* ViewController+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extended.swift"; sourceTree = "<group>"; };
@@ -223,6 +224,9 @@
 		31B707CA213A800B00A2D95E /* BlockList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BlockList.storyboard; sourceTree = "<group>"; };
 		31B707CC213A802000A2D95E /* BlockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListViewController.swift; sourceTree = "<group>"; };
 		31B707CE213A931500A2D95E /* BlockListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListCell.swift; sourceTree = "<group>"; };
+		31B707D0213AE91E00A2D95E /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
+		31B707D2213AE96700A2D95E /* FootPrint.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FootPrint.storyboard; sourceTree = "<group>"; };
+		31B707D4213AF7ED00A2D95E /* FootPrintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootPrintViewController.swift; sourceTree = "<group>"; };
 		31BA1424213410CA00DB4958 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		31BE63D02115D26000E43982 /* NVActivityIndicatorView+Extended.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NVActivityIndicatorView+Extended.swift"; sourceTree = "<group>"; };
 		31BE63D22115D2E300E43982 /* UIColor+Extended.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extended.swift"; sourceTree = "<group>"; };
@@ -337,6 +341,9 @@
 			isa = PBXGroup;
 			children = (
 				312805022116ECF700357E5C /* Notice.storyboard */,
+				31B707D0213AE91E00A2D95E /* NoticeViewController.swift */,
+				31B707D2213AE96700A2D95E /* FootPrint.storyboard */,
+				31B707D4213AF7ED00A2D95E /* FootPrintViewController.swift */,
 			);
 			path = Notice;
 			sourceTree = "<group>";
@@ -421,7 +428,6 @@
 				3150B9FE2113373900DB3512 /* AppDelegate.swift */,
 				319CE1412115990200347092 /* MainTabViewController.swift */,
 				3150BA002113373900DB3512 /* ViewController.swift */,
-				3150BA1421133E2200DB3512 /* NoticeViewController.swift */,
 				3150BA022113373900DB3512 /* Main.storyboard */,
 				31BE63E02115F1E600E43982 /* Home */,
 				312804FB2116E81200357E5C /* Search */,
@@ -700,6 +706,7 @@
 				312805172117047400357E5C /* NotoSansCJKjpSub-Thin.otf in Resources */,
 				310FB05B2126F6DD00C917E7 /* Write.storyboard in Resources */,
 				31386D7A2132D469008E82D0 /* IndicatorView.xib in Resources */,
+				31B707D3213AE96700A2D95E /* FootPrint.storyboard in Resources */,
 				31BE63E22115F3DD00E43982 /* Home.storyboard in Resources */,
 				312805152117047400357E5C /* NotoSansCJKjpSub-Regular.otf in Resources */,
 				312805032116ECF700357E5C /* Notice.storyboard in Resources */,
@@ -837,6 +844,7 @@
 				312805082116F54900357E5C /* Constants.swift in Sources */,
 				31386D7621324DE6008E82D0 /* FirebaseCommon.swift in Sources */,
 				31386D782132733D008E82D0 /* ChatRoomService.swift in Sources */,
+				31B707D5213AF7ED00A2D95E /* FootPrintViewController.swift in Sources */,
 				317EDDDF21396F4C00A7B651 /* NSObject+Extended.swift in Sources */,
 				31386D7C2132DBE0008E82D0 /* ChatMessageService.swift in Sources */,
 				310FB05F212702CF00C917E7 /* ArticleService.swift in Sources */,
@@ -848,7 +856,7 @@
 				318108AB211584FD00C10946 /* MenuItemViewCustomizable.swift in Sources */,
 				31C735582137034C009E8241 /* Date+Extended.swift in Sources */,
 				310FB063212728AE00C917E7 /* RuleViewController.swift in Sources */,
-				3150BA1521133E2200DB3512 /* NoticeViewController.swift in Sources */,
+				31B707D1213AE91E00A2D95E /* NoticeViewController.swift in Sources */,
 				310FB07D212844AF00C917E7 /* FaqViewController.swift in Sources */,
 				318108A6211584FD00C10946 /* PagingViewController.swift in Sources */,
 				317EDDE121398EC800A7B651 /* UsersData.swift in Sources */,

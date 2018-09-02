@@ -11,6 +11,7 @@ import SVProgressHUD
 
 class ChatRoomListViewController: UIViewController {
 
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     var chatRoomService: ChatRoomService?
     var chatRooms = [ChatRoom]()
@@ -26,12 +27,20 @@ class ChatRoomListViewController: UIViewController {
         self.tableView.rowHeight = 80
         tableView.estimatedRowHeight = 80 // これはStoryBoardの設定で無視されるかも？
         //tableView.rowHeight = UITableViewAutomaticDimension
+
+        self.refreshButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            self?.observeChatRoomLIst()
+        }).disposed(by: rx.disposeBag)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         self.chatRoomService = ChatRoomService()
+        self.observeChatRoomLIst()
+    }
+
+    func observeChatRoomLIst() {
         self.chatRoomService?.bindChatRoom(callbackHandler: { [weak self] (models, error) in
             print(models)
             switch error {
@@ -45,10 +54,10 @@ class ChatRoomListViewController: UIViewController {
                     self?.filterBlock()
 
                     //self?.chatRooms = (self?.chatRooms.filter{ [""].contains($0.key)})!
-                    if preMessageCount == self?.chatRooms.count {  // 更新数チェック
+                    /*if preMessageCount == self?.chatRooms.count {  // 更新数チェック
                         //self?.refreshControl.endRefreshing()
                         return
-                    }
+                    }*/
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
                         //callbackHandler()

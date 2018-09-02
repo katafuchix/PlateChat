@@ -14,6 +14,7 @@ import AVFoundation
 import SwiftDate
 import SafariServices
 import Nuke
+import Rswift
 
 fileprivate extension UIEdgeInsets {
     init(top: CGFloat = 0, bottom: CGFloat = 0, left: CGFloat = 0, right: CGFloat = 0) {
@@ -88,8 +89,12 @@ class ChatMessageViewController: MessagesViewController {
 
             //layout.setMessageIncomingMessageTopLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(left: 10)))
             //layout.setMessageIncomingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(left: 10)))
-            layout.setMessageOutgoingMessageTopLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(right: 10)))
-            layout.setMessageOutgoingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(right: 10)))
+            let insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+            layout.setMessageOutgoingMessageTopLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: insets))
+            layout.setMessageOutgoingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: insets))
+
+            // メッセージのフォント
+            layout.textMessageSizeCalculator.messageLabelFont = R.font.notoSansCJKjpSubRegular(size: 12.0)!
         }
 
         DispatchQueue.main.async {
@@ -106,7 +111,6 @@ class ChatMessageViewController: MessagesViewController {
         messagesCollectionView.messageCellDelegate = self
 
         messageInputBar.delegate = self
-        messageInputBar.sendButton.tintColor = UIColor.lightGray
 
         // メッセージ入力時に一番下までスクロール
         scrollsToBottomOnKeybordBeginsEditing = true // default false
@@ -120,6 +124,15 @@ class ChatMessageViewController: MessagesViewController {
         refreshControl.addTarget(self, action: #selector(ChatMessageViewController.refresh(sender:)), for: .valueChanged)
 
         setupMessageInputBarButtons()
+        /*
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.rx.event.map{ $0 }
+            .subscribe(onNext: {
+                print("gestureのtapイベントを取得")
+            })
+            .disposed(by: rx.disposeBag)
+        messagesCollectionView.addGestureRecognizer(tapGesture)*/
+        messagesCollectionView.keyboardDismissMode = .onDrag
     }
 
     func setupMessageInputBarButtons() {
@@ -127,7 +140,7 @@ class ChatMessageViewController: MessagesViewController {
         let button = InputBarButtonItem().configure {
             $0.setSize(CGSize(width: height, height: height), animated: false)
             $0.isEnabled = true
-            $0.setImage(UIImage(named: "text-icon-unselected"), for: .normal)
+            $0.setImage(UIImage(named: "camera"), for: .normal)
             }.onTouchUpInside { [weak self] _ in
                 //self?.messageInputBar.inputTextView.becomeFirstResponder()
                 //button.setImage(UIImage(named: "text-icon-selected"), for: .normal)
@@ -142,13 +155,46 @@ class ChatMessageViewController: MessagesViewController {
         spacerView.setContentHuggingPriority(.defaultLow, for: .horizontal)
         messageInputBar.leftStackView.addArrangedSubview(spacerView)
         var leftStackViewWidth: CGFloat {
-            return self.view.frame.width - ( messageInputBar.padding.left + button.frame.width + messageInputBar.rightStackViewWidthConstant + messageInputBar.padding.right + 200)
+            return 40//self.view.frame.width - ( messageInputBar.padding.left + button.frame.width + messageInputBar.rightStackViewWidthConstant + messageInputBar.padding.right + 200)
         }
-        messageInputBar.setLeftStackViewWidthConstant(to: height + leftStackViewWidth, animated: false)
-        messageInputBar.setRightStackViewWidthConstant(to: 60, animated: false)
-        messageInputBar.inputTextView.placeholder = "Type a message"
+        messageInputBar.setLeftStackViewWidthConstant(to: height+10, animated: false)
+        messageInputBar.setRightStackViewWidthConstant(to: 50, animated: false)
+        messageInputBar.inputTextView.placeholder = ""
+        messageInputBar.inputTextView.layer.cornerRadius = 8
+        messageInputBar.inputTextView.layer.borderColor = UIColor.lightGray.cgColor
         //messageInputBar.inputTextView.delegate = self
-        messageInputBar.inputTextView.font = UIFont.systemFont(ofSize: 14.0)
+        messageInputBar.inputTextView.font = R.font.notoSansCJKjpSubRegular(size: 12.0)!
+        messageInputBar.sendButton.tintColor = UIColor.black
+        messageInputBar.sendButton.setTitleColor(UIColor.black, for: .normal)
+
+        var keyboardToolBar: UIView {
+                let toolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+                toolbar.barStyle = UIBarStyle.default
+                toolbar.bounds.size.height = 28
+
+                let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+
+                let done: UIBarButtonItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.done, target: self, action: nil)
+                done.tintColor = UIColor.black
+                done.rx.tap.asDriver().drive(onNext: { [unowned self] in
+                    self.messageInputBar.inputTextView.resignFirstResponder()
+                }).disposed(by: rx.disposeBag)
+                let clear: UIBarButtonItem = UIBarButtonItem(title: "Clear", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+                clear.tintColor = UIColor.black
+                clear.rx.tap.asDriver().drive(onNext: { [unowned self] in
+                    self.messageInputBar.inputTextView.text = ""
+                }).disposed(by: rx.disposeBag)
+
+                var items = [UIBarButtonItem]()
+
+                items.append(clear)
+                items.append(flexSpace)
+                items.append(done)
+                toolbar.items = items
+                toolbar.sizeToFit()
+                return toolbar
+        }
+        //messageInputBar.inputTextView.inputAccessoryView = keyboardToolBar
     }
 
     func observeMessages(callbackHandler: @escaping () -> Void) {
@@ -159,11 +205,11 @@ class ChatMessageViewController: MessagesViewController {
                     let preMessageCount = self?.messages.count
                     self?.messages = models + (self?.messages)! // キャッシュのせいかたまに重複することがあるのでユニークにしておく
                     self?.messages = (self?.messages.unique { $0.messageId == $1.messageId }.sorted(by: { $0.sentDate < $1.sentDate}))!
-
+/*
                     if preMessageCount == self?.messages.count {  // 更新数チェック
                         self?.refreshControl.endRefreshing()
                         return
-                    }
+                    }*/
                     DispatchQueue.main.async {
                         self?.messagesCollectionView.reloadData()
                         callbackHandler()
@@ -197,6 +243,8 @@ class ChatMessageViewController: MessagesViewController {
         switch message.kind {
         case .text, .attributedText, .emoji:
             let cell = messagesCollectionView.dequeueReusableCell(TextMessageCell.self, for: indexPath)
+            //let cell = messagesCollectionView.dequeueReusableCell(ChatMessageKitCell.self, for: indexPath)
+            //cell.messageLabel.mes//font = R.font.notoSansCJKjpSubRegular(size: 12.0)!
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
 
             self.chatMessageService.updateChatMessageUnread(chatMessage: message as! ChatMessage, callbackHandler: { [weak self] error in
@@ -321,7 +369,8 @@ extension ChatMessageViewController: MessagesDataSource {
         if dateFlg {
             let stringAttributes1: [NSAttributedStringKey : Any] = [
                 .foregroundColor : UIColor.clear,
-                .font : UIFont.systemFont(ofSize: 10.0)
+                //.font : UIFont.systemFont(ofSize: 10.0),
+                .font : R.font.notoSansCJKjpSubRegular(size: 10.0)!
             ]
             let string1 = NSMutableAttributedString(string: "----------", attributes: stringAttributes1)
             string1.addAttribute(NSAttributedStringKey.strikethroughStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: NSRange(location: 0, length: 10))
@@ -399,7 +448,8 @@ extension ChatMessageViewController: MessagesDisplayDelegate {
             [
                 NSAttributedStringKey.foregroundColor: UIColor.blue,
                 NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue,
-                NSAttributedStringKey.underlineColor: UIColor.blue
+                NSAttributedStringKey.underlineColor: UIColor.blue,
+                NSAttributedStringKey.font: R.font.notoSansCJKjpSubRegular(size: 12.0)!
             ]
         }()
 

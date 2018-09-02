@@ -30,10 +30,10 @@
             </objects>
             <point key="canvasLocation" x="-1015" y="156"/>
         </scene>
-        <!--View Controller-->
+        <!--Notice View Controller-->
         <scene sceneID="Fhv-fT-kmc">
             <objects>
-                <viewController id="0l0-dV-Yqn" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NoticeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0l0-dV-Yqn" customClass="NoticeViewController" customModule="P_Chat_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bdO-Zp-jhD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

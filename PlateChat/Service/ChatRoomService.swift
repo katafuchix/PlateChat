@@ -35,7 +35,7 @@ class ChatRoomService {
     private let store   = Firestore.firestore()
     private let storage = Storage.storage()
     private var bindChatRoomHandler: ListenerRegistration?
-    private let limit = 100          // １ページあたりの表示数 仮の値
+    private let limit = 1000          // １ページあたりの表示数 仮の値
     private var lastChatRoomDocument: QueryDocumentSnapshot? // クエリカーソルの開始点
     private var status: ChatRoomBindStatus
 
@@ -55,16 +55,16 @@ class ChatRoomService {
             query = self.store
                 .collection("/chat_room/")
                 .whereField("members.\(uid)", isEqualTo: true)
-                .whereField("status", isEqualTo: 1)
-                .order(by: "updated_at", descending: true)
+                //.whereField("status", isEqualTo: 1)
+                //.order(by: "updated_at", descending: true)
                 .start(afterDocument: lastDocument)
                 .limit(to: limit)
         } else {
             query = self.store
                 .collection("/chat_room/")
                 .whereField("members.\(uid)", isEqualTo: true)
-                .whereField("status", isEqualTo: 1)
-                .order(by: "updated_at", descending: true)
+                //.whereField("status", isEqualTo: 1)
+                //.order(by: "updated_at", descending: true)
                 .limit(to: limit)
         }
 
@@ -83,7 +83,7 @@ class ChatRoomService {
 
             self?.lastChatRoomDocument = snapshot.documents.last
             do {
-                let chatrooms = try snapshot.documents.compactMap { try ChatRoom(from: $0) }.sorted(by: { $0.created_date < $1.created_date})
+                let chatrooms = try snapshot.documents.compactMap { try ChatRoom(from: $0) }.sorted(by: { $0.updated_date < $1.updated_date}).filter { $0.status == 1 }
                 self?.status = .done
                 callbackHandler(chatrooms, nil)
             } catch {
@@ -172,7 +172,7 @@ class ChatRoomService {
                     guard let snapshot = querySnapshot else { return }
                     unreadCounts[uid] = snapshot.documents.count
                     if unreadCounts.count == chatRoom.members.count {
-                        var data = ["updated_date": FieldValue.serverTimestamp(), "unreadCounts": unreadCounts] as [String: Any]
+                        var data = ["updated_at": FieldValue.serverTimestamp(), "unreadCounts": unreadCounts] as [String: Any]
                         if let text = text {
                             data["last_update_message"] = text
                         }
