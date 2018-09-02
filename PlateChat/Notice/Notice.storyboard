@@ -30,7 +30,7 @@
             </objects>
             <point key="canvasLocation" x="-1015" y="156"/>
         </scene>
-        <!--Notice View Controller-->
+        <!--お知らせ-->
         <scene sceneID="Fhv-fT-kmc">
             <objects>
                 <viewController storyboardIdentifier="NoticeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0l0-dV-Yqn" customClass="NoticeViewController" customModule="P_Chat_" customModuleProvider="target" sceneMemberID="viewController">
@@ -40,7 +40,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="XOp-Kk-sSI"/>
                     </view>
-                    <navigationItem key="navigationItem" id="uBR-I2-2C6"/>
+                    <navigationItem key="navigationItem" title="お知らせ" id="uBR-I2-2C6"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="udI-iL-wCc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -117,12 +117,17 @@ extension ChatRoomListViewController: UITableViewDelegate {
         //self.showChatVC(self.messageList[indexPath.row])
         if self.chatRooms.count == 0 { return }
         let chatRoom = self.chatRooms[indexPath.row]
-        let vc = ChatMessageViewController()
-        vc.chatRoom     = chatRoom
-        let other_uid   = Array(chatRoom.members.filter { $0.0 != AccountData.uid }.keys)[0]
-        vc.other_uid    = other_uid
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
+
+        // snapshotでコールバックが複数回実行されるのを回避
+        let bool = self.navigationController?.topViewController is ChatMessageViewController
+        if !bool {
+            let vc = ChatMessageViewController()
+            vc.chatRoom     = chatRoom
+            let other_uid   = Array(chatRoom.members.filter { $0.0 != AccountData.uid }.keys)[0]
+            vc.other_uid    = other_uid
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
 

@@ -27,7 +27,8 @@ enum ChatMessageBindStatus: String {
 
 class ChatMessageService {
     private let store   = Firestore.firestore()
-    private var bindTalkHandler: ListenerRegistration?
+    //private
+    var bindTalkHandler: ListenerRegistration?
     private let chatRoom: ChatRoom
     private let limit = 20          // １ページあたりの表示数 仮の値
     private var lastChatMessageDocument: QueryDocumentSnapshot? // クエリカーソルの開始点
@@ -38,6 +39,10 @@ class ChatMessageService {
         self.chatRoom = chatRoom
         self.lastChatMessageDocument = nil
         self.status = .none
+    }
+
+    deinit {
+        bindTalkHandler?.remove()
     }
 
     func bindChatMessage(callbackHandler: @escaping ([ChatMessage]?, ChatMessageBindError?) -> Void) {

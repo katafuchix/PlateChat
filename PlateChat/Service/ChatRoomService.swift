@@ -164,7 +164,8 @@ class ChatRoomService {
             self.store
                 .collection("/chat_room/\(chatRoom.key)/messages/")
                 .whereField("unreads.\(uid)", isEqualTo: true)
-                .addSnapshotListener(includeMetadataChanges: true) { [weak self] (querySnapshot, error) in
+                .getDocuments(completion: { [weak self] (querySnapshot, error) in
+                //.addSnapshotListener(includeMetadataChanges: true) { [weak self] (querySnapshot, error) in
                     if let error = error {
                         Log.error(error)
                         return
@@ -176,6 +177,7 @@ class ChatRoomService {
                         if let text = text {
                             data["last_update_message"] = text
                         }
+                        print( data)
                         self?.store.collection("/chat_room/").document(chatRoom.key).setData(data, merge: true, completion: { error in
                             if let error = error {
                                 Log.error(error)
@@ -183,7 +185,7 @@ class ChatRoomService {
                             }
                         })
                     }
-            }
+            })
         }
     }
 }

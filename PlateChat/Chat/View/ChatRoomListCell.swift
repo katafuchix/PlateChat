@@ -63,6 +63,10 @@ class ChatRoomListCell: UITableViewCell {
             }
             guard let user = user else  { return }
 
+            var dict = UsersData.profileImages
+            dict[other_uid] = user.profile_image_url
+            UsersData.profileImages = dict
+
             self?.userProfileImageButton.sd_setBackgroundImage(with: URL(string:user.profile_image_url), for: .normal) { [weak self] (image, error, cacheType, url) in
                 if let error = error {
                     Log.error(error)

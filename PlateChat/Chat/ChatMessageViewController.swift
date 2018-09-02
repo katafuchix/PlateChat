@@ -79,6 +79,7 @@ class ChatMessageViewController: MessagesViewController {
 
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"back"), style: .plain, target: self, action: nil)
         self.navigationItem.leftBarButtonItem?.rx.tap.asDriver().drive(onNext: { [unowned self] in
+            self.chatMessageService.bindTalkHandler?.remove()
             self.navigationController?.popViewController(animated: true)
         }).disposed(by: rx.disposeBag)
 
@@ -247,14 +248,15 @@ class ChatMessageViewController: MessagesViewController {
             //cell.messageLabel.mes//font = R.font.notoSansCJKjpSubRegular(size: 12.0)!
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
 
-            self.chatMessageService.updateChatMessageUnread(chatMessage: message as! ChatMessage, callbackHandler: { [weak self] error in
-                if let error = error {
-                    Log.error(error)
-                    return
-                }
-                self?.chatRoomService.updateLastChatTime((self?.chatRoom)!)
-            })
-
+            if (message as! ChatMessage).unreads[AccountData.uid!]! == true {
+                self.chatMessageService.updateChatMessageUnread(chatMessage: message as! ChatMessage, callbackHandler: { [weak self] error in
+                    if let error = error {
+                        Log.error(error)
+                        return
+                    }
+                    self?.chatRoomService.updateLastChatTime((self?.chatRoom)!)
+                })
+            }
             return cell
         case .photo, .video:
             //let cell = messagesCollectionView.dequeueReusableCell(MediaMessageCell.self, for: indexPath)
@@ -432,13 +434,17 @@ extension ChatMessageViewController: MessagesDisplayDelegate {
         if isFromCurrentSender(message: message) { return }
 
         avatarView.backgroundColor = .clear
-        UserService.getUserInfo(message.sender.id, completionHandler: { (user, error) in
-            guard let url = user?.profile_image_url else {
-                Log.error(error!)
-                return
-            }
+        if let url = UsersData.profileImages[message.sender.id] {
             avatarView.sd_setImage(with: URL(string: url)!, completed: nil)
-        })
+        } else {
+            UserService.getUserInfo(message.sender.id, completionHandler: { (user, error) in
+                guard let url = user?.profile_image_url else {
+                    Log.error(error!)
+                    return
+                }
+                avatarView.sd_setImage(with: URL(string: url)!, completed: nil)
+            })
+        }
     }
 
     // リンクメッセージの場合青色、下線の設定

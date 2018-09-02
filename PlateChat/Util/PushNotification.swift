@@ -141,12 +141,20 @@ extension PushNotification: UNUserNotificationCenterDelegate {
         statusConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
         SwiftMessages.show(config: statusConfig, view: status)
 
-        let useInfo = notification.request.content.userInfo
-        print(useInfo["aps"])
+        let userInfo = notification.request.content.userInfo
+
+        print(userInfo["aps"])
         //print(useInfo["aps"]!["badge"])
-        if let aps = useInfo["aps"] as? [String:Any?]{
-            if let badge = aps["badge"] {
-                AppDelegate.appDelegate?.showChatUnreadCount("\(badge!)")
+        if let aps = userInfo["aps"] as? [String:Any?]{
+            if let badge = aps["badge"] as? Int {
+                if badge == 0 { return }
+                guard let linkHostUrl = self.linkHost(userInfo) else { return }
+                switch linkHostUrl.host {
+                case "chatroomlist":
+                        AppDelegate.appDelegate?.showChatUnreadCount("\(badge)")
+                default:
+                    break
+                }
             }
         }
     }
