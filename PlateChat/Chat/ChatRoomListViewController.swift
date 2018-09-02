@@ -42,11 +42,10 @@ class ChatRoomListViewController: UIViewController {
 
     func observeChatRoomLIst() {
         self.chatRoomService?.bindChatRoom(callbackHandler: { [weak self] (models, error) in
-            print(models)
             switch error {
             case .none:
                 if let models = models {
-                    let preMessageCount = self?.chatRooms.count
+                    //let preMessageCount = self?.chatRooms.count
                     //self?.articles = models
                     self?.chatRooms = models + (self?.chatRooms)! //Array([models, self?.articles].joined()) // キャッシュのせいかたまに重複することがあるのでユニークにしておく
                     self?.chatRooms = (self?.chatRooms.unique { $0.key == $1.key }.filter {$0.last_update_message != "" }.sorted(by: { $0.updated_date > $1.updated_date}))!
