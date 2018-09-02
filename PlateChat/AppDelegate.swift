@@ -85,4 +85,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+
+    // チャット一覧のバッヂ
+    func showChatUnreadCount( _ value: String ) {
+        guard let rootVC = self.window?.rootViewController else { return }
+        guard let tabVC = rootVC as? MainTabViewController else { return }
+        if let tabItems = tabVC.tabBar.items {
+            tabItems[2].badgeValue = value
+        }
+        /*
+        guard let navVC = tabVC.thirdVC as? UINavigationController else { return }
+        guard let chatRommListVC = navVC.visibleViewController as? ChatRoomListViewController else { return }
+        chatRommListVC.tabBarItem.badgeValue = value
+        */
+    }
 }

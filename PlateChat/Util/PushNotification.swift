@@ -140,6 +140,15 @@ extension PushNotification: UNUserNotificationCenterDelegate {
         var statusConfig = SwiftMessages.defaultConfig
         statusConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
         SwiftMessages.show(config: statusConfig, view: status)
+
+        let useInfo = notification.request.content.userInfo
+        print(useInfo["aps"])
+        //print(useInfo["aps"]!["badge"])
+        if let aps = useInfo["aps"] as? [String:Any?]{
+            if let badge = aps["badge"] {
+                AppDelegate.appDelegate?.showChatUnreadCount("\(badge!)")
+            }
+        }
     }
 
     // リモート通知の開封時に発火

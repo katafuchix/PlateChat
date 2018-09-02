@@ -11,7 +11,7 @@ import NVActivityIndicatorView
 import SVProgressHUD
 import Firebase
 
-class MainTabViewController: UITabBarController {
+class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
 
     fileprivate var dotBadges: [DotBadgeView] = []
 
@@ -19,7 +19,7 @@ class MainTabViewController: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-
+        self.delegate = self
         self.tabBar.tintColor = UIColor.hexStr(hexStr: "#40e0d0", alpha: 1.0)
         self.tabBar.layer.borderColor = UIColor.clear.cgColor
         self.tabBar.clipsToBounds = true
@@ -37,6 +37,11 @@ class MainTabViewController: UITabBarController {
         UserService.setLastLogin()
     }
 
+    // UITabBarDelegate
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        item.badgeValue = nil
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -44,6 +49,12 @@ class MainTabViewController: UITabBarController {
         if dotBadges.count == 0 {
             addDotBadge(tabBar.subviews)
         }
+    }
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print("viewController")
+        print(viewController)
+        viewController.tabBarItem.badgeValue = nil
     }
 
     // 各タブに点灯するだけの小さいバッジアイコンをadd
@@ -60,4 +71,32 @@ class MainTabViewController: UITabBarController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+extension UITabBarController {
+
+    var firstVC: UIViewController? {
+        return self.viewControllers?.first
+    }
+
+    var secondVC: UIViewController? {
+        if (self.viewControllers?.count ?? 0) < 2 { return nil }
+        return self.viewControllers?[1]
+    }
+
+    var thirdVC: UIViewController? {
+        if (self.viewControllers?.count ?? 0) < 3 { return nil }
+        return self.viewControllers?[2]
+    }
+
+    var fourthVC: UIViewController? {
+        if (self.viewControllers?.count ?? 0) < 4 { return nil }
+        return self.viewControllers?[3]
+    }
+
+    var fifthVC: UIViewController? {
+        if (self.viewControllers?.count ?? 0) < 5 { return nil }
+        return self.viewControllers?[4]
+    }
+
 }
