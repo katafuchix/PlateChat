@@ -12,6 +12,7 @@
 		310A6B9C212064470026A412 /* UIView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6B9B212064470026A412 /* UIView+Extended.swift */; };
 		310A6B9E212064AE0026A412 /* UIButton+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6B9D212064AE0026A412 /* UIButton+Extended.swift */; };
 		310A6BA021206C460026A412 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6B9F21206C460026A412 /* AccountData.swift */; };
+		310CC240213D95EB0091AADF /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310CC23F213D95EB0091AADF /* PaddingLabel.swift */; };
 		310FB05521269E0100C917E7 /* UITextField+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB05421269E0000C917E7 /* UITextField+Extended.swift */; };
 		310FB0572126F30100C917E7 /* UIWindow+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB0562126F30100C917E7 /* UIWindow+Extended.swift */; };
 		310FB0592126F49C00C917E7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FB0582126F49C00C917E7 /* HomeViewController.swift */; };
@@ -134,6 +135,7 @@
 		310A6B9B212064470026A412 /* UIView+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extended.swift"; sourceTree = "<group>"; };
 		310A6B9D212064AE0026A412 /* UIButton+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extended.swift"; sourceTree = "<group>"; };
 		310A6B9F21206C460026A412 /* AccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
+		310CC23F213D95EB0091AADF /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		310FB05421269E0000C917E7 /* UITextField+Extended.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extended.swift"; sourceTree = "<group>"; };
 		310FB0562126F30100C917E7 /* UIWindow+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extended.swift"; sourceTree = "<group>"; };
 		310FB0582126F49C00C917E7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				310FB06E2127B8F600C917E7 /* PaddingTextField.swift */,
 				310FB0702127BA4E00C917E7 /* UnderlineTextField.swift */,
 				31ED9E0D212D8DCA00D1E96E /* DotBadgeView.swift */,
+				310CC23F213D95EB0091AADF /* PaddingLabel.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -870,6 +873,7 @@
 				315E0D5C2121C60D0068924A /* ViewController+Extended.swift in Sources */,
 				310FB07B2128442400C917E7 /* FaqTableViewCell.swift in Sources */,
 				31386D712132491D008E82D0 /* ChatMessageKitCell.swift in Sources */,
+				310CC240213D95EB0091AADF /* PaddingLabel.swift in Sources */,
 				310FB06F2127B8F600C917E7 /* PaddingTextField.swift in Sources */,
 				31BE63D12115D26000E43982 /* NVActivityIndicatorView+Extended.swift in Sources */,
 				315E0D57212192C40068924A /* UserDeviceInfo.swift in Sources */,

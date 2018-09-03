@@ -156,6 +156,13 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
             }
         }).disposed(by: cell.disposeBag)
 
+        cell.replyButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            let vc = R.storyboard.write.writeViewController()!
+            vc.delegate = self
+            vc.article = self?.articles[indexPath.row]
+            UIWindow.createNewWindow(vc).open()
+        }).disposed(by: cell.disposeBag)
+
         return cell
     }
 

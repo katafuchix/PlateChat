@@ -19,6 +19,10 @@ protocol writeVCprotocol {
 class WriteViewController: UIViewController {
 
     @IBOutlet weak var baseView: UIView!
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var nicknameBaseView: UIView!
+    @IBOutlet weak var nicknameBaseViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var articleNicknameLabel: PaddingLabel!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var postButton: UIButton!
@@ -27,6 +31,7 @@ class WriteViewController: UIViewController {
 
     var delegate: writeVCprotocol?
     let articleService = ArticleService()
+    var article: Article?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +48,17 @@ class WriteViewController: UIViewController {
             self?.delegate?.close()
         }).disposed(by: rx.disposeBag)
 
+        if let article = self.article {
+            if let nickname = UsersData.nickNames[article.uid] {
+                articleNicknameLabel.isHidden = false
+                articleNicknameLabel.text = " to: \(nickname) "
+            }
+            self.nicknameBaseViewHeight.constant = 24.0
+        } else {
+            articleNicknameLabel.isHidden = true
+            articleNicknameLabel.text = ""
+            self.nicknameBaseViewHeight.constant = 0.0
+        }
         self.postButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             guard let text = self?.textView.text else { return }
             if text.description.count > 100 {

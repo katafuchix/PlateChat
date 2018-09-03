@@ -96,39 +96,62 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2w1-sr-9ZF">
                                                     <rect key="frame" x="15" y="107" width="345" height="21"/>
                                                     <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Medium" family="NotoSansCJKjpSub-Medium" pointSize="12"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XwF-vY-YFd">
                                                     <rect key="frame" x="0.0" y="133" width="375" height="34"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jt0-IJ-iej">
-                                                            <rect key="frame" x="16" y="0.0" width="46" height="30"/>
+                                                            <rect key="frame" x="16" y="0.0" width="65" height="30"/>
                                                             <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="46" id="EFg-XX-jjQ"/>
+                                                                <constraint firstAttribute="width" constant="65" id="EFg-XX-jjQ"/>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Nma-Kc-4YB"/>
-                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="oSr-U7-HoT"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="oSr-U7-HoT"/>
                                                                 <constraint firstAttribute="height" constant="30" id="q5s-i5-Tb2"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
-                                                            <state key="normal" title="Button">
+                                                            <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="12"/>
+                                                            <state key="normal" title="返信" image="reply">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                    <real key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="No7-yb-0Ry">
-                                                            <rect key="frame" x="70" y="0.0" width="46" height="30"/>
+                                                            <rect key="frame" x="89" y="0.0" width="65" height="30"/>
                                                             <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="46" id="D74-C3-oDy"/>
-                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="Iee-xd-INV"/>
+                                                                <constraint firstAttribute="width" constant="65" id="D74-C3-oDy"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="Iee-xd-INV"/>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="ibY-fg-88h"/>
                                                                 <constraint firstAttribute="height" constant="30" id="rMq-aD-ixC"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
-                                                            <state key="normal" title="トーク">
+                                                            <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="12"/>
+                                                            <inset key="imageEdgeInsets" minX="0.5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            <state key="normal" title="トーク" image="talk">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                    <real key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -224,5 +247,7 @@
         <image name="pen" width="24" height="24"/>
         <image name="person-icon" width="128" height="128"/>
         <image name="refresh" width="24" height="24"/>
+        <image name="reply" width="20" height="20"/>
+        <image name="talk" width="16" height="16"/>
     </resources>
 </document>
