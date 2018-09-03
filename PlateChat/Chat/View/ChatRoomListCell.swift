@@ -29,7 +29,7 @@ class ChatRoomListCell: UITableViewCell {
         // Initialization code
     }
 
-    func configure(_ chatRoom: ChatRoom) {
+    func configure(_ chatRoom: ChatRoom, _ indexPath: IndexPath) {
         self.clear()
         self.chatRoom = chatRoom
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -39,6 +39,9 @@ class ChatRoomListCell: UITableViewCell {
         if let count = self.chatRoom?.unreadCounts![uid] {
             self.unreadCountLabel.isHidden = count < 1
             self.unreadCountLabel.text = "\(count)"
+            if count > 0 && indexPath.row == 0 {
+                //AppDelegate.appDelegate?.showChatUnreadCount("\(count)")
+            }
         }
 
         if let nickName = UsersData.nickNames[other_uid] {

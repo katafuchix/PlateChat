@@ -99,7 +99,7 @@ extension ChatRoomListViewController: UITableViewDataSource {
         let cell = tableView.dequeueCell(ChatRoomListCell.self, indexPath: indexPath)
         if self.chatRooms.count > 0 {
             let data = self.chatRooms[indexPath.row]
-            cell.configure(data)
+            cell.configure(data, indexPath)
         }
         return cell
     }
