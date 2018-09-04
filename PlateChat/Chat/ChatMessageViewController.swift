@@ -31,6 +31,7 @@ class ChatMessageViewController: MessagesViewController {
     var chatRoom: ChatRoom! {
         didSet {
             self.chatMessageService = ChatMessageService(chatRoom)
+            self.chatMessageService.updateChatUnreadCounts()        // unread
         }
     }
     var other_uid: String? {
@@ -233,6 +234,13 @@ class ChatMessageViewController: MessagesViewController {
         self.observeMessages(callbackHandler: { self.refreshControl.endRefreshing() })
     }
 
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.chatMessageService.removeSnapshotListener()  // 一覧へ戻る際にSnapshotのリスナーを止める
+        super.viewWillDisappear(animated)
+    }
+
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -241,22 +249,24 @@ class ChatMessageViewController: MessagesViewController {
     override open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         //let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
         let message = self.messageForItem(at: indexPath, in: messagesCollectionView)
+
+        if let unreds = (message as! ChatMessage).unreads as? [String: Bool] {
+            if unreds[AccountData.uid!]! == true {
+            self.chatMessageService.updateChatMessageUnread(chatMessage: message as! ChatMessage, callbackHandler: { [weak self] error in
+                if let error = error {
+                    Log.error(error)
+                    return
+                }
+                //self?.chatRoomService.updateLastChatTime((self?.chatRoom)!)
+            })
+        }
+        }
         switch message.kind {
         case .text, .attributedText, .emoji:
             let cell = messagesCollectionView.dequeueReusableCell(TextMessageCell.self, for: indexPath)
             //let cell = messagesCollectionView.dequeueReusableCell(ChatMessageKitCell.self, for: indexPath)
             //cell.messageLabel.mes//font = R.font.notoSansCJKjpSubRegular(size: 12.0)!
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
-
-            if (message as! ChatMessage).unreads[AccountData.uid!]! == true {
-                self.chatMessageService.updateChatMessageUnread(chatMessage: message as! ChatMessage, callbackHandler: { [weak self] error in
-                    if let error = error {
-                        Log.error(error)
-                        return
-                    }
-                    self?.chatRoomService.updateLastChatTime((self?.chatRoom)!)
-                })
-            }
             return cell
         case .photo, .video:
             //let cell = messagesCollectionView.dequeueReusableCell(MediaMessageCell.self, for: indexPath)
@@ -323,11 +333,17 @@ extension ChatMessageViewController {
     // 画像投稿後にメッセージ画面に戻った場合、下のスクロールが少しずれるので調整
     fileprivate func aftterImagePost() {
         DispatchQueue.main.async {
-            self.messagesCollectionView.reloadData()
-            self.messagesCollectionView.scrollToBottom()
-            self.messageInputBar.inputTextView.becomeFirstResponder()
-            self.messageInputBar.inputTextView.resignFirstResponder()
-            self.hideLoading()
+            self.chatRoomService = ChatRoomService()
+            self.chatRoomService.updateLastChatTime(self.chatRoom, "画像を投稿しました")
+            self.chatMessageService = ChatMessageService(self.chatRoom)
+            self.chatMessageService.updateChatUnreadCounts()
+            self.observeMessages(callbackHandler: { [weak self] in
+                //self?.messagesCollectionView.reloadData()
+                //self?.messagesCollectionView.scrollToBottom()
+                self?.messageInputBar.inputTextView.becomeFirstResponder()
+                self?.messageInputBar.inputTextView.resignFirstResponder()
+                self?.hideLoading()
+            })
         }
     }
 }

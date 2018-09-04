@@ -34,6 +34,7 @@ class ChatMessageService {
     private var lastChatMessageDocument: QueryDocumentSnapshot? // クエリカーソルの開始点
     private var status: ChatMessageBindStatus
     private let compressibility: CGFloat = 0.9   // jpeg圧縮率
+    private var bindUpdateChatHandler: ListenerRegistration?
 
     init(_ chatRoom: ChatRoom) {
         self.chatRoom = chatRoom
@@ -43,6 +44,12 @@ class ChatMessageService {
 
     deinit {
         bindTalkHandler?.remove()
+        bindUpdateChatHandler?.remove()
+    }
+
+    func removeSnapshotListener() {
+        bindTalkHandler?.remove()
+        bindUpdateChatHandler?.remove()
     }
 
     func bindChatMessage(callbackHandler: @escaping ([ChatMessage]?, ChatMessageBindError?) -> Void) {
@@ -137,6 +144,7 @@ class ChatMessageService {
             let image = image, let jpeg = UIImageJPEGRepresentation(image, self.compressibility) else { return }
 
         // 画像アップロード
+        let text = "画像を送信しました"
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         let imageName = self.getRandomString(12)
@@ -147,20 +155,34 @@ class ChatMessageService {
                 callbackHandler(error)
                 return
             }
-            // 画像アップロード後にチャットの発言としてレコード作成
-            let data: [String: Any] = [
-                "sender"    : uid,
-                "imageURL"  : "\(Storage.storage().reference())\(path)",
-                "created_at": FieldValue.serverTimestamp(),
-                "status"    : 1
-            ]
-            self?.store.collection("/chat_room/\(chatRoomKey)/messages/").addDocument(data: data) { error in
-                if let error = error {
+            imageStoragePath.downloadURL(completion: { [weak self] url, error in
+
+                guard let imageURL = url else {
                     callbackHandler(error)
                     return
                 }
-                callbackHandler(nil)
-            }
+                // 画像アップロード後にチャットの発言としてレコード作成
+                var unreads = self?.chatRoom.members
+                unreads![uid] = false
+                let data: [String: Any] = [
+                    "sender"    : uid,
+                    "text"      : text,
+                    "imageURL"  : imageURL.absoluteString, //"\(Storage.storage().reference())\(path)",
+                    "created_at": FieldValue.serverTimestamp(),
+                    "status"    : 1,
+                    "unreads"   : unreads
+                ]
+
+                self?.store.collection("/chat_room/\(chatRoomKey)/messages/").addDocument(data: data) { error in
+                    if let error = error {
+                        callbackHandler(error)
+                        return
+                    }
+                    let chatRoomService = ChatRoomService()
+                    chatRoomService.updateLastChatTime((self?.chatRoom)!, text)
+                    callbackHandler(nil)
+                }
+            })
         }
     }
 
@@ -174,5 +196,35 @@ class ChatMessageService {
             randomString += NSString(characters: &nextChar, length: 1) as String
         }
         return randomString
+    }
+
+    // 自分の未読→既読処理
+    func updateChatUnreadCounts() {
+        guard let uid = Auth.auth().currentUser?.uid, let chatRoomKey: String = self.chatRoom.key, let unreadCounts = chatRoom.unreadCounts else { return }
+        print("unreadCounts")
+        print(unreadCounts)
+        if unreadCounts[uid] == 0 { return }
+        let query = self.store
+            .collection("/chat_room/\(chatRoom.key)/messages/")
+            .whereField("unreads.\(uid)", isEqualTo: true)
+
+        bindUpdateChatHandler = query.addSnapshotListener { [weak self] (querySnapshot, error) in
+            if let error = error {
+                Log.error(error)
+                return
+            }
+            guard let snapshot = querySnapshot else { return }
+
+            var newUnreadCounts = unreadCounts
+            guard let count = newUnreadCounts[uid] else { return }
+            newUnreadCounts[uid] = snapshot.documents.count < count ? snapshot.documents.count : count      // [uid: 未読数] の配列を作成 キャッシュで戻ることがあるので < 判定を入れておく
+            let data = ["updatedAt": FieldValue.serverTimestamp(), "unreadCounts": newUnreadCounts] as [String: Any]
+            self?.store.collection("/chat_room").document(chatRoomKey).setData(data, merge: true, completion: { error in
+                if let error = error {
+                    Log.error(error)
+                    return
+                }
+            })
+        }
     }
 }

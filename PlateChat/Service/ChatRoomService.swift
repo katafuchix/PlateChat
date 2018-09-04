@@ -178,6 +178,7 @@ class ChatRoomService {
                             data["last_update_message"] = text
                         }
                         print( data)
+                        print(chatRoom.key)
                         self?.store.collection("/chat_room/").document(chatRoom.key).setData(data, merge: true, completion: { error in
                             if let error = error {
                                 Log.error(error)
