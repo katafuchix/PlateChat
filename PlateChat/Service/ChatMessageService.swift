@@ -201,8 +201,6 @@ class ChatMessageService {
     // 自分の未読→既読処理
     func updateChatUnreadCounts() {
         guard let uid = Auth.auth().currentUser?.uid, let chatRoomKey: String = self.chatRoom.key, let unreadCounts = chatRoom.unreadCounts else { return }
-        print("unreadCounts")
-        print(unreadCounts)
         if unreadCounts[uid] == 0 { return }
         let query = self.store
             .collection("/chat_room/\(chatRoom.key)/messages/")
