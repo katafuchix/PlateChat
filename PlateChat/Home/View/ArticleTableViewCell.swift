@@ -22,8 +22,8 @@ class ArticleTableViewCell: UITableViewCell {
 
     @IBOutlet weak var toButtonBaseView: UIView!
     @IBOutlet weak var toButtonBaseViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var toButton: UIButton!
 
+    @IBOutlet weak var toLabel: PaddingLabel!
     @IBOutlet weak var articleLabel: UILabel!
 
     @IBOutlet weak var replyButton: UIButton!
@@ -64,16 +64,24 @@ class ArticleTableViewCell: UITableViewCell {
         //print(Constants.prefs.filter {$0.0 == article.user_prefecture_id }.map { $0.1 }[0])
         //print(Constants.genders[article.user_sex])
         if Auth.auth().currentUser?.uid == article.uid {
-            self.buttonBaseViewHeight.constant = 0.0
-            self.buttonBaseView.isHidden = true
+            self.buttonBaseViewHeight.constant = 34.0
+            self.buttonBaseView.isHidden = false
+            self.talkButton.isHidden = true
         } else {
             self.buttonBaseViewHeight.constant = 34.0
             self.buttonBaseView.isHidden = false
+            self.talkButton.isHidden = false
         }
         self.talkButton.isEnabled = true
 
-        self.toButtonBaseViewHeightConstraint.constant = 0.0
-        self.toButtonBaseView.isHidden = true
+        self.toButtonBaseViewHeightConstraint.constant = 34.0
+        self.toButtonBaseView.isHidden = false
+
+        let tapGesture = UITapGestureRecognizer()
+        self.toLabel.addGestureRecognizer(tapGesture)
+        tapGesture.rx.event.bind(onNext: { recognizer in
+            print("touches: \(article.text)") //or whatever you like
+        }).disposed(by: disposeBag)
 
         self.dateLabel.text = Date.timeAgoString(article.created_date)
     }
@@ -88,6 +96,7 @@ class ArticleTableViewCell: UITableViewCell {
         self.buttonBaseView.isHidden = false
         self.talkButton.isEnabled = false
         self.dateLabel.text = ""
+        self.talkButton.isHidden = false
     }
 
     override func prepareForReuse() {
