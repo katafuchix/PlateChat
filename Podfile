@@ -27,4 +27,5 @@ target 'PlateChat' do
   #pod 'SDWebImage', '4.3.3'
   #pod 'DZNEmptyDataSet'
   #pod 'Nuke', '~> 6.0'
+  pod 'SKPhotoBrowser'
 end

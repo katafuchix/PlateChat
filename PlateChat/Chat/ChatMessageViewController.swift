@@ -15,6 +15,7 @@ import SwiftDate
 import SafariServices
 import Nuke
 import Rswift
+import SKPhotoBrowser
 
 fileprivate extension UIEdgeInsets {
     init(top: CGFloat = 0, bottom: CGFloat = 0, left: CGFloat = 0, right: CGFloat = 0) {
@@ -516,17 +517,15 @@ extension ChatMessageViewController: MessagesLayoutDelegate {
 extension ChatMessageViewController: MessageCellDelegate {
     // メッセージをタップした時の挙動
     func didTapMessage(in cell: MessageCollectionViewCell) {
-        print("Message tapped")
         if let cell = cell as? ChatPhotoCell, let image = cell.imageView.image {
-/*
-            let photo = INSPhoto(image: image, thumbnailImage: nil)
-            let photosVC = INSPhotosViewController(photos: [photo], initialPhoto: photo, referenceView: nil)
-            if let overlay = photosVC.overlayView as? INSPhotosOverlayView {
-                overlay.frame.origin.y = 20
-                overlay.navigationItem.rightBarButtonItems = nil
-            }
-            self.present(photosVC, animated: true, completion: nil)
-*/
+            //if !cell.isVisibleImage { return }
+            // SKPhotoBrowserを利用して別ウィンドウで開く
+            var images = [SKPhoto]()
+            let photo = SKPhoto.photoWithImage(image)
+            images.append(photo)
+            let browser = SKPhotoBrowser(photos: images)
+            browser.initializePageIndex(0)
+            self.present(browser, animated: true, completion: {})
         }
     }
 }
