@@ -72,7 +72,7 @@
 		3168A07B2119C41C002B0440 /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168A07A2119C41C002B0440 /* LoginUser.swift */; };
 		3177545421400CCB0055AC5E /* ChatMessageKitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3177545121400CCB0055AC5E /* ChatMessageKitCell.swift */; };
 		3177545521400CCB0055AC5E /* ChatPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3177545221400CCB0055AC5E /* ChatPhotoCell.swift */; };
-		3177545721400D2C0055AC5E /* UIImageView+WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3177545621400D2C0055AC5E /* UIImageView+WebImage.swift */; };
+		31775459214010700055AC5E /* UIImageView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31775458214010700055AC5E /* UIImageView+Extended.swift */; };
 		317EDDDB21396C9F00A7B651 /* ChatRoomListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EDDDA21396C9F00A7B651 /* ChatRoomListCell.swift */; };
 		317EDDDD21396ED100A7B651 /* UITableView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EDDDC21396ED100A7B651 /* UITableView+Extended.swift */; };
 		317EDDDF21396F4C00A7B651 /* NSObject+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EDDDE21396F4C00A7B651 /* NSObject+Extended.swift */; };
@@ -197,7 +197,7 @@
 		3168A07A2119C41C002B0440 /* LoginUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUser.swift; sourceTree = "<group>"; };
 		3177545121400CCB0055AC5E /* ChatMessageKitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageKitCell.swift; sourceTree = "<group>"; };
 		3177545221400CCB0055AC5E /* ChatPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPhotoCell.swift; sourceTree = "<group>"; };
-		3177545621400D2C0055AC5E /* UIImageView+WebImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+WebImage.swift"; sourceTree = "<group>"; };
+		31775458214010700055AC5E /* UIImageView+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extended.swift"; sourceTree = "<group>"; };
 		317EDDDA21396C9F00A7B651 /* ChatRoomListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListCell.swift; sourceTree = "<group>"; };
 		317EDDDC21396ED100A7B651 /* UITableView+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extended.swift"; sourceTree = "<group>"; };
 		317EDDDE21396F4C00A7B651 /* NSObject+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extended.swift"; sourceTree = "<group>"; };
@@ -395,7 +395,6 @@
 				3177545121400CCB0055AC5E /* ChatMessageKitCell.swift */,
 				3177545221400CCB0055AC5E /* ChatPhotoCell.swift */,
 				317EDDDA21396C9F00A7B651 /* ChatRoomListCell.swift */,
-				3177545621400D2C0055AC5E /* UIImageView+WebImage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -552,6 +551,7 @@
 				31C735572137034C009E8241 /* Date+Extended.swift */,
 				317EDDDC21396ED100A7B651 /* UITableView+Extended.swift */,
 				317EDDDE21396F4C00A7B651 /* NSObject+Extended.swift */,
+				31775458214010700055AC5E /* UIImageView+Extended.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -898,7 +898,6 @@
 				310FB0712127BA4E00C917E7 /* UnderlineTextField.swift in Sources */,
 				310FB06721272CE700C917E7 /* PrivacyViewController.swift in Sources */,
 				310FB074212800EA00C917E7 /* ArticleTableViewCell.swift in Sources */,
-				3177545721400D2C0055AC5E /* UIImageView+WebImage.swift in Sources */,
 				31386D6B21324718008E82D0 /* R.generated.swift in Sources */,
 				31B707C5213A384C00A2D95E /* UserBlocked.swift in Sources */,
 				3177545421400CCB0055AC5E /* ChatMessageKitCell.swift in Sources */,
@@ -916,6 +915,7 @@
 				3168A06E2119BA29002B0440 /* Person.swift in Sources */,
 				31B707C3213A384000A2D95E /* UserBlock.swift in Sources */,
 				31BE63DA2115ECA800E43982 /* MyProfileViewController.swift in Sources */,
+				31775459214010700055AC5E /* UIImageView+Extended.swift in Sources */,
 				318108A7211584FD00C10946 /* MenuItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
