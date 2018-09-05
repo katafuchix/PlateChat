@@ -29,6 +29,7 @@ class ProfileEditTableViewController: UITableViewController {
     @IBOutlet weak var womanButton: CircleSexButton!
     @IBOutlet weak var noneButton: CircleSexButton!
     @IBOutlet weak var prefTextField: UITextField!
+    @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var profileTextView: UITextView!
     @IBOutlet weak var countLabel: UILabel!
 
@@ -36,6 +37,10 @@ class ProfileEditTableViewController: UITableViewController {
     var pickerView: UIPickerView = UIPickerView()
     let prefs: Variable<[Int: String]> = Variable([:])
     let prefNameArray: Variable<[String]> = Variable([])
+    var agePickerView: UIPickerView = UIPickerView()
+    let ages: Variable<[Int: String]> = Variable([:])
+    let ageNameArray: Variable<[String]> = Variable([])
+    let ageIndexArray: Variable<[Int]> = Variable([])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,10 +118,12 @@ class ProfileEditTableViewController: UITableViewController {
                 return
             }
 
+            let age = self?.ageIndexArray.value[(self?.agePickerView.selectedRow(inComponent: 0))!] ?? 0
             let dic = [
                 "nickname" : self?.viewModel.nickName.value ?? "",
                 "sex" : self?.viewModel.sex.value ?? 0,
                 "prefecture_id" : self?.pickerView.selectedRow(inComponent: 0) ?? 0,
+                "age" : age,
                 "profile_text" : self?.viewModel.profileText.value ?? "",
                 ] as [String : Any]
             print(dic)
@@ -158,6 +165,28 @@ class ProfileEditTableViewController: UITableViewController {
                     break
                 }
             }.disposed(by: rx.disposeBag)
+
+        // 年齢
+        self.ageTextField.setInputAccessoryView()
+        self.ageTextField.inputView = agePickerView
+        agePickerView.showsSelectionIndicator = true
+        self.ageNameArray.value = Constants.ages.sorted(by: {$0.0 < $1.0}).map { $0.1 }
+        self.ageIndexArray.value = Constants.ages.sorted(by: {$0.0 < $1.0}).map { $0.0 }
+        agePickerView.selectRow(AccountData.age, inComponent: 0, animated: false)
+        self.ageTextField.text = self.ageNameArray.value[AccountData.age]
+
+        self.ageNameArray.asObservable().bind(to: agePickerView.rx.itemTitles) {_, item in
+            return "\(item)"
+            }.disposed(by: rx.disposeBag)
+
+        agePickerView.rx.itemSelected.subscribe { [weak self] (event) in
+            switch event {
+            case .next(let selected):
+                self?.ageTextField.text = self?.ageNameArray.value[selected.row]
+            default:
+                break
+            }
+        }.disposed(by: rx.disposeBag)
 
         // 自己紹介文
         self.profileTextView.rx.text.orEmpty.bind(to: self.viewModel.profileText).disposed(by: rx.disposeBag)
@@ -265,6 +294,8 @@ class ProfileEditTableViewController: UITableViewController {
         case 2:
             self.nicknameTextField.becomeFirstResponder()
         case 4:
+            self.ageTextField.becomeFirstResponder()
+        case 5:
             self.prefTextField.becomeFirstResponder()
         default:
             self.nicknameTextField.resignFirstResponder()

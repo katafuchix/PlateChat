@@ -140,6 +140,7 @@ struct UserService {
         AccountData.nickname            = user.nickname
         AccountData.sex                 = user.sex
         AccountData.prefecture_id       = user.prefecture_id
+        AccountData.age                 = user.age
         AccountData.profile_text        = user.profile_text
         AccountData.login_email         = user.login_email
         AccountData.login_password      = user.login_password
@@ -157,6 +158,7 @@ struct UserService {
         AccountData.nickname            = ""
         AccountData.sex                 = 0
         AccountData.prefecture_id       = 0
+        AccountData.age                 = 0
         AccountData.profile_text        = ""
         AccountData.login_email         = ""
         AccountData.login_password      = ""

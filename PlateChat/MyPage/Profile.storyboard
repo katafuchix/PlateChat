@@ -205,8 +205,45 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="54" id="XDj-or-HyP">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="54" id="xgt-bM-lA0">
                                         <rect key="frame" x="0.0" y="264" width="375" height="54"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xgt-bM-lA0" id="KP4-Ts-cqu">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年齢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCh-EN-v8S">
+                                                    <rect key="frame" x="16" y="17" width="86" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="6lY-oi-ddf"/>
+                                                        <constraint firstAttribute="width" constant="86" id="Die-K1-xLA"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hWm-Ka-VbL">
+                                                    <rect key="frame" x="224" y="17" width="135" height="21"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="135" id="2RW-Vg-48W"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="135" id="nqd-Ni-9R8"/>
+                                                    </constraints>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hWm-Ka-VbL" firstAttribute="centerY" secondItem="KP4-Ts-cqu" secondAttribute="centerY" id="JBx-zP-dnN"/>
+                                                <constraint firstItem="hWm-Ka-VbL" firstAttribute="trailing" secondItem="KP4-Ts-cqu" secondAttribute="trailingMargin" id="ZzQ-l9-Tzg"/>
+                                                <constraint firstItem="dCh-EN-v8S" firstAttribute="centerY" secondItem="KP4-Ts-cqu" secondAttribute="centerY" id="vsV-3V-tcX"/>
+                                                <constraint firstItem="dCh-EN-v8S" firstAttribute="leading" secondItem="KP4-Ts-cqu" secondAttribute="leadingMargin" id="x9Q-Ah-Ksi"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="54" id="XDj-or-HyP">
+                                        <rect key="frame" x="0.0" y="318" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XDj-or-HyP" id="nTZ-Yu-2dM">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
@@ -241,7 +278,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="30" id="brm-pY-KJh">
-                                        <rect key="frame" x="0.0" y="318" width="375" height="30"/>
+                                        <rect key="frame" x="0.0" y="372" width="375" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="brm-pY-KJh" id="kFT-xC-DTY">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
@@ -263,7 +300,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="150" id="yb6-tC-q2p">
-                                        <rect key="frame" x="0.0" y="348" width="375" height="150"/>
+                                        <rect key="frame" x="0.0" y="402" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yb6-tC-q2p" id="ywj-Zz-lRX">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
@@ -324,6 +361,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="ageTextField" destination="hWm-Ka-VbL" id="bQt-ZX-C3z"/>
                         <outlet property="backButton" destination="ece-At-vwf" id="BUw-kU-2T3"/>
                         <outlet property="countLabel" destination="6t2-S6-ZS8" id="dUU-i1-UwT"/>
                         <outlet property="manButton" destination="8QN-Ra-SZg" id="885-dd-2Qu"/>

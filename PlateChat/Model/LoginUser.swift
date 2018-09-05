@@ -19,6 +19,7 @@ struct LoginUser {
     let nickname: String
     let sex: Int
     let prefecture_id: Int
+    let age: Int
     let profile_text: String
     let profile_image_url: String
     let status: Int
@@ -42,6 +43,7 @@ struct LoginUser {
         self.nickname       = (document.get("nickname") as? String) ?? ""
         self.sex            = (document.get("sex") as? Int) ?? 0
         self.prefecture_id  = (document.get("prefecture_id") as? Int) ?? 0
+        self.age            = (document.get("age") as? Int) ?? 0
         self.profile_text   = (document.get("profile_text") as? String) ?? ""
         self.profile_image_url = (document.get("profile_image_url") as? String) ?? ""
         self.notification_on = (document.get("notification_on") as? Bool) ?? true
