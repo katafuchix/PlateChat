@@ -18,7 +18,7 @@
         <!--ログインアカウント-->
         <scene sceneID="EO8-HK-lxE">
             <objects>
-                <tableViewController storyboardIdentifier="AccountTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gVD-JQ-bMv" customClass="AccountTableViewController" customModule="PlateChat" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AccountTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gVD-JQ-bMv" customClass="AccountTableViewController" customModule="P_Chat_" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kTc-sp-CWn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,7 +50,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2NU-sB-tOt" customClass="UnderlineTextField" customModule="PlateChat" customModuleProvider="target">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2NU-sB-tOt" customClass="UnderlineTextField" customModule="P_Chat_" customModuleProvider="target">
                                                     <rect key="frame" x="136" y="7" width="223" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
@@ -82,7 +82,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Jz-XS-RKi" customClass="UnderlineTextField" customModule="PlateChat" customModuleProvider="target">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Jz-XS-RKi" customClass="UnderlineTextField" customModule="P_Chat_" customModuleProvider="target">
                                                     <rect key="frame" x="136" y="7" width="223" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
@@ -115,6 +115,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kw3-0d-7gV">
                                                     <rect key="frame" x="126.5" y="6" width="123" height="30"/>
+                                                    <color key="backgroundColor" red="0.25098039220000001" green="0.87843137250000003" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="アカウントを保存"/>
                                                 </button>
                                             </subviews>
@@ -141,6 +142,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xG-L8-mT7">
                                                     <rect key="frame" x="95" y="6" width="184" height="30"/>
+                                                    <color key="backgroundColor" red="0.25098039220000001" green="0.87843137250000003" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="別のアカウントでログイン"/>
                                                 </button>
                                             </subviews>

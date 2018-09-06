@@ -159,6 +159,20 @@ class ChatRoomService {
     func updateLastChatTime(_ chatRoom: ChatRoom, _ text: String? = nil) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
+        var data = ["updated_at": FieldValue.serverTimestamp()] as [String: Any]
+        if let text = text {
+            data["last_update_message"] = text
+        }
+        print( data)
+        print(chatRoom.key)
+        self.store.collection("/chat_room/").document(chatRoom.key).setData(data, merge: true, completion: { error in
+            if let error = error {
+                Log.error(error)
+                return
+            }
+        })
+
+        /*
         var unreadCounts = [String: Int]()
         for uid in chatRoom.members.keys {
             self.store
@@ -188,5 +202,6 @@ class ChatRoomService {
                     }
             })
         }
+        */
     }
 }
