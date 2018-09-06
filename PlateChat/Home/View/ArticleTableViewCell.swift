@@ -74,8 +74,29 @@ class ArticleTableViewCell: UITableViewCell {
         }
         self.talkButton.isEnabled = true
 
-        self.toButtonBaseViewHeightConstraint.constant = 34.0
-        self.toButtonBaseView.isHidden = false
+        if article.toUid != "" {
+            self.toButtonBaseViewHeightConstraint.constant = 34.0
+            self.toButtonBaseView.isHidden = false
+            if let toNickName = UsersData.nickNames[article.toUid] {
+                self.toLabel.text = toNickName
+            } else {
+                UserService.getUserInfo(article.toUid, completionHandler: { (user, error) in
+                    if let user = user {
+                        var dict = UsersData.profileImages
+                        dict[user.key] = user.profile_image_url
+                        UsersData.profileImages = dict
+
+                        dict = UsersData.nickNames
+                        dict[user.key] = user.nickname
+                        UsersData.nickNames = dict
+                    }
+                })
+            }
+        } else {
+            self.toButtonBaseViewHeightConstraint.constant = 0
+            self.toButtonBaseView.isHidden = true
+        }
+
 
         let tapGesture = UITapGestureRecognizer()
         self.toLabel.addGestureRecognizer(tapGesture)
@@ -97,6 +118,8 @@ class ArticleTableViewCell: UITableViewCell {
         self.talkButton.isEnabled = false
         self.dateLabel.text = ""
         self.talkButton.isHidden = false
+        self.toButtonBaseViewHeightConstraint.constant = 0
+        self.toButtonBaseView.isHidden = true
     }
 
     override func prepareForReuse() {

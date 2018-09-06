@@ -68,7 +68,7 @@ class WriteViewController: UIViewController {
 
             self?.postButton.isEnabled = false
             SVProgressHUD.show(withStatus: "Posting...")
-            self?.articleService.createArticle(text, completionHandler: { _ in
+            self?.articleService.createArticle(text, self?.article, completionHandler: { _ in
                 SVProgressHUD.dismiss()
                 self?.delegate?.close()
             })

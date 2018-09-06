@@ -22,6 +22,9 @@ class Article {
     let user_prefecture_id: Int
     let user_sex: Int
 
+    let parentKey: String
+    let toKey: String
+    let toUid: String
 
     init(from document: DocumentSnapshot) throws {
         key = document.documentID
@@ -40,5 +43,10 @@ class Article {
         self.user_pforile_image_url = (document.get("user_pforile_image_url") as? String) ?? ""
         self.user_prefecture_id = (document.get("user_prefecture_id") as? Int) ?? 0
         self.user_sex = (document.get("user_sex") as? Int) ?? 0
+
+        self.parentKey  = (document.get("parentKey") as? String) ?? ""
+        self.toKey      = (document.get("toKey") as? String) ?? ""
+        self.toUid      = (document.get("toUid") as? String) ?? ""
+
     }
 }

@@ -178,6 +178,20 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
 extension HomeViewController: writeVCprotocol {
     func close() {
         (UIApplication.shared.delegate as! AppDelegate).window?.close()
+        //let indexPath = IndexPath(row: 0, section: 0)
+        //self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        /*
+        let rect = CGRect(x:0, y:0, width:self.tableView.frame.size.width, height:self.tableView.frame.size.height)
+        tableView.scrollRectToVisible(rect, animated: false) //スクロールのアニメーションなくす
+        */
+        /*
+        self.tableView.reloadData()
+        self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+
+        self.tableView.setContentOffset(CGPoint(x:0, y:-self.tableView.contentInset.top), animated: false);
+
+        self.tableView.contentOffset = .zero
+        */
     }
 }
 

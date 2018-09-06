@@ -84,10 +84,10 @@ class ArticleService {
     }
 
     // 投稿
-    func createArticle(_ text: String, completionHandler: @escaping (_ error: Error?) -> Void) {
+    func createArticle(_ text: String, _ article: Article? = nil, completionHandler: @escaping (_ error: Error?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
-        let data = [
+        var data = [
             "uid"               : uid,
             "text"              : text,
             "status"            : 1,
@@ -97,6 +97,19 @@ class ArticleService {
             "user_sex"                : AccountData.sex,
             "user_nickname"           : AccountData.nickname ?? ""
         ] as [String : Any]
+
+        if let article = article {
+            print("article.parentKey")
+            print(article.parentKey)
+            data["parentKey"]  = article.parentKey != "" ? article.parentKey : article.key
+            data["toKey"]      = article.key
+            data["toUid"]      = article.uid
+        } else {
+            data["parentKey"]  = ""
+            data["toKey"]      = ""
+            data["toUid"]      = ""
+        }
+
         self.store.collection("article").addDocument(data:data, completion: { error in
             if let err = error {
                 print("Error adding document: \(err)")
