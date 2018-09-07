@@ -50,3 +50,9 @@ class Article {
 
     }
 }
+
+extension Article: Equatable {
+    static func == (lhs: Article, rhs: Article) -> Bool {
+        return lhs.key == rhs.key
+    }
+}

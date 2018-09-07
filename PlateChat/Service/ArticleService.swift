@@ -31,15 +31,17 @@ class ArticleService {
     private let store   = Firestore.firestore()
     private let storage = Storage.storage()
     private var bindArticleHandler: ListenerRegistration?
-    private let limit = 100          // １ページあたりの表示数 仮の値
+    private let limit = 30          // １ページあたりの表示数 仮の値
     private var lastArticleDocument: QueryDocumentSnapshot? // クエリカーソルの開始点
     private var status: ArticleBindStatus
+    private var bindArticleListHandler: ListenerRegistration?
+    private var lastArticle: QueryDocumentSnapshot?
 
     init() {
         self.status = .none
     }
 
-    func bindTalk(callbackHandler: @escaping ([Article]?, ArticleBindError?) -> Void) {
+    func bindArticle(callbackHandler: @escaping ([Article]?, ArticleBindError?) -> Void) {
 
         if self.status == .loading { return }
         self.status = .loading
@@ -48,12 +50,14 @@ class ArticleService {
         if let lastDocument = self.lastArticleDocument {
             query = store
                 .collection("/article/")
+                .whereField("status", isEqualTo: 1)
                 .order(by: "created_at", descending: true)
                 .start(afterDocument: lastDocument)
                 .limit(to: limit)
         } else {
             query = store
                 .collection("/article/")
+                .whereField("status", isEqualTo: 1)
                 .order(by: "created_at", descending: true)
                 .limit(to: limit)
         }
@@ -83,6 +87,95 @@ class ArticleService {
         }
     }
 
+    func bindNewArticle(callbackHandler: @escaping ([Article]?, ArticleBindError?) -> Void) {
+
+        if self.status == .loading { return }
+        self.status = .loading
+
+        let query: Query
+             = store
+                .collection("/article/")
+                .whereField("status", isEqualTo: 1)
+                .order(by: "created_at", descending: true)
+                .limit(to: limit)
+
+        bindArticleHandler = query.addSnapshotListener(includeMetadataChanges: true) { [weak self] (querySnapshot, error) in
+            if let error = error {
+                self?.status = .failed
+                callbackHandler(nil, .error(error))
+                return
+            }
+
+            guard let snapshot = querySnapshot else {
+                self?.status = .failed
+                callbackHandler(nil, .noExistsError)
+                return
+            }
+
+            do {
+                let articles = try snapshot.documents.compactMap { try Article(from: $0) }.sorted(by: { $0.created_date > $1.created_date})
+                self?.status = .done
+                callbackHandler(articles, nil)
+            } catch {
+                self?.status = .failed
+                callbackHandler(nil, .error(error))
+            }
+        }
+    }
+
+    func removeBindArticleList() {
+        self.bindArticleListHandler?.remove()
+        self.lastArticle = nil
+    }
+
+    func bindArticleList(article: Article, callbackHandler: @escaping ([Article]?, ArticleBindError?) -> Void) {
+
+        if self.status == .loading { return }
+        self.status = .loading
+
+        let query: Query
+        if let lastDocument = self.lastArticle {
+            query = store
+                .collection("/article/")
+                .whereField("parentKey", isEqualTo: article.parentKey)
+                .whereField("status", isEqualTo: 1)
+                .order(by: "created_at", descending: true)
+                .start(afterDocument: lastDocument)
+                .limit(to: limit)
+        } else {
+            query = store
+                .collection("/article/")
+                .whereField("parentKey", isEqualTo: article.parentKey)
+                .whereField("status", isEqualTo: 1)
+                .order(by: "created_at", descending: true)
+                .limit(to: limit)
+        }
+
+        bindArticleListHandler = query.addSnapshotListener(includeMetadataChanges: true) { [weak self] (querySnapshot, error) in
+            if let error = error {
+                self?.status = .failed
+                callbackHandler(nil, .error(error))
+                return
+            }
+
+            guard let snapshot = querySnapshot else {
+                self?.status = .failed
+                callbackHandler(nil, .noExistsError)
+                return
+            }
+
+            self?.lastArticle = snapshot.documents.last
+            do {
+                let articles = try snapshot.documents.compactMap { try Article(from: $0) }.sorted(by: { $0.created_date > $1.created_date})
+                self?.status = .done
+                callbackHandler(articles, nil)
+            } catch {
+                self?.status = .failed
+                callbackHandler(nil, .error(error))
+            }
+        }
+    }
+
     // 投稿
     func createArticle(_ text: String, _ article: Article? = nil, completionHandler: @escaping (_ error: Error?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -99,8 +192,6 @@ class ArticleService {
         ] as [String : Any]
 
         if let article = article {
-            print("article.parentKey")
-            print(article.parentKey)
             data["parentKey"]  = article.parentKey != "" ? article.parentKey : article.key
             data["toKey"]      = article.key
             data["toUid"]      = article.uid
@@ -110,13 +201,29 @@ class ArticleService {
             data["toUid"]      = ""
         }
 
-        self.store.collection("article").addDocument(data:data, completion: { error in
+        self.store.collection("article").addDocument(data:data, completion: { [weak self] error in
             if let err = error {
                 print("Error adding document: \(err)")
                 completionHandler(err)
                 return
             }
-            completionHandler(nil)
+            if let article = article {
+                if article.parentKey == "" {
+                    let data = ["parentKey": article.key]
+                    self?.store.collection("article").document(article.key).setData(data, merge: true, completion: { error in
+                        if let err = error {
+                            print("Error adding document: \(err)")
+                            completionHandler(err)
+                            return
+                        }
+                        completionHandler(nil)
+                    })
+                } else {
+                    completionHandler(nil)
+                }
+            } else {
+                completionHandler(nil)
+            }
         })
     }
 }

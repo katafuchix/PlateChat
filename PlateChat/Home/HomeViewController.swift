@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
     var articleService: ArticleService?
     var articles = [Article]()
     var articles_org = [Article]()
+    private let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,37 +45,44 @@ class HomeViewController: UIViewController {
         self.tableView.tableFooterView  = UIView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.estimatedRowHeight = 170 // これはStoryBoardの設定で無視されるかも？
+        //tableView.estimatedRowHeight = 170 // これはStoryBoardの設定で無視されるかも？
         tableView.rowHeight = UITableViewAutomaticDimension
 
         self.articleService = ArticleService()
         self.observeArticle()
+
+        // ページング
+        tableView.rx.willDisplayCell.subscribe(onNext: { [unowned self] (cell, indexPath) in
+            if self.isEndOfSections(indexPath) {
+                self.observeArticle()
+            }
+        }).disposed(by: rx.disposeBag)
+
+        self.tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(HomeViewController.refresh(sender:)), for: .valueChanged)
     }
 
-    func observeArticle() {
+    @objc func refresh(sender: UIRefreshControl) {
+        if  self.articles.count == 0 {
+            self.refreshControl.endRefreshing()
+            return
+        }
         SVProgressHUD.show(withStatus: "Loading...")
-        self.articleService?.bindTalk(callbackHandler: { [weak self] (models, error) in
+        self.articleService?.bindNewArticle(callbackHandler: { [weak self] (models, error) in
             SVProgressHUD.dismiss()
             switch error {
             case .none:
                 if let models = models {
-                    //let preMessageCount = self?.articles.count
-                    //self?.articles = models
-                    //self?.articles = models + (self?.articles)! //Array([models, self?.articles].joined()) // キャッシュのせいかたまに重複することがあるのでユニークにしておく
-                    //self?.articles = (self?.articles.unique { $0.key == $1.key }.sorted(by: { $0.created_date > $1.created_date}))!
-
+                    let preMessageCount = self?.articles.count
                     self?.articles_org = models + (self?.articles_org)!
                     self?.articles_org = (self?.articles_org.unique { $0.key == $1.key }.sorted(by: { $0.created_date > $1.created_date}))!
-
-                    /*if preMessageCount == self?.articles.count {  // 更新数チェック
-                        //self?.refreshControl.endRefreshing()
+                    self?.filterBlock()
+                    if preMessageCount == self?.articles.count {  // 更新数チェック
+                        self?.refreshControl.endRefreshing()
                         return
-                    }*/
-
+                    }
                     DispatchQueue.main.async {
-                        self?.filterBlock()
                         self?.tableView.reloadData()
-                        //callbackHandler()
                     }
                 }
             case .some(.error(let error)):
@@ -82,8 +90,34 @@ class HomeViewController: UIViewController {
             case .some(.noExistsError):
                 Log.error("データ見つかりません")
             }
-            //weakSelf.refreshControl.endRefreshing()
-            //SVProgressHUD.dismiss()
+            self?.refreshControl.endRefreshing()
+        })
+    }
+
+    func observeArticle() {
+        SVProgressHUD.show(withStatus: "Loading...")
+        self.articleService?.bindArticle(callbackHandler: { [weak self] (models, error) in
+            SVProgressHUD.dismiss()
+            switch error {
+            case .none:
+                if let models = models {
+                    let preMessageCount = self?.articles.count
+                    self?.articles_org = models + (self?.articles_org)!
+                    self?.articles_org = (self?.articles_org.unique { $0.key == $1.key }.sorted(by: { $0.created_date > $1.created_date}))!
+                    self?.filterBlock()
+                    if preMessageCount == self?.articles.count {  // 更新数チェック
+                        return
+                    }
+
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
+                }
+            case .some(.error(let error)):
+                Log.error(error!)
+            case .some(.noExistsError):
+                Log.error("データ見つかりません")
+            }
         })
     }
 
@@ -109,6 +143,12 @@ class HomeViewController: UIViewController {
 
     @objc func buttonTapped(sender: UIButton) {
         print("button tapped")
+    }
+
+    /// セクション配列・セクション内の末尾位置か調べる
+    /// - return: Bool (true -> End of Sections and Rows)
+    func isEndOfSections(_ indexPath: IndexPath) -> Bool {
+        return indexPath.row == self.articles.lastIndex
     }
 }
 
@@ -182,6 +222,7 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
             //vc.chatRoom     = chatRoom
             //vc.other_uid    = article.uid
             //vc.hidesBottomBarWhenPushed = true
+            vc.article = self.articles[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
         /*
@@ -194,6 +235,7 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
 
 extension HomeViewController: writeVCprotocol {
     func close() {
+        print("close()")
         (UIApplication.shared.delegate as! AppDelegate).window?.close()
         //let indexPath = IndexPath(row: 0, section: 0)
         //self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
@@ -209,6 +251,7 @@ extension HomeViewController: writeVCprotocol {
 
         self.tableView.contentOffset = .zero
         */
+        //self.tableView.setContentOffset(CGPoint.zero, animated: true)
     }
 }
 

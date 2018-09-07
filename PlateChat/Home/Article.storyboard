@@ -21,6 +21,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hzb-IR-jq8">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="tPk-cc-qEk" id="Gfn-3g-qWS"/>
+                                    <outlet property="delegate" destination="tPk-cc-qEk" id="0At-NU-YZq"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -35,11 +39,14 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="KpD-Xk-ONe">
                         <barButtonItem key="leftBarButtonItem" image="back" id="6QO-R2-7iH"/>
+                        <barButtonItem key="rightBarButtonItem" image="refresh" id="3eg-VX-c5H"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="backButton" destination="6QO-R2-7iH" id="NnJ-P6-yLL"/>
+                        <outlet property="refreshButton" destination="3eg-VX-c5H" id="cA4-wZ-YBJ"/>
+                        <outlet property="tableView" destination="hzb-IR-jq8" id="uAu-Bv-uTq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="anE-4Y-5tc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -49,5 +56,6 @@
     </scenes>
     <resources>
         <image name="back" width="24" height="24"/>
+        <image name="refresh" width="24" height="24"/>
     </resources>
 </document>

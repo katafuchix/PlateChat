@@ -61,8 +61,8 @@ class WriteViewController: UIViewController {
         }
         self.postButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             guard let text = self?.textView.text else { return }
-            if text.description.count > 100 {
-                Alert.init("自己紹介は100文字以内で入力してください").show(self)
+            if text.description.count > 200 {
+                Alert.init("200文字以内で入力してください").show(self)
                 return
             }
 
