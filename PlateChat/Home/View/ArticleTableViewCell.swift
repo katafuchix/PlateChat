@@ -120,6 +120,7 @@ class ArticleTableViewCell: UITableViewCell {
         self.talkButton.isHidden = false
         self.toButtonBaseViewHeightConstraint.constant = 0
         self.toButtonBaseView.isHidden = true
+        self.dateLabel.text = ""
     }
 
     override func prepareForReuse() {

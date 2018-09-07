@@ -110,6 +110,9 @@
 		31BE63DA2115ECA800E43982 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63D92115ECA800E43982 /* MyProfileViewController.swift */; };
 		31BE63DF2115F10D00E43982 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63DE2115F10C00E43982 /* SettingTableViewController.swift */; };
 		31BE63E22115F3DD00E43982 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31BE63E12115F3DD00E43982 /* Home.storyboard */; };
+		31BF4BC321423616003F6F40 /* Article.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31BF4BC221423616003F6F40 /* Article.storyboard */; };
+		31BF4BC521423632003F6F40 /* ArticleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BF4BC421423632003F6F40 /* ArticleListViewController.swift */; };
+		31BF4BCB21423959003F6F40 /* ArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31BF4BC921423959003F6F40 /* ArticleTableViewCell.xib */; };
 		31C7348721357381009E8241 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C7348621357381009E8241 /* PushNotification.swift */; };
 		31C7354F2135C6E6009E8241 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C7354E2135C6E6009E8241 /* SwiftMessages.framework */; };
 		31C735562136CEF2009E8241 /* Compass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C735552136CEF2009E8241 /* Compass.framework */; };
@@ -236,6 +239,9 @@
 		31BE63D92115ECA800E43982 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		31BE63DE2115F10C00E43982 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		31BE63E12115F3DD00E43982 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		31BF4BC221423616003F6F40 /* Article.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Article.storyboard; sourceTree = "<group>"; };
+		31BF4BC421423632003F6F40 /* ArticleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewController.swift; sourceTree = "<group>"; };
+		31BF4BC921423959003F6F40 /* ArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleTableViewCell.xib; sourceTree = "<group>"; };
 		31C7348621357381009E8241 /* PushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		31C7354E2135C6E6009E8241 /* SwiftMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftMessages.framework; path = Carthage/Build/iOS/SwiftMessages.framework; sourceTree = "<group>"; };
 		31C735552136CEF2009E8241 /* Compass.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Compass.framework; path = Carthage/Build/iOS/Compass.framework; sourceTree = "<group>"; };
@@ -307,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				310FB073212800EA00C917E7 /* ArticleTableViewCell.swift */,
+				31BF4BC921423959003F6F40 /* ArticleTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -588,6 +595,8 @@
 				310FB0582126F49C00C917E7 /* HomeViewController.swift */,
 				310FB05A2126F6DD00C917E7 /* Write.storyboard */,
 				310FB05C2126F6EC00C917E7 /* WriteViewController.swift */,
+				31BF4BC221423616003F6F40 /* Article.storyboard */,
+				31BF4BC421423632003F6F40 /* ArticleListViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -723,8 +732,10 @@
 				312804FD2116EA9A00357E5C /* Search.storyboard in Resources */,
 				312805192117047400357E5C /* NotoSansCJKjpSub-Light.otf in Resources */,
 				3128050A2116FA9700357E5C /* GoogleService-Info-dev.plist in Resources */,
+				31BF4BC321423616003F6F40 /* Article.storyboard in Resources */,
 				310FB0692127B64D00C917E7 /* Account.storyboard in Resources */,
 				318108A5211584FD00C10946 /* .gitkeep in Resources */,
+				31BF4BCB21423959003F6F40 /* ArticleTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -854,6 +865,7 @@
 				31386D7C2132DBE0008E82D0 /* ChatMessageService.swift in Sources */,
 				310FB05F212702CF00C917E7 /* ArticleService.swift in Sources */,
 				3168A0742119BAC8002B0440 /* ChatMedia.swift in Sources */,
+				31BF4BC521423632003F6F40 /* ArticleListViewController.swift in Sources */,
 				312805062116F00D00357E5C /* UtilManager.swift in Sources */,
 				31B707CD213A802000A2D95E /* BlockListViewController.swift in Sources */,
 				31B707C9213A3DE200A2D95E /* UserBlockedService.swift in Sources */,

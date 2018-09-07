@@ -39,11 +39,12 @@ class HomeViewController: UIViewController {
             self?.observeArticle()
         }).disposed(by: rx.disposeBag)
 
+        self.tableView.register(R.nib.articleTableViewCell)
         self.tableView.separatorInset   = .zero
         self.tableView.tableFooterView  = UIView()
         tableView.dataSource = self
         tableView.delegate = self
-        //tableView.estimatedRowHeight = 170 // これはStoryBoardの設定で無視されるかも？
+        tableView.estimatedRowHeight = 170 // これはStoryBoardの設定で無視されるかも？
         tableView.rowHeight = UITableViewAutomaticDimension
 
         self.articleService = ArticleService()
@@ -119,8 +120,15 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
         return articles.count
     }
 
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        return UITableViewAutomaticDimension
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView .dequeueReusableCell(withIdentifier: String(describing: ArticleTableViewCell.self), for: indexPath) as! ArticleTableViewCell
+        //let cell = tableView .dequeueReusableCell(withIdentifier: String(describing: ArticleTableViewCell.self), for: indexPath) as! ArticleTableViewCell
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.articleTableViewCell, for: indexPath)!
         //cell.set(content: datasource[indexPath.row])
         cell.configure(self.articles[indexPath.row])
 
@@ -167,6 +175,15 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath)
+        let vc = R.storyboard.article.articleListViewController()!
+        let bool = self.navigationController?.topViewController is ArticleListViewController
+        if !bool {
+            //vc.chatRoom     = chatRoom
+            //vc.other_uid    = article.uid
+            //vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         /*
         let content = datasource[indexPath.row]
         content.expanded = !content.expanded
