@@ -113,6 +113,8 @@
 		31BF4BC321423616003F6F40 /* Article.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31BF4BC221423616003F6F40 /* Article.storyboard */; };
 		31BF4BC521423632003F6F40 /* ArticleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BF4BC421423632003F6F40 /* ArticleListViewController.swift */; };
 		31BF4BCB21423959003F6F40 /* ArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31BF4BC921423959003F6F40 /* ArticleTableViewCell.xib */; };
+		31BF4BCE2142BAB4003F6F40 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BF4BCC2142BAB4003F6F40 /* ProfileCell.swift */; };
+		31BF4BCF2142BAB4003F6F40 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31BF4BCD2142BAB4003F6F40 /* ProfileCell.xib */; };
 		31C7348721357381009E8241 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C7348621357381009E8241 /* PushNotification.swift */; };
 		31C7354F2135C6E6009E8241 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C7354E2135C6E6009E8241 /* SwiftMessages.framework */; };
 		31C735562136CEF2009E8241 /* Compass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C735552136CEF2009E8241 /* Compass.framework */; };
@@ -242,6 +244,8 @@
 		31BF4BC221423616003F6F40 /* Article.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Article.storyboard; sourceTree = "<group>"; };
 		31BF4BC421423632003F6F40 /* ArticleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewController.swift; sourceTree = "<group>"; };
 		31BF4BC921423959003F6F40 /* ArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleTableViewCell.xib; sourceTree = "<group>"; };
+		31BF4BCC2142BAB4003F6F40 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		31BF4BCD2142BAB4003F6F40 /* ProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
 		31C7348621357381009E8241 /* PushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		31C7354E2135C6E6009E8241 /* SwiftMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftMessages.framework; path = Carthage/Build/iOS/SwiftMessages.framework; sourceTree = "<group>"; };
 		31C735552136CEF2009E8241 /* Compass.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Compass.framework; path = Carthage/Build/iOS/Compass.framework; sourceTree = "<group>"; };
@@ -323,6 +327,8 @@
 			children = (
 				310FB07A2128442400C917E7 /* FaqTableViewCell.swift */,
 				31B707CE213A931500A2D95E /* BlockListCell.swift */,
+				31BF4BCC2142BAB4003F6F40 /* ProfileCell.swift */,
+				31BF4BCD2142BAB4003F6F40 /* ProfileCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -736,6 +742,7 @@
 				310FB0692127B64D00C917E7 /* Account.storyboard in Resources */,
 				318108A5211584FD00C10946 /* .gitkeep in Resources */,
 				31BF4BCB21423959003F6F40 /* ArticleTableViewCell.xib in Resources */,
+				31BF4BCF2142BAB4003F6F40 /* ProfileCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -853,6 +860,7 @@
 				31C7348721357381009E8241 /* PushNotification.swift in Sources */,
 				319A26B1212675A000769A6E /* Log.swift in Sources */,
 				318108AA211584FD00C10946 /* MenuView.swift in Sources */,
+				31BF4BCE2142BAB4003F6F40 /* ProfileCell.swift in Sources */,
 				3168A0792119C2E8002B0440 /* UserService.swift in Sources */,
 				310A6B9C212064470026A412 /* UIView+Extended.swift in Sources */,
 				310FB06D2127B88000C917E7 /* UIPlaceHolderTextView.swift in Sources */,

@@ -38,11 +38,27 @@
         <!--プロフィール-->
         <scene sceneID="nte-sy-kH1">
             <objects>
-                <viewController id="4EQ-hg-3M4" customClass="MyProfileViewController" customModule="PlateChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4EQ-hg-3M4" customClass="MyProfileViewController" customModule="P_Chat_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4xq-mC-TAZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W71-F1-USl">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="4EQ-hg-3M4" id="t4c-6r-NDD"/>
+                                    <outlet property="delegate" destination="4EQ-hg-3M4" id="Axw-Du-ck5"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="W71-F1-USl" firstAttribute="top" secondItem="Of6-oW-tBd" secondAttribute="top" id="0PA-Um-7T0"/>
+                            <constraint firstItem="W71-F1-USl" firstAttribute="trailing" secondItem="Of6-oW-tBd" secondAttribute="trailing" id="XoG-Am-el6"/>
+                            <constraint firstItem="W71-F1-USl" firstAttribute="leading" secondItem="Of6-oW-tBd" secondAttribute="leading" id="qTn-OR-gAU"/>
+                            <constraint firstItem="W71-F1-USl" firstAttribute="bottom" secondItem="Of6-oW-tBd" secondAttribute="bottom" id="xMF-eT-XoE"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Of6-oW-tBd"/>
                     </view>
                     <navigationItem key="navigationItem" title="プロフィール" id="xt2-AQ-E2d">
@@ -50,11 +66,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="settingBarButton" destination="KhJ-eZ-mMe" id="bhK-R5-75M"/>
+                        <outlet property="tableView" destination="W71-F1-USl" id="9UH-eN-G2g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUR-Ar-XCT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="430" y="155"/>
+            <point key="canvasLocation" x="429.60000000000002" y="154.27286356821591"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="djN-LL-Qw6">
@@ -75,7 +92,7 @@
         <!--設定-->
         <scene sceneID="s3D-rT-z63">
             <objects>
-                <tableViewController storyboardIdentifier="SettingTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZNK-uZ-hkA" customClass="SettingTableViewController" customModule="PlateChat" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZNK-uZ-hkA" customClass="SettingTableViewController" customModule="P_Chat_" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Dq-Mt-dPQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

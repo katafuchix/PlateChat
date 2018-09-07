@@ -70,7 +70,7 @@ class NoticeViewController: UIViewController {
         fileprivate struct MenuItem1: MenuItemViewCustomizable {
             var displayMode: MenuItemDisplayMode {
                 //return .text(title: MenuItemText(text: "赤い画面", color: UIColor.red, selectedColor: UIColor.white))
-                let title = MenuItemText(text: "Menu1")
+                let title = MenuItemText(text: "返信")
                 return .text(title: title)
             }
         }
@@ -78,7 +78,7 @@ class NoticeViewController: UIViewController {
         fileprivate struct MenuItem2: MenuItemViewCustomizable {
             var displayMode: MenuItemDisplayMode {
                 //return .text(title: MenuItemText(text: "青い画面", color: UIColor.blue, selectedColor: UIColor.white))
-                let title = MenuItemText(text: "Menu2")
+                let title = MenuItemText(text: "足あと")
                 return .text(title: title)
             }
         }

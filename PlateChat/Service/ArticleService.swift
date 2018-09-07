@@ -37,6 +37,9 @@ class ArticleService {
     private var bindArticleListHandler: ListenerRegistration?
     private var lastArticle: QueryDocumentSnapshot?
 
+    private var bindUidArticleListHandler: ListenerRegistration?
+    private var lastUidArticle: QueryDocumentSnapshot?
+
     init() {
         self.status = .none
     }
@@ -112,6 +115,54 @@ class ArticleService {
                 return
             }
 
+            do {
+                let articles = try snapshot.documents.compactMap { try Article(from: $0) }.sorted(by: { $0.created_date > $1.created_date})
+                self?.status = .done
+                callbackHandler(articles, nil)
+            } catch {
+                self?.status = .failed
+                callbackHandler(nil, .error(error))
+            }
+        }
+    }
+
+    func bindUidArticle(_ uid: String, callbackHandler: @escaping ([Article]?, ArticleBindError?) -> Void) {
+
+        if self.status == .loading { return }
+        self.status = .loading
+
+        let query: Query
+        if let lastDocument = self.lastUidArticle {
+            query = store
+                .collection("/article/")
+                .whereField("uid", isEqualTo: uid)
+                .whereField("status", isEqualTo: 1)
+                .order(by: "created_at", descending: true)
+                .start(afterDocument: lastDocument)
+                .limit(to: limit)
+        } else {
+            query = store
+                .collection("/article/")
+                .whereField("uid", isEqualTo: uid)
+                .whereField("status", isEqualTo: 1)
+                .order(by: "created_at", descending: true)
+                .limit(to: limit)
+        }
+
+        bindUidArticleListHandler = query.addSnapshotListener(includeMetadataChanges: true) { [weak self] (querySnapshot, error) in
+            if let error = error {
+                self?.status = .failed
+                callbackHandler(nil, .error(error))
+                return
+            }
+
+            guard let snapshot = querySnapshot else {
+                self?.status = .failed
+                callbackHandler(nil, .noExistsError)
+                return
+            }
+
+            self?.lastUidArticle = snapshot.documents.last
             do {
                 let articles = try snapshot.documents.compactMap { try Article(from: $0) }.sorted(by: { $0.created_date > $1.created_date})
                 self?.status = .done

@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Article List View Controller-->
+        <!--会話-->
         <scene sceneID="AXQ-5u-dG6">
             <objects>
                 <viewController storyboardIdentifier="ArticleListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tPk-cc-qEk" customClass="ArticleListViewController" customModule="P_Chat_" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,7 +37,7 @@
                         <viewLayoutGuide key="safeArea" id="fH8-nu-SEE"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="KpD-Xk-ONe">
+                    <navigationItem key="navigationItem" title="会話" id="KpD-Xk-ONe">
                         <barButtonItem key="leftBarButtonItem" image="back" id="6QO-R2-7iH"/>
                         <barButtonItem key="rightBarButtonItem" image="refresh" id="3eg-VX-c5H"/>
                     </navigationItem>
