@@ -68,9 +68,24 @@ class WriteViewController: UIViewController {
 
             self?.postButton.isEnabled = false
             SVProgressHUD.show(withStatus: "Posting...")
-            self?.articleService.createArticle(text, self?.article, completionHandler: { _ in
+            self?.articleService.createArticle(text, self?.article, completionHandler: { error in
                 SVProgressHUD.dismiss()
-                self?.delegate?.close()
+                if let error = error {
+                    self?.textView.resignFirstResponder()
+                    Alert.init(error.localizedDescription)
+                        .addAction("OK", completion: { _ in self?.delegate?.close() })
+                        .show(self)
+                    /*
+                    let errAlert = UIAlertController(title: "エラー", message: "error.localizedDescription", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
+                        self?.delegate?.close()
+                    })
+                    errAlert.addAction(okAction)
+                    self?.present(errAlert, animated: true, completion: nil)
+                    */
+                } else {
+                    self?.delegate?.close()
+                }
             })
         }).disposed(by: rx.disposeBag)
 
