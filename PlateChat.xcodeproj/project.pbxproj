@@ -129,6 +129,8 @@
 		31C92B4D21341585004C7130 /* NSObject_Rx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B4C21341585004C7130 /* NSObject_Rx.framework */; };
 		31C92B4F213415CC004C7130 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B4E213415CC004C7130 /* SDWebImage.framework */; };
 		31C92B512134167E004C7130 /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C92B502134167E004C7130 /* SwiftDate.framework */; };
+		31D752702150026D0044A10F /* SearchWideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7526E2150026D0044A10F /* SearchWideCell.swift */; };
+		31D752712150026D0044A10F /* SearchWideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D7526F2150026D0044A10F /* SearchWideCell.xib */; };
 		31ED9E0E212D8DCA00D1E96E /* DotBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ED9E0D212D8DCA00D1E96E /* DotBadgeView.swift */; };
 		31ED9E10212DB7D100D1E96E /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31ED9E0F212DB7D100D1E96E /* Message.storyboard */; };
 		31ED9E12212DB9FA00D1E96E /* ChatMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ED9E11212DB9FA00D1E96E /* ChatMessageViewController.swift */; };
@@ -261,6 +263,8 @@
 		31C92B4C21341585004C7130 /* NSObject_Rx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSObject_Rx.framework; path = Carthage/Build/iOS/NSObject_Rx.framework; sourceTree = "<group>"; };
 		31C92B4E213415CC004C7130 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
 		31C92B502134167E004C7130 /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
+		31D7526E2150026D0044A10F /* SearchWideCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWideCell.swift; sourceTree = "<group>"; };
+		31D7526F2150026D0044A10F /* SearchWideCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchWideCell.xib; sourceTree = "<group>"; };
 		31ED9E0D212D8DCA00D1E96E /* DotBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotBadgeView.swift; sourceTree = "<group>"; };
 		31ED9E0F212DB7D100D1E96E /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
 		31ED9E11212DB9FA00D1E96E /* ChatMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageViewController.swift; sourceTree = "<group>"; };
@@ -338,6 +342,7 @@
 		312804FB2116E81200357E5C /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				31D7526D214FEF180044A10F /* View */,
 				312804FC2116EA9A00357E5C /* Search.storyboard */,
 				317D88D7214C2FB20045B608 /* SearchViewController.swift */,
 			);
@@ -617,6 +622,15 @@
 			path = SwiftMessages;
 			sourceTree = "<group>";
 		};
+		31D7526D214FEF180044A10F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31D7526E2150026D0044A10F /* SearchWideCell.swift */,
+				31D7526F2150026D0044A10F /* SearchWideCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		524288E8AD9E26AD49C8347E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -717,6 +731,7 @@
 			files = (
 				3128051A2117047400357E5C /* NotoSansCJKjpSub-DemiLight.otf in Resources */,
 				310FB06521272CD500C917E7 /* Privacy.storyboard in Resources */,
+				31D752712150026D0044A10F /* SearchWideCell.xib in Resources */,
 				3168A065211886F1002B0440 /* Profile.storyboard in Resources */,
 				312805002116EBB400357E5C /* Chat.storyboard in Resources */,
 				312805182117047400357E5C /* NotoSansCJKjpSub-Medium.otf in Resources */,
@@ -886,6 +901,7 @@
 				310FB063212728AE00C917E7 /* RuleViewController.swift in Sources */,
 				31B707D1213AE91E00A2D95E /* NoticeViewController.swift in Sources */,
 				310FB07D212844AF00C917E7 /* FaqViewController.swift in Sources */,
+				31D752702150026D0044A10F /* SearchWideCell.swift in Sources */,
 				318108A6211584FD00C10946 /* PagingViewController.swift in Sources */,
 				317EDDE121398EC800A7B651 /* UsersData.swift in Sources */,
 				3168A0722119BA98002B0440 /* ChatMessage.swift in Sources */,

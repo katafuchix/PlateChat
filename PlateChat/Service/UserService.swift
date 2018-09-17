@@ -20,7 +20,20 @@ enum UserServiceUpdateError: Error {
     case fetchError(Error?)
 }
 
-struct UserService {
+enum LoginUserBindStatus: String {
+    case loading
+    case done
+    case failed
+    case none
+}
+
+enum LoginUserBindError: Error {
+    case error(Error?)
+    case noExistsError
+}
+
+
+class UserService {
 
     enum UserAvatarAction {
         case save(URL)
@@ -32,12 +45,18 @@ struct UserService {
         case delete
     }
 
-    private init() { }
+    init() { self.status = .none }
     private static let store   = Firestore.firestore()
     private static let storage = Storage.storage()
     private static let articleLimit = 200
     public static let fcmTokenName = "fcmToken"
-    
+
+    private let limit = 60          // １ページあたりの表示数 仮の値
+    private var lastLoginUserDocument: QueryDocumentSnapshot? // クエリカーソルの開始点
+    private var status: LoginUserBindStatus
+    private var bindLoginUserListHandler: ListenerRegistration?
+    private var lastLoginUser: QueryDocumentSnapshot?
+
     // ユーザー登録
     // 先にAuthの方でユーザーを作って　そのuidをキーとしてlogin_userでデータを生成
     static func createUser(completionHandler: @escaping (_ uid: String?, _ error: UserServiceFetchError?) -> Void) {
@@ -346,4 +365,49 @@ struct UserService {
         }
     }
 
+    func bindUser(callbackHandler: @escaping ([LoginUser]?, LoginUserBindError?) -> Void) {
+
+        if self.status == .loading { return }
+        self.status = .loading
+
+        let query: Query
+        if let lastDocument = self.lastLoginUserDocument {
+            query = UserService.store
+                .collection("/login_user/")
+                .whereField("status", isEqualTo: 1)
+                .order(by: "created_at", descending: true)
+                .start(afterDocument: lastDocument)
+                .limit(to: limit)
+        } else {
+            query = UserService.store
+                .collection("/login_user/")
+                .whereField("status", isEqualTo: 1)
+                .order(by: "created_at", descending: true)
+                .limit(to: limit)
+        }
+
+        bindLoginUserListHandler = query.addSnapshotListener(includeMetadataChanges: true) { [weak self] (querySnapshot, error) in
+            if let error = error {
+                self?.status = .failed
+                callbackHandler(nil, .error(error))
+                return
+            }
+
+            guard let snapshot = querySnapshot else {
+                self?.status = .failed
+                callbackHandler(nil, .noExistsError)
+                return
+            }
+
+            self?.lastLoginUserDocument = snapshot.documents.last
+            do {
+                let users = try snapshot.documents.compactMap { try LoginUser(from: $0) }.sorted(by: { $0.created_date > $1.created_date})
+                self?.status = .done
+                callbackHandler(users, nil)
+            } catch {
+                self?.status = .failed
+                callbackHandler(nil, .error(error))
+            }
+        }
+    }
 }

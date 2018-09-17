@@ -24,7 +24,8 @@ struct LoginUser {
     let profile_image_url: String
     let status: Int
     let notification_on: Bool
-
+    let created_date: Date
+    var updated_date: Date
 
     init(from document: DocumentSnapshot) throws {
         key = document.documentID
@@ -47,5 +48,8 @@ struct LoginUser {
         self.profile_text   = (document.get("profile_text") as? String) ?? ""
         self.profile_image_url = (document.get("profile_image_url") as? String) ?? ""
         self.notification_on = (document.get("notification_on") as? Bool) ?? true
+
+        self.created_date   = (document.get("created_at") as? Timestamp)?.dateValue() ?? Date()
+        self.updated_date   = (document.get("updated_at") as? Timestamp)?.dateValue() ?? Date()
     }
 }
