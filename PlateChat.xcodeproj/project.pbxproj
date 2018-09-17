@@ -73,6 +73,7 @@
 		3177545421400CCB0055AC5E /* ChatMessageKitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3177545121400CCB0055AC5E /* ChatMessageKitCell.swift */; };
 		3177545521400CCB0055AC5E /* ChatPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3177545221400CCB0055AC5E /* ChatPhotoCell.swift */; };
 		31775459214010700055AC5E /* UIImageView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31775458214010700055AC5E /* UIImageView+Extended.swift */; };
+		317D88D8214C2FB20045B608 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317D88D7214C2FB20045B608 /* SearchViewController.swift */; };
 		317EDDDB21396C9F00A7B651 /* ChatRoomListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EDDDA21396C9F00A7B651 /* ChatRoomListCell.swift */; };
 		317EDDDD21396ED100A7B651 /* UITableView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EDDDC21396ED100A7B651 /* UITableView+Extended.swift */; };
 		317EDDDF21396F4C00A7B651 /* NSObject+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EDDDE21396F4C00A7B651 /* NSObject+Extended.swift */; };
@@ -203,6 +204,7 @@
 		3177545121400CCB0055AC5E /* ChatMessageKitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageKitCell.swift; sourceTree = "<group>"; };
 		3177545221400CCB0055AC5E /* ChatPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPhotoCell.swift; sourceTree = "<group>"; };
 		31775458214010700055AC5E /* UIImageView+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extended.swift"; sourceTree = "<group>"; };
+		317D88D7214C2FB20045B608 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		317EDDDA21396C9F00A7B651 /* ChatRoomListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListCell.swift; sourceTree = "<group>"; };
 		317EDDDC21396ED100A7B651 /* UITableView+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extended.swift"; sourceTree = "<group>"; };
 		317EDDDE21396F4C00A7B651 /* NSObject+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extended.swift"; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				312804FC2116EA9A00357E5C /* Search.storyboard */,
+				317D88D7214C2FB20045B608 /* SearchViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -918,6 +921,7 @@
 				310FB0572126F30100C917E7 /* UIWindow+Extended.swift in Sources */,
 				310A6B9E212064AE0026A412 /* UIButton+Extended.swift in Sources */,
 				310FB0712127BA4E00C917E7 /* UnderlineTextField.swift in Sources */,
+				317D88D8214C2FB20045B608 /* SearchViewController.swift in Sources */,
 				310FB06721272CE700C917E7 /* PrivacyViewController.swift in Sources */,
 				310FB074212800EA00C917E7 /* ArticleTableViewCell.swift in Sources */,
 				31386D6B21324718008E82D0 /* R.generated.swift in Sources */,
