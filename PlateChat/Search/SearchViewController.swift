@@ -114,6 +114,7 @@ class SearchViewController: UIViewController {
         self.users = self.users_org
             .filter { !blockUsers.contains( $0.key ) }
             .filter { !blockedUsers.contains(  $0.key ) }
+            .filter { $0.key != AccountData.uid! }
     }
 
 
@@ -142,7 +143,7 @@ extension SearchViewController : UICollectionViewDelegateFlowLayout {
             return CGSize(width: width, height: width)
         }
         let width = self.view.bounds.width - 20
-        return CGSize(width: width, height: 80)//SearchCell.defaultSize
+        return CGSize(width: width, height: 160)//SearchCell.defaultSize
     }
 }
 
@@ -174,6 +175,7 @@ extension SearchViewController: UICollectionViewDataSource {
         }
 
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.searchWideCell, for: indexPath)!
+        cell.configure(self.users[indexPath.row])
         return cell
     }
 }

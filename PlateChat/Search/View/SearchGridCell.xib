@@ -21,6 +21,7 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egF-iR-8xi" customClass="CircleButton" customModule="P_Chat_" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <state key="normal" backgroundImage="person-icon"/>
                     </button>
                 </subviews>
             </view>
@@ -37,4 +38,7 @@
             <point key="canvasLocation" x="41.600000000000001" y="46.776611694152926"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="person-icon" width="128" height="128"/>
+    </resources>
 </document>
