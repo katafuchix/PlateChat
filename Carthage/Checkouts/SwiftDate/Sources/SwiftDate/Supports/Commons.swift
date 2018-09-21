@@ -34,7 +34,7 @@ public extension DateFormatter {
 	/// - Returns: number formatter instance
 	@available(iOS 9.0, macOS 10.11, *)
 	public static func sharedOrdinalNumberFormatter(locale: LocaleConvertible) -> NumberFormatter {
-		var formatter: NumberFormatter? = nil
+		var formatter: NumberFormatter?
 		let name = "SwiftDate_\(NSStringFromClass(NumberFormatter.self))"
 		formatter = threadSharedObject(key: name, create: { return NumberFormatter() })
 		formatter!.numberStyle = .ordinal
@@ -156,7 +156,7 @@ public struct DateFormats {
 	public static func parse(string: String, formats: [String], region: Region) -> Date? {
 		let formatter = DateFormatter.sharedFormatter(forRegion: region)
 
-		var parsedDate: Date? = nil
+		var parsedDate: Date?
 		for format in formats {
 			formatter.dateFormat = format
 			formatter.locale = region.locale
@@ -350,3 +350,16 @@ private func combineHashValues(_ initial: Int, _ other: Int) -> Int {
 	lhs ^= rhs &+ magic &+ (lhs << 6) &+ (lhs >> 2)
 	return Int(bitPattern: lhs)
 }
+
+// MARK: - compactMap for Swift 4.0 (not necessary > 4.0)
+
+#if swift(>=4.1)
+#else
+	extension Collection {
+		func compactMap<ElementOfResult>(
+			_ transform: (Element) throws -> ElementOfResult?
+			) rethrows -> [ElementOfResult] {
+			return try flatMap(transform)
+		}
+	}
+#endif

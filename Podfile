@@ -28,4 +28,5 @@ target 'PlateChat' do
   #pod 'DZNEmptyDataSet'
   #pod 'Nuke', '~> 6.0'
   pod 'SKPhotoBrowser'
+  #pod 'SwiftMessages', '5.0.1'
 end

@@ -8,9 +8,11 @@
 
 import UIKit
 import SVProgressHUD
+import Rswift
 
 class SearchViewController: UIViewController {
 
+    @IBOutlet weak var collectionView: UICollectionView!
     var userService: UserService?
     var users = [LoginUser]()
     var users_org = [LoginUser]()
@@ -20,9 +22,25 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.collectionView.register(R.nib.searchWideCell)
+        self.collectionView.collectionViewLayout = self.flowLayout()
+        self.collectionView.alwaysBounceVertical = true
 
         self.userService = UserService()
         self.observeUser()
+    }
+
+    private func flowLayout() -> UICollectionViewFlowLayout {
+        let flow = UICollectionViewFlowLayout()
+
+        let inset: CGFloat = 4.0
+        //let width = view.bounds.width / 2 - inset * 2
+        flow.sectionInset = UIEdgeInsetsMake(0, inset, 0, inset)
+        flow.minimumLineSpacing = 10
+        flow.minimumInteritemSpacing = 10
+        //flow.itemSize = CGSize(width: width, height: 250)
+
+        return flow
     }
 
     func observeUser() {
@@ -42,6 +60,7 @@ class SearchViewController: UIViewController {
                     print(self?.users)
                     DispatchQueue.main.async {
                         //self?.tableView.reloadData()
+                        self?.collectionView.reloadData()
                     }
                 }
             case .some(.error(let error)):
@@ -65,16 +84,63 @@ class SearchViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+}
+// MARK: - UICollectionViewDelegateFlowLayout
 
-    /*
-    // MARK: - Navigation
+extension SearchViewController : UICollectionViewDelegateFlowLayout {
+/*
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if self.pager.elements.count == 0 { return CGSize.zero }
+        if self.pager.isPagingCompleted && self.pager.elements.count > 0 { return CGSize.zero }
+        // リフレッシュ判定
+        if !self.collectionView.isUserInteractionEnabled { return CGSize.zero }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        // 1ページ目には出さない
+        if self.pager.elements.count <= 8 { return CGSize.zero }
+
+        return CGSize(width: collectionView.frame.size.width, height: PageLoadingView.defaultHeight)
     }
-    */
 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let inset = (view.bounds.width - SearchCell.defaultSize.width * 2) / 3
+        return UIEdgeInsetsMake(0, inset, 0, inset)
+    }
+*/
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        return CGSize(width: 250, height: 250)//SearchCell.defaultSize
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension SearchViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("self.users.count")
+        print(self.users.count)
+        return self.users.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        /*
+        let cell = collectionView.dequeueCell(SearchCell.self, indexPath: indexPath)
+        cell.backgroundColor = UIColor.clear
+        let data = self.pager.elements[indexPath.row]
+        cell.configureData(data)
+*/
+        let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.searchWideCell, for: indexPath)!
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension SearchViewController : UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //collectionView.deselectItem(at: indexPath, animated: true)
+
+        print(indexPath)
+    }
 }

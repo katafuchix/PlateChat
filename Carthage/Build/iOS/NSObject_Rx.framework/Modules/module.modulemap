@@ -1,4 +1,4 @@
 framework module NSObject_Rx {
-    header "NSObject_Rx-Swift.h"
-    requires objc
+  header "NSObject_Rx-Swift.h"
+  requires objc
 }
