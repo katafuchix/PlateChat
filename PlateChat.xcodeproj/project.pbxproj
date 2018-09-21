@@ -54,7 +54,7 @@
 		31386D7A2132D469008E82D0 /* IndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31386D792132D469008E82D0 /* IndicatorView.xib */; };
 		31386D7C2132DBE0008E82D0 /* ChatMessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31386D7B2132DBE0008E82D0 /* ChatMessageService.swift */; };
 		31386D7E2132E156008E82D0 /* Array+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31386D7D2132E156008E82D0 /* Array+Extended.swift */; };
-		313E09592155112800508644 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313E09582155112800508644 /* SwiftMessages.framework */; };
+		313E095A215518CB00508644 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C7354E2135C6E6009E8241 /* SwiftMessages.framework */; };
 		3150B9FF2113373900DB3512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3150B9FE2113373900DB3512 /* AppDelegate.swift */; };
 		3150BA012113373900DB3512 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3150BA002113373900DB3512 /* ViewController.swift */; };
 		3150BA042113373900DB3512 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3150BA022113373900DB3512 /* Main.storyboard */; };
@@ -185,7 +185,6 @@
 		31386D792132D469008E82D0 /* IndicatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndicatorView.xib; sourceTree = "<group>"; };
 		31386D7B2132DBE0008E82D0 /* ChatMessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageService.swift; sourceTree = "<group>"; };
 		31386D7D2132E156008E82D0 /* Array+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extended.swift"; sourceTree = "<group>"; };
-		313E09582155112800508644 /* SwiftMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3150B9FB2113373900DB3512 /* P-Chat!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "P-Chat!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3150B9FE2113373900DB3512 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3150BA002113373900DB3512 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -279,7 +278,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				313E09592155112800508644 /* SwiftMessages.framework in Frameworks */,
+				313E095A215518CB00508644 /* SwiftMessages.framework in Frameworks */,
 				31C735562136CEF2009E8241 /* Compass.framework in Frameworks */,
 				31C92B512134167E004C7130 /* SwiftDate.framework in Frameworks */,
 				31C92B4F213415CC004C7130 /* SDWebImage.framework in Frameworks */,
@@ -635,7 +634,6 @@
 		524288E8AD9E26AD49C8347E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				313E09582155112800508644 /* SwiftMessages.framework */,
 				31C735552136CEF2009E8241 /* Compass.framework */,
 				31C7354E2135C6E6009E8241 /* SwiftMessages.framework */,
 				31C92B502134167E004C7130 /* SwiftDate.framework */,
