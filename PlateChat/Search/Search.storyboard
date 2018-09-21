@@ -73,6 +73,7 @@
                         <viewLayoutGuide key="safeArea" id="njY-y5-ffy"/>
                     </view>
                     <navigationItem key="navigationItem" title="検索" id="wuv-1x-PbV">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="3fT-Uk-mNf"/>
                         <barButtonItem key="rightBarButtonItem" image="search" id="ruS-Ul-cHV"/>
                     </navigationItem>
                     <connections>
@@ -94,6 +95,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="menu" width="24" height="24"/>
         <image name="search" width="24" height="24"/>
     </resources>
 </document>
