@@ -77,7 +77,9 @@
                         <barButtonItem key="rightBarButtonItem" image="search" id="ruS-Ul-cHV"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionTypeButton" destination="3fT-Uk-mNf" id="ZQl-tY-8Qb"/>
                         <outlet property="collectionView" destination="pUR-DX-cOF" id="GUN-D8-gCe"/>
+                        <outlet property="searchButton" destination="ruS-Ul-cHV" id="x7G-K6-o2f"/>
                         <outlet property="searchDisplayController" destination="jWY-Ma-8AM" id="fkR-Fo-z50"/>
                     </connections>
                 </viewController>

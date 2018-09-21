@@ -9,10 +9,14 @@
 import UIKit
 import SVProgressHUD
 import Rswift
+import NSObject_Rx
 
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var searchButton: UIBarButtonItem!
+    @IBOutlet weak var collectionTypeButton: UIBarButtonItem!
+
     var userService: UserService?
     var users = [LoginUser]()
     var users_org = [LoginUser]()
@@ -28,6 +32,32 @@ class SearchViewController: UIViewController {
 
         self.userService = UserService()
         self.observeUser()
+
+        self.bind()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let flag = AccountData.search_collection_is_grid {
+            if flag == true {
+                self.collectionTypeButton.image = R.image.menu()
+            } else {
+                self.collectionTypeButton.image = R.image.grid()
+            }
+        }
+    }
+
+    func bind() {
+        self.collectionTypeButton.rx.tap.asDriver().drive(onNext:{_ in
+            AccountData.search_collection_is_grid = !(AccountData.search_collection_is_grid!)
+            if AccountData.search_collection_is_grid! {
+                self.collectionTypeButton.image = R.image.menu()
+            } else {
+                self.collectionTypeButton.image = R.image.grid()
+            }
+            print("AccountData.search_collection_is_grid")
+            print(AccountData.search_collection_is_grid)
+        }).disposed(by: rx.disposeBag)
     }
 
     private func flowLayout() -> UICollectionViewFlowLayout {
@@ -88,19 +118,11 @@ class SearchViewController: UIViewController {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension SearchViewController : UICollectionViewDelegateFlowLayout {
-/*
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        if self.pager.elements.count == 0 { return CGSize.zero }
-        if self.pager.isPagingCompleted && self.pager.elements.count > 0 { return CGSize.zero }
-        // リフレッシュ判定
-        if !self.collectionView.isUserInteractionEnabled { return CGSize.zero }
 
-        // 1ページ目には出さない
-        if self.pager.elements.count <= 8 { return CGSize.zero }
-
-        return CGSize(width: collectionView.frame.size.width, height: PageLoadingView.defaultHeight)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.size.width, height: 10)
     }
-
+/*
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let inset = (view.bounds.width - SearchCell.defaultSize.width * 2) / 3
         return UIEdgeInsetsMake(0, inset, 0, inset)
@@ -108,13 +130,18 @@ extension SearchViewController : UICollectionViewDelegateFlowLayout {
 */
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        return CGSize(width: 250, height: 250)//SearchCell.defaultSize
+        let width = self.view.bounds.width - 20
+        return CGSize(width: width, height: 80)//SearchCell.defaultSize
     }
 }
 
 // MARK: - UICollectionViewDataSource
 
 extension SearchViewController: UICollectionViewDataSource {
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("self.users.count")
