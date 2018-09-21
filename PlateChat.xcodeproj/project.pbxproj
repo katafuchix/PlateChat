@@ -55,6 +55,8 @@
 		31386D7C2132DBE0008E82D0 /* ChatMessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31386D7B2132DBE0008E82D0 /* ChatMessageService.swift */; };
 		31386D7E2132E156008E82D0 /* Array+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31386D7D2132E156008E82D0 /* Array+Extended.swift */; };
 		313E095A215518CB00508644 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C7354E2135C6E6009E8241 /* SwiftMessages.framework */; };
+		313E095D2155363800508644 /* SearchGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313E095B2155363800508644 /* SearchGridCell.swift */; };
+		313E095E2155363800508644 /* SearchGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313E095C2155363800508644 /* SearchGridCell.xib */; };
 		3150B9FF2113373900DB3512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3150B9FE2113373900DB3512 /* AppDelegate.swift */; };
 		3150BA012113373900DB3512 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3150BA002113373900DB3512 /* ViewController.swift */; };
 		3150BA042113373900DB3512 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3150BA022113373900DB3512 /* Main.storyboard */; };
@@ -185,6 +187,8 @@
 		31386D792132D469008E82D0 /* IndicatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndicatorView.xib; sourceTree = "<group>"; };
 		31386D7B2132DBE0008E82D0 /* ChatMessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageService.swift; sourceTree = "<group>"; };
 		31386D7D2132E156008E82D0 /* Array+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extended.swift"; sourceTree = "<group>"; };
+		313E095B2155363800508644 /* SearchGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGridCell.swift; sourceTree = "<group>"; };
+		313E095C2155363800508644 /* SearchGridCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchGridCell.xib; sourceTree = "<group>"; };
 		3150B9FB2113373900DB3512 /* P-Chat!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "P-Chat!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3150B9FE2113373900DB3512 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3150BA002113373900DB3512 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -627,6 +631,8 @@
 			children = (
 				31D7526E2150026D0044A10F /* SearchWideCell.swift */,
 				31D7526F2150026D0044A10F /* SearchWideCell.xib */,
+				313E095B2155363800508644 /* SearchGridCell.swift */,
+				313E095C2155363800508644 /* SearchGridCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -742,6 +748,7 @@
 				312805172117047400357E5C /* NotoSansCJKjpSub-Thin.otf in Resources */,
 				310FB05B2126F6DD00C917E7 /* Write.storyboard in Resources */,
 				31386D7A2132D469008E82D0 /* IndicatorView.xib in Resources */,
+				313E095E2155363800508644 /* SearchGridCell.xib in Resources */,
 				31B707D3213AE96700A2D95E /* FootPrint.storyboard in Resources */,
 				31BE63E22115F3DD00E43982 /* Home.storyboard in Resources */,
 				312805152117047400357E5C /* NotoSansCJKjpSub-Regular.otf in Resources */,
@@ -957,6 +964,7 @@
 				3168A06E2119BA29002B0440 /* Person.swift in Sources */,
 				31B707C3213A384000A2D95E /* UserBlock.swift in Sources */,
 				31BE63DA2115ECA800E43982 /* MyProfileViewController.swift in Sources */,
+				313E095D2155363800508644 /* SearchGridCell.swift in Sources */,
 				31775459214010700055AC5E /* UIImageView+Extended.swift in Sources */,
 				318108A7211584FD00C10946 /* MenuItemView.swift in Sources */,
 			);

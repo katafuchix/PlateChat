@@ -236,7 +236,7 @@ class ArticleService {
             "text"              : text,
             "status"            : 1,
             "created_at"        : FieldValue.serverTimestamp(),
-            "user_pforile_image_url"  : AccountData.my_profile_image ?? "",
+            "user_profile_image_url"  : AccountData.my_profile_image ?? "",
             "user_prefecture_id"      : AccountData.prefecture_id,
             "user_sex"                : AccountData.sex,
             "user_nickname"           : AccountData.nickname ?? ""

@@ -27,6 +27,7 @@ class SearchViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.collectionView.register(R.nib.searchWideCell)
+        self.collectionView.register(R.nib.searchGridCell)
         self.collectionView.collectionViewLayout = self.flowLayout()
         self.collectionView.alwaysBounceVertical = true
 
@@ -48,15 +49,19 @@ class SearchViewController: UIViewController {
     }
 
     func bind() {
-        self.collectionTypeButton.rx.tap.asDriver().drive(onNext:{_ in
+        self.collectionTypeButton.rx.tap.asDriver().drive(onNext:{ [weak self] _ in
             AccountData.search_collection_is_grid = !(AccountData.search_collection_is_grid!)
             if AccountData.search_collection_is_grid! {
-                self.collectionTypeButton.image = R.image.menu()
+                self?.collectionTypeButton.image = R.image.menu()
             } else {
-                self.collectionTypeButton.image = R.image.grid()
+                self?.collectionTypeButton.image = R.image.grid()
             }
             print("AccountData.search_collection_is_grid")
             print(AccountData.search_collection_is_grid)
+            DispatchQueue.main.async {
+                //self?.tableView.reloadData()
+                self?.collectionView.reloadData()
+            }
         }).disposed(by: rx.disposeBag)
     }
 
@@ -69,6 +74,7 @@ class SearchViewController: UIViewController {
         flow.minimumLineSpacing = 10
         flow.minimumInteritemSpacing = 10
         //flow.itemSize = CGSize(width: width, height: 250)
+        flow.sectionInset = UIEdgeInsetsMake(0,20,0,20)
 
         return flow
     }
@@ -83,7 +89,8 @@ class SearchViewController: UIViewController {
                     let preMessageCount = self?.users.count
                     self?.users_org = models + (self?.users_org)!
                     self?.users_org = (self?.users_org.unique { $0.key == $1.key }.sorted(by: { $0.created_date > $1.created_date}))!
-                    self?.filterBlock()
+                    //self?.filterBlock()
+                    self?.users = self?.users_org ?? []
                     if preMessageCount == self?.users.count {  // 更新数チェック
                         return
                     }
@@ -130,6 +137,10 @@ extension SearchViewController : UICollectionViewDelegateFlowLayout {
 */
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
+        if AccountData.search_collection_is_grid! {
+            let width = (self.view.bounds.width - 60)/3
+            return CGSize(width: width, height: width)
+        }
         let width = self.view.bounds.width - 20
         return CGSize(width: width, height: 80)//SearchCell.defaultSize
     }
@@ -156,6 +167,12 @@ extension SearchViewController: UICollectionViewDataSource {
         let data = self.pager.elements[indexPath.row]
         cell.configureData(data)
 */
+        if AccountData.search_collection_is_grid! {
+            let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.searchGridCell, for: indexPath)!
+            cell.configure(self.users[indexPath.row])
+            return cell
+        }
+
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.searchWideCell, for: indexPath)!
         return cell
     }

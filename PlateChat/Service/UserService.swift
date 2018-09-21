@@ -133,8 +133,8 @@ class UserService {
                                         if article.user_sex != AccountData.sex {
                                             data["user_sex"] = AccountData.sex
                                         }
-                                        if article.user_pforile_image_url != AccountData.my_profile_image {
-                                            data["user_pforile_image_url"] = AccountData.my_profile_image
+                                        if article.user_profile_image_url != AccountData.my_profile_image {
+                                            data["user_profile_image_url"] = AccountData.my_profile_image
                                         }
                                         if data.count == 0 { continue }
 
@@ -230,8 +230,8 @@ class UserService {
                                     let articles = try snapshot.documents.compactMap { try Article(from: $0) }
                                     for article in articles {
                                         var data: [String: Any] = [:]
-                                        if article.user_pforile_image_url != AccountData.my_profile_image {
-                                            data["user_pforile_image_url"] = AccountData.my_profile_image
+                                        if article.user_profile_image_url != AccountData.my_profile_image {
+                                            data["user_profile_image_url"] = AccountData.my_profile_image
                                         }
                                         if data.count == 0 { continue }
                                         self.store.collection("article").document(article.key).setData(data, merge: true,  completion: { _ in })
@@ -399,6 +399,8 @@ class UserService {
                 return
             }
 
+            print("snapshot.documents")
+            print(snapshot.documents.count)
             self?.lastLoginUserDocument = snapshot.documents.last
             do {
                 let users = try snapshot.documents.compactMap { try LoginUser(from: $0) }.sorted(by: { $0.created_date > $1.created_date})
