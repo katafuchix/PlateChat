@@ -155,8 +155,6 @@ class HomeViewController: UIViewController {
 extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("articles.count")
-        print(articles.count)
         return articles.count
     }
 
@@ -235,7 +233,6 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
 
 extension HomeViewController: writeVCprotocol {
     func close() {
-        print("close()")
         (UIApplication.shared.delegate as! AppDelegate).window?.close()
         //let indexPath = IndexPath(row: 0, section: 0)
         //self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)

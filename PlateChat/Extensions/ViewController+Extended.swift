@@ -49,7 +49,7 @@ extension UIViewController {
     func showLoading(_ message: String? = nil) {
         //SVProgressHUD.setMinimumSize(CGSize(width: 200, height: 200))
         SVProgressHUD.setDefaultMaskType(.black)
-        SVProgressHUD.show(withStatus: message ?? "Loading")
+        SVProgressHUD.show(withStatus: message ?? "Loading...")
     }
 
     func hideLoading() {

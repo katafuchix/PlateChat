@@ -366,8 +366,6 @@ extension ChatMessageViewController: MessagesDataSource {
     }
 
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        print("messages.count")
-        print(messages.count)
         return messages.count
     }
 

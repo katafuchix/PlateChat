@@ -49,6 +49,12 @@ class SearchViewController: UIViewController {
     }
 
     func bind() {
+        self.searchButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            let vc = R.storyboard.searchWindow.searchWindowViewController()!
+            vc.delegate = self
+            UIWindow.createNewWindow(vc).open()
+        }).disposed(by: rx.disposeBag)
+
         self.collectionTypeButton.rx.tap.asDriver().drive(onNext:{ [weak self] _ in
             AccountData.search_collection_is_grid = !(AccountData.search_collection_is_grid!)
             if AccountData.search_collection_is_grid! {
@@ -188,5 +194,11 @@ extension SearchViewController : UICollectionViewDelegate {
         //collectionView.deselectItem(at: indexPath, animated: true)
 
         print(indexPath)
+    }
+}
+
+extension SearchViewController: searchWindowVCprotocol {
+    func close() {
+        (UIApplication.shared.delegate as! AppDelegate).window?.close()
     }
 }

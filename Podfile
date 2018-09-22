@@ -29,4 +29,7 @@ target 'PlateChat' do
   #pod 'Nuke', '~> 6.0'
   pod 'SKPhotoBrowser'
   #pod 'SwiftMessages', '5.0.1'
+  #pod 'WARangeSlider'
+  #pod 'RangeSeekSlider'
+  pod 'SwiftRangeSlider'
 end
