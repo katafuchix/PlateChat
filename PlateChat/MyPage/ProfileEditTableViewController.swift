@@ -157,6 +157,12 @@ class ProfileEditTableViewController: UITableViewController {
             return "\(item)"
         }.disposed(by: rx.disposeBag)
 
+        self.prefTextField.rx.controlEvent(UIControlEvents.editingDidBegin)
+            .subscribe(onNext: { [weak self] _ in
+                self?.pickerView.selectRow(AccountData.prefecture_id, inComponent: 0, animated: false)
+            })
+            .disposed(by: rx.disposeBag)
+
         pickerView.rx.itemSelected.subscribe { [weak self] (event) in
                 switch event {
                 case .next(let selected):
