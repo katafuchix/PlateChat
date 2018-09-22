@@ -52,7 +52,7 @@ class UserService {
     public static let fcmTokenName = "fcmToken"
 
     private let limit = 60          // １ページあたりの表示数 仮の値
-    private var lastLoginUserDocument: QueryDocumentSnapshot? // クエリカーソルの開始点
+    var lastLoginUserDocument: QueryDocumentSnapshot? // クエリカーソルの開始点
     private var status: LoginUserBindStatus
     private var bindLoginUserListHandler: ListenerRegistration?
     private var lastLoginUser: QueryDocumentSnapshot?
@@ -375,6 +375,7 @@ class UserService {
             query = UserService.store
                 .collection("/login_user/")
                 .whereField("status", isEqualTo: 1)
+                .order(by: "last_login_date", descending: true)
                 .order(by: "created_at", descending: true)
                 .start(afterDocument: lastDocument)
                 .limit(to: limit)
@@ -382,10 +383,30 @@ class UserService {
             query = UserService.store
                 .collection("/login_user/")
                 .whereField("status", isEqualTo: 1)
+                .order(by: "last_login_date", descending: true)
                 .order(by: "created_at", descending: true)
                 .limit(to: limit)
         }
+        /*
+        query = UserService.store
+            .collection("/login_user/")
 
+        if UserSearchData.sex > 0 {
+            query = query.whereField("sex", isEqualTo: UserSearchData.sex)
+        }
+        query = query.whereField("age", isGreaterThanOrEqualTo: UserSearchData.ageLower)
+        query = query.whereField("age", isLessThanOrEqualTo: UserSearchData.ageUpper)
+        if UserSearchData.prefecture_id > 0 {
+            query = query.whereField("prefecture_id", isEqualTo: UserSearchData.prefecture_id)
+        }
+        query = query.whereField("status", isEqualTo: 1)
+            .order(by: "age", descending: false)
+            .order(by: "created_at", descending: true)
+        if let lastDocument = self.lastLoginUserDocument {
+            query = query.start(afterDocument: lastDocument)
+        }
+        query = query.limit(to: limit)
+        */
         bindLoginUserListHandler = query.addSnapshotListener(includeMetadataChanges: true) { [weak self] (querySnapshot, error) in
             if let error = error {
                 self?.status = .failed

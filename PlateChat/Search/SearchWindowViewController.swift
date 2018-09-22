@@ -15,6 +15,7 @@ import SwiftRangeSlider
 
 protocol searchWindowVCprotocol {
     func close()
+    func search()
 }
 
 class SearchWindowViewController: UIViewController {
@@ -102,6 +103,12 @@ class SearchWindowViewController: UIViewController {
         pickerView.selectRow(UserSearchData.prefecture_id, inComponent: 0, animated: false)
         self.prefTextField.text = self.prefNameArray.value[UserSearchData.prefecture_id]
 
+        self.prefTextField.rx.controlEvent(UIControlEvents.editingDidBegin)
+            .subscribe(onNext: { [weak self] _ in
+                self?.pickerView.selectRow(UserSearchData.prefecture_id, inComponent: 0, animated: false)
+            })
+            .disposed(by: rx.disposeBag)
+        
         self.prefNameArray.asObservable().bind(to: pickerView.rx.itemTitles) {_, item in
             return "\(item)"
             }.disposed(by: rx.disposeBag)
@@ -110,14 +117,16 @@ class SearchWindowViewController: UIViewController {
             switch event {
             case .next(let selected):
                 self?.prefTextField.text = self?.prefNameArray.value[selected.row]
-                UserSearchData.prefecture_id = selected.row
             default:
                 break
             }
         }.disposed(by: rx.disposeBag)
 
         self.searchButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            self?.delegate?.close()
+            print("(self?.pickerView.selectedRow(inComponent: 0))!")
+            print((self?.pickerView.selectedRow(inComponent: 0))!)
+            UserSearchData.prefecture_id = (self?.pickerView.selectedRow(inComponent: 0))!
+            self?.delegate?.search()
         }).disposed(by: rx.disposeBag)
     }
 

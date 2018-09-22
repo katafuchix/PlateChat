@@ -31,6 +31,13 @@ class SearchViewController: UIViewController {
         self.collectionView.collectionViewLayout = self.flowLayout()
         self.collectionView.alwaysBounceVertical = true
 
+        if UserSearchData.ageLower < 18 {
+            UserSearchData.ageLower = 18
+        }
+        if UserSearchData.ageUpper == 0 {
+            UserSearchData.ageUpper = 99
+        }
+        
         self.userService = UserService()
         self.observeUser()
 
@@ -49,6 +56,7 @@ class SearchViewController: UIViewController {
     }
 
     func bind() {
+        
         self.searchButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             let vc = R.storyboard.searchWindow.searchWindowViewController()!
             vc.delegate = self
@@ -62,13 +70,20 @@ class SearchViewController: UIViewController {
             } else {
                 self?.collectionTypeButton.image = R.image.grid()
             }
-            print("AccountData.search_collection_is_grid")
-            print(AccountData.search_collection_is_grid)
             DispatchQueue.main.async {
-                //self?.tableView.reloadData()
                 self?.collectionView.reloadData()
             }
         }).disposed(by: rx.disposeBag)
+
+        // ページング
+        self.collectionView.rx.willDisplayCell.subscribe(onNext: { [unowned self] (cell, indexPath) in
+            if self.isEndOfSections(indexPath) {
+                self.observeUser()
+            }
+        }).disposed(by: rx.disposeBag)
+
+        self.collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(SearchViewController.refresh(sender:)), for: .valueChanged)
     }
 
     private func flowLayout() -> UICollectionViewFlowLayout {
@@ -95,12 +110,11 @@ class SearchViewController: UIViewController {
                     let preMessageCount = self?.users.count
                     self?.users_org = models + (self?.users_org)!
                     self?.users_org = (self?.users_org.unique { $0.key == $1.key }.sorted(by: { $0.created_date > $1.created_date}))!
-                    //self?.filterBlock()
-                    self?.users = self?.users_org ?? []
+                    self?.filterBlock()
+                    //self?.users = self?.users_org ?? []
                     if preMessageCount == self?.users.count {  // 更新数チェック
                         return
                     }
-                    print(self?.users)
                     DispatchQueue.main.async {
                         //self?.tableView.reloadData()
                         self?.collectionView.reloadData()
@@ -121,8 +135,54 @@ class SearchViewController: UIViewController {
             .filter { !blockUsers.contains( $0.key ) }
             .filter { !blockedUsers.contains(  $0.key ) }
             .filter { $0.key != AccountData.uid! }
+            .filter { $0.age >= UserSearchData.ageLower}
+            .filter { $0.age <= UserSearchData.ageUpper}
+
+        if UserSearchData.sex > 0 {
+            self.users = self.users.filter { $0.sex == UserSearchData.sex }
+        }
+        if UserSearchData.prefecture_id > 0 {
+            self.users = self.users.filter { $0.prefecture_id == UserSearchData.prefecture_id }
+        }
     }
 
+    @objc func refresh(sender: UIRefreshControl) {
+        if  self.users.count == 0 {
+            self.refreshControl.endRefreshing()
+            return
+        }
+        SVProgressHUD.show(withStatus: "Loading...")
+        self.userService?.bindUser(callbackHandler: { [weak self] (models, error) in
+            SVProgressHUD.dismiss()
+            switch error {
+            case .none:
+                if let models = models {
+                    let preMessageCount = self?.users.count
+                    self?.users_org = models + (self?.users_org)!
+                    self?.users_org = (self?.users_org.unique { $0.key == $1.key }.sorted(by: { $0.created_date > $1.created_date}))!
+                    self?.filterBlock()
+                    //self?.users = self?.users_org ?? []
+                    if preMessageCount == self?.users.count {  // 更新数チェック
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        //self?.tableView.reloadData()
+                        self?.collectionView.reloadData()
+                    }
+                }
+            case .some(.error(let error)):
+                Log.error(error!)
+            case .some(.noExistsError):
+                Log.error("データ見つかりません")
+            }
+        })
+    }
+
+    /// セクション配列・セクション内の末尾位置か調べる
+    /// - return: Bool (true -> End of Sections and Rows)
+    func isEndOfSections(_ indexPath: IndexPath) -> Bool {
+        return indexPath.row == self.users.lastIndex
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -192,13 +252,21 @@ extension SearchViewController : UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //collectionView.deselectItem(at: indexPath, animated: true)
-
         print(indexPath)
     }
 }
 
 extension SearchViewController: searchWindowVCprotocol {
     func close() {
+        (UIApplication.shared.delegate as! AppDelegate).window?.close()
+    }
+
+    func search() {
+        self.users = []
+        self.users_org = []
+        self.userService?.lastLoginUserDocument = nil
+        //self.collectionView.reloadData()
+        self.observeUser()
         (UIApplication.shared.delegate as! AppDelegate).window?.close()
     }
 }
