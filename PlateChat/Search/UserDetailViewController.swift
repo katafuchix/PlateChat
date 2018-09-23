@@ -27,6 +27,12 @@ class UserDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
 
         self.bind()
+        
+        FootprintService.addFootprint(self.uid!, completionHandler: { _ in })
+        let dateUnix: TimeInterval = 1537696090
+        let date = Date(timeIntervalSince1970: dateUnix)
+        print(date)
+        print(NSDate(timeIntervalSince1970: 1415637900))
     }
 
     func bind() {
