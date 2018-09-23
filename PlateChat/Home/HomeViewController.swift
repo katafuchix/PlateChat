@@ -174,6 +174,12 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
             print("ボタンを押しました！")
         }).disposed(by: rx.disposeBag)*/
 
+        cell.userProfileImageButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            let vc = R.storyboard.uderDetail.userDetailViewController()!
+            vc.uid = cell.article?.uid
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }).disposed(by: cell.disposeBag)
+
         cell.talkButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             SVProgressHUD.show(withStatus: "Loading...")
 

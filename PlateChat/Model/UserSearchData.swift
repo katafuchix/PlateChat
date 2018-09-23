@@ -17,9 +17,18 @@ struct UserSearchData {
         case prefecture_id  = "prefecture_id"
     }
 
-    private init() {}
-
     private static let ud = UserDefaults.standard
+
+    private init() {
+        let ud = UserDefaults.standard
+        ud.register(defaults: [
+                                    UserSearchData.DataType.ageLower.rawValue : 18,
+                                    UserSearchData.DataType.ageUpper.rawValue : 99,
+                                    UserSearchData.DataType.sex.rawValue : 0,
+                                    UserSearchData.DataType.prefecture_id.rawValue : 0,
+                                    ])
+        ud.synchronize()
+    }
 
     static var ageLower: Int {
         get { return self.ud.integer(forKey: UserSearchData.DataType.ageLower.rawValue) }

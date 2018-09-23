@@ -31,13 +31,6 @@ class SearchViewController: UIViewController {
         self.collectionView.collectionViewLayout = self.flowLayout()
         self.collectionView.alwaysBounceVertical = true
 
-        if UserSearchData.ageLower < 18 {
-            UserSearchData.ageLower = 18
-        }
-        if UserSearchData.ageUpper == 0 {
-            UserSearchData.ageUpper = 99
-        }
-        
         self.userService = UserService()
         self.observeUser()
 
@@ -265,7 +258,7 @@ extension SearchViewController: searchWindowVCprotocol {
         self.users = []
         self.users_org = []
         self.userService?.lastLoginUserDocument = nil
-        //self.collectionView.reloadData()
+        self.collectionView.reloadData()    // セルが残っているかもしれないのでリセット
         self.observeUser()
         (UIApplication.shared.delegate as! AppDelegate).window?.close()
     }

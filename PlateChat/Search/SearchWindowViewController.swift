@@ -40,17 +40,17 @@ class SearchWindowViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         self.setUserData()
         self.bind()
     }
-
+    
     func setUserData() {
-        if UserSearchData.ageLower < 18 {
-            UserSearchData.ageLower = 18
-        }
-        if UserSearchData.ageUpper == 0 {
-            UserSearchData.ageUpper = 99
-        }
         self.showAge()
 
         switch UserSearchData.sex {
@@ -123,8 +123,6 @@ class SearchWindowViewController: UIViewController {
         }.disposed(by: rx.disposeBag)
 
         self.searchButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            print("(self?.pickerView.selectedRow(inComponent: 0))!")
-            print((self?.pickerView.selectedRow(inComponent: 0))!)
             UserSearchData.prefecture_id = (self?.pickerView.selectedRow(inComponent: 0))!
             self?.delegate?.search()
         }).disposed(by: rx.disposeBag)
@@ -142,6 +140,7 @@ class SearchWindowViewController: UIViewController {
         self.noneButton.isSelected  = false
         button.isSelected = true
         UserSearchData.sex = button.tag
+        print(UserSearchData.sex)
     }
 
     override func didReceiveMemoryWarning() {

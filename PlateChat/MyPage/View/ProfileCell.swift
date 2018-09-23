@@ -37,6 +37,34 @@ class ProfileCell: UITableViewCell {
                 self.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
             }
             self.profileTextLabel.text = AccountData.profile_text
+        } else {
+            if let toNickName = UsersData.nickNames[uid] {
+                self.nicknameLabel.text = toNickName
+                if let profile_image_url = UsersData.profileImages[uid] {
+                    self.profileImageButton.sd_setBackgroundImage(with: URL(string:profile_image_url), for: .normal) { (image, error, cacheType, url) in
+                    }
+                }
+            } else {
+                UserService.getUserInfo(uid, completionHandler: { [weak self] (user, error) in
+                    if let user = user {
+                        var dict = UsersData.profileImages
+                        dict[user.key] = user.profile_image_url
+                        UsersData.profileImages = dict
+
+                        dict = UsersData.nickNames
+                        dict[user.key] = user.nickname
+                        UsersData.nickNames = dict
+
+                        self?.nicknameLabel.text = user.nickname
+                        self?.profileImageButton.sd_setBackgroundImage(with: URL(string:user.profile_image_url), for: .normal) { (image, error, cacheType, url) in
+
+                            if error != nil {
+                                self?.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
+                            }
+                        }
+                    }
+                })
+            }
         }
     }
 

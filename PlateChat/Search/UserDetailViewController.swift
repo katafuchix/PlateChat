@@ -1,8 +1,8 @@
 //
-//  MyProfileViewController.swift
+//  UserDetailViewController.swift
 //  PlateChat
 //
-//  Created by cano on 2018/08/04.
+//  Created by cano on 2018/09/23.
 //  Copyright © 2018年 deskplate. All rights reserved.
 //
 
@@ -14,28 +14,25 @@ import Rswift
 import SVProgressHUD
 import SKPhotoBrowser
 
-class MyProfileViewController: UIViewController {
+class UserDetailViewController: UIViewController {
 
-    @IBOutlet weak var settingBarButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     var articleService: ArticleService?
     var articles = [Article]()
+    var uid: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+
         self.bind()
     }
 
     func bind() {
-        settingBarButton.rx.tap.subscribe(onNext: { [unowned self] in
-            guard let vc = R.storyboard.myPage.settingNVC() else { return }
-            self.present(vc, animated: true, completion: nil)
-        }).disposed(by: rx.disposeBag)
-
         self.tableView.register(R.nib.articleTableViewCell)
         self.tableView.register(R.nib.profileCell)
+        self.tableView.register(R.nib.talkButtonTableViewCell)
         self.tableView.separatorInset   = .zero
         self.tableView.tableFooterView  = UIView()
         //tableView.estimatedRowHeight = 170 // これはStoryBoardの設定で無視されるかも？
@@ -60,7 +57,7 @@ class MyProfileViewController: UIViewController {
 
     func observeArticle() {
         SVProgressHUD.show(withStatus: "Loading...")
-        self.articleService?.bindUidArticle(AccountData.uid!, callbackHandler: { [weak self] (models, error) in
+        self.articleService?.bindUidArticle(self.uid!, callbackHandler: { [weak self] (models, error) in
             SVProgressHUD.dismiss()
             switch error {
             case .none:
@@ -95,17 +92,21 @@ class MyProfileViewController: UIViewController {
     }
 }
 
-extension MyProfileViewController : UITableViewDataSource, UITableViewDelegate {
+extension UserDetailViewController : UITableViewDataSource, UITableViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("articles.count")
-        print(articles.count)
-        if section == 0 { return 1}
-        return articles.count
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 1
+        default:
+            return articles.count
+        }
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -115,13 +116,12 @@ extension MyProfileViewController : UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = tableView .dequeueReusableCell(withIdentifier: String(describing: ArticleTableViewCell.self), for: indexPath) as! ArticleTableViewCell
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.profileCell, for: indexPath)!
-            cell.configure(AccountData.uid!)
-
+            cell.configure(self.uid!)
             cell.profileImageButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
                 if let image = cell.profileImageButton.backgroundImage(for: .normal) , let image_url = AccountData.my_profile_image {
-
                     // SKPhotoBrowserを利用して別ウィンドウで開く
                     var images = [SKPhoto]()
                     let photo = SKPhoto.photoWithImage(image)
@@ -132,8 +132,45 @@ extension MyProfileViewController : UITableViewDataSource, UITableViewDelegate {
                 }
             }).disposed(by: cell.disposeBag)
 
+            cell.separatorInset = UIEdgeInsets(top: 0, left: self.view.bounds.width, bottom: 0, right: 0)
             return cell
-        }
+
+        case 1:
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.talkButtonTableViewCell, for: indexPath)!
+            if self.uid == AccountData.uid {
+                cell.talkButton.isEnabled = false
+                cell.talkButton.backgroundColor = UIColor.lightGray
+            }
+            cell.talkButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+                SVProgressHUD.show(withStatus: "Loading...")
+
+                let chatRoomService = ChatRoomService()
+
+                let vc = ChatMessageViewController()
+                // ChatRoom 取得 なければ作成
+                if let uid = self?.uid {
+                    chatRoomService.cerateChatRoom(uid, { [weak self] (chatroom, error) in
+                        SVProgressHUD.dismiss()
+                        if let err = error {
+                            self?.showAlert(err.localizedDescription)
+                            return
+                        }
+                        guard let chatRoom = chatroom else { return }
+                        // snapshotでコールバックが複数回実行されるのを回避
+                        let bool = self?.navigationController?.topViewController is ChatMessageViewController
+                        if !bool {
+                            vc.chatRoom     = chatRoom
+                            vc.other_uid    = uid
+                            vc.hidesBottomBarWhenPushed = true
+                            self?.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    })
+                }
+            }).disposed(by: cell.disposeBag)
+            
+            return cell
+
+        default:
 
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.articleTableViewCell, for: indexPath)!
         //cell.set(content: datasource[indexPath.row])
@@ -179,14 +216,16 @@ extension MyProfileViewController : UITableViewDataSource, UITableViewDelegate {
         }).disposed(by: cell.disposeBag)
 
         return cell
+        }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
 }
 
-extension MyProfileViewController: writeVCprotocol {
+extension UserDetailViewController: writeVCprotocol {
     func close() {
         (UIApplication.shared.delegate as! AppDelegate).window?.close()
     }
 }
+

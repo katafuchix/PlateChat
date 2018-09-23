@@ -38,7 +38,7 @@ class ArticleService {
     private var lastArticle: QueryDocumentSnapshot?
 
     private var bindUidArticleListHandler: ListenerRegistration?
-    private var lastUidArticle: QueryDocumentSnapshot?
+    var lastUidArticle: QueryDocumentSnapshot?
 
     init() {
         self.status = .none
