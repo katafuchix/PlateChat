@@ -27,6 +27,10 @@ struct LoginUser {
     let created_date: Date
     var updated_date: Date
 
+    let notification_reply: Bool
+    let notification_message: Bool
+    let notification_footprint: Bool
+
     init(from document: DocumentSnapshot) throws {
         key = document.documentID
 
@@ -47,7 +51,11 @@ struct LoginUser {
         self.age            = (document.get("age") as? Int) ?? 0
         self.profile_text   = (document.get("profile_text") as? String) ?? ""
         self.profile_image_url = (document.get("profile_image_url") as? String) ?? ""
+
         self.notification_on = (document.get("notification_on") as? Bool) ?? true
+        self.notification_reply      = (document.get("notification_reply") as? Bool) ?? true
+        self.notification_message    = (document.get("notification_message") as? Bool) ?? true
+        self.notification_footprint  = (document.get("notification_footprint") as? Bool) ?? true
 
         self.created_date   = (document.get("created_at") as? Timestamp)?.dateValue() ?? Date()
         self.updated_date   = (document.get("updated_at") as? Timestamp)?.dateValue() ?? Date()

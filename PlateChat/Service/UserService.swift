@@ -78,6 +78,9 @@ class UserService {
                             "devise"            : UserDeviceInfo.getDeviceInfo(),
                             "prefecture_id"     : 0,
                             "notification_on"   : true,
+                            "notification_reply"    : true,
+                            "notification_message"  : true,
+                            "notification_footprint": true,
                             "status"            : 1,
                             "last_login_date"   : FieldValue.serverTimestamp(),
                             "created_at"        : FieldValue.serverTimestamp()
@@ -165,6 +168,9 @@ class UserService {
         AccountData.login_password      = user.login_password
         AccountData.my_profile_image    = user.profile_image_url
         AccountData.notification_on     = user.notification_on
+        AccountData.notification_reply      = user.notification_reply
+        AccountData.notification_message    = user.notification_message
+        AccountData.notification_footprint  = user.notification_footprint
         // Block
         UserBlockService.getBlockUser(completionHandler: { (_,_) in
             if let uid = Auth.auth().currentUser?.uid {
@@ -183,6 +189,9 @@ class UserService {
         AccountData.login_password      = ""
         AccountData.my_profile_image    = ""
         AccountData.notification_on     = true
+        AccountData.notification_reply      = true
+        AccountData.notification_message    = true
+        AccountData.notification_footprint  = true
         UsersData.userBlock             = [String: Bool]()
         UsersData.userBlocked           = [String: Bool]()
     }
@@ -289,6 +298,18 @@ class UserService {
                 return
             }
             AccountData.notification_on = bool
+        })
+    }
+
+    static func setNotification(_ key: String, _ bool: Bool) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let data = [key: bool] as [String : Bool]
+        self.store.collection("login_user").document(uid).setData(data, merge: true, completion: { error in
+            if let err = error {
+                print("Error adding document: \(err)")
+                return
+            }
+            AccountData.setNewValueForKey(key, bool)
         })
     }
 

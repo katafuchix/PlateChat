@@ -16,6 +16,11 @@ class SettingTableViewController: UITableViewController {
 
     @IBOutlet weak var closeButton: UIBarButtonItem!
     @IBOutlet weak var notificationSwitch: UISwitch!
+
+    @IBOutlet weak var replyNotificationSwitch: UISwitch!
+    @IBOutlet weak var messageNotificationSwitch: UISwitch!
+    @IBOutlet weak var footprintNotificationSwitch: UISwitch!
+    
     @IBOutlet weak var passcodeSwitch: UISwitch!
 
     override func viewDidLoad() {
@@ -32,14 +37,42 @@ class SettingTableViewController: UITableViewController {
             self.dismiss(animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
 
-        if let bool = AccountData.notification_on {
-            notificationSwitch.isOn = bool
+        if let boolr = AccountData.notification_reply {
+            replyNotificationSwitch.isOn = boolr
         }
+        replyNotificationSwitch.rx.value.asDriver()
+            .skip(1)
+            .drive(onNext: {
+                UserService.setNotification("notification_reply", $0)
+            }).disposed(by: rx.disposeBag)
+
+        if let boolm = AccountData.notification_message {
+            messageNotificationSwitch.isOn = boolm
+        }
+        messageNotificationSwitch.rx.value.asDriver()
+            .skip(1)
+            .drive(onNext: {
+                 UserService.setNotification("notification_message", $0)
+            }).disposed(by: rx.disposeBag)
+
+        if let boolf = AccountData.notification_footprint {
+            footprintNotificationSwitch.isOn = boolf
+        }
+        footprintNotificationSwitch.rx.value.asDriver()
+            .skip(1)
+            .drive(onNext: {
+                 UserService.setNotification("notification_footprint", $0)
+            }).disposed(by: rx.disposeBag)
+        /*
+         if let bool = AccountData.notification_on {
+         notificationSwitch.isOn = bool
+         }
         notificationSwitch.rx.value.asDriver()
             .skip(1)
             .drive(onNext: {
                 UserService.setNotificationON($0)
             }).disposed(by: rx.disposeBag)
+        */
     }
 
     override func didReceiveMemoryWarning() {

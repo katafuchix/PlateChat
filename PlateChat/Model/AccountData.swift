@@ -25,6 +25,10 @@ struct AccountData {
         case my_profile_image = "my_profile_image" // メイン画像
         case fcmToken       = "fcmToken" // firebase remote notification token
         case notification_on = "notification_on" // 通知設定
+        case notification_reply = "notification_reply"
+        case notification_message = "notification_message"
+        case notification_footprint = "notification_footprint"
+
         case search_collection_is_grid = "search_collection_is_grid"
     }
 
@@ -87,8 +91,28 @@ struct AccountData {
         set { self.ud.set(newValue, forKey: AccountData.DataType.notification_on.rawValue); self.ud.synchronize() }
     }
 
+    static var notification_reply: Bool? {
+        get { return self.ud.bool(forKey: AccountData.DataType.notification_reply.rawValue) }
+        set { self.ud.set(newValue, forKey: AccountData.DataType.notification_reply.rawValue); self.ud.synchronize() }
+    }
+
+    static var notification_message: Bool? {
+        get { return self.ud.bool(forKey: AccountData.DataType.notification_message.rawValue) }
+        set { self.ud.set(newValue, forKey: AccountData.DataType.notification_message.rawValue); self.ud.synchronize() }
+    }
+
+    static var notification_footprint: Bool? {
+        get { return self.ud.bool(forKey: AccountData.DataType.notification_footprint.rawValue) }
+        set { self.ud.set(newValue, forKey: AccountData.DataType.notification_footprint.rawValue); self.ud.synchronize() }
+    }
+
     static var search_collection_is_grid: Bool? {
         get { return self.ud.bool(forKey: AccountData.DataType.search_collection_is_grid.rawValue) }
         set { self.ud.set(newValue, forKey: AccountData.DataType.search_collection_is_grid.rawValue); self.ud.synchronize() }
+    }
+
+    static func setNewValueForKey(_ key: String, _ value: Any) {
+        self.ud.set(value, forKey: key)
+        self.ud.synchronize()
     }
 }
