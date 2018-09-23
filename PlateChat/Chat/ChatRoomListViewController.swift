@@ -126,6 +126,7 @@ extension ChatRoomListViewController: UITableViewDelegate {
             let other_uid   = Array(chatRoom.members.filter { $0.0 != AccountData.uid }.keys)[0]
             vc.other_uid    = other_uid
             vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.tabBarItem.badgeValue = nil
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
