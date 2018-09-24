@@ -31,6 +31,10 @@ class FootPrintViewController: UIViewController {
         self.tableView.estimatedRowHeight = 80
         self.tableView.register(R.nib.noticeTableViewCell)
         self.tableView.register(R.nib.footprintTableViewCell)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.observeFootprint()
     }
 
