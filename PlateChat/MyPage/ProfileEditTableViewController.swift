@@ -100,6 +100,11 @@ class ProfileEditTableViewController: UITableViewController {
 
         // 保存
         saveButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            
+            self?.profileTextView.resignFirstResponder()
+            self?.nicknameTextField.resignFirstResponder()
+            self?.ageTextField.resignFirstResponder()
+            self?.prefTextField.resignFirstResponder()
 
             if (self?.nicknameTextField.text?.isEmpty)! {
                 Alert.init("ニックネームを入力してください")
