@@ -251,14 +251,22 @@ class ArticleService {
             data["toKey"]      = ""
             data["toUid"]      = ""
         }
-
-        self.store.collection("article").addDocument(data:data, completion: { [weak self] error in
+        var ref: DocumentReference? = nil
+        ref = self.store.collection("article").addDocument(data:data, completion: { [weak self] error in
             if let err = error {
                 print("Error adding document: \(err)")
                 completionHandler(err)
                 return
             }
+
+            print("ref")
+            print(ref)
+            print(ref?.documentID)
+
             if let article = article {
+                // 返信ログ
+                ArticleReplyLogService.addArticleReplyLog(article.uid, ref!.documentID, completionHandler: { _ in })
+
                 if article.parentKey == "" {
                     let data = ["parentKey": article.key]
                     self?.store.collection("article").document(article.key).setData(data, merge: true, completion: { error in

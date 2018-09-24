@@ -41,6 +41,8 @@
 		31199F952157472700324469 /* TalkButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31199F932157472700324469 /* TalkButtonTableViewCell.xib */; };
 		31199F972157752100324469 /* Footprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31199F962157752100324469 /* Footprint.swift */; };
 		31199F99215776AB00324469 /* FootprintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31199F98215776AB00324469 /* FootprintService.swift */; };
+		31199F9B2158905500324469 /* ArticleReplyLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31199F9A2158905500324469 /* ArticleReplyLog.swift */; };
+		31199F9D2158924E00324469 /* ArticleReplyLogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31199F9C2158924E00324469 /* ArticleReplyLogService.swift */; };
 		312804FD2116EA9A00357E5C /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FC2116EA9A00357E5C /* Search.storyboard */; };
 		312805002116EBB400357E5C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FF2116EBB400357E5C /* Chat.storyboard */; };
 		312805032116ECF700357E5C /* Notice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312805022116ECF700357E5C /* Notice.storyboard */; };
@@ -183,6 +185,8 @@
 		31199F932157472700324469 /* TalkButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TalkButtonTableViewCell.xib; sourceTree = "<group>"; };
 		31199F962157752100324469 /* Footprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footprint.swift; sourceTree = "<group>"; };
 		31199F98215776AB00324469 /* FootprintService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootprintService.swift; sourceTree = "<group>"; };
+		31199F9A2158905500324469 /* ArticleReplyLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleReplyLog.swift; sourceTree = "<group>"; };
+		31199F9C2158924E00324469 /* ArticleReplyLogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleReplyLogService.swift; sourceTree = "<group>"; };
 		312804FC2116EA9A00357E5C /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		312804FF2116EBB400357E5C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		312805022116ECF700357E5C /* Notice.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notice.storyboard; sourceTree = "<group>"; };
@@ -512,6 +516,7 @@
 				31B707C2213A384000A2D95E /* UserBlock.swift */,
 				31B707C4213A384C00A2D95E /* UserBlocked.swift */,
 				31199F962157752100324469 /* Footprint.swift */,
+				31199F9A2158905500324469 /* ArticleReplyLog.swift */,
 				310FB075212802DF00C917E7 /* Article.swift */,
 				310A6B9F21206C460026A412 /* AccountData.swift */,
 				317EDDE021398EC800A7B651 /* UsersData.swift */,
@@ -532,6 +537,7 @@
 				31B707C6213A3DD600A2D95E /* UserBlockService.swift */,
 				31B707C8213A3DE200A2D95E /* UserBlockedService.swift */,
 				31199F98215776AB00324469 /* FootprintService.swift */,
+				31199F9C2158924E00324469 /* ArticleReplyLogService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -946,8 +952,10 @@
 				318108A6211584FD00C10946 /* PagingViewController.swift in Sources */,
 				317EDDE121398EC800A7B651 /* UsersData.swift in Sources */,
 				3168A0722119BA98002B0440 /* ChatMessage.swift in Sources */,
+				31199F9D2158924E00324469 /* ArticleReplyLogService.swift in Sources */,
 				31B707C7213A3DD600A2D95E /* UserBlockService.swift in Sources */,
 				310FB076212802DF00C917E7 /* Article.swift in Sources */,
+				31199F9B2158905500324469 /* ArticleReplyLog.swift in Sources */,
 				31199F8D2155D64000324469 /* UserSearchData.swift in Sources */,
 				310FB06B2127B6DE00C917E7 /* AccountTableViewController.swift in Sources */,
 				31ED9E0E212D8DCA00D1E96E /* DotBadgeView.swift in Sources */,

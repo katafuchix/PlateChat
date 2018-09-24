@@ -433,7 +433,8 @@ extension ChatMessageViewController: MessagesDisplayDelegate {
     // メッセージの背景色を変更している（デフォルトは自分：緑、相手：グレー）
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         return isFromCurrentSender(message: message) ?
-            UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1) :
+            //UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1) :
+            UIColor.hexStr(hexStr: "#58CE91", alpha: 1.0) : 
             UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
     }
 

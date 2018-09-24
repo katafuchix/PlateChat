@@ -1,8 +1,8 @@
 //
-//  FootprintService.swift
+//  ArticleReplyLogService.swift
 //  PlateChat
 //
-//  Created by cano on 2018/09/23.
+//  Created by cano on 2018/09/24.
 //  Copyright © 2018年 deskplate. All rights reserved.
 //
 
@@ -10,30 +10,30 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
-enum FootprintServiceFetchError: Error {
+enum ArticleReplyLogFetchError: Error {
     case fetchError(Error?)
     case noExistsError
 }
 
-enum FootprintServiceUpdateError: Error {
+enum ArticleReplyLogUpdateError: Error {
     case updateError(Error?)
     case fetchError(Error?)
 }
 
-struct FootprintService {
+struct ArticleReplyLogService {
 
-    static func getFootprint(_ other_uid: String, completionHandler: @escaping (_ footprint: Footprint?, _ error: FootprintServiceFetchError?) -> Void) {
+    static func getArticleReply(_ other_uid: String, completionHandler: @escaping (_ footprint: ArticleReplyLog?, _ error: ArticleReplyLogFetchError?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
-        let documentRef = Firestore.firestore().collection("footprint").document(other_uid)
+        let documentRef = Firestore.firestore().collection("article_reply_log").document(other_uid)
         documentRef.getDocument { (document, error) in
             //.addSnapshotListener { document, error in
             if error != nil {
                 completionHandler(nil, .fetchError(error))
             } else if let document = document, document.exists {
                 do {
-                    let footprint = try Footprint(from: document)
-                    completionHandler(footprint, nil)
+                    let articleReplyLog = try ArticleReplyLog(from: document)
+                    completionHandler(articleReplyLog, nil)
                 } catch {
                     completionHandler(nil, .fetchError(error))
                 }
@@ -43,32 +43,33 @@ struct FootprintService {
         }
     }
 
-    static func addFootprint(_ other_uid: String, completionHandler: @escaping ( _ error: FootprintServiceUpdateError?) -> Void) {
+    static func addArticleReplyLog(_ other_uid: String, _ articleKey: String, completionHandler: @escaping ( _ error: ArticleReplyLogUpdateError?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        // 自分には返信ログを取らない
         if other_uid == uid { return }
-        
-        self.getFootprint(other_uid, completionHandler:{ (footprint, error) in
+
+        self.getArticleReply(other_uid, completionHandler:{ (articleReplyLog, error) in
             var history = [String: String]()
-            if let footprint = footprint {
-                history = footprint.history
+            if let articleReplyLog = articleReplyLog {
+                history = articleReplyLog.history
             }
-            history["\(Timestamp().seconds)"] = uid
+            history["\(Timestamp().seconds)"] = "\(uid),\(articleKey)"
 
             let tmp = history.sorted(by: { Int($0.0)! > Int($1.0)! }).prefix(50)  // ソートするとなぜか[(key:"", value:""),,,] tuple になってしまう
             var tmpDic = [String: String]()
             tmp.forEach { tmpDic["\($0.0)"] = $0.1 }
             history = tmpDic
             /* // このやり方でもよい
-            let dictionary = tmp.compactMap { $0 }.reduce([String : String]()) { ( dict, tuple) in
-                var tmp = dict
-                tmp["\(tuple.0)"] = tuple.1
-                return tmp
-            }
-            print(dictionary)
-            */
+             let dictionary = tmp.compactMap { $0 }.reduce([String : String]()) { ( dict, tuple) in
+             var tmp = dict
+             tmp["\(tuple.0)"] = tuple.1
+             return tmp
+             }
+             print(dictionary)
+             */
 
             let data = ["history"    :   history]
-            Firestore.firestore().collection("footprint").document(other_uid).setData(data,  completion: { error in
+            Firestore.firestore().collection("article_reply_log").document(other_uid).setData(data,  completion: { error in
                 if let error = error {
                     completionHandler(.fetchError(error))
                     return
