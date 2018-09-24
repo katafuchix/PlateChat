@@ -43,6 +43,10 @@
 		31199F99215776AB00324469 /* FootprintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31199F98215776AB00324469 /* FootprintService.swift */; };
 		31199F9B2158905500324469 /* ArticleReplyLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31199F9A2158905500324469 /* ArticleReplyLog.swift */; };
 		31199F9D2158924E00324469 /* ArticleReplyLogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31199F9C2158924E00324469 /* ArticleReplyLogService.swift */; };
+		31199F9F2158F19600324469 /* ArticleReplyLog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31199F9E2158F19600324469 /* ArticleReplyLog.storyboard */; };
+		31199FA12158F1B000324469 /* ArticleReplyLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31199FA02158F1B000324469 /* ArticleReplyLogViewController.swift */; };
+		31199FA52158F79C00324469 /* NoticeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31199FA32158F79C00324469 /* NoticeTableViewCell.swift */; };
+		31199FA62158F79C00324469 /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31199FA42158F79C00324469 /* NoticeTableViewCell.xib */; };
 		312804FD2116EA9A00357E5C /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FC2116EA9A00357E5C /* Search.storyboard */; };
 		312805002116EBB400357E5C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FF2116EBB400357E5C /* Chat.storyboard */; };
 		312805032116ECF700357E5C /* Notice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312805022116ECF700357E5C /* Notice.storyboard */; };
@@ -88,6 +92,8 @@
 		3177545521400CCB0055AC5E /* ChatPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3177545221400CCB0055AC5E /* ChatPhotoCell.swift */; };
 		31775459214010700055AC5E /* UIImageView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31775458214010700055AC5E /* UIImageView+Extended.swift */; };
 		317D88D8214C2FB20045B608 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317D88D7214C2FB20045B608 /* SearchViewController.swift */; };
+		317E0AB9215912F3003DDAD3 /* FootprintTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317E0AB7215912F3003DDAD3 /* FootprintTableViewCell.swift */; };
+		317E0ABA215912F3003DDAD3 /* FootprintTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 317E0AB8215912F3003DDAD3 /* FootprintTableViewCell.xib */; };
 		317EDDDB21396C9F00A7B651 /* ChatRoomListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EDDDA21396C9F00A7B651 /* ChatRoomListCell.swift */; };
 		317EDDDD21396ED100A7B651 /* UITableView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EDDDC21396ED100A7B651 /* UITableView+Extended.swift */; };
 		317EDDDF21396F4C00A7B651 /* NSObject+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EDDDE21396F4C00A7B651 /* NSObject+Extended.swift */; };
@@ -187,6 +193,10 @@
 		31199F98215776AB00324469 /* FootprintService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootprintService.swift; sourceTree = "<group>"; };
 		31199F9A2158905500324469 /* ArticleReplyLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleReplyLog.swift; sourceTree = "<group>"; };
 		31199F9C2158924E00324469 /* ArticleReplyLogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleReplyLogService.swift; sourceTree = "<group>"; };
+		31199F9E2158F19600324469 /* ArticleReplyLog.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ArticleReplyLog.storyboard; sourceTree = "<group>"; };
+		31199FA02158F1B000324469 /* ArticleReplyLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleReplyLogViewController.swift; sourceTree = "<group>"; };
+		31199FA32158F79C00324469 /* NoticeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewCell.swift; sourceTree = "<group>"; };
+		31199FA42158F79C00324469 /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeTableViewCell.xib; sourceTree = "<group>"; };
 		312804FC2116EA9A00357E5C /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		312804FF2116EBB400357E5C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		312805022116ECF700357E5C /* Notice.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notice.storyboard; sourceTree = "<group>"; };
@@ -233,6 +243,8 @@
 		3177545221400CCB0055AC5E /* ChatPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPhotoCell.swift; sourceTree = "<group>"; };
 		31775458214010700055AC5E /* UIImageView+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extended.swift"; sourceTree = "<group>"; };
 		317D88D7214C2FB20045B608 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		317E0AB7215912F3003DDAD3 /* FootprintTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootprintTableViewCell.swift; sourceTree = "<group>"; };
+		317E0AB8215912F3003DDAD3 /* FootprintTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FootprintTableViewCell.xib; sourceTree = "<group>"; };
 		317EDDDA21396C9F00A7B651 /* ChatRoomListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListCell.swift; sourceTree = "<group>"; };
 		317EDDDC21396ED100A7B651 /* UITableView+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extended.swift"; sourceTree = "<group>"; };
 		317EDDDE21396F4C00A7B651 /* NSObject+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extended.swift"; sourceTree = "<group>"; };
@@ -365,6 +377,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		31199FA22158F32200324469 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31199FA32158F79C00324469 /* NoticeTableViewCell.swift */,
+				31199FA42158F79C00324469 /* NoticeTableViewCell.xib */,
+				317E0AB7215912F3003DDAD3 /* FootprintTableViewCell.swift */,
+				317E0AB8215912F3003DDAD3 /* FootprintTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		312804FB2116E81200357E5C /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,10 +417,13 @@
 		312805012116EC7D00357E5C /* Notice */ = {
 			isa = PBXGroup;
 			children = (
+				31199FA22158F32200324469 /* View */,
 				312805022116ECF700357E5C /* Notice.storyboard */,
 				31B707D0213AE91E00A2D95E /* NoticeViewController.swift */,
 				31B707D2213AE96700A2D95E /* FootPrint.storyboard */,
 				31B707D4213AF7ED00A2D95E /* FootPrintViewController.swift */,
+				31199F9E2158F19600324469 /* ArticleReplyLog.storyboard */,
+				31199FA02158F1B000324469 /* ArticleReplyLogViewController.swift */,
 			);
 			path = Notice;
 			sourceTree = "<group>";
@@ -784,8 +810,11 @@
 				31386D7A2132D469008E82D0 /* IndicatorView.xib in Resources */,
 				313E095E2155363800508644 /* SearchGridCell.xib in Resources */,
 				31B707D3213AE96700A2D95E /* FootPrint.storyboard in Resources */,
+				317E0ABA215912F3003DDAD3 /* FootprintTableViewCell.xib in Resources */,
 				31BE63E22115F3DD00E43982 /* Home.storyboard in Resources */,
 				312805152117047400357E5C /* NotoSansCJKjpSub-Regular.otf in Resources */,
+				31199F9F2158F19600324469 /* ArticleReplyLog.storyboard in Resources */,
+				31199FA62158F79C00324469 /* NoticeTableViewCell.xib in Resources */,
 				312805032116ECF700357E5C /* Notice.storyboard in Resources */,
 				3150BA092113373A00DB3512 /* LaunchScreen.storyboard in Resources */,
 				312805142117047400357E5C /* NotoSansCJKjpSub-Black.otf in Resources */,
@@ -971,6 +1000,7 @@
 				3168A0672118898A002B0440 /* ProfileEditTableViewController.swift in Sources */,
 				317EDDDB21396C9F00A7B651 /* ChatRoomListCell.swift in Sources */,
 				311017A22120932500E6B343 /* CircleSexButton.swift in Sources */,
+				31199FA12158F1B000324469 /* ArticleReplyLogViewController.swift in Sources */,
 				310FB0592126F49C00C917E7 /* HomeViewController.swift in Sources */,
 				310A6BA021206C460026A412 /* AccountData.swift in Sources */,
 				310FB05521269E0100C917E7 /* UITextField+Extended.swift in Sources */,
@@ -1002,6 +1032,7 @@
 				310FB05D2126F6EC00C917E7 /* WriteViewController.swift in Sources */,
 				3168A0702119BA54002B0440 /* Message.swift in Sources */,
 				310A6B9A212063420026A412 /* CALayer+RuntimeAttribute.swift in Sources */,
+				31199FA52158F79C00324469 /* NoticeTableViewCell.swift in Sources */,
 				319A26B4212675A000769A6E /* PhotoRequester.swift in Sources */,
 				310A6B98211FD0850026A412 /* CircleButton.swift in Sources */,
 				318108AC211584FD00C10946 /* Pagable.swift in Sources */,
@@ -1013,6 +1044,7 @@
 				313E095D2155363800508644 /* SearchGridCell.swift in Sources */,
 				31775459214010700055AC5E /* UIImageView+Extended.swift in Sources */,
 				318108A7211584FD00C10946 /* MenuItemView.swift in Sources */,
+				317E0AB9215912F3003DDAD3 /* FootprintTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

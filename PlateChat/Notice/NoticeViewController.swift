@@ -7,8 +7,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import NSObject_Rx
+import Rswift
 
 class NoticeViewController: UIViewController {
+
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
+
+    static let pv1 = R.storyboard.footPrint.footPrintViewController()!
+    static let pv2 = R.storyboard.articleReplyLog.articleReplyLogViewController()!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +34,17 @@ class NoticeViewController: UIViewController {
         self.addChildViewController(pagingMenuController)
         self.view.addSubview(pagingMenuController.view)
         pagingMenuController.didMove(toParentViewController: self)
+
+        self.refreshButton.rx.tap.subscribe(onNext: { [unowned self] in
+            NoticeViewController.pv1.observeFootprint()
+            NoticeViewController.pv2.observeArticleReplyLog()
+        }).disposed(by: rx.disposeBag)
     }
 
 
     private struct PagingMenuOptions: PagingMenuControllerCustomizable {
-        let pv1 = R.storyboard.footPrint.footPrintViewController()!
-        let pv2 = R.storyboard.footPrint.footPrintViewController()!
+        let pv1 = NoticeViewController.pv1
+        let pv2 = NoticeViewController.pv2
         let pv3 = R.storyboard.footPrint.footPrintViewController()!
 
         fileprivate var componentType: ComponentType {
@@ -50,16 +64,16 @@ class NoticeViewController: UIViewController {
             var height: CGFloat {
                 return 44
             }
-            /*
+/*
             var backgroundColor: UIColor {
                 return UIColor.lightGray
             }
             var selectedBackgroundColor: UIColor {
-                return UIColor.gray
+                return UIColor.white
             }
-            */
+*/
             var focusMode: MenuFocusMode {
-                return .roundRect(radius: 12, horizontalPadding: 8, verticalPadding: 8, selectedColor: UIColor.lightGray)
+                return .roundRect(radius: 12, horizontalPadding: 8, verticalPadding: 8, selectedColor: UIColor.hexStr(hexStr: "#7DD8C7", alpha: 0.6))
                 //return .roundRect(radius:  16, horizontalPadding: 8, verticalPadding: 8, selectedColor: UIColor.lightGray)
             }
             var itemsOptions: [MenuItemViewCustomizable] {
@@ -70,7 +84,7 @@ class NoticeViewController: UIViewController {
         fileprivate struct MenuItem1: MenuItemViewCustomizable {
             var displayMode: MenuItemDisplayMode {
                 //return .text(title: MenuItemText(text: "赤い画面", color: UIColor.red, selectedColor: UIColor.white))
-                let title = MenuItemText(text: "返信")
+                let title = MenuItemText(text: "足あと", color: UIColor.lightGray, selectedColor: UIColor.white)
                 return .text(title: title)
             }
         }
@@ -78,7 +92,7 @@ class NoticeViewController: UIViewController {
         fileprivate struct MenuItem2: MenuItemViewCustomizable {
             var displayMode: MenuItemDisplayMode {
                 //return .text(title: MenuItemText(text: "青い画面", color: UIColor.blue, selectedColor: UIColor.white))
-                let title = MenuItemText(text: "足あと")
+                let title = MenuItemText(text: "返信", color: UIColor.lightGray, selectedColor: UIColor.white)
                 return .text(title: title)
             }
         }
