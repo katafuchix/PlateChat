@@ -73,6 +73,29 @@ class SettingTableViewController: UITableViewController {
                 UserService.setNotificationON($0)
             }).disposed(by: rx.disposeBag)
         */
+        // パスコード
+        self.passcodeSwitch.isOn = !(AccountData.passcode ?? "").isEmpty
+        passcodeSwitch.rx.value.asDriver()
+            .skip(1)
+            .drive(onNext: { [weak self] value in
+                if value {
+                    let nvc = R.storyboard.newPasscodeInput.newPasscodeNVC()!
+                    if let vc = nvc.viewControllers.first as? NewPasscodeInputViewController {
+                        vc.delegate = vc
+                        vc.parentNavigationController = nvc
+                        vc.completion = { (isSuccess, pin) in
+                            self?.passcodeSwitch.isOn = isSuccess
+                            if !isSuccess {
+                                return
+                            }
+                            self?.showAlert("設定が完了しました。")
+                        }
+                    }
+                    self?.present(nvc, animated: true, completion: nil)
+                } else {
+                    AccountData.passcode = nil
+                }
+            }).disposed(by: rx.disposeBag)
     }
 
     override func didReceiveMemoryWarning() {

@@ -32,4 +32,6 @@ target 'PlateChat' do
   #pod 'WARangeSlider'
   #pod 'RangeSeekSlider'
   pod 'SwiftRangeSlider'
+  #pod 'SmileLock'
+  pod 'THPinViewController', '~> 1.2.6'
 end

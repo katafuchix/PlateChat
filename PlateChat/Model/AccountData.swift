@@ -30,6 +30,7 @@ struct AccountData {
         case notification_footprint = "notification_footprint"
 
         case search_collection_is_grid = "search_collection_is_grid"
+        case passcode = "passcode"
     }
 
     private init() {}
@@ -114,5 +115,10 @@ struct AccountData {
     static func setNewValueForKey(_ key: String, _ value: Any) {
         self.ud.set(value, forKey: key)
         self.ud.synchronize()
+    }
+
+    static var passcode: String? {
+        get { return self.ud.string(forKey: AccountData.DataType.passcode.rawValue) }
+        set { self.ud.set(newValue, forKey: AccountData.DataType.passcode.rawValue); self.ud.synchronize() }
     }
 }
