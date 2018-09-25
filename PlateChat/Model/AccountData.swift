@@ -31,6 +31,7 @@ struct AccountData {
 
         case search_collection_is_grid = "search_collection_is_grid"
         case passcode = "passcode"
+        case isShowingPasscordLockView = "isShowingPasscordLockView"
     }
 
     private init() {}
@@ -120,5 +121,10 @@ struct AccountData {
     static var passcode: String? {
         get { return self.ud.string(forKey: AccountData.DataType.passcode.rawValue) }
         set { self.ud.set(newValue, forKey: AccountData.DataType.passcode.rawValue); self.ud.synchronize() }
+    }
+
+    static var isShowingPasscordLockView: Bool {
+        get { return self.ud.bool(forKey: AccountData.DataType.isShowingPasscordLockView.rawValue) }
+        set { self.ud.set(newValue, forKey: AccountData.DataType.isShowingPasscordLockView.rawValue); self.ud.synchronize() }
     }
 }

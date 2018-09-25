@@ -47,8 +47,6 @@
 		31199FA12158F1B000324469 /* ArticleReplyLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31199FA02158F1B000324469 /* ArticleReplyLogViewController.swift */; };
 		31199FA52158F79C00324469 /* NoticeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31199FA32158F79C00324469 /* NoticeTableViewCell.swift */; };
 		31199FA62158F79C00324469 /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31199FA42158F79C00324469 /* NoticeTableViewCell.xib */; };
-		3125FA07215A603C007EF417 /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3125FA06215A603C007EF417 /* PasscodeViewController.swift */; };
-		3125FA09215A6047007EF417 /* PasscodeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3125FA08215A6047007EF417 /* PasscodeViewController.storyboard */; };
 		312804FD2116EA9A00357E5C /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FC2116EA9A00357E5C /* Search.storyboard */; };
 		312805002116EBB400357E5C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312804FF2116EBB400357E5C /* Chat.storyboard */; };
 		312805032116ECF700357E5C /* Notice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312805022116ECF700357E5C /* Notice.storyboard */; };
@@ -112,6 +110,8 @@
 		318108AE211584FD00C10946 /* PagingMenuControllerCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318108A4211584FC00C10946 /* PagingMenuControllerCustomizable.swift */; };
 		318EAD58215A8BEE00E9F214 /* NewPasscodeInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 318EAD57215A8BEE00E9F214 /* NewPasscodeInput.storyboard */; };
 		318EAD5A215A8BFD00E9F214 /* NewPasscodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318EAD59215A8BFD00E9F214 /* NewPasscodeInputViewController.swift */; };
+		318EAD5C215A9E2E00E9F214 /* PasscodeLockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318EAD5B215A9E2E00E9F214 /* PasscodeLockViewController.swift */; };
+		318EAD5E215AA0C000E9F214 /* PasscodeLock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 318EAD5D215AA0C000E9F214 /* PasscodeLock.storyboard */; };
 		319A26B0212675A000769A6E /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319A26AB212675A000769A6E /* Alert.swift */; };
 		319A26B1212675A000769A6E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319A26AC212675A000769A6E /* Log.swift */; };
 		319A26B2212675A000769A6E /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319A26AD212675A000769A6E /* Authorization.swift */; };
@@ -201,8 +201,6 @@
 		31199FA02158F1B000324469 /* ArticleReplyLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleReplyLogViewController.swift; sourceTree = "<group>"; };
 		31199FA32158F79C00324469 /* NoticeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewCell.swift; sourceTree = "<group>"; };
 		31199FA42158F79C00324469 /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeTableViewCell.xib; sourceTree = "<group>"; };
-		3125FA06215A603C007EF417 /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
-		3125FA08215A6047007EF417 /* PasscodeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasscodeViewController.storyboard; sourceTree = "<group>"; };
 		312804FC2116EA9A00357E5C /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		312804FF2116EBB400357E5C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		312805022116ECF700357E5C /* Notice.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notice.storyboard; sourceTree = "<group>"; };
@@ -267,6 +265,8 @@
 		318108A4211584FC00C10946 /* PagingMenuControllerCustomizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingMenuControllerCustomizable.swift; sourceTree = "<group>"; };
 		318EAD57215A8BEE00E9F214 /* NewPasscodeInput.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewPasscodeInput.storyboard; sourceTree = "<group>"; };
 		318EAD59215A8BFD00E9F214 /* NewPasscodeInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasscodeInputViewController.swift; sourceTree = "<group>"; };
+		318EAD5B215A9E2E00E9F214 /* PasscodeLockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeLockViewController.swift; sourceTree = "<group>"; };
+		318EAD5D215AA0C000E9F214 /* PasscodeLock.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasscodeLock.storyboard; sourceTree = "<group>"; };
 		319A26AB212675A000769A6E /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		319A26AC212675A000769A6E /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		319A26AD212675A000769A6E /* Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
@@ -396,15 +396,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		3125FA05215A5FF3007EF417 /* SmileLock */ = {
-			isa = PBXGroup;
-			children = (
-				3125FA06215A603C007EF417 /* PasscodeViewController.swift */,
-				3125FA08215A6047007EF417 /* PasscodeViewController.storyboard */,
-			);
-			path = SmileLock;
-			sourceTree = "<group>";
-		};
 		312804FB2116E81200357E5C /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,7 +516,6 @@
 				319CE1412115990200347092 /* MainTabViewController.swift */,
 				3150BA002113373900DB3512 /* ViewController.swift */,
 				3150BA022113373900DB3512 /* Main.storyboard */,
-				3125FA05215A5FF3007EF417 /* SmileLock */,
 				31BE63E02115F1E600E43982 /* Home */,
 				312804FB2116E81200357E5C /* Search */,
 				312804FE2116EBA100357E5C /* Chat */,
@@ -678,6 +668,8 @@
 				310FB07C212844AF00C917E7 /* FaqViewController.swift */,
 				318EAD57215A8BEE00E9F214 /* NewPasscodeInput.storyboard */,
 				318EAD59215A8BFD00E9F214 /* NewPasscodeInputViewController.swift */,
+				318EAD5D215AA0C000E9F214 /* PasscodeLock.storyboard */,
+				318EAD5B215A9E2E00E9F214 /* PasscodeLockViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -837,12 +829,12 @@
 				31199FA62158F79C00324469 /* NoticeTableViewCell.xib in Resources */,
 				318EAD58215A8BEE00E9F214 /* NewPasscodeInput.storyboard in Resources */,
 				312805032116ECF700357E5C /* Notice.storyboard in Resources */,
+				318EAD5E215AA0C000E9F214 /* PasscodeLock.storyboard in Resources */,
 				3150BA092113373A00DB3512 /* LaunchScreen.storyboard in Resources */,
 				312805142117047400357E5C /* NotoSansCJKjpSub-Black.otf in Resources */,
 				31BE63D62115D89300E43982 /* MyPage.storyboard in Resources */,
 				31199F8F2156ABAC00324469 /* UderDetail.storyboard in Resources */,
 				3150BA062113373A00DB3512 /* Assets.xcassets in Resources */,
-				3125FA09215A6047007EF417 /* PasscodeViewController.storyboard in Resources */,
 				310FB0612127264900C917E7 /* Rule.storyboard in Resources */,
 				318108A8211584FD00C10946 /* .gitkeep in Resources */,
 				3150BA042113373900DB3512 /* Main.storyboard in Resources */,
@@ -1004,7 +996,6 @@
 				31D752702150026D0044A10F /* SearchWideCell.swift in Sources */,
 				318108A6211584FD00C10946 /* PagingViewController.swift in Sources */,
 				317EDDE121398EC800A7B651 /* UsersData.swift in Sources */,
-				3125FA07215A603C007EF417 /* PasscodeViewController.swift in Sources */,
 				3168A0722119BA98002B0440 /* ChatMessage.swift in Sources */,
 				31199F9D2158924E00324469 /* ArticleReplyLogService.swift in Sources */,
 				31B707C7213A3DD600A2D95E /* UserBlockService.swift in Sources */,
@@ -1066,6 +1057,7 @@
 				3168A07B2119C41C002B0440 /* LoginUser.swift in Sources */,
 				3168A06E2119BA29002B0440 /* Person.swift in Sources */,
 				31B707C3213A384000A2D95E /* UserBlock.swift in Sources */,
+				318EAD5C215A9E2E00E9F214 /* PasscodeLockViewController.swift in Sources */,
 				31BE63DA2115ECA800E43982 /* MyProfileViewController.swift in Sources */,
 				313E095D2155363800508644 /* SearchGridCell.swift in Sources */,
 				31775459214010700055AC5E /* UIImageView+Extended.swift in Sources */,

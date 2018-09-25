@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //let color = "#40e0d0"
     let color = "#7DD8C7"
 
+    open var passcodeWindow: UIWindow?
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
@@ -56,6 +58,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 通知用処理
         self.notification.requestAuthorization()
 
+        // パスコード画面表示状態のチェック用パラメータをリセット
+        AccountData.isShowingPasscordLockView = false
+
+        // パスコードロック画面オープン
+        self.openPasscodeLock()
+
         return true
     }
 
@@ -67,6 +75,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
+        // パスコード画面オープン
+        openPasscodeLock()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -100,5 +111,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let chatRommListVC = navVC.visibleViewController as? ChatRoomListViewController else { return }
         chatRommListVC.tabBarItem.badgeValue = value
         */
+    }
+
+    func openPasscodeLock() {
+        // パスコードが設定されていればパスコード画面を出す
+        if let pass = AccountData.passcode, !pass.isEmpty, !AccountData.isShowingPasscordLockView {
+            self.passcodeWindow = UIWindow.createNewWindow(
+                R.storyboard.passcodeLock.passcodeLockViewController()!
+            )
+            self.passcodeWindow?.open()
+        }
     }
 }
