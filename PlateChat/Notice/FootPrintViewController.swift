@@ -12,12 +12,14 @@ import RxCocoa
 import NSObject_Rx
 import SVProgressHUD
 import Rswift
+import XLPagerTabStrip
 
-class FootPrintViewController: UIViewController {
+class FootPrintViewController: UIViewController, IndicatorInfoProvider {
 
     @IBOutlet weak var tableView: UITableView!
     var uids = [String]()
     var timeStamps = [Int]()
+    var itemInfo: IndicatorInfo = "足あと"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +58,12 @@ class FootPrintViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - IndicatorInfoProvider
+
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return itemInfo
     }
 }
 

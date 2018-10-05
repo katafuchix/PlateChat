@@ -12,12 +12,14 @@ import RxCocoa
 import NSObject_Rx
 import SVProgressHUD
 import Rswift
+import XLPagerTabStrip
 
-class ArticleReplyLogViewController: UIViewController {
+class ArticleReplyLogViewController: UIViewController, IndicatorInfoProvider {
 
     @IBOutlet weak var tableView: UITableView!
     var uids = [String]()
     var timeStamps = [Int]()
+    var itemInfo: IndicatorInfo = "返信"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +53,12 @@ class ArticleReplyLogViewController: UIViewController {
                 self?.tableView.reloadData()
             }
         })
+    }
+
+    // MARK: - IndicatorInfoProvider
+
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return itemInfo
     }
 }
 

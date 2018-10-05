@@ -30,30 +30,67 @@
             </objects>
             <point key="canvasLocation" x="-1015" y="156"/>
         </scene>
-        <!--お知らせ-->
+        <!--Notice View Controller-->
         <scene sceneID="Fhv-fT-kmc">
             <objects>
                 <viewController storyboardIdentifier="NoticeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0l0-dV-Yqn" customClass="NoticeViewController" customModule="P_Chat_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bdO-Zp-jhD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXG-qo-X50">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UXG-qo-X50" firstAttribute="top" secondItem="XOp-Kk-sSI" secondAttribute="top" id="B2H-dR-4OU"/>
+                            <constraint firstItem="UXG-qo-X50" firstAttribute="bottom" secondItem="XOp-Kk-sSI" secondAttribute="bottom" id="H4S-yj-Hsa"/>
+                            <constraint firstItem="UXG-qo-X50" firstAttribute="trailing" secondItem="XOp-Kk-sSI" secondAttribute="trailing" id="UiL-bR-feE"/>
+                            <constraint firstItem="UXG-qo-X50" firstAttribute="leading" secondItem="XOp-Kk-sSI" secondAttribute="leading" id="mhP-7D-Qso"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="XOp-Kk-sSI"/>
                     </view>
-                    <navigationItem key="navigationItem" title="お知らせ" id="uBR-I2-2C6">
-                        <barButtonItem key="rightBarButtonItem" image="refresh" id="VAg-ni-3Ut"/>
+                    <navigationItem key="navigationItem" id="eVt-LV-u1y">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="JGG-p6-8ED">
+                            <rect key="frame" x="20" y="7" width="304" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="First"/>
+                                <segment title="Second"/>
+                            </segments>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="ra5-3v-xZk">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="refreshButton" destination="VAg-ni-3Ut" id="mjF-dm-b2K"/>
+                        <outlet property="containerView" destination="UXG-qo-X50" id="Nxf-VK-NJ8"/>
+                        <outlet property="refreshButton" destination="ra5-3v-xZk" id="wqx-kO-Jf1"/>
+                        <outlet property="segmentedControl" destination="JGG-p6-8ED" id="tiV-MQ-zQe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="udI-iL-wCc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-260" y="155"/>
+            <point key="canvasLocation" x="-260" y="154.27286356821591"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Bhx-yd-ofa">
+            <objects>
+                <viewController id="7KA-Ht-DQV" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IuW-nZ-oFu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0aZ-ud-Tbw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
         <image name="bell" width="24" height="24"/>
-        <image name="refresh" width="24" height="24"/>
     </resources>
 </document>

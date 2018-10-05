@@ -34,4 +34,5 @@ target 'PlateChat' do
   pod 'SwiftRangeSlider'
   #pod 'SmileLock'
   pod 'THPinViewController', '~> 1.2.6'
+  #pod 'XLPagerTabStrip', '~> 8.0'
 end

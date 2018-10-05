@@ -11,99 +11,65 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import Rswift
+import XLPagerTabStrip
 
-class NoticeViewController: UIViewController {
+class NoticeViewController: SegmentedPagerTabStripViewController {
 
     @IBOutlet weak var refreshButton: UIBarButtonItem!
 
     static let pv1 = R.storyboard.footPrint.footPrintViewController()!
     static let pv2 = R.storyboard.articleReplyLog.articleReplyLogViewController()!
 
+    var isReload = false
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        // change segmented style
+        settings.style.segmentedControlColor = .white
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        // PagingMenuController追加
-        let options = PagingMenuOptions()
-        let pagingMenuController = PagingMenuController(options: options)
+        settings.style.segmentedControlColor = .white
 
-        // 高さ調整。この2行を追加
-        pagingMenuController.view.frame.origin.y += 64
-        pagingMenuController.view.frame.size.height -= 64
-
-        self.addChildViewController(pagingMenuController)
-        self.view.addSubview(pagingMenuController.view)
-        pagingMenuController.didMove(toParentViewController: self)
-
-        self.refreshButton.rx.tap.subscribe(onNext: { [unowned self] in
-            NoticeViewController.pv1.observeFootprint()
-            NoticeViewController.pv2.observeArticleReplyLog()
+        self.refreshButton.rx.tap.subscribe(onNext: { [unowned self] _ in
+            switch self.segmentedControl.selectedSegmentIndex {
+            case 0:
+                NoticeViewController.pv1.observeFootprint()
+            case 1:
+                NoticeViewController.pv2.observeArticleReplyLog()
+            default:
+                break
+            }
+            //NoticeViewController.pv1.observeFootprint()
+            //NoticeViewController.pv2.observeArticleReplyLog()
         }).disposed(by: rx.disposeBag)
     }
 
+    override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
 
-    private struct PagingMenuOptions: PagingMenuControllerCustomizable {
         let pv1 = NoticeViewController.pv1
         let pv2 = NoticeViewController.pv2
-        let pv3 = R.storyboard.footPrint.footPrintViewController()!
 
-        fileprivate var componentType: ComponentType {
-            //return .all(menuOptions: MenuOptions(), pagingControllers: pagingControllers)
-            return .all(menuOptions: MenuOptions(), pagingControllers: [pv1, pv2])
-        }
-
-        fileprivate var pagingControllers: [UIViewController] {
+        guard isReload else {
             return [pv1, pv2]
         }
 
-        fileprivate struct MenuOptions: MenuViewCustomizable {
-            var displayMode: MenuDisplayMode {
-                //return .infinite(widthMode: .flexible, scrollingMode: MenuScrollingMode.pagingEnabled)
-                return .segmentedControl
-            }
-            var height: CGFloat {
-                return 44
-            }
-/*
-            var backgroundColor: UIColor {
-                return UIColor.lightGray
-            }
-            var selectedBackgroundColor: UIColor {
-                return UIColor.white
-            }
-*/
-            var focusMode: MenuFocusMode {
-                return .roundRect(radius: 12, horizontalPadding: 8, verticalPadding: 8, selectedColor: UIColor.hexStr(hexStr: "#7DD8C7", alpha: 0.6))
-                //return .roundRect(radius:  16, horizontalPadding: 8, verticalPadding: 8, selectedColor: UIColor.lightGray)
-            }
-            var itemsOptions: [MenuItemViewCustomizable] {
-                return [MenuItem1(), MenuItem2()]//, MenuItem3()]
+        var childViewControllers = [pv1, pv2]
+        let count = childViewControllers.count
+
+        for index in childViewControllers.indices {
+            let nElements = count - index
+            let n = (Int(arc4random()) % nElements) + index
+            if n != index {
+                childViewControllers.swapAt(index, n)
             }
         }
-
-        fileprivate struct MenuItem1: MenuItemViewCustomizable {
-            var displayMode: MenuItemDisplayMode {
-                //return .text(title: MenuItemText(text: "赤い画面", color: UIColor.red, selectedColor: UIColor.white))
-                let title = MenuItemText(text: "足あと", color: UIColor.lightGray, selectedColor: UIColor.white)
-                return .text(title: title)
-            }
-        }
-
-        fileprivate struct MenuItem2: MenuItemViewCustomizable {
-            var displayMode: MenuItemDisplayMode {
-                //return .text(title: MenuItemText(text: "青い画面", color: UIColor.blue, selectedColor: UIColor.white))
-                let title = MenuItemText(text: "返信", color: UIColor.lightGray, selectedColor: UIColor.white)
-                return .text(title: title)
-            }
-        }
-
-        fileprivate struct MenuItem3: MenuItemViewCustomizable {
-            var displayMode: MenuItemDisplayMode {
-                return .text(title: MenuItemText(text: "黄色い画面", color: UIColor.yellow, selectedColor: UIColor.white))
-            }
-        }
-
+        let nItems = 1 + (arc4random() % 4)
+        return Array(childViewControllers.prefix(Int(nItems)))
     }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
