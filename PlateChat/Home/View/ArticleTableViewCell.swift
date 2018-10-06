@@ -47,7 +47,10 @@ class ArticleTableViewCell: UITableViewCell {
         self.article = article
 
         if article.user_profile_image_url.description.count > 0 {
-            self.userProfileImageButton.sd_setBackgroundImage(with: URL(string:article.user_profile_image_url), for: .normal) { (image, error, cacheType, url) in
+            self.userProfileImageButton.sd_setBackgroundImage(with: URL(string:article.user_profile_image_url), for: .normal) { [weak self] (image, error, cacheType, url) in
+                if error != nil {
+                    self?.userProfileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
+                }
             }
             var dict = UsersData.profileImages
             dict[article.uid] = article.user_profile_image_url

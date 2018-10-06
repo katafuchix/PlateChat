@@ -31,7 +31,10 @@ class ProfileCell: UITableViewCell {
             self.nicknameLabel.text = AccountData.nickname
             
             if let url = AccountData.my_profile_image {
-                self.profileImageButton.sd_setBackgroundImage(with: URL(string:url), for: .normal) { (image, error, cacheType, url) in
+                self.profileImageButton.sd_setBackgroundImage(with: URL(string:url), for: .normal) { [weak self] (image, error, cacheType, url) in
+                    if error != nil {
+                        self?.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
+                    }
                 }
             } else {
                 self.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
@@ -41,7 +44,10 @@ class ProfileCell: UITableViewCell {
             if let toNickName = UsersData.nickNames[uid] {
                 self.nicknameLabel.text = toNickName
                 if let profile_image_url = UsersData.profileImages[uid] {
-                    self.profileImageButton.sd_setBackgroundImage(with: URL(string:profile_image_url), for: .normal) { (image, error, cacheType, url) in
+                    self.profileImageButton.sd_setBackgroundImage(with: URL(string:profile_image_url), for: .normal) { [weak self] (image, error, cacheType, url) in
+                        if error != nil {
+                            self?.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
+                        }
                     }
                 }
             } else {

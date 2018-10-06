@@ -68,7 +68,10 @@ class ProfileEditTableViewController: UITableViewController {
             break
         }
         if let url = AccountData.my_profile_image {
-            self.profileImageButton.sd_setBackgroundImage(with: URL(string:url), for: .normal) { (image, error, cacheType, url) in
+            self.profileImageButton.sd_setBackgroundImage(with: URL(string:url), for: .normal) { [weak self] (image, error, cacheType, url) in
+                if error != nil {
+                    self?.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
+                }
             }
         } else {
             self.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
