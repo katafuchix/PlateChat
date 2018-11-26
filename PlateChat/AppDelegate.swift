@@ -64,6 +64,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // パスコードロック画面オープン
         self.openPasscodeLock()
 
+        // for ImagePicker
+        RxImagePickerDelegateProxy.register { RxImagePickerDelegateProxy(imagePicker: $0) }
+
         return true
     }
 

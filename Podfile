@@ -12,6 +12,7 @@ target 'PlateChat' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
+  pod 'Firebase/Functions'
   pod 'R.swift'
   #pod 'MessageKit'#, '1.0.0'
   #pod 'SwiftDate'

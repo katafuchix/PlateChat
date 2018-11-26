@@ -109,6 +109,11 @@
 		319A26B3212675A000769A6E /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319A26AE212675A000769A6E /* ActionSheet.swift */; };
 		319A26B4212675A000769A6E /* PhotoRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319A26AF212675A000769A6E /* PhotoRequester.swift */; };
 		319CE1422115990200347092 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319CE1412115990200347092 /* MainTabViewController.swift */; };
+		31A7BC8621ABD69900EC9C55 /* RxImagePickerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A7BC8521ABD69800EC9C55 /* RxImagePickerDelegateProxy.swift */; };
+		31A7BC8921ABD6A200EC9C55 /* UIImagePickerController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A7BC8721ABD6A200EC9C55 /* UIImagePickerController+Rx.swift */; };
+		31A7BC8A21ABD6A200EC9C55 /* UIImagePickerController+RxCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A7BC8821ABD6A200EC9C55 /* UIImagePickerController+RxCreate.swift */; };
+		31A7BC8C21ABD7CB00EC9C55 /* ObservableConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A7BC8B21ABD7CB00EC9C55 /* ObservableConvertibleType.swift */; };
+		31A7BC8E21ABD7E800EC9C55 /* SharedSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A7BC8D21ABD7E800EC9C55 /* SharedSequence.swift */; };
 		31B707C3213A384000A2D95E /* UserBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B707C2213A384000A2D95E /* UserBlock.swift */; };
 		31B707C5213A384C00A2D95E /* UserBlocked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B707C4213A384C00A2D95E /* UserBlocked.swift */; };
 		31B707C7213A3DD600A2D95E /* UserBlockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B707C6213A3DD600A2D95E /* UserBlockService.swift */; };
@@ -256,6 +261,11 @@
 		319A26AE212675A000769A6E /* ActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheet.swift; sourceTree = "<group>"; };
 		319A26AF212675A000769A6E /* PhotoRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoRequester.swift; sourceTree = "<group>"; };
 		319CE1412115990200347092 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
+		31A7BC8521ABD69800EC9C55 /* RxImagePickerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxImagePickerDelegateProxy.swift; sourceTree = "<group>"; };
+		31A7BC8721ABD6A200EC9C55 /* UIImagePickerController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImagePickerController+Rx.swift"; sourceTree = "<group>"; };
+		31A7BC8821ABD6A200EC9C55 /* UIImagePickerController+RxCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImagePickerController+RxCreate.swift"; sourceTree = "<group>"; };
+		31A7BC8B21ABD7CB00EC9C55 /* ObservableConvertibleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableConvertibleType.swift; sourceTree = "<group>"; };
+		31A7BC8D21ABD7E800EC9C55 /* SharedSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedSequence.swift; sourceTree = "<group>"; };
 		31B286BF212C21680069FA72 /* PlateChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PlateChat.entitlements; sourceTree = "<group>"; };
 		31B707C2213A384000A2D95E /* UserBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBlock.swift; sourceTree = "<group>"; };
 		31B707C4213A384C00A2D95E /* UserBlocked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBlocked.swift; sourceTree = "<group>"; };
@@ -584,6 +594,11 @@
 				317EDDDC21396ED100A7B651 /* UITableView+Extended.swift */,
 				317EDDDE21396F4C00A7B651 /* NSObject+Extended.swift */,
 				31775458214010700055AC5E /* UIImageView+Extended.swift */,
+				31A7BC8521ABD69800EC9C55 /* RxImagePickerDelegateProxy.swift */,
+				31A7BC8721ABD6A200EC9C55 /* UIImagePickerController+Rx.swift */,
+				31A7BC8821ABD6A200EC9C55 /* UIImagePickerController+RxCreate.swift */,
+				31A7BC8B21ABD7CB00EC9C55 /* ObservableConvertibleType.swift */,
+				31A7BC8D21ABD7E800EC9C55 /* SharedSequence.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -932,6 +947,7 @@
 				3150BA012113373900DB3512 /* ViewController.swift in Sources */,
 				31C735582137034C009E8241 /* Date+Extended.swift in Sources */,
 				310FB063212728AE00C917E7 /* RuleViewController.swift in Sources */,
+				31A7BC8C21ABD7CB00EC9C55 /* ObservableConvertibleType.swift in Sources */,
 				31B707D1213AE91E00A2D95E /* NoticeViewController.swift in Sources */,
 				310FB07D212844AF00C917E7 /* FaqViewController.swift in Sources */,
 				31D752702150026D0044A10F /* SearchWideCell.swift in Sources */,
@@ -947,6 +963,7 @@
 				319CE1422115990200347092 /* MainTabViewController.swift in Sources */,
 				319A26B3212675A000769A6E /* ActionSheet.swift in Sources */,
 				315E0D5C2121C60D0068924A /* ViewController+Extended.swift in Sources */,
+				31A7BC8A21ABD6A200EC9C55 /* UIImagePickerController+RxCreate.swift in Sources */,
 				310FB07B2128442400C917E7 /* FaqTableViewCell.swift in Sources */,
 				310CC240213D95EB0091AADF /* PaddingLabel.swift in Sources */,
 				310FB06F2127B8F600C917E7 /* PaddingTextField.swift in Sources */,
@@ -966,6 +983,7 @@
 				31BE63D32115D2E300E43982 /* UIColor+Extended.swift in Sources */,
 				3150B9FF2113373900DB3512 /* AppDelegate.swift in Sources */,
 				315E0D5A2121ACBB0068924A /* ProfileEditViewModel.swift in Sources */,
+				31A7BC8921ABD6A200EC9C55 /* UIImagePickerController+Rx.swift in Sources */,
 				31199F972157752100324469 /* Footprint.swift in Sources */,
 				319A26B2212675A000769A6E /* Authorization.swift in Sources */,
 				31199F99215776AB00324469 /* FootprintService.swift in Sources */,
@@ -979,6 +997,7 @@
 				31386D6B21324718008E82D0 /* R.generated.swift in Sources */,
 				31B707C5213A384C00A2D95E /* UserBlocked.swift in Sources */,
 				3177545421400CCB0055AC5E /* ChatMessageKitCell.swift in Sources */,
+				31A7BC8E21ABD7E800EC9C55 /* SharedSequence.swift in Sources */,
 				31B707CF213A931500A2D95E /* BlockListCell.swift in Sources */,
 				31BE63DF2115F10D00E43982 /* SettingTableViewController.swift in Sources */,
 				317EDDDD21396ED100A7B651 /* UITableView+Extended.swift in Sources */,
@@ -998,6 +1017,7 @@
 				313E095D2155363800508644 /* SearchGridCell.swift in Sources */,
 				31775459214010700055AC5E /* UIImageView+Extended.swift in Sources */,
 				317E0AB9215912F3003DDAD3 /* FootprintTableViewCell.swift in Sources */,
+				31A7BC8621ABD69900EC9C55 /* RxImagePickerDelegateProxy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
