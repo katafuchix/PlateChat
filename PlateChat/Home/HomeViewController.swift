@@ -36,12 +36,9 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
 
         self.writeButton.rx.tap.asDriver().drive(onNext: { [unowned self] _ in
-            /*
             let vc = R.storyboard.write.writeViewController()!
             vc.delegate = self
             UIWindow.createNewWindow(vc).open()
-            */
-
         }).disposed(by: rx.disposeBag)
 
         self.reloadButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
