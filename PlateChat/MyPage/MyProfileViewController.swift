@@ -54,9 +54,11 @@ class MyProfileViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.articles = []
-        self.observeArticle()
+        
         self.tableView.reloadData()
+        if self.articles.count == 0 {
+            self.observeArticle()
+        }
     }
 
     func observeArticle() {

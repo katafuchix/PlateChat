@@ -93,6 +93,11 @@ class ChatRoomService {
         }
     }
 
+    func removeBindChatRoomList() {
+        self.bindChatRoomHandler?.remove()
+        self.lastChatRoomDocument = nil
+    }
+
     // 作成
     func cerateChatRoom (_ other_uid: String, _ completionHandler: @escaping (_ chatRoom: ChatRoom?, _ error: ChatRoomServiceUpdateError?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }

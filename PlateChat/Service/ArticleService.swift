@@ -177,6 +177,8 @@ class ArticleService {
     func removeBindArticleList() {
         self.bindArticleListHandler?.remove()
         self.lastArticle = nil
+        self.lastUidArticle = nil
+        self.lastArticleDocument = nil
     }
 
     func bindArticleList(article: Article, callbackHandler: @escaping ([Article]?, ArticleBindError?) -> Void) {

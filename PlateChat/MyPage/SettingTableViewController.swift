@@ -24,6 +24,9 @@ class SettingTableViewController: UITableViewController {
     
     @IBOutlet weak var passcodeSwitch: UISwitch!
 
+    var articleService: ArticleService?
+    var chatRoomService: ChatRoomService?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -136,21 +139,47 @@ class SettingTableViewController: UITableViewController {
 
     func deleteAccount() {
         Alert("確認", "アカウントを削除してよろしいですか？")
-            .addAction("OK" , completion: { [weak self] (AlertResult) in
+            .addAction("OK" , completion: { [unowned self] (AlertResult) in
                 print(AlertResult)
 
                 SVProgressHUD.show(withStatus: "Loading...")
+
+                if let mainVC = self.presentingViewController as? MainTabViewController {
+                    // home
+                    if let nvc = mainVC.viewControllers?[0] as? UINavigationController {
+                        if let vc = nvc.viewControllers[0] as? HomeViewController {
+                            vc.articleService?.removeBindArticleList()
+                            vc.articles = []
+                            vc.articles_org = []
+                        }
+                    }
+                    // チャットルーム
+                    if let nvc = mainVC.viewControllers?[2] as? UINavigationController {
+                        if let vc = nvc.viewControllers[0] as? ChatRoomListViewController {
+                            vc.chatRoomService?.removeBindChatRoomList()
+                            vc.chatRooms = []
+                        }
+                    }
+                    // 自分の記事
+                    if let nvc = mainVC.viewControllers?[4] as? UINavigationController {
+                        if let vc = nvc.viewControllers[0] as? MyProfileViewController {
+                            vc.articleService?.removeBindArticleList()
+                            vc.articles = []
+                        }
+                    }
+                }
+
                 UserService.deleteLoginUser(completionHandler: { error in
                     if let err = error {
                         Log.error(err)
                         SVProgressHUD.dismiss()
-                        self?.showAlert("削除できませんでした", "メールアドレスとパスワードをご確認ください", "OK", completion: { _ in })
+                        self.showAlert("削除できませんでした", err.localizedDescription, "OK", completion: { _ in })
                         return
                     }
-                    UserService.createUser(completionHandler: { [weak self] (uid, _) in print(" create \(String(describing: uid))")
+                    UserService.createUser(completionHandler: { (uid, _) in print(" create \(String(describing: uid))")
                         UserService.setLastLogin()
                         SVProgressHUD.dismiss()
-                        self?.showAlert("更新しました")
+                        self.showAlert("削除しました")
                     })
                 })
             })

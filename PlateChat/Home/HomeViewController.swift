@@ -138,6 +138,10 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        if self.articles.count == 0 {
+            self.observeArticle()
+        }
+        
         self.filterBlock()
         self.tableView.reloadData()
     }
