@@ -8,6 +8,8 @@
 
 import UIKit
 import SVProgressHUD
+import RxSwift
+import RxCocoa
 
 private let indicatorViewTag = 100928
 
@@ -54,5 +56,17 @@ extension UIViewController {
 
     func hideLoading() {
         SVProgressHUD.dismiss()
+    }
+}
+
+extension UIViewController {
+    // Observable化したアクションシートの表示
+    func showActionSheet<T>(title: String?, message: String?, cancelMessage: String = "キャンセル", actions: [ActionSheetAction<T>]) -> Observable<T> {
+        let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+
+        return actionSheet.addAction(actions: actions, cancelMessage: cancelMessage, cancelAction: nil)
+            .do(onSubscribed: { [weak self] in
+                self?.present(actionSheet, animated: true, completion: nil)
+            })
     }
 }

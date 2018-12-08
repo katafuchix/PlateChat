@@ -10,8 +10,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Rswift
+import RxCocoa
 import NSObject_Rx
 import SVProgressHUD
+import FirebaseFunctions
+import RxFirebase
 
 class HomeViewController: UIViewController {
 
@@ -24,15 +27,21 @@ class HomeViewController: UIViewController {
     var articles_org = [Article]()
     private let refreshControl = UIRefreshControl()
 
+    lazy var functions = Functions.functions()
+    var selectedImage = BehaviorRelay<UIImage?>(value: nil)
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
 
-        self.writeButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+        self.writeButton.rx.tap.asDriver().drive(onNext: { [unowned self] _ in
+            /*
             let vc = R.storyboard.write.writeViewController()!
             vc.delegate = self
             UIWindow.createNewWindow(vc).open()
+            */
+
         }).disposed(by: rx.disposeBag)
 
         self.reloadButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
@@ -255,6 +264,81 @@ extension HomeViewController: writeVCprotocol {
         self.tableView.contentOffset = .zero
         */
         //self.tableView.setContentOffset(CGPoint.zero, animated: true)
+
+        /*// アクションシート選択項目
+        var actions = [ActionSheetAction<UIImagePickerControllerSourceType>(title: "ライブラリから選択",
+                                                                            actionType: UIImagePickerControllerSourceType.photoLibrary,
+                                                                            style: .default)]
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            actions.insert(ActionSheetAction<UIImagePickerControllerSourceType>(title: "カメラを起動",
+                                                                                actionType: UIImagePickerControllerSourceType.camera,
+                                                                                style: .default), at: 0)
+        }
+        self.shwoActionSheet(title: "アバター設定", message: "選択してください。", actions: actions)
+        */
+        /*
+         self.selectedImage.asObservable().subscribe(onNext: { [unowned self] image in
+
+         if let image = image, let jpeg = UIImageJPEGRepresentation(image, 0.9) {
+
+         //if let data = data {
+         let encodeString = jpeg.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
+         //print(encodeString)
+
+         self.functions.httpsCallable("addMessage").call(["text": encodeString, "companyKey": "smt"]) { (result, error) in
+                if let error = error as NSError? {
+                    print("error")
+                    print(error)
+                }
+                print("result")
+                print(result)
+                if let text = (result?.data as? [String: Any])?["uid"] as? String {
+                    print(text)
+                }
+            }
+         }).disposed(by: rx.disposeBag)
+         */
+        /*
+        let (updatedResult, updateError) = Driver.split(result:
+
+            self.selectedImage.asDriver()
+                .filter { $0 != nil }
+                .map { $0?.resizeImage(maxSize: 10485760) }
+                .map { UIImageJPEGRepresentation($0! , 0.9) }
+                .map { $0?.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters) }
+                .flatMapLatest { [unowned self] value in return
+
+                    self.functions.httpsCallable("addMessage").rx.call(["text": value, "companyKey": "smt", "param":["text": value, "companyKey": "smt"]]).resultDriver()})
+
+        updatedResult.asObservable().subscribe(onNext:{ result in
+            print("updatedResult")
+            print("result")
+            print(result)
+            if let data = result.data as? [String: Any] {
+                print(data)
+            }
+            if let text = (result.data as? [String: Any])?["uid"] as? String {
+                print(text)
+            }
+        }).disposed(by: rx.disposeBag)
+
+        let (imageUpdatedResult, imageUpdateError) = Driver.split(result:updatedResult.asDriver().map { ($0.data as? [String: Any])?["downloadUrl"] as? String }
+            .filter { $0 != nil && $0 != ""}
+            .flatMapLatest { [unowned self] value in return
+                self.functions.httpsCallable("updateProfileImage").rx.call(["profile_image_url": value, "companyKey": "smt"]).resultDriver()})
+
+        imageUpdatedResult.asObservable().subscribe(onNext:{ result in
+            print("imageUpdatedResult")
+            print("result")
+            print(result)
+            if let data = result.data as? [String: Any] {
+                print(data)
+            }
+            if let text = (result.data as? [String: Any])?["uid"] as? String {
+                print(text)
+            }
+        }).disposed(by: rx.disposeBag)
+        */
     }
 }
 
