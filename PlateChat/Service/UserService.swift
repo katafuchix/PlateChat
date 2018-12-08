@@ -68,6 +68,14 @@ class UserService {
                 return
             }
 
+            Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+                if error != nil {
+                    Log.error(error!)
+                    completionHandler(nil, .noExistsError)
+                    return
+                }
+            })
+
             if let user = user?.user {
                 let uid = user.uid
                 print("uid")
@@ -90,6 +98,7 @@ class UserService {
                         print("Error adding document: \(err)")
                         return
                     }
+                    self.clearUserInfo()
                     completionHandler(uid, nil)
                 })
             }
@@ -153,6 +162,54 @@ class UserService {
                     }
                 } else {
                     completionHandler(nil, .fetchError(error))
+                }
+            }
+        })
+    }
+
+    // ユーザー削除
+    static func deleteLoginUser(completionHandler: @escaping (_ error: UserServiceUpdateError?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        self.store.collection("login_user").document(uid).setData(["status": 0], merge: true, completion: { error in
+            if error != nil {
+                completionHandler(.updateError(error))
+                return
+            }
+            self.clearUserInfo()
+            // 最新情報を取得
+            let profileDocumentRef = self.store.collection("login_user").document(uid)
+            profileDocumentRef.getDocument { (document, error) in
+                if error != nil {
+                    completionHandler(.fetchError(error))
+                } else if let document = document, document.exists {
+                    do {
+                        let user = try LoginUser(from: document)
+                        self.setUserInfo(user)
+
+                        // 投稿更新
+                        let query = self.store.collection("article")
+                            .whereField("uid", isEqualTo: uid)
+                            .whereField("status", isEqualTo: 1)
+                            .order(by: "created_at", descending: true)
+                            .limit(to: 500)
+                        query.addSnapshotListener(includeMetadataChanges: true) { (querySnapshot, error) in
+                            do {
+                                if let snapshot = querySnapshot {
+                                    let articles = try snapshot.documents.compactMap { try Article(from: $0) }
+                                    for article in articles {
+
+                                        self.store.collection("article").document(article.key).setData(["status": 0], merge: true,  completion: { _ in })
+                                    }
+                                }
+                            } catch {}
+                        }
+
+                        completionHandler(nil)
+                    } catch {
+                        completionHandler(.fetchError(error))
+                    }
+                } else {
+                    completionHandler(.fetchError(error))
                 }
             }
         })

@@ -55,6 +55,12 @@ class ProfileEditTableViewController: UITableViewController {
         bind()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setUserData()
+        self.tableView.reloadData()
+    }
+
     func setUserData() {
         self.nicknameTextField.text = AccountData.nickname
         switch AccountData.sex {

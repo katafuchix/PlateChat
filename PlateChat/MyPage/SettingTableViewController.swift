@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import Rswift
+import SVProgressHUD
 
 class SettingTableViewController: UITableViewController {
 
@@ -126,11 +127,36 @@ class SettingTableViewController: UITableViewController {
         case 9:
             let vc = R.storyboard.faq.faqViewController()!
             self.navigationController?.pushViewController(vc, animated: true)
+        case 13: // アカウント削除
+            self.deleteAccount()
         default:
             break
         }
     }
 
+    func deleteAccount() {
+        Alert("確認", "アカウントを削除してよろしいですか？")
+            .addAction("OK" , completion: { [weak self] (AlertResult) in
+                print(AlertResult)
+
+                SVProgressHUD.show(withStatus: "Loading...")
+                UserService.deleteLoginUser(completionHandler: { error in
+                    if let err = error {
+                        Log.error(err)
+                        SVProgressHUD.dismiss()
+                        self?.showAlert("削除できませんでした", "メールアドレスとパスワードをご確認ください", "OK", completion: { _ in })
+                        return
+                    }
+                    UserService.createUser(completionHandler: { [weak self] (uid, _) in print(" create \(String(describing: uid))")
+                        UserService.setLastLogin()
+                        SVProgressHUD.dismiss()
+                        self?.showAlert("更新しました")
+                    })
+                })
+            })
+            .setCancelAction("キャンセル")
+            .show(self)
+    }
     /*
     // MARK: - Table view data source
 
