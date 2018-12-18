@@ -34,12 +34,24 @@ class FaqViewController: UIViewController {
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableViewAutomaticDimension
 
-        datasource = [FaqTableViewCellContent(title: "機種変更後にアカウントの引き継ぎはできますか？ ",
-                                                    subtitle: "　日本経済新聞社とテレビ東京による22～24日の世論調査で、安倍内閣の支持率は52％となり、前回の５月下旬の42％から10ポイント上昇した。不支持率は５月の53％から42％に下がった。支持率が不支持率を上回るのは２月以来、４カ月ぶり。"),
-                      FaqTableViewCellContent(title: "「起業の都」再び　京都に集まる資金・人材 ",
-                                                    subtitle: "京セラ、日本電産など個性的な企業を生み出した京都で、もう一つの顔・京都大学と企業の関係が変わってきた。従来は共同研究が中心だったが、小回りの利くスタートアップ企業を通じ「大学の知」をビジネスに生かす動きが本格化。多くのノーベル賞受賞者を輩出し、自然科学分野の基礎研究に定評がある京大を核として「起業の都」に新たな波が起きている。"),
-                      FaqTableViewCellContent(title: "アマゾン、ＡＩスピーカーの“スキル”1000種に ",
-                                                    subtitle: "米アマゾン・ドット・コムが投入した人工知能（ＡＩ）スピーカーの日本国内で使える独自機能が増え、スマートフォン（スマホ）のアプリに該当する「スキル」と呼ばれる機能がこのほど1000種類を突破した。スキルの技術仕様を外部に公開していることが、付加価値の高いスキルの開発につながっているようだ。")]
+        datasource = [
+                    FaqTableViewCellContent(title: "アプリの利用に費用はかかりますか？ ",
+                                    subtitle: "本サービスは完全無料で利用できます。"),
+                    FaqTableViewCellContent(title: "ローディングが長いことがあります。 ",
+                                            subtitle: "通信状態やサーバーの混み具合で時間がかかることもあります。しばらく待ってからお試しください。"),
+                    FaqTableViewCellContent(title: "機種変更後にアカウントの引き継ぎはできますか？ ",
+                                                    subtitle: "［設定］ー［アカウントの保存とログイン］よりメールアドレスとパスワードでログインしてください。メールアドレスとパスワードはあらかじめここで登録しておく必要があります。"),
+                      FaqTableViewCellContent(title: "メールアドレス、パスワードを忘れてしまいました。 ",
+                                                    subtitle: "運営事務局ではユーザーのデータは全て暗号化して保存しています。運営事務局側でデータの復号はできませんので、ご自身で管理しておいてください。"),
+                      FaqTableViewCellContent(title: "プロフィール画像が消えてしまっています。 ",
+                                                    subtitle: "運営事務局で不適切と判断した画像は削除することがあります。\n再度ご登録おください。"),
+                      FaqTableViewCellContent(title: "退会したいのですが？ ",
+                                subtitle: "［設定］ー［アカウント削除］から退会できます。\nさアカウントに関するデータはすべて削除しされます。"),
+                      FaqTableViewCellContent(title: "迷惑なユーザーがいます。 ",
+                                              subtitle: "ユーザーの詳細画面やチャット画面で該当ユーザーをブロックすることができます。ブロックすると双方でアカウントに参照できなくなります。\nそれでも気になるようでしたら、［設定］ー［お問い合わせ］から運営事務局までご連絡ください。"),
+                      FaqTableViewCellContent(title: "チャットは他のユーザーにも見えますか？ ",
+                                              subtitle: "チャットのやり取りはが他のユーザーに後悔されることはありません。"),
+                    ]
     }
 
     override func didReceiveMemoryWarning() {
