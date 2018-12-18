@@ -39,7 +39,7 @@ class MyProfileViewController: UIViewController {
         self.tableView.separatorInset   = .zero
         self.tableView.tableFooterView  = UIView()
         //tableView.estimatedRowHeight = 170 // これはStoryBoardの設定で無視されるかも？
-        tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableViewAutomaticDimension
 
         self.articleService = ArticleService()
         self.articleService?.lastUidArticle = nil
@@ -105,8 +105,6 @@ extension MyProfileViewController : UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("articles.count")
-        print(articles.count)
         if section == 0 { return 1}
         return articles.count
     }

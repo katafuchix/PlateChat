@@ -47,9 +47,9 @@ class ArticleTableViewCell: UITableViewCell {
         self.article = article
 
         if article.user_profile_image_url.description.count > 0 {
-            self.userProfileImageButton.sd_setBackgroundImage(with: URL(string:article.user_profile_image_url), for: .normal) { [weak self] (image, error, cacheType, url) in
+            self.userProfileImageButton.sd_setBackgroundImage(with: URL(string:article.user_profile_image_url), for: .normal) { [unowned self] (image, error, cacheType, url) in
                 if error != nil {
-                    self?.userProfileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
+                    self.userProfileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
                 }
             }
             var dict = UsersData.profileImages
@@ -61,6 +61,38 @@ class ArticleTableViewCell: UITableViewCell {
             UsersData.nickNames = dict
         }
         self.userNicknameLabel.text = article.user_nickname
+        self.setUserAttr(article.uid)
+
+        UserService.getUserInfo(article.uid, completionHandler: { [unowned self] (user, error) in
+            if let user = user {
+                var dict = UsersData.profileImages
+                dict[user.key] = user.profile_image_url
+                UsersData.profileImages = dict
+
+                dict = UsersData.nickNames
+                dict[user.key] = user.nickname
+                UsersData.nickNames = dict
+
+                dict = UsersData.profileTexts
+                dict[user.key] = user.profile_text
+                UsersData.profileTexts = dict
+
+                var dict2 = UsersData.ages
+                dict2[user.key] = user.age
+                UsersData.ages = dict2
+
+                dict2 = UsersData.genders
+                dict2[user.key] = user.sex
+                UsersData.genders = dict2
+
+                dict2 = UsersData.prefecture_ids
+                dict2[user.key] = user.prefecture_id
+                UsersData.prefecture_ids = dict2
+
+                self.setUserAttr(user.key)
+            }
+        })
+        
         let text = article.text.trimmingCharacters(in: .whitespaces).trimmingCharacters(in: .whitespacesAndNewlines)
         self.articleLabel.text = text
 
@@ -83,7 +115,7 @@ class ArticleTableViewCell: UITableViewCell {
             if let toNickName = UsersData.nickNames[article.toUid] {
                 self.toLabel.text = toNickName
             } else {
-                UserService.getUserInfo(article.toUid, completionHandler: { (user, error) in
+                UserService.getUserInfo(article.toUid, completionHandler: { [unowned self] (user, error) in
                     if let user = user {
                         var dict = UsersData.profileImages
                         dict[user.key] = user.profile_image_url
@@ -92,6 +124,22 @@ class ArticleTableViewCell: UITableViewCell {
                         dict = UsersData.nickNames
                         dict[user.key] = user.nickname
                         UsersData.nickNames = dict
+                        
+                        dict = UsersData.profileTexts
+                        dict[user.key] = user.profile_text
+                        UsersData.profileTexts = dict
+
+                        var dict2 = UsersData.ages
+                        dict2[user.key] = user.age
+                        UsersData.ages = dict2
+
+                        dict2 = UsersData.genders
+                        dict2[user.key] = user.sex
+                        UsersData.genders = dict2
+
+                        dict2 = UsersData.prefecture_ids
+                        dict2[user.key] = user.prefecture_id
+                        UsersData.prefecture_ids = dict2
                     }
                 })
             }
@@ -108,6 +156,18 @@ class ArticleTableViewCell: UITableViewCell {
         }).disposed(by: disposeBag)
 
         self.dateLabel.text = Date.timeAgoString(article.created_date)
+    }
+
+    func setUserAttr(_ uid: String ) {
+        if  let age = UsersData.ages[uid], let gender = UsersData.genders[uid], let prefecture_id = UsersData.prefecture_ids[uid] {
+
+            let sex = Constants.genders[gender]
+            let age = age > 0 ? "\(age) " : "未設定"
+            let address = Constants.prefs.keys.contains(prefecture_id) ? Constants.prefs[prefecture_id]! : "未設定"
+
+            self.userAttrLabel.text  = "\(sex), \(age), \(address)"
+        }
+
     }
 
     func clear() {

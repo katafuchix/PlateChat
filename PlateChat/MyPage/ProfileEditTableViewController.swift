@@ -193,7 +193,19 @@ class ProfileEditTableViewController: UITableViewController {
         self.ageNameArray.value = Constants.ages.sorted(by: {$0.0 < $1.0}).map { $0.1 }
         self.ageIndexArray.value = Constants.ages.sorted(by: {$0.0 < $1.0}).map { $0.0 }
         agePickerView.selectRow(AccountData.age, inComponent: 0, animated: false)
-        self.ageTextField.text = self.ageNameArray.value[AccountData.age]
+        if self.ageNameArray.value.contains("\(AccountData.age)") {
+            self.ageTextField.text = "\(AccountData.age)"
+        } else {
+            self.ageTextField.text = self.ageNameArray.value[AccountData.age]
+        }
+
+        self.ageTextField.rx.controlEvent(.editingDidBegin).asDriver()
+            .drive(onNext: { [unowned self] _ in
+                if self.ageNameArray.value.contains("\(AccountData.age)") {
+                    self.agePickerView.selectRow(AccountData.age - 17, inComponent: 0, animated: false)
+                }
+            })
+            .disposed(by: rx.disposeBag)
 
         self.ageNameArray.asObservable().bind(to: agePickerView.rx.itemTitles) {_, item in
             return "\(item)"

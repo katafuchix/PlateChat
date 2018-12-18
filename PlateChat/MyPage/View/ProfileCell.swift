@@ -15,7 +15,7 @@ class ProfileCell: UITableViewCell {
     @IBOutlet weak var profileImageButton: CircleButton!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var profileAttrLabel: UILabel!
-    @IBOutlet weak var profileTextLabel: PaddingLabel!
+    @IBOutlet weak var profileTextLabel: PaddingProfileLabel!
 
     var disposeBag = DisposeBag()
 
@@ -26,10 +26,11 @@ class ProfileCell: UITableViewCell {
 
     func configure(_ uid: String) {
         self.clear()
-
+        
         if uid == AccountData.uid {
             self.nicknameLabel.text = AccountData.nickname
-            
+            self.setUserAttr(uid)
+
             if let url = AccountData.my_profile_image {
                 self.profileImageButton.sd_setBackgroundImage(with: URL(string:url), for: .normal) { [weak self] (image, error, cacheType, url) in
                     if error != nil {
@@ -39,8 +40,10 @@ class ProfileCell: UITableViewCell {
             } else {
                 self.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
             }
-            self.profileTextLabel.text = AccountData.profile_text
+
         } else {
+            self.setUserAttr(uid)
+            /*
             if let toNickName = UsersData.nickNames[uid] {
                 self.nicknameLabel.text = toNickName
                 if let profile_image_url = UsersData.profileImages[uid] {
@@ -51,7 +54,7 @@ class ProfileCell: UITableViewCell {
                     }
                 }
             } else {
-                UserService.getUserInfo(uid, completionHandler: { [weak self] (user, error) in
+                UserService.getUserInfo(uid, completionHandler: { [unowned self] (user, error) in
                     if let user = user {
                         var dict = UsersData.profileImages
                         dict[user.key] = user.profile_image_url
@@ -61,22 +64,70 @@ class ProfileCell: UITableViewCell {
                         dict[user.key] = user.nickname
                         UsersData.nickNames = dict
 
-                        self?.nicknameLabel.text = user.nickname
-                        self?.profileImageButton.sd_setBackgroundImage(with: URL(string:user.profile_image_url), for: .normal) { (image, error, cacheType, url) in
+                        dict = UsersData.profileTexts
+                        dict[user.key] = user.profile_text
+                        UsersData.profileTexts = dict
 
+                        var dict2 = UsersData.ages
+                        dict2[user.key] = user.age
+                        UsersData.ages = dict2
+
+                        dict2 = UsersData.genders
+                        dict2[user.key] = user.sex
+                        UsersData.genders = dict2
+
+                        dict2 = UsersData.prefecture_ids
+                        dict2[user.key] = user.prefecture_id
+                        UsersData.prefecture_ids = dict2
+
+                        self.nicknameLabel.text = user.nickname
+
+                        print("user.profile_text")
+                        print(user.profile_text)
+                        self.setUserAttr(user.key)
+
+                        self.profileImageButton.sd_setBackgroundImage(with: URL(string:user.profile_image_url), for: .normal) { (image, error, cacheType, url) in
                             if error != nil {
-                                self?.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
+                                self.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
                             }
                         }
                     }
                 })
+            }*/
+        }
+    }
+
+    func setUserAttr(_ uid: String ) {
+        if let nickName = UsersData.nickNames[uid] {
+            self.nicknameLabel.text = nickName
+        }
+
+        if let profile_image_url = UsersData.profileImages[uid] {
+            self.profileImageButton.sd_setBackgroundImage(with: URL(string:profile_image_url), for: .normal) { [weak self] (image, error, cacheType, url) in
+                if error != nil {
+                    self?.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
+                }
             }
         }
 
-        if self.profileTextLabel.text != "" {
-            self.profileTextLabel.borderColor = UIColor.hexStr(hexStr: "#7DD8C7", alpha: 0.6)
-            self.profileTextLabel.borderWidth = 1.0
+        if  let age = UsersData.ages[uid], let gender = UsersData.genders[uid], let prefecture_id = UsersData.prefecture_ids[uid] {
+            let sex = Constants.genders[gender]
+            let age = age > 0 ? "\(age) " : "未設定"
+            let address = Constants.prefs.keys.contains(prefecture_id) ? Constants.prefs[prefecture_id]! : "未設定"
+            self.profileAttrLabel.text  = "\(sex), \(age), \(address)"
         }
+
+        if let profileText = UsersData.profileTexts[uid] {
+            self.profileTextLabel.text = profileText
+            if profileText != "" {
+                self.profileTextLabel.borderColor = UIColor.hexStr(hexStr: "#7DD8C7", alpha: 0.6)
+                self.profileTextLabel.borderWidth = 1.0
+            }
+        }
+        if let tableView = self.subviews[0] as? UITableView {
+            tableView.reloadData()
+        }
+
     }
 
     func clear() {

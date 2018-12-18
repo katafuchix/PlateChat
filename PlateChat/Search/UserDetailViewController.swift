@@ -44,7 +44,7 @@ class UserDetailViewController: UIViewController {
         self.tableView.separatorInset   = .zero
         self.tableView.tableFooterView  = UIView()
         //tableView.estimatedRowHeight = 170 // これはStoryBoardの設定で無視されるかも？
-        tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableViewAutomaticDimension
 
         self.articleService = ArticleService()
         self.articleService?.lastUidArticle = nil
@@ -55,6 +55,37 @@ class UserDetailViewController: UIViewController {
                 self.observeArticle()
             }
         }).disposed(by: rx.disposeBag)
+
+        guard let uid = uid else { return }
+        UserService.getUserInfo(uid, completionHandler: { [unowned self] (user, error) in
+            if let user = user {
+                var dict = UsersData.profileImages
+                dict[user.key] = user.profile_image_url
+                UsersData.profileImages = dict
+
+                dict = UsersData.nickNames
+                dict[user.key] = user.nickname
+                UsersData.nickNames = dict
+
+                dict = UsersData.profileTexts
+                dict[user.key] = user.profile_text
+                UsersData.profileTexts = dict
+
+                var dict2 = UsersData.ages
+                dict2[user.key] = user.age
+                UsersData.ages = dict2
+
+                dict2 = UsersData.genders
+                dict2[user.key] = user.sex
+                UsersData.genders = dict2
+
+                dict2 = UsersData.prefecture_ids
+                dict2[user.key] = user.prefecture_id
+                UsersData.prefecture_ids = dict2
+
+                self.tableView.reloadData()
+            }
+        })
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -128,7 +159,7 @@ extension UserDetailViewController : UITableViewDataSource, UITableViewDelegate 
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.profileCell, for: indexPath)!
             cell.configure(self.uid!)
             cell.profileImageButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-                if let image = cell.profileImageButton.backgroundImage(for: .normal) , let image_url = AccountData.my_profile_image {
+                if let image = cell.profileImageButton.backgroundImage(for: .normal) {
                     // SKPhotoBrowserを利用して別ウィンドウで開く
                     var images = [SKPhoto]()
                     let photo = SKPhoto.photoWithImage(image)
