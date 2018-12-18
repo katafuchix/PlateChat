@@ -138,7 +138,7 @@ class SettingTableViewController: UITableViewController {
     }
 
     func deleteAccount() {
-        Alert("確認", "アカウントを削除してよろしいですか？")
+        Alert("確認", "アカウントを削除してよろしいですか？\nデータは全て削除されます。")
             .addAction("OK" , completion: { [unowned self] (AlertResult) in
                 print(AlertResult)
 

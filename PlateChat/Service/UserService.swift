@@ -170,7 +170,7 @@ class UserService {
     // ユーザー削除
     static func deleteLoginUser(completionHandler: @escaping (_ error: UserServiceUpdateError?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        self.store.collection("login_user").document(uid).setData(["status": 0], merge: true, completion: { error in
+        self.store.collection("login_user").document(uid).setData(["status": 0, "fcmToken": ""], merge: true, completion: { error in
             if error != nil {
                 completionHandler(.updateError(error))
                 return
@@ -199,6 +199,24 @@ class UserService {
                                     for article in articles {
 
                                         self.store.collection("article").document(article.key).setData(["status": 0], merge: true,  completion: { _ in })
+                                    }
+                                }
+                            } catch {}
+                        }
+
+                        // チャットルーム更新
+                        let roomQuery = self.store.collection("chat_room")
+                            .whereField("members.\(uid)", isEqualTo: true)
+                            .whereField("status", isEqualTo: 1)
+                            .limit(to: 1000)
+
+                        roomQuery.addSnapshotListener(includeMetadataChanges: true) { (querySnapshot, error) in
+                            do {
+                                if let snapshot = querySnapshot {
+                                    let rooms = try snapshot.documents.compactMap { try ChatRoom(from: $0) }
+                                    for room in rooms {
+
+                                        self.store.collection("chat_room").document(room.key).setData(["status": 0], merge: true,  completion: { _ in })
                                     }
                                 }
                             } catch {}
