@@ -333,13 +333,19 @@ class UserService {
 
     // 最終ログイン
     static func setLastLogin() {
+        print("setLastLogin()")
         guard let uid = Auth.auth().currentUser?.uid else { return }
         var data = [
                     "last_login_date"   : FieldValue.serverTimestamp(),
                     "devise"            : UserDeviceInfo.getDeviceInfo()
             ] as [String : Any]
         if AccountData.fcmToken != nil {
-            data["fcmToken"] = AccountData.fcmToken 
+            data["fcmToken"] = AccountData.fcmToken
+        }
+        // 端末を移動した場合など
+        if let token = Messaging.messaging().fcmToken {
+            data["fcmToken"] = token
+            AccountData.fcmToken = token
         }
         self.store.collection("login_user").document(uid).setData(data, merge: true, completion: { error in
             if let err = error {

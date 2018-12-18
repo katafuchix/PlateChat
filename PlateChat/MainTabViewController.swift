@@ -34,7 +34,10 @@ class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
         print(UserDeviceInfo.getDeviceInfo())
 
         if Auth.auth().currentUser?.uid == nil {
-            UserService.createUser(completionHandler: { (uid, _) in print(" create \(String(describing: uid))") })
+            UserService.createUser(completionHandler: { (uid, _) in
+                print(" create \(String(describing: uid))")
+                UserService.setLastLogin()
+            })
         }
         UserService.setLastLogin()
     }
@@ -54,8 +57,6 @@ class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
     }
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("viewController")
-        print(viewController)
         viewController.tabBarItem.badgeValue = nil
     }
 
