@@ -112,24 +112,33 @@ class SettingTableViewController: UITableViewController {
         print(indexPath)
 
         switch indexPath.row {
-        case 1:
+        // 0: ヘッダ
+        case 1: // プロフィール設定
             let vc = R.storyboard.profile.profileEditTableViewController()!
             self.navigationController?.pushViewController(vc, animated: true)
-        case 2:
+        case 2: // ブロックリスト
             let vc = R.storyboard.blockList.blockListViewController()!
             self.navigationController?.pushViewController(vc, animated: true)
-        case 3:
+        case 3: // アカウントの保存とログイン
             let vc = R.storyboard.account.accountTableViewController()!
             self.navigationController?.pushViewController(vc, animated: true)
-        case 7:
+        // 返信通知設定
+        // メッセージ通知設定
+        // 足あと通知設定
+        // パスコードロック
+        // 詳細
+        case 9: // 利用規約
             let vc = R.storyboard.rule.ruleViewController()!
             self.navigationController?.pushViewController(vc, animated: true)
-        case 8:
-            let vc = R.storyboard.privacy.privacyViewController()!
+        case 10: // プライバシーポリシー
+            //let vc = R.storyboard.privacy.privacyViewController()!
+            //self.navigationController?.pushViewController(vc, animated: true)
+            let vc = R.storyboard.privacyPoricy.privacyPoricyViewController()!
             self.navigationController?.pushViewController(vc, animated: true)
-        case 9:
+        case 11: // FAQ
             let vc = R.storyboard.faq.faqViewController()!
             self.navigationController?.pushViewController(vc, animated: true)
+        // case 12: // お問い合わせ
         case 13: // アカウント削除
             self.deleteAccount()
         default:

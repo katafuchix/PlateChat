@@ -516,8 +516,8 @@ class UserService {
                 return
             }
 
-            print("snapshot.documents")
-            print(snapshot.documents.count)
+            //print("snapshot.documents")
+            //print(snapshot.documents.count)
             self?.lastLoginUserDocument = snapshot.documents.last
             do {
                 let users = try snapshot.documents.compactMap { try LoginUser(from: $0) }.sorted(by: { $0.created_date > $1.created_date})

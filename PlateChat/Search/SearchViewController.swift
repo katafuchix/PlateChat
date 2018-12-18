@@ -221,12 +221,7 @@ extension SearchViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        /*
-        let cell = collectionView.dequeueCell(SearchCell.self, indexPath: indexPath)
-        cell.backgroundColor = UIColor.clear
-        let data = self.pager.elements[indexPath.row]
-        cell.configureData(data)
-*/
+        
         if AccountData.search_collection_is_grid! {
             let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.searchGridCell, for: indexPath)!
             cell.configure(self.users[indexPath.row])

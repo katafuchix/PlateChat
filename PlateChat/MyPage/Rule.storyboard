@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="83v-4y-dnR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="83v-4y-dnR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +18,7 @@
         <!--利用規約-->
         <scene sceneID="TDF-7g-Yuy">
             <objects>
-                <viewController storyboardIdentifier="RuleViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="83v-4y-dnR" customClass="RuleViewController" customModule="PlateChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RuleViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="83v-4y-dnR" customClass="RuleViewController" customModule="P_Chat_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0vA-bV-yAg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,7 +28,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <mutableString key="text">利用規約
 
-本利用規約（以下「本規約」といいます。）には、マリンチャット運営事務局（マリンチャットサービスを運営する法人を意味し、以下「当社」といいます。）の提供するマリンチャットサービスのご利用にあたり、ユーザーの皆様に遵守していただかなければならない事項及び当社とユーザーの皆様との間の権利義務関係が定められております。当該サービスをユーザーとしてご利用になる方は、本規約に同意する前に、必ず全文お読み下さいますようお願い致します。本規約に同意した場合、本規約の諸規定に従った本サービスの利用にかかる契約（以下「利用契約」といいます。）がユーザーと当社の間に成立します。
+本利用規約（以下「本規約」といいます。）には、P-Chat！運営事務局（P-Chat！を運営する法人を意味し、以下「当社」といいます。）の提供するP-Chat！のご利用にあたり、ユーザーの皆様に遵守していただかなければならない事項及び当社とユーザーの皆様との間の権利義務関係が定められております。当該サービスをユーザーとしてご利用になる方は、本規約に同意する前に、必ず全文お読み下さいますようお願い致します。本規約に同意した場合、本規約の諸規定に従った本サービスの利用にかかる契約（以下「利用契約」といいます。）がユーザーと当社の間に成立します。
 
 
 
@@ -42,7 +42,7 @@
 
 (1)	「知的財産権」とは、著作権、特許権、実用新案権、商標権、意匠権その他の知的財産権（それらの権利を取得し、又はそれらの権利につき登録等を出願する権利を含みます。）を意味します。
 
-(2)	「本アプリ」とは、当社が提供するマリンチャットという名称のアプリケーション（理由の如何を問わずアプリケーションの名称が変更された場合は、当該変更後のアプリケーションを含みます。）を意味します。
+(2)	「本アプリ」とは、当社が提供する「P-Chat！」という名称のアプリケーション（理由の如何を問わずアプリケーションの名称が変更された場合は、当該変更後のアプリケーションを含みます。）を意味します。
 
 (3)	「投稿情報」とは、第9条において定義された「投稿情報」を意味します。
 
@@ -50,7 +50,7 @@
 
 (5)	「ユーザー」とは、本サービスを利用する個人又は法人を意味します。
 
-(6)	「本サービス」とは、当社が提供するマリンチャットという名称のサービス（理由の如何を問わずサービスの名称が変更された場合は、当該変更後のサービスを含みます。）を意味します。
+(6)	「本サービス」とは、当社が提供する「P-Chat！」という名称のサービス（理由の如何を問わずサービスの名称が変更された場合は、当該変更後のサービスを含みます。）を意味します。
 
 (7)	「外部SNSサービス」とは、Facebook、その他の他の事業者が提供している当社所定のソーシャル・ネットワーキング・サービスで、ユーザーの認証、友人関係の開示、当該外部ソーシャル・ネットワーク内へのコンテンツの公開などの機能を持ち、本サービスの実施に利用されるサービスを意味します。
 
@@ -75,7 +75,7 @@
 
 (5)	未成年者、成年被後見人、被保佐人又は被補助人のいずれかであり、法定代理人、後見人､保佐人又は補助人の同意等を得ていなかった場合
 
-(6)	反社会的勢力等（暴力団、暴力団員、右翼団体、反社会的勢力、その他これに準ずる者を意味します。以下同じ。）である、又は資金提供その他を通じて反社会的勢力等の維持、運営若しくは経営に協力若しくは関与する等反社会的勢力等との何らかの交流若しくは関与を行っていると当社が判断した場合
+(6)	反社会的勢力等（暴力団、暴力団員、右翼団体、反社会的勢力、過激な政治団体など、その他これに準ずる者を意味します。以下同じ。）である、又は資金提供その他を通じて反社会的勢力等の維持、運営若しくは経営に協力若しくは関与する等反社会的勢力等との何らかの交流若しくは関与を行っていると当社が判断した場合
 
 (7)	その他、当社が登録を適当でないと判断した場合
 
@@ -281,7 +281,7 @@
 
 
 
-【２０１５年１０月１日制定】</mutableString>
+【２０１８年１２月０１日制定】</mutableString>
                                 <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>

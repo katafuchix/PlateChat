@@ -29,10 +29,12 @@ class UserDetailViewController: UIViewController {
         self.bind()
         
         FootprintService.addFootprint(self.uid!, completionHandler: { _ in })
+        /*
         let dateUnix: TimeInterval = 1537696090
         let date = Date(timeIntervalSince1970: dateUnix)
         print(date)
         print(NSDate(timeIntervalSince1970: 1415637900))
+        */
     }
 
     func bind() {
@@ -116,7 +118,6 @@ extension UserDetailViewController : UITableViewDataSource, UITableViewDelegate 
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-
         return UITableViewAutomaticDimension
     }
 
@@ -145,7 +146,8 @@ extension UserDetailViewController : UITableViewDataSource, UITableViewDelegate 
             let cell = self.tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.talkButtonTableViewCell, for: indexPath)!
             if self.uid == AccountData.uid {
                 cell.talkButton.isEnabled = false
-                cell.talkButton.backgroundColor = UIColor.lightGray
+                //cell.talkButton.backgroundColor = UIColor.lightGray
+                cell.talkButton.backgroundColor = UIColor.hexStr(hexStr: "#d1d6d5", alpha: 1.0)
             }
             cell.talkButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
                 SVProgressHUD.show(withStatus: "Loading...")

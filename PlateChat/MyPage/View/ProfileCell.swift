@@ -75,7 +75,7 @@ class ProfileCell: UITableViewCell {
 
         if self.profileTextLabel.text != "" {
             self.profileTextLabel.borderColor = UIColor.hexStr(hexStr: "#7DD8C7", alpha: 0.6)
-            self.profileTextLabel.borderWidth = 0.5
+            self.profileTextLabel.borderWidth = 1.0
         }
     }
 

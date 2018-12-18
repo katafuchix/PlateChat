@@ -127,6 +127,11 @@
 		31B707D1213AE91E00A2D95E /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B707D0213AE91E00A2D95E /* NoticeViewController.swift */; };
 		31B707D3213AE96700A2D95E /* FootPrint.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31B707D2213AE96700A2D95E /* FootPrint.storyboard */; };
 		31B707D5213AF7ED00A2D95E /* FootPrintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B707D4213AF7ED00A2D95E /* FootPrintViewController.swift */; };
+		31B872F921C8EC37007B98B0 /* PaddingProfileLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B872F821C8EC37007B98B0 /* PaddingProfileLabel.swift */; };
+		31B872FB21C8F62C007B98B0 /* PrivacyPoricy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31B872FA21C8F62C007B98B0 /* PrivacyPoricy.storyboard */; };
+		31B872FD21C8F645007B98B0 /* PrivacyPoricyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B872FC21C8F645007B98B0 /* PrivacyPoricyViewController.swift */; };
+		31B8730221C8F9B4007B98B0 /* PrivacyPoricy.html in Resources */ = {isa = PBXBuildFile; fileRef = 31B8730121C8F9B4007B98B0 /* PrivacyPoricy.html */; };
+		31B8730421C8FB90007B98B0 /* Rule.html in Resources */ = {isa = PBXBuildFile; fileRef = 31B8730321C8FB8F007B98B0 /* Rule.html */; };
 		31BA1425213410CA00DB4958 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31BA1424213410CA00DB4958 /* SVProgressHUD.framework */; };
 		31BE63D12115D26000E43982 /* NVActivityIndicatorView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63D02115D26000E43982 /* NVActivityIndicatorView+Extended.swift */; };
 		31BE63D32115D2E300E43982 /* UIColor+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE63D22115D2E300E43982 /* UIColor+Extended.swift */; };
@@ -283,6 +288,11 @@
 		31B707D0213AE91E00A2D95E /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
 		31B707D2213AE96700A2D95E /* FootPrint.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FootPrint.storyboard; sourceTree = "<group>"; };
 		31B707D4213AF7ED00A2D95E /* FootPrintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootPrintViewController.swift; sourceTree = "<group>"; };
+		31B872F821C8EC37007B98B0 /* PaddingProfileLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingProfileLabel.swift; sourceTree = "<group>"; };
+		31B872FA21C8F62C007B98B0 /* PrivacyPoricy.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PrivacyPoricy.storyboard; sourceTree = "<group>"; };
+		31B872FC21C8F645007B98B0 /* PrivacyPoricyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPoricyViewController.swift; sourceTree = "<group>"; };
+		31B8730121C8F9B4007B98B0 /* PrivacyPoricy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PrivacyPoricy.html; sourceTree = "<group>"; };
+		31B8730321C8FB8F007B98B0 /* Rule.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Rule.html; sourceTree = "<group>"; };
 		31BA1424213410CA00DB4958 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		31BE63D02115D26000E43982 /* NVActivityIndicatorView+Extended.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NVActivityIndicatorView+Extended.swift"; sourceTree = "<group>"; };
 		31BE63D22115D2E300E43982 /* UIColor+Extended.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extended.swift"; sourceTree = "<group>"; };
@@ -361,6 +371,7 @@
 				310FB0702127BA4E00C917E7 /* UnderlineTextField.swift */,
 				31ED9E0D212D8DCA00D1E96E /* DotBadgeView.swift */,
 				310CC23F213D95EB0091AADF /* PaddingLabel.swift */,
+				31B872F821C8EC37007B98B0 /* PaddingProfileLabel.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -455,6 +466,7 @@
 		3128050B2117043200357E5C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				31B872FE21C8F729007B98B0 /* HTML */,
 				3128050C2117047400357E5C /* NotoSans */,
 			);
 			path = Resources;
@@ -584,6 +596,15 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
+		31B872FE21C8F729007B98B0 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				31B8730121C8F9B4007B98B0 /* PrivacyPoricy.html */,
+				31B8730321C8FB8F007B98B0 /* Rule.html */,
+			);
+			path = HTML;
+			sourceTree = "<group>";
+		};
 		31BE63CF2115D25400E43982 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -635,6 +656,8 @@
 				318EAD59215A8BFD00E9F214 /* NewPasscodeInputViewController.swift */,
 				318EAD5D215AA0C000E9F214 /* PasscodeLock.storyboard */,
 				318EAD5B215A9E2E00E9F214 /* PasscodeLockViewController.swift */,
+				31B872FA21C8F62C007B98B0 /* PrivacyPoricy.storyboard */,
+				31B872FC21C8F645007B98B0 /* PrivacyPoricyViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -791,9 +814,11 @@
 				31386D7A2132D469008E82D0 /* IndicatorView.xib in Resources */,
 				313E095E2155363800508644 /* SearchGridCell.xib in Resources */,
 				31B707D3213AE96700A2D95E /* FootPrint.storyboard in Resources */,
+				31B8730421C8FB90007B98B0 /* Rule.html in Resources */,
 				317E0ABA215912F3003DDAD3 /* FootprintTableViewCell.xib in Resources */,
 				31BE63E22115F3DD00E43982 /* Home.storyboard in Resources */,
 				312805152117047400357E5C /* NotoSansCJKjpSub-Regular.otf in Resources */,
+				31B872FB21C8F62C007B98B0 /* PrivacyPoricy.storyboard in Resources */,
 				31199F9F2158F19600324469 /* ArticleReplyLog.storyboard in Resources */,
 				31199FA62158F79C00324469 /* NoticeTableViewCell.xib in Resources */,
 				318EAD58215A8BEE00E9F214 /* NewPasscodeInput.storyboard in Resources */,
@@ -814,6 +839,7 @@
 				310FB0692127B64D00C917E7 /* Account.storyboard in Resources */,
 				31BF4BCB21423959003F6F40 /* ArticleTableViewCell.xib in Resources */,
 				31BF4BCF2142BAB4003F6F40 /* ProfileCell.xib in Resources */,
+				31B8730221C8F9B4007B98B0 /* PrivacyPoricy.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -974,6 +1000,7 @@
 				31BF4BC521423632003F6F40 /* ArticleListViewController.swift in Sources */,
 				312805062116F00D00357E5C /* UtilManager.swift in Sources */,
 				31B707CD213A802000A2D95E /* BlockListViewController.swift in Sources */,
+				31B872FD21C8F645007B98B0 /* PrivacyPoricyViewController.swift in Sources */,
 				31B707C9213A3DE200A2D95E /* UserBlockedService.swift in Sources */,
 				3150BA012113373900DB3512 /* ViewController.swift in Sources */,
 				31C735582137034C009E8241 /* Date+Extended.swift in Sources */,
@@ -1037,6 +1064,7 @@
 				310FB05D2126F6EC00C917E7 /* WriteViewController.swift in Sources */,
 				318EAD5A215A8BFD00E9F214 /* NewPasscodeInputViewController.swift in Sources */,
 				3168A0702119BA54002B0440 /* Message.swift in Sources */,
+				31B872F921C8EC37007B98B0 /* PaddingProfileLabel.swift in Sources */,
 				310A6B9A212063420026A412 /* CALayer+RuntimeAttribute.swift in Sources */,
 				31199FA52158F79C00324469 /* NoticeTableViewCell.swift in Sources */,
 				319A26B4212675A000769A6E /* PhotoRequester.swift in Sources */,
