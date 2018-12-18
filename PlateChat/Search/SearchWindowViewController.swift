@@ -86,8 +86,11 @@ class SearchWindowViewController: UIViewController {
         // 年齢
         self.rangeSlider.minimumValue = 18
         self.rangeSlider.maximumValue = 99
-        self.rangeSlider.lowerValue = Double(UserSearchData.ageLower)
-        self.rangeSlider.upperValue = Double(UserSearchData.ageUpper)
+        
+        self.rangeSlider.lowerValue = UserSearchData.ageLower > 0 ? Double(UserSearchData.ageLower) :  Double(self.rangeSlider.minimumValue)
+        self.rangeSlider.upperValue = UserSearchData.ageUpper > 0 ? Double(UserSearchData.ageUpper) : Double(self.rangeSlider.maximumValue)
+        self.showAge()
+
         self.rangeSlider.rx.controlEvent(UIControlEvents.valueChanged).asDriver().drive(onNext: { [weak self] value in
             UserSearchData.ageLower = Int(round(self?.rangeSlider.lowerValue ?? 18.0))
             UserSearchData.ageUpper = Int(round(self?.rangeSlider.upperValue ?? 99.0))
