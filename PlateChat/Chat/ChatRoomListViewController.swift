@@ -35,7 +35,7 @@ class ChatRoomListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        self.networkChecking()
         self.chatRoomService = ChatRoomService()
         self.observeChatRoomLIst()
     }

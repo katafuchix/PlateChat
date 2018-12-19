@@ -36,6 +36,11 @@ class BlockListViewController: UIViewController {
         self.bind()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.networkChecking()
+    }
+    
     func bind() {
         self.backButton.rx.tap.subscribe(onNext: { [unowned self] in
             self.navigationController?.popViewController(animated: true)

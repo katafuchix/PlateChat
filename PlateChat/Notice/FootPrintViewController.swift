@@ -37,6 +37,7 @@ class FootPrintViewController: UIViewController, IndicatorInfoProvider {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.networkChecking()
         self.observeFootprint()
     }
 

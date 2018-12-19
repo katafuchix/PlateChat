@@ -138,6 +138,11 @@ class ChatMessageViewController: MessagesViewController {
         messagesCollectionView.keyboardDismissMode = .onDrag
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.networkChecking()
+    }
+    
     func setupMessageInputBarButtons() {
         let height: CGFloat = 28  // 送信ボタンと同じ高さ
         let button = InputBarButtonItem().configure {

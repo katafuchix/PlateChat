@@ -27,6 +27,11 @@ class PrivacyViewController: UIViewController {
         }).disposed(by: rx.disposeBag)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.networkChecking()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         textView.setContentOffset(.zero, animated: false)

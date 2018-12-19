@@ -70,3 +70,14 @@ extension UIViewController {
             })
     }
 }
+
+extension UIViewController {
+    func networkChecking()
+    {
+        // ネットワークに接続されていない場合
+        if !NetworkReachability.isReachable {
+            self.showAlert("ネットワークに接続されていません")
+            SVProgressHUD.dismiss()
+        }
+    }
+}

@@ -73,6 +73,7 @@
 		313193D521C9FCDA001AA7E5 /* icon_167.png in Resources */ = {isa = PBXBuildFile; fileRef = 313193C821C9FCDA001AA7E5 /* icon_167.png */; };
 		313193D621C9FCDA001AA7E5 /* icon_80.png in Resources */ = {isa = PBXBuildFile; fileRef = 313193C921C9FCDA001AA7E5 /* icon_80.png */; };
 		313193D721C9FCDA001AA7E5 /* icon_40.png in Resources */ = {isa = PBXBuildFile; fileRef = 313193CA21C9FCDA001AA7E5 /* icon_40.png */; };
+		313193D921CA8ADC001AA7E5 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313193D821CA8ADC001AA7E5 /* NetworkReachability.swift */; };
 		31386D6B21324718008E82D0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31386D6A21324718008E82D0 /* R.generated.swift */; };
 		31386D7421324C5E008E82D0 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31386D7321324C5E008E82D0 /* ChatRoom.swift */; };
 		31386D7621324DE6008E82D0 /* FirebaseCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31386D7521324DE6008E82D0 /* FirebaseCommon.swift */; };
@@ -244,6 +245,7 @@
 		313193C821C9FCDA001AA7E5 /* icon_167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_167.png; sourceTree = "<group>"; };
 		313193C921C9FCDA001AA7E5 /* icon_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_80.png; sourceTree = "<group>"; };
 		313193CA21C9FCDA001AA7E5 /* icon_40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_40.png; sourceTree = "<group>"; };
+		313193D821CA8ADC001AA7E5 /* NetworkReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		31386D6A21324718008E82D0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		31386D7321324C5E008E82D0 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		31386D7521324DE6008E82D0 /* FirebaseCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCommon.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 			isa = PBXGroup;
 			children = (
 				312805052116F00D00357E5C /* UtilManager.swift */,
+				313193D821CA8ADC001AA7E5 /* NetworkReachability.swift */,
 				319A26AE212675A000769A6E /* ActionSheet.swift */,
 				319A26AB212675A000769A6E /* Alert.swift */,
 				319A26AD212675A000769A6E /* Authorization.swift */,
@@ -975,6 +978,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PlateChat/Pods-PlateChat-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -993,6 +997,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
@@ -1045,6 +1050,7 @@
 				31BF4BCE2142BAB4003F6F40 /* ProfileCell.swift in Sources */,
 				3168A0792119C2E8002B0440 /* UserService.swift in Sources */,
 				310A6B9C212064470026A412 /* UIView+Extended.swift in Sources */,
+				313193D921CA8ADC001AA7E5 /* NetworkReachability.swift in Sources */,
 				310FB06D2127B88000C917E7 /* UIPlaceHolderTextView.swift in Sources */,
 				312805082116F54900357E5C /* Constants.swift in Sources */,
 				31386D7621324DE6008E82D0 /* FirebaseCommon.swift in Sources */,

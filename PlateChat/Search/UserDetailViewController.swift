@@ -90,6 +90,7 @@ class UserDetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.networkChecking()
         self.tableView.reloadData()
         self.observeArticle()
     }

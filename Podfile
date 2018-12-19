@@ -42,4 +42,5 @@ target 'PlateChat' do
   #pod 'SmileLock'
   pod 'THPinViewController', '~> 1.2.6'
   #pod 'XLPagerTabStrip', '~> 8.0'
+  pod 'Alamofire'
 end

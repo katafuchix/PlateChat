@@ -138,6 +138,8 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        self.networkChecking()
+
         if self.articles.count == 0 {
             self.observeArticle()
         }

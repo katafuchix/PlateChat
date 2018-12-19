@@ -34,6 +34,11 @@ class RuleViewController: UIViewController {
         self.textView.setContentOffset(.zero, animated: true)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.networkChecking()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         textView.setContentOffset(.zero, animated: false)

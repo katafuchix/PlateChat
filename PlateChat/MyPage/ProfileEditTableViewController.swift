@@ -57,6 +57,7 @@ class ProfileEditTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.networkChecking()
         self.setUserData()
         self.tableView.reloadData()
     }
@@ -144,7 +145,7 @@ class ProfileEditTableViewController: UITableViewController {
             SVProgressHUD.show(withStatus: "Updating...")
             UserService.updateLoginUser(dic,completionHandler: { ( user, error) in
                                             SVProgressHUD.dismiss()
-                                            guard let user = user else { return }
+                                            //guard let user = user else { return }
                                             if error != nil {
                                                 self?.showAlert("Error!")
                                                 return

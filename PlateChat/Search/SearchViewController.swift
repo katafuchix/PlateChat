@@ -39,6 +39,7 @@ class SearchViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.networkChecking()
         if let flag = AccountData.search_collection_is_grid {
             if flag == true {
                 self.collectionTypeButton.image = R.image.menu()

@@ -36,6 +36,11 @@ class SettingTableViewController: UITableViewController {
         self.bind()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.networkChecking()
+    }
+    
     func bind(){
         closeButton.rx.tap.subscribe(onNext: { [unowned self] in
             self.dismiss(animated: true, completion: nil)

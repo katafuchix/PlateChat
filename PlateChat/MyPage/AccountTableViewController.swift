@@ -39,6 +39,11 @@ class AccountTableViewController: UITableViewController {
         self.bind()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.networkChecking()
+    }
+    
     func bind() {
         // 戻るボタン
         self.backButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
