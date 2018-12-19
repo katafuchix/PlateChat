@@ -333,7 +333,6 @@ class UserService {
 
     // 最終ログイン
     static func setLastLogin() {
-        print("setLastLogin()")
         guard let uid = Auth.auth().currentUser?.uid else { return }
         var data = [
                     "last_login_date"   : FieldValue.serverTimestamp(),

@@ -121,7 +121,7 @@ extension MyProfileViewController : UITableViewDataSource, UITableViewDelegate {
             cell.configure(AccountData.uid!)
 
             cell.profileImageButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-                if let image = cell.profileImageButton.backgroundImage(for: .normal) , let image_url = AccountData.my_profile_image {
+                if let image = cell.profileImageButton.backgroundImage(for: .normal) {
 
                     // SKPhotoBrowserを利用して別ウィンドウで開く
                     var images = [SKPhoto]()

@@ -29,7 +29,20 @@ class ProfileCell: UITableViewCell {
         
         if uid == AccountData.uid {
             self.nicknameLabel.text = AccountData.nickname
-            self.setUserAttr(uid)
+            //self.setUserAttr(uid)
+
+            let sex = Constants.genders[AccountData.sex]
+            let age = AccountData.age > 0 ? "\(AccountData.age) " : "未設定"
+            let address = Constants.prefs.keys.contains(AccountData.prefecture_id) ? Constants.prefs[AccountData.prefecture_id]! : "未設定"
+            self.profileAttrLabel.text = "\(sex), \(age), \(address)"
+
+            if let profileText = AccountData.profile_text {
+                self.profileTextLabel.text = profileText
+                if profileText != "" {
+                    self.profileTextLabel.borderColor = UIColor.hexStr(hexStr: "#7DD8C7", alpha: 0.6)
+                    self.profileTextLabel.borderWidth = 1.0
+                }
+            }
 
             if let url = AccountData.my_profile_image {
                 self.profileImageButton.sd_setBackgroundImage(with: URL(string:url), for: .normal) { [weak self] (image, error, cacheType, url) in
@@ -123,9 +136,6 @@ class ProfileCell: UITableViewCell {
                 self.profileTextLabel.borderColor = UIColor.hexStr(hexStr: "#7DD8C7", alpha: 0.6)
                 self.profileTextLabel.borderWidth = 1.0
             }
-        }
-        if let tableView = self.subviews[0] as? UITableView {
-            tableView.reloadData()
         }
 
     }
