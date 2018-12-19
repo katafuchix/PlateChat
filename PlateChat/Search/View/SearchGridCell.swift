@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
 class SearchGridCell: UICollectionViewCell {
 
     @IBOutlet weak var profileImageButton: CircleButton!
-
+    var disposeBag = DisposeBag()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -53,4 +57,9 @@ class SearchGridCell: UICollectionViewCell {
         self.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.disposeBag = DisposeBag()
+    }
+    
 }

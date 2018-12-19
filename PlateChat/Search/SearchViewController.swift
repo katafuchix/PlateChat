@@ -226,11 +226,23 @@ extension SearchViewController: UICollectionViewDataSource {
         if AccountData.search_collection_is_grid! {
             let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.searchGridCell, for: indexPath)!
             cell.configure(self.users[indexPath.row])
+            cell.profileImageButton.rx.tap.asDriver().drive(onNext: { [unowned self] _ in
+                let vc = R.storyboard.uderDetail.userDetailViewController()!
+                vc.uid = self.users[indexPath.row].key
+                self.navigationController?.pushViewController(vc, animated: true)
+            }).disposed(by: cell.disposeBag)
+
             return cell
         }
 
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.searchWideCell, for: indexPath)!
         cell.configure(self.users[indexPath.row])
+        cell.profileImageButton.rx.tap.asDriver().drive(onNext: { [unowned self] _ in
+            let vc = R.storyboard.uderDetail.userDetailViewController()!
+            vc.uid = self.users[indexPath.row].key
+            self.navigationController?.pushViewController(vc, animated: true)
+        }).disposed(by: cell.disposeBag)
+
         return cell
     }
 }

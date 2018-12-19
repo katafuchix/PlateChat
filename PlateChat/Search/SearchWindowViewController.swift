@@ -52,7 +52,7 @@ class SearchWindowViewController: UIViewController {
     
     func setUserData() {
         self.showAge()
-
+        
         switch UserSearchData.sex {
         case 0:
             self.buttonSelect(self.noneButton)

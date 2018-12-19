@@ -115,7 +115,7 @@ class ArticleTableViewCell: UITableViewCell {
             if let toNickName = UsersData.nickNames[article.toUid] {
                 self.toLabel.text = toNickName
             } else {
-                UserService.getUserInfo(article.toUid, completionHandler: { [unowned self] (user, error) in
+                UserService.getUserInfo(article.toUid, completionHandler: { (user, error) in
                     if let user = user {
                         var dict = UsersData.profileImages
                         dict[user.key] = user.profile_image_url

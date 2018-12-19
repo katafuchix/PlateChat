@@ -260,7 +260,14 @@ extension UserDetailViewController : UITableViewDataSource, UITableViewDelegate 
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = R.storyboard.article.articleListViewController()!
+        let bool = self.navigationController?.topViewController is ArticleListViewController
+        if !bool {
+            vc.article = self.articles[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
+
 }
 
 extension UserDetailViewController: writeVCprotocol {

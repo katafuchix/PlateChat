@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
 class SearchWideCell: UICollectionViewCell {
 
@@ -14,7 +17,8 @@ class SearchWideCell: UICollectionViewCell {
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var attrLabel: UILabel!
     @IBOutlet weak var profileTextLabel: UILabel!
-
+    var disposeBag = DisposeBag()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -61,5 +65,10 @@ class SearchWideCell: UICollectionViewCell {
         self.nicknameLabel.text = ""
         self.attrLabel.text = ""
         self.profileTextLabel.text = ""
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.disposeBag = DisposeBag()
     }
 }
