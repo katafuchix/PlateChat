@@ -47,6 +47,8 @@ class FaqViewController: UIViewController {
                                                     subtitle: "運営事務局で不適切と判断した画像は削除することがあります。\n再度ご登録おください。"),
                       FaqTableViewCellContent(title: "退会したいのですが？ ",
                                 subtitle: "［設定］ー［アカウント削除］から退会できます。\nさアカウントに関するデータはすべて削除しされます。"),
+                      FaqTableViewCellContent(title: "プッシュ通知を止めたいのですが？ ",
+                                              subtitle: "［設定］からプッシュ通知のON／OFFを設定できます。"),
                       FaqTableViewCellContent(title: "迷惑なユーザーがいます。 ",
                                               subtitle: "ユーザーの詳細画面やチャット画面で該当ユーザーをブロックすることができます。ブロックすると双方でアカウントに参照できなくなります。\nそれでも気になるようでしたら、［設定］ー［お問い合わせ］から運営事務局までご連絡ください。"),
                       FaqTableViewCellContent(title: "チャットは他のユーザーにも見えますか？ ",

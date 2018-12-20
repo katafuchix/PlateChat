@@ -101,6 +101,12 @@ extension ChatRoomListViewController: UITableViewDataSource {
             let data = self.chatRooms[indexPath.row]
             cell.configure(data, indexPath)
         }
+        /*cell.userProfileImageButton.rx.tap.asDriver().drive(onNext: { [unowned self] _ in
+            let vc = R.storyboard.uderDetail.userDetailViewController()!
+            let other_uid   = Array(self.chatRooms[indexPath.row].members.filter { $0.0 != AccountData.uid }.keys)[0]
+            vc.uid = other_uid
+            self.navigationController?.pushViewController(vc, animated: true)
+        }).disposed(by: cell.disposeBag)*/
         return cell
     }
 }
@@ -110,11 +116,6 @@ extension ChatRoomListViewController: UITableViewDataSource {
 extension ChatRoomListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
-        print(self.chatRooms.count)
-
-        //tableView.deselectRow(at: indexPath, animated: true)
-        //self.showChatVC(self.messageList[indexPath.row])
         if self.chatRooms.count == 0 { return }
         let chatRoom = self.chatRooms[indexPath.row]
 

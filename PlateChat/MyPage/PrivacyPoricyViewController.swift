@@ -36,7 +36,6 @@ class PrivacyPoricyViewController: UIViewController {
         
         if let filePath = Bundle.main.path(forResource: "PrivacyPoricy", ofType: "html"),
             let str = try? String(contentsOfFile: filePath, encoding: String.Encoding.utf8) {
-            print(str)
             webView.load(URLRequest(url: URL(fileURLWithPath: filePath, isDirectory: false)))
         }
     }

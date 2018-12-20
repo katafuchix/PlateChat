@@ -16,6 +16,7 @@ import SafariServices
 import Nuke
 import Rswift
 import SKPhotoBrowser
+import SVProgressHUD
 
 fileprivate extension UIEdgeInsets {
     init(top: CGFloat = 0, bottom: CGFloat = 0, left: CGFloat = 0, right: CGFloat = 0) {
@@ -74,16 +75,9 @@ class ChatMessageViewController: MessagesViewController {
 
         // Do any additional setup after loading the view.
 
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"deny"), style: .plain, target: self, action: nil)
-        self.navigationItem.rightBarButtonItem?.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            print(self)
-        }).disposed(by: rx.disposeBag)
+        //self.navigationItem.rightBarButtonItem =
 
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"back"), style: .plain, target: self, action: nil)
-        self.navigationItem.leftBarButtonItem?.rx.tap.asDriver().drive(onNext: { [unowned self] in
-            self.chatMessageService.bindTalkHandler?.remove()
-            self.navigationController?.popViewController(animated: true)
-        }).disposed(by: rx.disposeBag)
+        self.prepareButtons()
 
         // 自分のアイコンの表示を消し、その分ラベルを移動させる
         if let layout = self.messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
@@ -136,6 +130,87 @@ class ChatMessageViewController: MessagesViewController {
             .disposed(by: rx.disposeBag)
         messagesCollectionView.addGestureRecognizer(tapGesture)*/
         messagesCollectionView.keyboardDismissMode = .onDrag
+    }
+
+    func prepareButtons() {
+
+        self.navigationItem.leftBarButtonItem?.rx.tap.asDriver().drive(onNext: { [unowned self] in
+            self.chatMessageService.bindTalkHandler?.remove()
+            self.navigationController?.popViewController(animated: true)
+        }).disposed(by: rx.disposeBag)
+
+        let menuButton = UIBarButtonItem(image: UIImage(named:"menu"), style: .plain, target: self, action: nil)
+
+        let profileImageButton = UIButton(type: .custom)
+        profileImageButton.frame = CGRect(x: 0, y: 0, width: 30.0, height: 30.0)
+        profileImageButton.imageView?.contentMode = .scaleAspectFill
+        profileImageButton.imageView?.frame = CGRect(x: 0, y: 0, width: 30.0, height: 30.0)
+        profileImageButton.contentHorizontalAlignment = .fill
+        profileImageButton.contentVerticalAlignment = .fill
+        profileImageButton.borderWidth = 1
+        profileImageButton.borderColor = UIColor.rgba(205, 205, 205)
+        profileImageButton.layer.cornerRadius = profileImageButton.frame.size.width * 0.5
+        profileImageButton.clipsToBounds = true
+
+        if let profile_image_url = UsersData.profileImages[other_uid!] {
+            profileImageButton.sd_setImage(with: URL(string:profile_image_url), for: .normal) { (image, error, cacheType, url) in
+                guard let image = image else { return }
+                profileImageButton.setImage(image.resize(size: profileImageButton.bounds.size), for: .normal)
+                if error != nil {
+                    profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
+                }
+            }
+        }
+        profileImageButton.rx.tap.asDriver().drive(onNext: { [unowned self] _ in
+            let vc = R.storyboard.uderDetail.userDetailViewController()!
+            vc.uid = self.other_uid
+            self.navigationController?.pushViewController(vc, animated: true)
+        }).disposed(by: rx.disposeBag)
+        let profileButton = UIBarButtonItem(customView: profileImageButton)
+
+        self.navigationItem.rightBarButtonItems = [profileButton ,menuButton]
+
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"back"), style: .plain, target: self, action: nil)
+
+        let actions = [ActionSheetAction<UserMenu>(title: "ブロック", actionType: .block,
+                                                   style: .default),
+                       ActionSheetAction<UserMenu>(title: "通報", actionType: .report,
+                                                   style: .default)
+        ]
+        menuButton.rx.tap.asDriver().drive(onNext: { [unowned self] _ in
+            self.showActionSheet(title: "", message: "Menu", actions: actions).subscribe({ [unowned self] event in
+                if let sourceType = event.element {
+                    switch sourceType {
+                    case .block:
+                        self.showAlertOKCancel("確認", "このユーザーをブロックしますか？", "はい", "いいえ") { _ in
+                            self.blockUser(other_uid: self.other_uid!)
+                        }
+                    case .report:
+                        print(sourceType)
+                    }
+                }
+            })
+        }).disposed(by: rx.disposeBag)
+    }
+
+    private func blockUser(other_uid: String) {
+        SVProgressHUD.show(withStatus: "Loading...")
+
+        UserBlockService.addBlockUser(other_uid, completionHandler: { [unowned self] (_, error) in
+            if let error = error {
+                Log.error(error)
+                SVProgressHUD.dismiss()
+                return
+            }
+            UserBlockedService.addBlockedUser(other_uid, completionHandler: { [unowned self] (_, error) in
+                SVProgressHUD.dismiss()
+                if let error = error {
+                    Log.error(error)
+                    return
+                }
+                self.navigationController?.popViewController(animated: true)
+            })
+        })
     }
 
     override func viewWillAppear(_ animated: Bool) {

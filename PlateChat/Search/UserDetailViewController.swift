@@ -14,6 +14,12 @@ import Rswift
 import SVProgressHUD
 import SKPhotoBrowser
 
+enum UserMenu {
+    case block
+    case report
+}
+
+
 class UserDetailViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -29,12 +35,18 @@ class UserDetailViewController: UIViewController {
         self.bind()
         
         FootprintService.addFootprint(self.uid!, completionHandler: { _ in })
-        /*
-        let dateUnix: TimeInterval = 1537696090
-        let date = Date(timeIntervalSince1970: dateUnix)
-        print(date)
-        print(NSDate(timeIntervalSince1970: 1415637900))
-        */
+
+        self.prepareButtons()
+
+        if let nickName = UsersData.nickNames[self.uid!] {
+            self.title = nickName
+        }
+
+        if AccountData.uid == self.uid {
+            self.navigationItem.rightBarButtonItem?.image = UIImage()
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+
     }
 
     func bind() {
@@ -66,6 +78,7 @@ class UserDetailViewController: UIViewController {
                 dict = UsersData.nickNames
                 dict[user.key] = user.nickname
                 UsersData.nickNames = dict
+                self.title = user.nickname
 
                 dict = UsersData.profileTexts
                 dict[user.key] = user.profile_text
@@ -85,6 +98,53 @@ class UserDetailViewController: UIViewController {
 
                 self.tableView.reloadData()
             }
+        })
+    }
+
+    func prepareButtons() {
+
+        self.navigationItem.leftBarButtonItem?.rx.tap.asDriver().drive(onNext: { [unowned self] in
+            self.navigationController?.popViewController(animated: true)
+        }).disposed(by: rx.disposeBag)
+
+        let actions = [ActionSheetAction<UserMenu>(title: "ブロック", actionType: .block,
+                                                   style: .default),
+                       ActionSheetAction<UserMenu>(title: "通報", actionType: .report,
+                                                   style: .default)
+        ]
+        self.navigationItem.rightBarButtonItem?.rx.tap.asDriver().drive(onNext: { [unowned self] _ in
+            self.showActionSheet(title: "", message: "Menu", actions: actions).subscribe({ [unowned self] event in
+                if let sourceType = event.element {
+                    switch sourceType {
+                    case .block:
+                        self.showAlertOKCancel("確認", "このユーザーをブロックしますか？", "はい", "いいえ") { _ in
+                            self.blockUser(other_uid: self.uid!)
+                        }
+                    case .report:
+                        print(sourceType)
+                    }
+                }
+            })
+        }).disposed(by: rx.disposeBag)
+    }
+
+    private func blockUser(other_uid: String) {
+        SVProgressHUD.show(withStatus: "Loading...")
+
+        UserBlockService.addBlockUser(other_uid, completionHandler: { [unowned self] (_, error) in
+            if let error = error {
+                Log.error(error)
+                SVProgressHUD.dismiss()
+                return
+            }
+            UserBlockedService.addBlockedUser(other_uid, completionHandler: { [unowned self] (_, error) in
+                SVProgressHUD.dismiss()
+                if let error = error {
+                    Log.error(error)
+                    return
+                }
+                self.navigationController?.popViewController(animated: true)
+            })
         })
     }
 
