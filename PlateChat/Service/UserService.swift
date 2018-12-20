@@ -88,7 +88,7 @@ class UserService {
                             "notification_on"   : true,
                             "notification_reply"    : true,
                             "notification_message"  : true,
-                            "notification_footprint": true,
+                            "notification_footprint": false,
                             "status"            : 1,
                             "last_login_date"   : FieldValue.serverTimestamp(),
                             "created_at"        : FieldValue.serverTimestamp()

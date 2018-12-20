@@ -52,9 +52,33 @@ struct FootprintService {
             if let footprint = footprint {
                 history = footprint.history
             }
-            history["\(Timestamp().seconds)"] = uid
+            //history["\(Timestamp().seconds)"] = uid
 
-            let tmp = history.sorted(by: { Int($0.0)! > Int($1.0)! }).prefix(50)  // ソートするとなぜか[(key:"", value:""),,,] tuple になってしまう
+
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"// HH:mm:ss"
+
+            let newDate = Date(timeIntervalSince1970: TimeInterval(Timestamp().seconds))
+            let now = formatter.string(from: newDate)
+
+            var newHistory = [String: String]()
+            history.forEach {
+                if let dateUnix = TimeInterval($0.0) {
+                    let date = Date(timeIntervalSince1970: dateUnix)
+                    let ymd  = formatter.string(from: date)
+
+                    if $0.1 == uid {
+                        if ymd != now {
+                            newHistory["\($0.0)"] = $0.1
+                        }
+                    } else {
+                        newHistory["\($0.0)"] = $0.1
+                    }
+                }
+            }
+            newHistory["\(Timestamp().seconds)"] = uid
+
+            let tmp = newHistory.sorted(by: { Int($0.0)! > Int($1.0)! }).prefix(50)  // ソートするとなぜか[(key:"", value:""),,,] tuple になってしまう
             var tmpDic = [String: String]()
             tmp.forEach { tmpDic["\($0.0)"] = $0.1 }
             history = tmpDic
