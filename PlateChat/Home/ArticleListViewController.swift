@@ -121,8 +121,6 @@ class ArticleListViewController: UIViewController {
 extension ArticleListViewController : UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("articles.count")
-        print(articles.count)
         return articles.count
     }
 
@@ -172,10 +170,18 @@ extension ArticleListViewController : UITableViewDataSource, UITableViewDelegate
             }
         }).disposed(by: cell.disposeBag)
 
-        cell.replyButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+        cell.replyButton.rx.tap.asDriver().drive(onNext: { [unowned self] _ in
+
+            if let name = AccountData.nickname {
+                if name.trimmingCharacters(in: .whitespaces) == "" {
+                    self.showAlert("［マイページ］ー［設定］ー［プロフィール設定］からニックネームを登録してください")
+                    return
+                }
+            }
+
             let vc = R.storyboard.write.writeViewController()!
             vc.delegate = self
-            vc.article = self?.articles[indexPath.row]
+            vc.article = self.articles[indexPath.row]
             UIWindow.createNewWindow(vc).open()
         }).disposed(by: cell.disposeBag)
 

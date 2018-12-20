@@ -43,6 +43,15 @@ class HomeViewController: UIViewController {
         }
         
         self.writeButton.rx.tap.asDriver().drive(onNext: { [unowned self] _ in
+
+            if let name = AccountData.nickname {
+                if name.trimmingCharacters(in: .whitespaces) == "" {
+                    self.showAlert("［マイページ］ー［設定］ー［プロフィール設定］からニックネームを登録してください")
+                    return
+                }
+            }
+
+
             let vc = R.storyboard.write.writeViewController()!
             vc.delegate = self
             UIWindow.createNewWindow(vc).open()
@@ -223,10 +232,18 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
             }
         }).disposed(by: cell.disposeBag)
 
-        cell.replyButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+        cell.replyButton.rx.tap.asDriver().drive(onNext: { [unowned self] _ in
+
+            if let name = AccountData.nickname {
+                if name.trimmingCharacters(in: .whitespaces) == "" {
+                    self.showAlert("［マイページ］ー［設定］ー［プロフィール設定］からニックネームを登録してください")
+                    return
+                }
+            }
+
             let vc = R.storyboard.write.writeViewController()!
             vc.delegate = self
-            vc.article = self?.articles[indexPath.row]
+            vc.article = self.articles[indexPath.row]
             UIWindow.createNewWindow(vc).open()
         }).disposed(by: cell.disposeBag)
 
