@@ -32,8 +32,9 @@ class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
         print(Auth.auth().currentUser?.uid)
         print(Auth.auth().currentUser?.email)
         print(UserDeviceInfo.getDeviceInfo())
-
+        
         if Auth.auth().currentUser?.uid == nil {
+            AccountData.isFirst = true
             UserService.createUser(completionHandler: { (uid, _) in
                 print(" create \(String(describing: uid))")
                 UserService.setLastLogin()

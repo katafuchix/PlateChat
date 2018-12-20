@@ -35,6 +35,13 @@ class HomeViewController: UIViewController {
 
         // Do any additional setup after loading the view.
 
+        if (AccountData.isFirst) {
+            let vc = R.storyboard.rule.ruleViewController()!
+            vc.delegate = self
+            let nc = UINavigationController(rootViewController: vc)
+            self.present(nc, animated: true, completion: nil)
+        }
+        
         self.writeButton.rx.tap.asDriver().drive(onNext: { [unowned self] _ in
             let vc = R.storyboard.write.writeViewController()!
             vc.delegate = self
@@ -181,10 +188,6 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.articleTableViewCell, for: indexPath)!
         //cell.set(content: datasource[indexPath.row])
         cell.configure(self.articles[indexPath.row])
-
-        /*rx.tap.subscribe(onNext: { _ in
-            print("ボタンを押しました！")
-        }).disposed(by: rx.disposeBag)*/
 
         cell.userProfileImageButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             let vc = R.storyboard.uderDetail.userDetailViewController()!
@@ -345,3 +348,11 @@ extension HomeViewController: writeVCprotocol {
     }
 }
 
+extension HomeViewController : ruleDelegate {
+    func dissmiss() {
+        AccountData.isFirst = false
+        self.observeArticle()
+        self.filterBlock()
+        self.tableView.reloadData()
+    }
+}

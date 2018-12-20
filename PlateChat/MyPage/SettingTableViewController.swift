@@ -134,6 +134,7 @@ class SettingTableViewController: UITableViewController {
         // 詳細
         case 9: // 利用規約
             let vc = R.storyboard.rule.ruleViewController()!
+            vc.hideCloseButton()
             self.navigationController?.pushViewController(vc, animated: true)
         case 10: // プライバシーポリシー
             //let vc = R.storyboard.privacy.privacyViewController()!

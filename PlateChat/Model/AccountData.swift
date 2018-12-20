@@ -12,6 +12,7 @@ import Firebase
 struct AccountData {
 
     private enum DataType: String {
+        case isFirst        = "isFirst"
         case uid            = "uid"         // Auth.auth().currentUser?.uid
         case nickname       = "nickname"
         case email          = "email"
@@ -37,6 +38,11 @@ struct AccountData {
     private init() {}
 
     private static let ud = UserDefaults.standard
+
+    static var isFirst: Bool {
+        get { return self.ud.bool(forKey: AccountData.DataType.isFirst.rawValue) }
+        set { self.ud.set(newValue, forKey: AccountData.DataType.isFirst.rawValue); self.ud.synchronize() }
+    }
 
     static var uid: String? {
         get { return Auth.auth().currentUser?.uid }

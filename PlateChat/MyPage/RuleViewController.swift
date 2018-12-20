@@ -11,18 +11,26 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 
+protocol ruleDelegate {
+    func dissmiss()
+}
+
 class RuleViewController: UIViewController {
 
     @IBOutlet weak var closeButton: UIBarButtonItem!
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var textView: UITextView!
 
+    var delegate: ruleDelegate?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.closeButton.image = UIImage()
+        //self.closeButton.image = UIImage()
+        //self.closeButton.title = "同意する"
         self.closeButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            self?.delegate?.dissmiss()
             self?.dismiss(animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
 
@@ -34,6 +42,11 @@ class RuleViewController: UIViewController {
         self.textView.setContentOffset(.zero, animated: true)
     }
 
+    func hideCloseButton() {
+        self.closeButton.image = UIImage()
+        self.closeButton.isEnabled = false
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.networkChecking()
