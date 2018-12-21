@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 import RxSwift
 import RxCocoa
 import NSObject_Rx
@@ -121,7 +122,7 @@ class UserDetailViewController: UIViewController {
                             self.blockUser(other_uid: self.uid!)
                         }
                     case .report:
-                        print(sourceType)
+                        self.reportUser(other_uid: self.uid!)
                     }
                 }
             })
@@ -146,6 +147,22 @@ class UserDetailViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             })
         })
+    }
+
+    func reportUser(other_uid: String) {
+        if MFMailComposeViewController.canSendMail() {
+            guard let nickName = UsersData.nickNames[other_uid] else { return }
+
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([Constants.adminEmail]) // 宛先アドレス
+            mail.setSubject("通報！") // 件名
+            let body = "\(other_uid)\n\(nickName) さんに関する通報です。\n-------------------\n ＊この下に通報内容をお書きください。\n\n"
+            mail.setMessageBody(body, isHTML: false) // 本文
+            present(mail, animated: true, completion: nil)
+        } else {
+            print("送信できません")
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -189,6 +206,23 @@ class UserDetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+}
+
+extension UserDetailViewController : MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        switch result {
+        case .cancelled:
+            print("キャンセル")
+        case .saved:
+            print("下書き保存")
+        case .sent:
+            print("送信成功")
+            self.showAlert("送信しました")
+        default:
+            print("送信失敗")
+        }
+        dismiss(animated: true, completion: nil)
     }
 }
 

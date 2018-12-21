@@ -48,6 +48,8 @@ struct Constants {
         #endif
     }
 
+    static let adminEmail = "info@p-chat.net"
+
     /**
      GoogleService-Info.plist path
      */

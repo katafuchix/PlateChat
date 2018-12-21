@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 import RxSwift
 import RxCocoa
 import NSObject_Rx
@@ -144,11 +145,28 @@ class SettingTableViewController: UITableViewController {
         case 11: // FAQ
             let vc = R.storyboard.faq.faqViewController()!
             self.navigationController?.pushViewController(vc, animated: true)
-        // case 12: // お問い合わせ
+        case 12: // お問い合わせ
+            self.contactUS()
         case 13: // アカウント削除
             self.deleteAccount()
         default:
             break
+        }
+    }
+
+    func contactUS() {
+        if MFMailComposeViewController.canSendMail() {
+            guard let nickName = AccountData.nickname, let uid = AccountData.uid else { return }
+
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([Constants.adminEmail]) // 宛先アドレス
+            mail.setSubject("お問い合わせ") // 件名
+            let body = "\(uid)\n\(nickName) さんからのお問い合わせです。\n-------------------\n ＊この下にお問い合わせ内容をお書きください。\n\n"
+            mail.setMessageBody(body, isHTML: false) // 本文
+            present(mail, animated: true, completion: nil)
+        } else {
+            print("送信できません")
         }
     }
 
@@ -269,4 +287,21 @@ class SettingTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension SettingTableViewController : MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        switch result {
+        case .cancelled:
+            print("キャンセル")
+        case .saved:
+            print("下書き保存")
+        case .sent:
+            print("送信成功")
+            self.showAlert("送信しました")
+        default:
+            print("送信失敗")
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }
