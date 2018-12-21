@@ -134,7 +134,8 @@ class ChatMessageViewController: MessagesViewController {
     }
 
     func prepareButtons() {
-
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"back"), style: .plain, target: self, action: nil)
         self.navigationItem.leftBarButtonItem?.rx.tap.asDriver().drive(onNext: { [unowned self] in
             self.chatMessageService.bindTalkHandler?.remove()
             self.navigationController?.popViewController(animated: true)
@@ -170,8 +171,6 @@ class ChatMessageViewController: MessagesViewController {
         let profileButton = UIBarButtonItem(customView: profileImageButton)
 
         self.navigationItem.rightBarButtonItems = [profileButton ,menuButton]
-
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"back"), style: .plain, target: self, action: nil)
 
         let actions = [ActionSheetAction<UserMenu>(title: "ブロック", actionType: .block,
                                                    style: .default),

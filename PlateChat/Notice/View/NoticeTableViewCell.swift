@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
 class NoticeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var profileImageButton: CircleButton!
     @IBOutlet weak var noticeLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-
+    var disposeBag = DisposeBag()
+    
     lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
         //let formatter = DateFormatter(withFormat: "M/d", locale: Locale.current.languageCode ?? "en_US_POSIX")
@@ -79,5 +83,10 @@ class NoticeTableViewCell: UITableViewCell {
         self.profileImageButton.setBackgroundImage(UIImage(named: "person-icon"), for: .normal)
         self.noticeLabel.text = ""
         self.timeLabel.text = ""
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.disposeBag = DisposeBag()
     }
 }

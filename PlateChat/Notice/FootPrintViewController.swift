@@ -82,6 +82,13 @@ extension FootPrintViewController: UITableViewDataSource {
             let uid = self.uids[indexPath.row]
             let timeStamp = self.timeStamps[indexPath.row]
             cell.configure(uid, timeStamp)
+
+            cell.profileImageButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+                let vc = R.storyboard.uderDetail.userDetailViewController()!
+                vc.uid = uid
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }).disposed(by: cell.disposeBag)
+
         }
         return cell
     }
