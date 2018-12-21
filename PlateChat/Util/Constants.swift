@@ -54,6 +54,10 @@ struct Constants {
      GoogleService-Info.plist path
      */
     static var GoogleServiceInfoPlistPath: String {
+        print("Constants.DEBUG")
+        print(Constants.DEBUG)
+        print("Constants.PRODUCTION")
+        print(Constants.PRODUCTION)
         if Constants.DEBUG {
             return Bundle.main.path(forResource: "GoogleService-Info-dev", ofType: "plist")!
         } else {
