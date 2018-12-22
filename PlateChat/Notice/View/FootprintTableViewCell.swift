@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
 class FootprintTableViewCell: UITableViewCell {
 
@@ -14,7 +17,8 @@ class FootprintTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var attrLabel: UILabel!
-
+    var disposeBag = DisposeBag()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -70,5 +74,10 @@ class FootprintTableViewCell: UITableViewCell {
         self.nameLabel.text = ""
         self.attrLabel.text = ""
         self.timeLabel.text = ""
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.disposeBag = DisposeBag()
     }
 }
