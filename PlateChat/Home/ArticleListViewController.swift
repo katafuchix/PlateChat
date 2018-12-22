@@ -74,7 +74,7 @@ class ArticleListViewController: UIViewController {
                 if let models = models {
                     let preMessageCount = self?.articles.count
                     self?.articles_org = models + (self?.articles_org)!
-                    self?.articles_org = (self?.articles_org.unique { $0.key == $1.key }.sorted(by: { $0.created_date > $1.created_date}))!
+                    self?.articles_org = (self?.articles_org.unique { $0.key == $1.key }.filter {$0.status == 1 }.sorted(by: { $0.created_date > $1.created_date}))!
 
                     self?.filterBlock()
                     if preMessageCount == self?.articles.count {  // 更新数チェック

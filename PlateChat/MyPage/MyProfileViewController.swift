@@ -70,7 +70,7 @@ class MyProfileViewController: UIViewController {
                 if let models = models {
                     let preMessageCount = self?.articles.count
                     self?.articles = models + (self?.articles)!
-                    self?.articles = (self?.articles.unique { $0.key == $1.key }.sorted(by: { $0.created_date > $1.created_date}))!
+                    self?.articles = (self?.articles.unique { $0.key == $1.key }.filter {$0.status == 1 }.sorted(by: { $0.created_date > $1.created_date}))!
                     if preMessageCount == self?.articles.count {  // 更新数チェック
                         return
                     }
@@ -137,12 +137,7 @@ extension MyProfileViewController : UITableViewDataSource, UITableViewDelegate {
         }
 
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.articleTableViewCell, for: indexPath)!
-        //cell.set(content: datasource[indexPath.row])
         cell.configure(self.articles[indexPath.row])
-
-        /*rx.tap.subscribe(onNext: { _ in
-         print("ボタンを押しました！")
-         }).disposed(by: rx.disposeBag)*/
 
         cell.talkButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             SVProgressHUD.show(withStatus: "Loading...")
@@ -189,6 +184,40 @@ extension MyProfileViewController : UITableViewDataSource, UITableViewDelegate {
             vc.article = self.articles[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return false
+        }
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let block = UITableViewRowAction(style: .normal, title: "削除") { (action, indexPath) in
+            self.showAlertOKCancel("確認", "この書き込みを削除しますか？", "はい", "いいえ") { _ in
+                self.deleteArticle(indexPath)
+            }
+        }
+        block.backgroundColor = UIColor.hexStr(hexStr: "#f44242", alpha: 1.0)
+        return [block]
+    }
+
+    // MARK: セル編集関数
+    private func deleteArticle(_ indexPath: IndexPath) {
+        SVProgressHUD.show(withStatus: "Loading...")
+        let article = self.articles[indexPath.row]
+        self.articleService?.deleteArticle(article, completionHandler: { [unowned self] error in
+            if let error = error {
+                Log.error(error)
+                SVProgressHUD.dismiss()
+                return
+            }
+            self.showAlert("削除しました")
+            self.articles = []
+            self.observeArticle()
+            self.tableView.reloadData()
+        })
     }
 }
 

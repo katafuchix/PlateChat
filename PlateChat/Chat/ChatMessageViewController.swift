@@ -171,8 +171,6 @@ class ChatMessageViewController: MessagesViewController {
 
         self.navigationItem.rightBarButtonItems = [profileButton ,menuButton]
 
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"back"), style: .plain, target: self, action: nil)
-
         let actions = [ActionSheetAction<UserMenu>(title: "ブロック", actionType: .block,
                                                    style: .default),
                        ActionSheetAction<UserMenu>(title: "通報", actionType: .report,
