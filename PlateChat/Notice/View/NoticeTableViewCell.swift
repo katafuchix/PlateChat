@@ -17,7 +17,7 @@ class NoticeTableViewCell: UITableViewCell {
     @IBOutlet weak var noticeLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     var disposeBag = DisposeBag()
-    
+
     lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
         //let formatter = DateFormatter(withFormat: "M/d", locale: Locale.current.languageCode ?? "en_US_POSIX")

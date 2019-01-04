@@ -39,6 +39,8 @@ class FaqViewController: UIViewController {
                                     subtitle: "本サービスは完全無料で利用できます。"),
                     FaqTableViewCellContent(title: "ローディングが長いことがあります。 ",
                                             subtitle: "通信状態やサーバーの混み具合で時間がかかることもあります。しばらく待ってからお試しください。"),
+                    FaqTableViewCellContent(title: "書き込みを削除するにはどうすればいいですか？ ",
+                                            subtitle: "マイページの書き込みのリストのセルを左にスワイプしてください。削除ボタンから削除できます。\n削除した後にアプリに反映されるまで若干時間がかかることがあります。"),
                     FaqTableViewCellContent(title: "機種変更後にアカウントの引き継ぎはできますか？ ",
                                                     subtitle: "［設定］ー［アカウントの保存とログイン］よりメールアドレスとパスワードでログインしてください。メールアドレスとパスワードはあらかじめここで登録しておく必要があります。"),
                       FaqTableViewCellContent(title: "メールアドレス、パスワードを忘れてしまいました。 ",

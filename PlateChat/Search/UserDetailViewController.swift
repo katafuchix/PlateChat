@@ -181,7 +181,7 @@ class UserDetailViewController: UIViewController {
                 if let models = models {
                     let preMessageCount = self?.articles.count
                     self?.articles = models + (self?.articles)!
-                    self?.articles = (self?.articles.unique { $0.key == $1.key }.sorted(by: { $0.created_date > $1.created_date}))!
+                    self?.articles = (self?.articles.unique { $0.key == $1.key }.filter {$0.status == 1 }.sorted(by: { $0.created_date > $1.created_date}))!
                     if preMessageCount == self?.articles.count {  // 更新数チェック
                         return
                     }

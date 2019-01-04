@@ -80,7 +80,7 @@ class ArticleService {
 
             self?.lastArticleDocument = snapshot.documents.last
             do {
-                let articles = try snapshot.documents.compactMap { try Article(from: $0) }.sorted(by: { $0.created_date > $1.created_date})
+                let articles = try snapshot.documents.compactMap { try Article(from: $0) }.sorted(by: { $0.created_date > $1.created_date}).filter {$0.status == 1 }
                 self?.status = .done
                 callbackHandler(articles, nil)
             } catch {
@@ -116,7 +116,7 @@ class ArticleService {
             }
 
             do {
-                let articles = try snapshot.documents.compactMap { try Article(from: $0) }.sorted(by: { $0.created_date > $1.created_date})
+                let articles = try snapshot.documents.compactMap { try Article(from: $0) }.sorted(by: { $0.created_date > $1.created_date}).filter {$0.status == 1 }
                 self?.status = .done
                 callbackHandler(articles, nil)
             } catch {
@@ -164,7 +164,7 @@ class ArticleService {
 
             self?.lastUidArticle = snapshot.documents.last
             do {
-                let articles = try snapshot.documents.compactMap { try Article(from: $0) }.sorted(by: { $0.created_date > $1.created_date})
+                let articles = try snapshot.documents.compactMap { try Article(from: $0) }.sorted(by: { $0.created_date > $1.created_date}).filter {$0.status == 1 }
                 self?.status = .done
                 callbackHandler(articles, nil)
             } catch {
@@ -219,7 +219,7 @@ class ArticleService {
 
             self?.lastArticle = snapshot.documents.last
             do {
-                let articles = try snapshot.documents.compactMap { try Article(from: $0) }.sorted(by: { $0.created_date > $1.created_date})
+                let articles = try snapshot.documents.compactMap { try Article(from: $0) }.sorted(by: { $0.created_date > $1.created_date}).filter {$0.status == 1 }
                 self?.status = .done
                 callbackHandler(articles, nil)
             } catch {
@@ -285,6 +285,44 @@ class ArticleService {
             } else {
                 completionHandler(nil)
             }
+        })
+    }
+
+    // 削除
+    func deleteArticle(_ article: Article, completionHandler: @escaping (_ error: Error?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+
+        if article.uid != uid {
+            return
+        }
+
+        self.store.collection("article").document(article.key).setData([ "status" : 0 ], merge: true, completion: { error in
+            if let err = error {
+                print("Error adding document: \(err)")
+                completionHandler(err)
+                return
+            }
+            if article.key == article.parentKey {
+                // 関連情報を削除
+                let query = self.store
+                    .collection("/article/")
+                    .whereField("parentKey", isEqualTo: article.parentKey)
+                    .whereField("status", isEqualTo: 1)
+                    .order(by: "created_at", descending: true)
+
+                query.addSnapshotListener(includeMetadataChanges: true) { (querySnapshot, error) in
+                    do {
+                        if let snapshot = querySnapshot {
+                            let articles = try snapshot.documents.compactMap { try Article(from: $0) }
+                            for article in articles {
+
+                                self.store.collection("article").document(article.key).setData(["status": 0], merge: true,  completion: { _ in })
+                            }
+                        }
+                    } catch {}
+                }
+            }
+            completionHandler(nil)
         })
     }
 }

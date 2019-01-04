@@ -88,7 +88,6 @@ extension FootPrintViewController: UITableViewDataSource {
                 vc.uid = uid
                 self?.navigationController?.pushViewController(vc, animated: true)
             }).disposed(by: cell.disposeBag)
-
         }
         return cell
     }

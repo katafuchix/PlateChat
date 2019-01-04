@@ -7,6 +7,7 @@ target 'PlateChat' do
 
   # Pods for PlateChat
 
+  pod 'Firebase'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
