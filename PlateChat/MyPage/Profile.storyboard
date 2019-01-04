@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RcV-pM-uGM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RcV-pM-uGM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -89,8 +89,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="umi-Uc-gkQ">
-                                                    <rect key="frame" x="122" y="16.5" width="237" height="21"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="umi-Uc-gkQ">
+                                                    <rect key="frame" x="122" y="12" width="237" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="NotoSansCJKjpSub-Regular" family="NotoSansCJKjpSub-Regular" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -380,10 +380,10 @@
     </scenes>
     <resources>
         <image name="back" width="24" height="24"/>
-        <image name="disk" width="24" height="24"/>
-        <image name="man" width="250" height="350"/>
-        <image name="obake" width="56" height="60"/>
-        <image name="person-icon" width="128" height="128"/>
-        <image name="woman" width="400" height="400"/>
+        <image name="disk" width="36" height="36"/>
+        <image name="man" width="500" height="700"/>
+        <image name="obake" width="23.24571418762207" height="24.685714721679688"/>
+        <image name="person-icon" width="256" height="256"/>
+        <image name="woman" width="800" height="800"/>
     </resources>
 </document>

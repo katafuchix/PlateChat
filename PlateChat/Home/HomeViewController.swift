@@ -40,8 +40,10 @@ class HomeViewController: UIViewController {
             vc.delegate = self
             let nc = UINavigationController(rootViewController: vc)
             self.present(nc, animated: true, completion: nil)
+        } else {
+            self.checkProfile()
         }
-        
+
         self.writeButton.rx.tap.asDriver().drive(onNext: { [unowned self] _ in
 
             if let name = AccountData.nickname {
@@ -50,7 +52,6 @@ class HomeViewController: UIViewController {
                     return
                 }
             }
-
 
             let vc = R.storyboard.write.writeViewController()!
             vc.delegate = self
@@ -178,6 +179,16 @@ class HomeViewController: UIViewController {
     /// - return: Bool (true -> End of Sections and Rows)
     func isEndOfSections(_ indexPath: IndexPath) -> Bool {
         return indexPath.row == self.articles.lastIndex
+    }
+
+    func checkProfile() {
+        if let name = AccountData.nickname {
+            if name.trimmingCharacters(in: .whitespaces) == "" {
+                let vc = R.storyboard.registProfile.registProfileViewController()!
+                vc.delegate = self
+                UIWindow.createNewWindow(vc).open()
+            }
+        }
     }
 }
 
@@ -372,5 +383,17 @@ extension HomeViewController : ruleDelegate {
         self.observeArticle()
         self.filterBlock()
         self.tableView.reloadData()
+        self.checkProfile()
+    }
+}
+
+extension HomeViewController: registProfileVCprotocol {
+    func closeRegist() {
+        (UIApplication.shared.delegate as! AppDelegate).window?.close()
+        self.showAlert("登録しました")
+    }
+
+    func closeOnly() {
+        (UIApplication.shared.delegate as! AppDelegate).window?.close()
     }
 }

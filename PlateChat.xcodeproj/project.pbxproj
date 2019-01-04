@@ -102,6 +102,9 @@
 		3168A0742119BAC8002B0440 /* ChatMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168A0732119BAC8002B0440 /* ChatMedia.swift */; };
 		3168A0792119C2E8002B0440 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168A0782119C2E8002B0440 /* UserService.swift */; };
 		3168A07B2119C41C002B0440 /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168A07A2119C41C002B0440 /* LoginUser.swift */; };
+		316CBA8D21DF8EE3002998D0 /* RegistProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 316CBA8C21DF8EE3002998D0 /* RegistProfile.storyboard */; };
+		316CBA8F21DF8EFF002998D0 /* RegistProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316CBA8E21DF8EFF002998D0 /* RegistProfileViewController.swift */; };
+		316CBA9221DFA1E6002998D0 /* RegistProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316CBA9121DFA1E6002998D0 /* RegistProfileViewModel.swift */; };
 		3175F6222167F4770046CFFD /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3175F6212167F4770046CFFD /* XLPagerTabStrip.framework */; };
 		3177545421400CCB0055AC5E /* ChatMessageKitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3177545121400CCB0055AC5E /* ChatMessageKitCell.swift */; };
 		3177545521400CCB0055AC5E /* ChatPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3177545221400CCB0055AC5E /* ChatPhotoCell.swift */; };
@@ -276,6 +279,9 @@
 		3168A0732119BAC8002B0440 /* ChatMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMedia.swift; sourceTree = "<group>"; };
 		3168A0782119C2E8002B0440 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		3168A07A2119C41C002B0440 /* LoginUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUser.swift; sourceTree = "<group>"; };
+		316CBA8C21DF8EE3002998D0 /* RegistProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistProfile.storyboard; sourceTree = "<group>"; };
+		316CBA8E21DF8EFF002998D0 /* RegistProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistProfileViewController.swift; sourceTree = "<group>"; };
+		316CBA9121DFA1E6002998D0 /* RegistProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistProfileViewModel.swift; sourceTree = "<group>"; };
 		3175F61F2167F3D50046CFFD /* XLPagerTabStrip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XLPagerTabStrip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3175F6212167F4770046CFFD /* XLPagerTabStrip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XLPagerTabStrip.framework; path = Carthage/Build/iOS/XLPagerTabStrip.framework; sourceTree = "<group>"; };
 		3177545121400CCB0055AC5E /* ChatMessageKitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageKitCell.swift; sourceTree = "<group>"; };
@@ -641,6 +647,14 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		316CBA9021DFA1BF002998D0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				316CBA9121DFA1E6002998D0 /* RegistProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		31B872FE21C8F729007B98B0 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
@@ -711,6 +725,7 @@
 			isa = PBXGroup;
 			children = (
 				310FB072212800D100C917E7 /* View */,
+				316CBA9021DFA1BF002998D0 /* ViewModel */,
 				31BE63E12115F3DD00E43982 /* Home.storyboard */,
 				310FB0582126F49C00C917E7 /* HomeViewController.swift */,
 				31A7BC9321ABDBDA00EC9C55 /* HomeViewController+Extended.swift */,
@@ -718,6 +733,8 @@
 				310FB05C2126F6EC00C917E7 /* WriteViewController.swift */,
 				31BF4BC221423616003F6F40 /* Article.storyboard */,
 				31BF4BC421423632003F6F40 /* ArticleListViewController.swift */,
+				316CBA8C21DF8EE3002998D0 /* RegistProfile.storyboard */,
+				316CBA8E21DF8EFF002998D0 /* RegistProfileViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -868,6 +885,7 @@
 				31199FA62158F79C00324469 /* NoticeTableViewCell.xib in Resources */,
 				318EAD58215A8BEE00E9F214 /* NewPasscodeInput.storyboard in Resources */,
 				313193D521C9FCDA001AA7E5 /* icon_167.png in Resources */,
+				316CBA8D21DF8EE3002998D0 /* RegistProfile.storyboard in Resources */,
 				312805032116ECF700357E5C /* Notice.storyboard in Resources */,
 				313193D721C9FCDA001AA7E5 /* icon_40.png in Resources */,
 				318EAD5E215AA0C000E9F214 /* PasscodeLock.storyboard in Resources */,
@@ -1113,6 +1131,7 @@
 				31386D6B21324718008E82D0 /* R.generated.swift in Sources */,
 				31B707C5213A384C00A2D95E /* UserBlocked.swift in Sources */,
 				3177545421400CCB0055AC5E /* ChatMessageKitCell.swift in Sources */,
+				316CBA9221DFA1E6002998D0 /* RegistProfileViewModel.swift in Sources */,
 				31A7BC8E21ABD7E800EC9C55 /* SharedSequence.swift in Sources */,
 				31B707CF213A931500A2D95E /* BlockListCell.swift in Sources */,
 				31BE63DF2115F10D00E43982 /* SettingTableViewController.swift in Sources */,
@@ -1124,6 +1143,7 @@
 				310A6B9A212063420026A412 /* CALayer+RuntimeAttribute.swift in Sources */,
 				31199FA52158F79C00324469 /* NoticeTableViewCell.swift in Sources */,
 				319A26B4212675A000769A6E /* PhotoRequester.swift in Sources */,
+				316CBA8F21DF8EFF002998D0 /* RegistProfileViewController.swift in Sources */,
 				310A6B98211FD0850026A412 /* CircleButton.swift in Sources */,
 				31ED9E12212DB9FA00D1E96E /* ChatMessageViewController.swift in Sources */,
 				3168A07B2119C41C002B0440 /* LoginUser.swift in Sources */,
@@ -1291,6 +1311,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = PlateChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1319,6 +1340,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = PlateChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1416,6 +1438,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = PlateChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

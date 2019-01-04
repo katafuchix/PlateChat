@@ -181,7 +181,9 @@ extension MyProfileViewController : UITableViewDataSource, UITableViewDelegate {
         let vc = R.storyboard.article.articleListViewController()!
         let bool = self.navigationController?.topViewController is ArticleListViewController
         if !bool {
-            vc.article = self.articles[indexPath.row]
+            if self.articles.count > 0 {
+                vc.article = self.articles[indexPath.row]
+            }
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
