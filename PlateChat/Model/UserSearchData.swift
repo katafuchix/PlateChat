@@ -11,10 +11,10 @@ import UIKit
 struct UserSearchData {
 
     private enum DataType: String {
-        case ageLower       = "ageLower"
-        case ageUpper       = "ageUpper"
-        case sex            = "sex"
-        case prefecture_id  = "prefecture_id"
+        case ageLower       = "search_ageLower"
+        case ageUpper       = "search_ageUpper"
+        case sex            = "search_sex"
+        case prefecture_id  = "search_prefecture_id"
     }
 
     private static let ud = UserDefaults.standard
