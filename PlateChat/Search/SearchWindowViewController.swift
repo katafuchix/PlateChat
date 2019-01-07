@@ -40,7 +40,6 @@ class SearchWindowViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -86,11 +85,10 @@ class SearchWindowViewController: UIViewController {
         // 年齢
         self.rangeSlider.minimumValue = 18
         self.rangeSlider.maximumValue = 99
-        
+
         self.rangeSlider.lowerValue = UserSearchData.ageLower > 0 ? Double(UserSearchData.ageLower) :  Double(self.rangeSlider.minimumValue)
         self.rangeSlider.upperValue = UserSearchData.ageUpper > 0 ? Double(UserSearchData.ageUpper) : Double(self.rangeSlider.maximumValue)
         self.showAge()
-
         self.rangeSlider.rx.controlEvent(UIControlEvents.valueChanged).asDriver().drive(onNext: { [weak self] value in
             UserSearchData.ageLower = Int(round(self?.rangeSlider.lowerValue ?? 18.0))
             UserSearchData.ageUpper = Int(round(self?.rangeSlider.upperValue ?? 99.0))
@@ -125,6 +123,7 @@ class SearchWindowViewController: UIViewController {
             }
         }.disposed(by: rx.disposeBag)
 
+        // 検索
         self.searchButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             UserSearchData.prefecture_id = (self?.pickerView.selectedRow(inComponent: 0))!
             self?.delegate?.search()

@@ -26,6 +26,8 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        _ = UserSearchData.init()
+        
         self.collectionView.register(R.nib.searchWideCell)
         self.collectionView.register(R.nib.searchGridCell)
         self.collectionView.collectionViewLayout = self.flowLayout()

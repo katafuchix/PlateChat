@@ -19,7 +19,7 @@ struct UserSearchData {
 
     private static let ud = UserDefaults.standard
 
-    private init() {
+    init() {
         let ud = UserDefaults.standard
         ud.register(defaults: [
                                     UserSearchData.DataType.ageLower.rawValue : 18,
