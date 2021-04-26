@@ -54,8 +54,9 @@ class ChatMessageService {
 
     func bindChatMessage(callbackHandler: @escaping ([ChatMessage]?, ChatMessageBindError?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        guard let chatRoomKey: String = self.chatRoom.key else { return }
-
+        //guard let chatRoomKey: String = self.chatRoom.key else { return }
+        let chatRoomKey: String = self.chatRoom.key
+        
         if self.status == .loading { return }
         self.status = .loading
 
@@ -100,8 +101,9 @@ class ChatMessageService {
 
     func postChatMessage(text: String, callbackHandler: @escaping (PostChatMessageError?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        guard let chatRoomKey: String = self.chatRoom.key else { return }
-
+        //guard let chatRoomKey: String = self.chatRoom.key else { return }
+        
+        let chatRoomKey: String = self.chatRoom.key
         var unreads = self.chatRoom.members
         unreads[uid] = false
         let data: [String: Any] = [
@@ -122,8 +124,9 @@ class ChatMessageService {
 
     func updateChatMessageUnread(chatMessage: ChatMessage, callbackHandler: @escaping (PostChatMessageError?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        guard let chatRoomKey: String = self.chatRoom.key else { return }
-
+        //guard let chatRoomKey = self.chatRoom.key else { return }
+        let chatRoomKey = self.chatRoom.key
+        
         var unreads = chatMessage.unreads
         let trues = unreads.filter { $0.1 == true }
         if trues.count == 0 || unreads[uid] == false { return }  // 全て既読か自分が既読
@@ -140,9 +143,10 @@ class ChatMessageService {
     }
 
     func postImage(_ image: UIImage?, callbackHandler: @escaping (Error?) -> Void) {
-        guard let uid = Auth.auth().currentUser?.uid, let chatRoomKey: String = self.chatRoom.key,
+        guard let uid = Auth.auth().currentUser?.uid,
             let image = image, let jpeg = UIImageJPEGRepresentation(image, self.compressibility) else { return }
 
+        let chatRoomKey = self.chatRoom.key
         // 画像アップロード
         let text = "画像を送信しました"
         let metadata = StorageMetadata()
@@ -200,8 +204,10 @@ class ChatMessageService {
 
     // 自分の未読→既読処理
     func updateChatUnreadCounts() {
-        guard let uid = Auth.auth().currentUser?.uid, let chatRoomKey: String = self.chatRoom.key, let unreadCounts = chatRoom.unreadCounts else { return }
+        guard let uid = Auth.auth().currentUser?.uid, let unreadCounts = chatRoom.unreadCounts else { return }
         if unreadCounts[uid] == 0 { return }
+        let chatRoomKey: String = self.chatRoom.key
+        
         let query = self.store
             .collection("/chat_room/\(chatRoom.key)/messages/")
             .whereField("unreads.\(uid)", isEqualTo: true)

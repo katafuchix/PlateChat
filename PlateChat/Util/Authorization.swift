@@ -65,6 +65,8 @@ final class Authorization {
     
     static func photo(completion: AuthorizedCompletion?) {
         switch PHPhotoLibrary.authorizationStatus() {
+        case .limited:
+            break
         case .authorized:
             // アクセス許可あり
             completion?(AuthorizedResult.success)

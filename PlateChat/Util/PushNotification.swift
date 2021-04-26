@@ -13,7 +13,7 @@ import Foundation
 import UserNotifications
 import Firebase
 import SwiftMessages
-import Compass
+//import Compass
 
 class PushNotification: NSObject {  // Type 'PushNotification' does not conform to protocol 'NSObjectProtocol'
 
@@ -28,6 +28,7 @@ class PushNotification: NSObject {  // Type 'PushNotification' does not conform 
         // Firebase Cloud Message
         Messaging.messaging().delegate = self
 
+        /*
         // Compass
         Navigator.scheme = "p-chat"
         Navigator.routes = ["chatroomlist"]
@@ -49,6 +50,7 @@ class PushNotification: NSObject {  // Type 'PushNotification' does not conform 
                 break
             }
         }
+        */
     }
 
     func requestAuthorization(_ completion: ((Bool) -> Void)? = nil) {
@@ -87,7 +89,7 @@ class PushNotification: NSObject {  // Type 'PushNotification' does not conform 
         guard let linkHostURL = self.linkHost(userInfo) else { return }
         Log.debug("linkHostURL : \(linkHostURL)")
         do {
-            try Navigator.navigate(url: linkHostURL)
+            //try Navigator.navigate(url: linkHostURL)
         } catch { }
     }
 

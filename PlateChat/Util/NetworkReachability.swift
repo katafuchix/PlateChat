@@ -15,11 +15,11 @@ class NetworkReachability {
     static var isReachable: Bool { return NetworkReachability.shared.isReachable }
 
     static func startListening() {
-        self.shared.startListening()
+        //self.shared.startListening()
     }
 
     static func stopListening() {
-        self.shared.stopListening()
+        //self.shared.stopListening()
     }
 
     fileprivate let reachabilityManager: NetworkReachabilityManager? = NetworkReachabilityManager()
@@ -27,6 +27,7 @@ class NetworkReachability {
 
     fileprivate init() {}
 
+    /*
     fileprivate func startListening() {
         self.isReachable = self.reachabilityManager?.isReachable ?? false
         self.reachabilityManager?.listener = { [weak self] status in
@@ -47,4 +48,5 @@ class NetworkReachability {
         self.isReachable = false
         self.reachabilityManager?.stopListening()
     }
+    */
 }

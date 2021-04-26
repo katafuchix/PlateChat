@@ -9,7 +9,7 @@
 import UIKit
 import MessageKit
 import SDWebImage
-import Nuke
+//import Nuke
 import Firebase
 
 /// A subclass of `MessageContentCell` used to display video and audio messages.

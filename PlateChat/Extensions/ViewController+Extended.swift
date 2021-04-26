@@ -10,6 +10,7 @@ import UIKit
 import SVProgressHUD
 import RxSwift
 import RxCocoa
+import Reachability
 
 private let indicatorViewTag = 100928
 
@@ -75,9 +76,18 @@ extension UIViewController {
     func networkChecking()
     {
         // ネットワークに接続されていない場合
-        if !NetworkReachability.isReachable {
+        let reachability = try! Reachability()
+        
+        //if !NetworkReachability.isReachable {
+        reachability.whenUnreachable = { _ in
             self.showAlert("ネットワークに接続されていません")
             SVProgressHUD.dismiss()
+        }
+        
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
         }
     }
 }

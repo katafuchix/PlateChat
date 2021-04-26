@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import UserNotifications
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -69,6 +70,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // for ImagePicker
         RxImagePickerDelegateProxy.register { RxImagePickerDelegateProxy(imagePicker: $0) }
 
+        //キーボードの上の、next/prev/doneボタン
+        IQKeyboardManager.shared.enable = true
+        
         return true
     }
 

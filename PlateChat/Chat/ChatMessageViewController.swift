@@ -14,7 +14,7 @@ import MobileCoreServices
 import AVFoundation
 import SwiftDate
 import SafariServices
-import Nuke
+//import Nuke
 import Rswift
 import SKPhotoBrowser
 import SVProgressHUD

@@ -99,12 +99,14 @@ class AccountTableViewController: UITableViewController {
                 switch AlertResult {
                 case .other(let inputText):
                     SVProgressHUD.show(withStatus: "Loading...")
-                    //SVProgressHUD.dismiss()
-                    guard let login_email: String = inputText[0], let login_pass: String = inputText[1] else {
+                    SVProgressHUD.dismiss()
+                    let login_email: String = inputText[0]
+                    let login_pass: String = inputText[1]
+                    /*guard let login_email: String = inputText[0], let login_pass: String = inputText[1] else {
                         SVProgressHUD.dismiss()
                         self?.showAlert("メールアドレスとパスワードを正しく入力してください")
                         return
-                    }
+                    }*/
                     UserService.changeLoginUser(login_email, login_pass, completionHandler: {
                         (user, error) in
                         if let err = error {
