@@ -1213,6 +1213,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.deskplate.p-chat";
 				PRODUCT_NAME = "P-Chat!";
 				PROVISIONING_PROFILE = "";
@@ -1242,6 +1243,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.deskplate.p-chat";
 				PRODUCT_NAME = "P-Chat!";
 				PROVISIONING_PROFILE = "";
@@ -1340,6 +1342,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.deskplate.p-chat";
 				PRODUCT_NAME = "P-Chat!";
