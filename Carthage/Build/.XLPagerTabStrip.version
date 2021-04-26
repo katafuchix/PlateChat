@@ -1,9 +1,0 @@
-{
-  "commitish" : "8.0.1",
-  "iOS" : [
-    {
-      "name" : "XLPagerTabStrip",
-      "hash" : "5a0760ec2a312b15f63994e900e4120669b7e1943d1bf5d44458b8dad25975f0"
-    }
-  ]
-}

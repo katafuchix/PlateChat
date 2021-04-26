@@ -1,6 +1,0 @@
-source_directory: Source
-xcodebuild_arguments:
-- -scheme
-- NVActivityIndicatorView
-- -project
-- NVActivityIndicatorView.xcodeproj
