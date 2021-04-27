@@ -544,10 +544,13 @@ extension ChatMessageViewController: MessagesDisplayDelegate {
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         // 自分のアイコンは表示しない
         if isFromCurrentSender(message: message) { return }
-
+        
+        avatarView.image = R.image.personIcon()!
         avatarView.backgroundColor = .clear
         if let url = UsersData.profileImages[message.sender.id] {
-            avatarView.sd_setImage(with: URL(string: url)!, completed: nil)
+            if url != "" {
+                avatarView.sd_setImage(with: URL(string: url)!, completed: nil)
+            }
         } else {
             UserService.getUserInfo(message.sender.id, completionHandler: { (user, error) in
                 guard let url = user?.profile_image_url else {
