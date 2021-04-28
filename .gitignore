@@ -9,3 +9,14 @@ Podfile.lock
 Build/*
 
 R.generated.swift
+date.txt
+
+# AppCode
+/.idea/
+
+# Firebase setting file
+#GoogleService-Info*.plist
+
+# etc
+.DS_Store
+\#*
