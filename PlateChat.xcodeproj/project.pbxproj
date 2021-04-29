@@ -186,6 +186,7 @@
 		31C7355A213722B3009E8241 /* ChatRoomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C73559213722B3009E8241 /* ChatRoomListViewController.swift */; };
 		31D752702150026D0044A10F /* SearchWideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7526E2150026D0044A10F /* SearchWideCell.swift */; };
 		31D752712150026D0044A10F /* SearchWideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D7526F2150026D0044A10F /* SearchWideCell.xib */; };
+		31DFD2E8263AD59500715FEA /* base.png in Resources */ = {isa = PBXBuildFile; fileRef = 31DFD2E7263AD59500715FEA /* base.png */; };
 		31E223D82635995600DF5D7B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E223D72635995600DF5D7B /* R.generated.swift */; };
 		31ED9E0E212D8DCA00D1E96E /* DotBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ED9E0D212D8DCA00D1E96E /* DotBadgeView.swift */; };
 		31ED9E10212DB7D100D1E96E /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31ED9E0F212DB7D100D1E96E /* Message.storyboard */; };
@@ -389,6 +390,7 @@
 		31C92B502134167E004C7130 /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
 		31D7526E2150026D0044A10F /* SearchWideCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWideCell.swift; sourceTree = "<group>"; };
 		31D7526F2150026D0044A10F /* SearchWideCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchWideCell.xib; sourceTree = "<group>"; };
+		31DFD2E7263AD59500715FEA /* base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = base.png; sourceTree = "<group>"; };
 		31E223D72635995600DF5D7B /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		31ED9E0D212D8DCA00D1E96E /* DotBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotBadgeView.swift; sourceTree = "<group>"; };
 		31ED9E0F212DB7D100D1E96E /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
@@ -681,6 +683,7 @@
 		3171CB19263ACBCE00951230 /* P-Chat_sc */ = {
 			isa = PBXGroup;
 			children = (
+				31DFD2E7263AD59500715FEA /* base.png */,
 				3171CB1A263ACBCE00951230 /* IMG_A58EB28E4AA9-1.jpeg */,
 				3171CB1B263ACBCE00951230 /* IMG_B39C1174D8AD-1.jpeg */,
 				3171CB1C263ACBCE00951230 /* 5.5 */,
@@ -950,6 +953,7 @@
 				3171CB47263ACBCE00951230 /* p_6.5_5.png in Resources */,
 				313193D321C9FCDA001AA7E5 /* icon_76.png in Resources */,
 				3171CB40263ACBCE00951230 /* p_6.5_2.png in Resources */,
+				31DFD2E8263AD59500715FEA /* base.png in Resources */,
 				31B707D3213AE96700A2D95E /* FootPrint.storyboard in Resources */,
 				3171CB36263ACBCE00951230 /* p_5.5_1.png in Resources */,
 				31B8730421C8FB90007B98B0 /* Rule.html in Resources */,
