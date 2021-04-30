@@ -7,18 +7,19 @@ target 'PlateChat' do
 
   # Pods for PlateChat
 
-  pod 'Firebase'
+  #pod 'Firebase'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
   pod 'Firebase/Functions'
+  pod 'Firebase/Crashlytics'
   pod 'R.swift', '5.0.2'
   pod 'MessageKit', '1.0.0'
   #pod 'SwiftDate'
-  pod 'RxSwift',    '~> 4.0'
-  pod 'RxCocoa',    '~> 4.0'
+  pod 'RxSwift'#,    '~> 4.0'
+  pod 'RxCocoa'#,    '~> 4.0'
   pod 'RxFirebase/Firestore'
   pod 'RxFirebase/RemoteConfig'
   pod 'RxFirebase/Database'

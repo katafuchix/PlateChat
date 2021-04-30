@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseCrashlytics
 import UserNotifications
 import IQKeyboardManagerSwift
 
@@ -33,7 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let options = FirebaseOptions(contentsOfFile: Constants.GoogleServiceInfoPlistPath) {
             FirebaseConfiguration.shared.setLoggerLevel(.min)
             FirebaseApp.configure(options: options)
-
+            Crashlytics.crashlytics()
+            
             // as? Timestamp 
             let database = Firestore.firestore()
             let settings = database.settings
