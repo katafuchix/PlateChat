@@ -16,8 +16,8 @@ extension SharedSequence {
     ///
     /// - Parameter result: Driver<Result<E>>
     /// - Returns: Driver<User>, Driver<Error>
-    static func split(result: Driver<Result<E>>) -> (response: Driver<E>, error: Driver<Error>) {
-        let responseDriver = result.flatMap { result -> Driver<E> in
+    static func split(result: Driver<Result<Element>>) -> (response: Driver<Element>, error: Driver<Error>) {
+        let responseDriver = result.flatMap { result -> Driver<Element> in
             switch result {
             case .succeeded(let response):
                 return Driver.just(response)
@@ -40,7 +40,7 @@ extension SharedSequence where Element: EventConvertible {
      Returns an observable sequence containing only next elements from its input
      - seealso: [materialize operator on reactivex.io](http://reactivex.io/documentation/operators/materialize-dematerialize.html)
      */
-    public func elements() -> SharedSequence<SharingStrategy, Element.ElementType> {
+    public func elements() -> SharedSequence<SharingStrategy, Element.Element> {
         return filter { $0.event.element != nil }
             .map { $0.event.element! }
     }
